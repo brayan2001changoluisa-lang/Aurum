@@ -55,7 +55,7 @@ h2 em,.em{font-family:var(--fs);font-style:italic;color:var(--champ)}
 .b2{width:40vw;height:40vw;min-width:290px;min-height:290px;top:22%;right:-10%;background:rgba(46,139,110,.14);animation:d2 52s ease-in-out infinite alternate}
 .b3{width:36vw;height:36vw;min-width:270px;min-height:270px;bottom:-14%;left:24%;background:rgba(166,52,70,.13);animation:d3 58s ease-in-out infinite alternate}
 @keyframes d1{to{transform:translate(9vw,7vh) scale(1.15)}}@keyframes d2{to{transform:translate(-8vw,-6vh) scale(1.1)}}@keyframes d3{to{transform:translate(7vw,-9vh) scale(.9)}}
-#grain{position:fixed;inset:0;z-index:240;pointer-events:none;opacity:.045;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");background-size:160px}
+#grain{position:fixed;inset:0;z-index:240;pointer-events:none;opacity:.045;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");background-size:160px}
 main,footer{position:relative;z-index:1}
 #progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:300;background:linear-gradient(90deg,var(--deep),var(--gold),var(--champ),var(--emer));transform:scaleX(0);transform-origin:0 50%}
 #preloader{position:fixed;inset:0;z-index:900;background:var(--bg);display:grid;place-items:center}
@@ -135,13 +135,16 @@ body.ready .hero-el{opacity:1;transform:none}
 .dish.hide{display:none!important}
 .dish-in{height:100%;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--s1);transition:transform .4s var(--ease),border-color .35s,box-shadow .4s}
 .dish:hover .dish-in{transform:translateY(-7px);border-color:rgba(212,175,55,.5);box-shadow:0 26px 60px rgba(0,0,0,.5)}
-.dish-img{position:relative;aspect-ratio:4/3;overflow:hidden}.dish-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.dish-img{position:relative;aspect-ratio:4/3;overflow:hidden;cursor:zoom-in}.dish-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
 .dish:hover .dish-img img{transform:scale(1.08)}
 .dish-img::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,8,6,.7),transparent 55%)}
 .dish-top{position:absolute;top:14px;left:14px;right:14px;z-index:2;display:flex;justify-content:space-between;align-items:center}
 .chip{font:800 .56rem var(--fu);letter-spacing:.14em;text-transform:uppercase;padding:6px 10px;border-radius:999px;border:1px solid rgba(240,214,135,.5);background:rgba(9,8,6,.65);color:var(--champ);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .dish-price{font:400 1.3rem var(--fd);color:var(--champ);text-shadow:0 2px 8px #000}
-.dish-body{padding:22px;display:flex;flex-direction:column;flex:1}.dish-name{font-size:1.45rem}
+.dish-view{position:absolute;left:14px;bottom:14px;z-index:2;display:inline-flex;gap:7px;align-items:center;padding:7px 12px;border-radius:999px;background:rgba(9,8,6,.72);border:1px solid rgba(240,214,135,.4);color:var(--champ);font:800 8.5px var(--fu);letter-spacing:.14em;text-transform:uppercase;opacity:0;transform:translateY(6px);transition:.35s var(--ease);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);pointer-events:none}
+.dish:hover .dish-view,.dish-img:focus-visible .dish-view{opacity:1;transform:none}
+@media (hover:none){.dish-view{opacity:1;transform:none}}
+.dish-body{padding:22px;display:flex;flex-direction:column;flex:1}.dish-name{font-size:1.45rem;cursor:pointer;transition:color .3s}.dish-name:hover{color:var(--champ)}
 .dish-desc{color:var(--muted);font-size:.9rem;line-height:1.6;margin:8px 0 13px;flex:1}
 .dish-tags{display:flex;flex-wrap:wrap;gap:6px}.dish-tags span{font:600 .64rem var(--fu);color:var(--muted);background:rgba(255,255,255,.05);padding:4px 8px;border-radius:6px}
 .dish-tags .tag-hot{color:var(--champ);border:1px solid rgba(212,175,55,.3)}
@@ -314,9 +317,52 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 .adm-st.p{color:var(--warn);border-color:rgba(232,178,61,.4)}.adm-st.c{color:var(--ok);border-color:rgba(63,169,124,.4)}.adm-st.x{color:var(--bad);border-color:rgba(217,83,96,.4)}.adm-st.e{color:#7FB3E3;border-color:rgba(91,155,213,.4)}
 .adm-mini{font:700 .62rem var(--fu);padding:5px 9px;border-radius:8px;border:1px solid var(--line);color:var(--champ);margin:2px 2px 0 0}
 .adm-mini:hover{background:rgba(212,175,55,.12)}
+/* ═══ DETALLE DE PLATO · ZOOM PREMIUM ═══ */
+#dishModal .modal-card{width:min(980px,100%);padding:0;overflow:hidden;position:relative}
+.dm-close{position:absolute;top:14px;right:14px;z-index:6;width:40px;height:40px;border-radius:50%;background:rgba(9,8,6,.72);border:1px solid rgba(240,214,135,.4);color:var(--champ);display:grid;place-items:center;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .25s}
+.dm-close:hover{background:rgba(212,175,55,.25)}
+.dm-grid{display:grid;grid-template-columns:.92fr 1.08fr}
+.dm-media{position:relative;min-height:440px;background:var(--s2);overflow:hidden}
+.dm-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:dmKen 16s ease-in-out infinite alternate}
+@keyframes dmKen{from{transform:scale(1)}to{transform:scale(1.09)}}
+.dm-media::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,8,6,.6),transparent 45%)}
+.dm-media::before{content:'';position:absolute;inset:14px;border:1px solid rgba(240,214,135,.3);z-index:2;pointer-events:none}
+.dm-top{position:absolute;top:18px;left:18px;z-index:3}
+.dm-price{position:absolute;left:22px;bottom:16px;z-index:3;font:400 2.1rem var(--fd);color:var(--champ);text-shadow:0 2px 14px #000}
+.dm-body{padding:30px 30px 26px;max-height:88vh;overflow:auto}
+.dm-body.dm-swap{animation:dmSwap .45s var(--ease)}
+@keyframes dmSwap{from{opacity:.2;transform:translateY(10px)}to{opacity:1;transform:none}}
+.dm-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;padding-right:44px}
+.dm-count{font:800 9px var(--fu);letter-spacing:.26em;color:var(--dim)}
+.dm-arrows{display:flex;gap:8px}
+.dm-arrows button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);color:var(--champ);display:grid;place-items:center;transition:.25s}
+.dm-arrows button:hover{background:rgba(212,175,55,.14);border-color:var(--gold)}
+.dm-arrows .ico{width:16px;height:16px}
+.dm-name{font-size:clamp(1.9rem,4vw,2.7rem);color:var(--ink);margin:8px 0 4px;line-height:1.1}
+.dm-tag{font:italic 400 1.08rem var(--fs);color:var(--champ);margin-bottom:12px}
+.dm-story{color:var(--muted);font-size:.92rem;line-height:1.75}
+.dm-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.dm-chips span{font:700 .64rem var(--fu);letter-spacing:.08em;color:var(--champ);border:1px solid rgba(240,214,135,.35);padding:6px 11px;border-radius:999px}
+.dm-h{font:800 9px var(--fu);letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:18px 0 9px;display:flex;align-items:center;gap:10px}
+.dm-h::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
+.dm-ing{display:flex;flex-wrap:wrap;gap:7px;list-style:none}
+.dm-ing li{font:600 .74rem var(--fu);color:var(--ink);background:rgba(212,175,55,.08);border:1px solid var(--line);padding:7px 11px;border-radius:999px}
+.dm-ing li::before{content:'✦ ';color:var(--gold)}
+.dm-al{display:flex;flex-wrap:wrap;gap:6px}
+.dm-al span{font:700 .66rem var(--fu);color:var(--warn);border:1px solid rgba(232,178,61,.35);background:rgba(232,178,61,.07);padding:5px 10px;border-radius:7px}
+.dm-al span.none{color:var(--ok);border-color:rgba(63,169,124,.35);background:rgba(63,169,124,.07)}
+.dm-pair{display:flex;gap:11px;align-items:flex-start;padding:13px 15px;border-radius:13px;border:1px solid rgba(166,52,70,.35);background:linear-gradient(120deg,rgba(166,52,70,.13),rgba(212,175,55,.06));font-size:.86rem;color:var(--ink)}
+.dm-pair .ico{width:19px;height:19px;color:var(--wine);margin-top:2px;flex:none}
+.dm-pair small{display:block;color:var(--muted);font-size:.73rem;margin-top:2px}
+.dm-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.dm-actions .btn{flex:1;min-width:150px}
+#dmPick.picked{background:linear-gradient(135deg,var(--champ),var(--gold));color:#1A1406;border-color:transparent}
+.dm-zoom{will-change:left,top,width,height;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.dm-zoom img{width:100%;height:100%;object-fit:cover}
+@media (max-width:820px){.dm-grid{grid-template-columns:1fr}.dm-media{min-height:0;aspect-ratio:16/10}.dm-body{max-height:none;overflow:visible}#dishModal .modal-card{max-height:90vh;overflow:auto}.dm-nav{padding-right:40px}}
 @media (max-width:1060px){.nav-links{display:none}#burger{display:block}.exp-grid,.aria-grid,.res-grid{grid-template-columns:1fr;gap:42px}.exp-left{position:static}.f-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){.counters{grid-template-columns:repeat(2,1fr);gap:32px 14px}.aria-photo{height:400px}}
-@media (max-width:620px){.container{width:calc(100% - 36px)}.hero{padding-top:116px}.hero-cta{flex-direction:column}.hero-cta .btn{width:100%}.frow{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr}.tasting{padding:28px 22px}.pillar{grid-template-columns:1fr;gap:8px;padding:32px 0}.nav-ico.wa{display:none}.fab-tip{display:none}.f-bottom{flex-direction:column;text-align:center}.cs-avatar{width:112px;height:112px}.cs-ava{font-size:44px}.cs-controls{gap:14px 18px}.cs-btn .round{width:60px;height:60px}.cs-btn .round .ico{width:23px;height:23px}.cs-end .round{width:70px;height:70px}.cs-caption{min-height:80px;padding:14px}.cs-name{font-size:2rem}.adm-tools{grid-template-columns:1fr}.modal-card{padding:20px}}
+@media (max-width:620px){.container{width:calc(100% - 36px)}.hero{padding-top:116px}.hero-cta{flex-direction:column}.hero-cta .btn{width:100%}.frow{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr}.tasting{padding:28px 22px}.pillar{grid-template-columns:1fr;gap:8px;padding:32px 0}.nav-ico.wa{display:none}.fab-tip{display:none}.f-bottom{flex-direction:column;text-align:center}.cs-avatar{width:112px;height:112px}.cs-ava{font-size:44px}.cs-controls{gap:14px 18px}.cs-btn .round{width:60px;height:60px}.cs-btn .round .ico{width:23px;height:23px}.cs-end .round{width:70px;height:70px}.cs-caption{min-height:80px;padding:14px}.cs-name{font-size:2rem}.adm-tools{grid-template-columns:1fr}.modal-card{padding:20px}.dm-body{padding:22px 20px}}
 @media (max-height:700px){.cs-avatar{width:96px;height:96px;margin:6px 0 10px}.cs-ava{font-size:38px}.cs-wave{height:32px;margin:10px 0 8px}.cs-controls{gap:12px 20px;padding-top:14px}.cs-btn .round{width:56px;height:56px}.cs-end{margin-top:16px}.cs-end .round{width:64px;height:64px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.js [data-reveal],.js .hero-el{opacity:1;transform:none}}
 </style>
@@ -348,13 +394,12 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
 <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
 <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-glass" viewBox="0 0 24 24"><path d="M8 3h8l-.6 6a3.4 3.4 0 01-6.8 0L8 3zM12 12.5V19M8.5 21h7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>
-
 <div id="preloader"><div class="pl-wrap"><div class="pl-logo">AURUM</div><div class="pl-bar"><div id="plBar"></div></div><div id="plPct">Cargando experiencia…</div></div></div>
 <div id="progress"></div>
 <div id="ambient" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
 <div id="grain" aria-hidden="true"></div>
-
 <header id="nav"><div class="container nav-in">
 <a class="logo" href="#inicio"><svg class="ico" viewBox="0 0 24 24"><use href="#i-star"/></svg>AURUM</a>
 <nav class="nav-links"><a class="nav-link" href="#experiencia">Experiencia</a><a class="nav-link" href="#carta">Carta</a><a class="nav-link" href="#aria">ARIA</a><a class="nav-link" href="#reserva">Reservar</a></nav>
@@ -364,9 +409,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <button class="btn btn-call btn-sm" type="button" data-call><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>Llamar</button>
 <button id="burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span></button>
 </div></div></header>
-
 <div id="mobileMenu" aria-hidden="true"><nav class="mm-links"><a href="#inicio"><i>00</i>Inicio</a><a href="#experiencia"><i>01</i>Experiencia</a><a href="#carta"><i>02</i>Carta</a><a href="#aria"><i>03</i>ARIA</a><a href="#reserva"><i>04</i>Reservar</a></nav><div class="mm-foot"><button class="btn btn-call" type="button" data-call><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>Llamar a ARIA</button><a class="btn btn-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>WhatsApp +34 602 006 585</a></div></div>
-
 <main>
 <section id="inicio" class="hero">
 <div class="hero-photo"><img id="heroImg" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2200&q=85" alt="Sala AURUM" onerror="__imgFB(this)"></div>
@@ -378,16 +421,13 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="hero-meta hero-el" style="--d:.74s"><span><svg class="ico" viewBox="0 0 24 24"><use href="#i-pin"/></svg>P.º de la Castellana 88</span><span class="status-badge" data-status><i class="dot"></i><span data-status-text>Consultando horario</span></span></div>
 </div><a class="hero-scroll" href="#experiencia"><span class="line"></span>DESLIZA</a>
 </section>
-
 <div class="marquee"><div class="marquee-track"><span class="mq-item"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item"><b>✦</b> Guía Celeste 2026</span><span class="mq-item"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item"><b>✦</b> ARIA · voz en 4 idiomas</span><span class="mq-item" aria-hidden="true"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item" aria-hidden="true"><b>✦</b> Guía Celeste 2026</span><span class="mq-item" aria-hidden="true"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item" aria-hidden="true"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item" aria-hidden="true"><b>✦</b> ARIA · voz en 4 idiomas</span></div></div>
-
 <section id="experiencia"><div class="container"><div class="exp-grid">
 <div class="exp-left" data-reveal="left"><p class="overline">01 — Esencia</p><h2>Un laboratorio de <em>belleza comestible</em></h2><p>Cada noche, veintiocho comensales se sientan a responder una pregunta: ¿a qué sabe el mañana? La sala respira con el menú, la luz sigue el ritmo de los pases y la cocina trabaja con precisión de relojero.</p><div class="photo-frame exp-photo"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85" alt="Interior AURUM" loading="lazy" onerror="__imgFB(this)"></div></div>
 <div class="exp-right"><div class="pillar" data-reveal><span class="idx">01</span><div><h3>Fuego &amp; precisión</h3><p>Brasa de encina a 480 °C, cámaras de maduración propias y una cocina-laboratorio donde cada grado importa.</p></div></div><div class="pillar" data-reveal style="--d:.08s"><span class="idx">02</span><div><h3>Producto kilómetro cero</h3><p>Lonja de madrugada, huerto biodinámico propio y 42 pequeños productores que nos llaman por el nombre de pila.</p></div></div><div class="pillar" data-reveal style="--d:.16s"><span class="idx">03</span><div><h3>Teatro sensorial</h3><p>Luz que sigue el ritmo del menú, aromas escenografiados y una sala que se transforma con cada pase.</p></div></div></div>
 </div><div class="counters" data-reveal><div><span class="num" data-count="5">0</span><small>Estrellas</small></div><div><span class="num" data-count="12">0</span><small>Tiempos</small></div><div><span class="num" data-count="28">0</span><small>Asientos</small></div><div><span class="num" data-count="480">0</span><small>Etiquetas bodega</small></div></div></div></section>
-
 <section id="carta"><div class="container">
-<div class="sec-head" data-reveal><p class="overline">02 — Carta viva · 2026</p><h2>Seis platos, <em>seis mundos</em></h2><p>Añade los platos que te conquisten y los incluiremos en tu mensaje de WhatsApp.</p></div>
+<div class="sec-head" data-reveal><p class="overline">02 — Carta viva · 2026</p><h2>Seis platos, <em>seis mundos</em></h2><p>Toca cualquier plato para acercarte a él: historia, ingredientes y maridaje. Añade los que te conquisten y los incluiremos en tu mensaje de WhatsApp.</p></div>
 <div class="filters" data-reveal><button class="fbtn active" type="button" data-f="all">Todos<span class="f-n"></span></button><button class="fbtn" type="button" data-f="mar">Del mar<span class="f-n"></span></button><button class="fbtn" type="button" data-f="tierra">De la tierra<span class="f-n"></span></button><button class="fbtn" type="button" data-f="huerto">Del huerto<span class="f-n"></span></button><button class="fbtn" type="button" data-f="dulce">Dulces<span class="f-n"></span></button></div>
 <div id="selRow" class="sel-row"><span>✦ <b id="selCount">0</b> platos en tu consulta</span><a id="selSend" class="btn btn-wa btn-sm" href="https://wa.me/34602006585" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Enviar selección</a></div>
 <div class="dish-grid">
@@ -396,11 +436,10 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <article class="dish" data-id="jardin" data-cat="huerto" data-reveal style="--d:.12s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=85" alt="Jardín Suspendido" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Huerto</span><span class="dish-price">29 €</span></div></div><div class="dish-body"><h3 class="dish-name">Jardín Suspendido</h3><p class="dish-desc">Nuestro huerto en 21 elementos: hojas vivas, flores, tierra de aceituna negra y rocío de hierbas.</p><div class="dish-tags"><span class="tag-hot">🌱 Vegano</span></div><button class="dish-pick" type="button" data-pick="jardin"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
 <article class="dish" data-id="brasa" data-cat="tierra" data-reveal style="--d:.18s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=900&q=85" alt="Brasa Imperial" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Tierra</span><span class="dish-price">68 €</span></div></div><div class="dish-body"><h3 class="dish-name">Brasa Imperial</h3><p class="dish-desc">Vaca vieja madurada 45 días a la brasa de encina, jugo de tuétano y pimienta de Timut.</p><div class="dish-tags"><span>Sulfitos</span><span class="tag-hot">🔥 45 días</span></div><button class="dish-pick" type="button" data-pick="brasa"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
 <article class="dish" data-id="perla" data-cat="mar" data-reveal style="--d:.24s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=900&q=85" alt="Perla del Alba" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Mar</span><span class="dish-price">44 €</span></div></div><div class="dish-body"><h3 class="dish-name">Perla del Alba</h3><p class="dish-desc">Vieiras nacaradas, velouté de coliflor ahumada, caviar Oscietra y aceite de cítricos.</p><div class="dish-tags"><span>Moluscos</span><span>Lácteos</span></div><button class="dish-pick" type="button" data-pick="perla"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
-<article class="dish" data-id="eclipse" data-cat="dulce" data-reveal style="--d:.3s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85" alt="Eclipse de Cacao" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Dulce</span><span class="dish-price">24 €</span></div></div><div class="dish-body"><h3 class="dish-name">Eclipse de Cacao</h3><p class="dish-desc">Esfera de chocolate 70 % que se funde en mesa: corazón de avellana, oro y frambuesa liofilizada.</p><div class="dish-tags"><span>Gluten</span><span>Lácteos</span><span class="tag-hot">✦ En mesa</span></div><button class="dish-pick" type="button" data-pick="eclipse"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
+<article class="dish" data-id="eclipse" data-cat="dulce" data-reveal style="--d:.3s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85" alt="Eclipse de Cacao" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Dulce</span><span class="dish-price">24 €</span></div></div><div class="dish-body"><h3 class="dish-name">Eclipse de Cacao</h3><p class="dish-desc">Esfera de chocolate 70 % que se funde en mesa: corazón de avellana, oro y frambuesa liofilizada.</p><div class="dish-tags"><span>Gluten</span><span>Lácteos</span><span>Frutos de cáscara</span><span class="tag-hot">✦ En mesa</span></div><button class="dish-pick" type="button" data-pick="eclipse"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
 </div>
 <div class="tasting" data-reveal><div><p class="overline">La experiencia completa</p><h3>Menú Celeste · 12 tiempos</h3><p>Tres horas fuera del tiempo. Doce pases narrados por el equipo, con maridaje opcional de nuestra bodega de 480 etiquetas.</p><div class="t-chips"><span>185 € / persona</span><span>Maridaje +95 €</span><span>Mesa del Chef 220 €</span></div></div><a class="btn btn-gold" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20el%20Men%C3%BA%20Celeste." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Consultar Celeste</a></div>
 </div></section>
-
 <section id="aria"><div class="container aria-grid">
 <div class="photo-frame aria-photo" data-reveal="left"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=85" alt="Mesa AURUM" loading="lazy" onerror="__imgFB(this)"><div class="aria-badge"><b>ARIA · Anfitriona de voz</b><small>Voz en tiempo real · subtítulos · reserva al instante</small></div></div>
 <div data-reveal="right"><p class="overline">03 — Llamada inteligente</p><h2>Llama a ARIA, <em>como a una persona</em></h2><p style="color:var(--muted)">Pulsa llamar y habla con ARIA de verdad. Al confirmar tu reserva, el equipo la recibe al instante por correo y WhatsApp, y queda anotada en el libro.</p>
@@ -410,7 +449,6 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="aria-examples"><button class="aex" type="button" data-call data-ask="Reserva para 2 mañana a las 21:00 a nombre de Laura">«Reserva para 2 mañana a las 21:00»</button><button class="aex" type="button" data-call data-ask="What are your opening hours?">«What are your opening hours?»</button></div>
 <div class="voice-health" id="voiceHealth" aria-live="polite"></div>
 </div></div></section>
-
 <section id="reserva"><div class="container">
 <div class="sec-head" data-reveal><p class="overline">04 — Reservas</p><h2>Tu mesa te espera <em>en el futuro</em></h2><p>Habla con ARIA o completa el formulario. El envío final es un enlace real a WhatsApp: siempre funciona.</p></div>
 <div class="res-grid"><div data-reveal="left"><div class="res-top"><button class="btn btn-call" type="button" data-call data-ask="Quiero reservar una mesa"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>Reservar hablando</button><a class="btn btn-ghost" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar." target="_blank" rel="noopener">WhatsApp directo</a></div><ol class="steps"><li><b>1</b>Completa</li><li><b>2</b>Envía por WhatsApp</li><li><b>3</b>Confirmamos &lt; 2 h</li></ol>
@@ -422,7 +460,6 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </form></div>
 <div data-reveal="right"><div class="wa-card"><div class="wa-head"><span class="wa-ava">A</span><div><b>Concierge AURUM</b><small>en línea</small></div></div><div class="wa-body"><div class="bubble"><div id="pvText"></div><div class="pv-meta"><span id="pvTime">--:--</span><span class="ticks">✓✓</span></div></div></div></div><div class="pv-row"><button id="copyBtn" class="btn btn-ghost btn-sm" type="button"><svg class="ico" viewBox="0 0 24 24"><use href="#i-copy"/></svg>Copiar texto</button><span class="pv-note">Vista previa exacta</span></div><div class="res-info"><span class="status-badge" data-status><i class="dot"></i><span data-status-text>Consultando horario</span></span><div><div class="hrow" data-days="1"><span>Lunes</span><b>Cerrado</b></div><div class="hrow" data-days="2,3,4,5,6"><span>Martes — Sábado</span><b>19:30 – 23:00</b></div><div class="hrow" data-days="0"><span>Domingo</span><b>13:00 – 15:30</b></div></div><ul class="policies"><li><svg class="ico" viewBox="0 0 24 24"><use href="#i-check"/></svg>Confirmación humana en menos de 2 horas.</li><li><svg class="ico" viewBox="0 0 24 24"><use href="#i-clock"/></svg>Cancelación gratuita hasta 24 h antes.</li><li><svg class="ico" viewBox="0 0 24 24"><use href="#i-star"/></svg>Dress code: elegancia contemporánea.</li></ul><a class="f-link" href="tel:+34602006585"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>+34 602 006 585</a></div></div>
 </div></div></section>
-
 <section id="faq"><div class="container"><div class="sec-head center" data-reveal><p class="overline">05 — Preguntas</p><h2>Todo lo que quieres <em>preguntar</em></h2></div><div class="faq-wrap" data-reveal>
 <div class="faq-item"><button class="faq-q" type="button">¿Por qué a veces dice «modo respaldo»?<svg class="ico" viewBox="0 0 24 24"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>La voz en tiempo real necesita tres cosas: web publicada en HTTPS, permiso de micrófono y una clave pública de Vapi válida. Si falta alguna, ARIA sigue atendiendo por chat con voz de salida para que nunca te quedes sin respuesta. El diagnóstico de la sección ARIA te dice exactamente qué falta.</p></div></div></div>
 <div class="faq-item"><button class="faq-q" type="button">¿La llamada funciona en iPad/iPhone?<svg class="ico" viewBox="0 0 24 24"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Sí, con la web publicada en HTTPS y aceptando el micrófono. Safari, Chrome y Android son compatibles. Si Safari tiene el micrófono bloqueado, el diagnóstico te muestra cómo reactivarlo en Ajustes del sitio.</p></div></div></div>
@@ -430,16 +467,13 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="faq-item"><button class="faq-q" type="button">¿En qué idiomas habla?<svg class="ico" viewBox="0 0 24 24"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Español, inglés, francés y alemán. ARIA detecta tu idioma automáticamente y puedes cambiarlo durante la llamada con el botón «Idioma».</p></div></div></div>
 </div></div></section>
 </main>
-
 <footer id="contacto"><div class="container"><div class="f-grid">
 <div class="f-brand"><a class="logo" href="#inicio"><svg class="ico" viewBox="0 0 24 24"><use href="#i-star"/></svg>AURUM</a><span class="stars"><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg></span><p>Alta cocina de autor en Madrid. Doce tiempos, una voz que te guía y una mesa que no olvidarás.</p><div class="f-social"><button type="button" data-call aria-label="Llamar a ARIA"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg></button><a href="https://wa.me/34602006585" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg></a><a href="tel:+34602006585" aria-label="Teléfono"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg></a><a href="https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid" target="_blank" rel="noopener" aria-label="Mapa"><svg class="ico" viewBox="0 0 24 24"><use href="#i-pin"/></svg></a></div></div>
 <div class="f-col"><h4>Visítanos</h4><address>Paseo de la Castellana 88<br>28046 Madrid, España</address><a class="f-link" href="https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid" target="_blank" rel="noopener">Google Maps<svg class="ico" viewBox="0 0 24 24"><use href="#i-ext"/></svg></a><ul class="f-contact"><li><a href="tel:+34602006585"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>+34 602 006 585</a></li><li><a href="mailto:reservas@aurum.rest"><svg class="ico" viewBox="0 0 24 24"><use href="#i-mail"/></svg>reservas@aurum.rest</a></li></ul></div>
 <div class="f-col"><h4>Horarios</h4><div class="hrow" data-days="1"><span>Lunes</span><b>Cerrado</b></div><div class="hrow" data-days="2,3,4,5,6"><span>Mar — Sáb</span><b>19:30 – 23:00</b></div><div class="hrow" data-days="0"><span>Domingo</span><b>13:00 – 15:30</b></div></div>
 </div><div class="f-bottom"><span>© <span id="year">2026</span> AURUM · Madrid</span><span>WhatsApp · +34 602 006 585</span><button type="button" data-admin style="color:var(--dim);font:inherit;display:inline-flex;gap:6px;align-items:center"><svg class="ico" viewBox="0 0 24 24" style="width:12px;height:12px"><use href="#i-lock"/></svg>Acceso equipo</button></div></div></footer>
-
 <div class="fab-dock"><button class="fab fab-call" type="button" data-call aria-label="Llamar a ARIA"><span class="fab-tip">Llamar a ARIA ✦</span><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg></button><a class="fab fab-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="WhatsApp"><span class="fab-tip">WhatsApp +34 602 006 585</span><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg></a></div>
 <div id="toasts" aria-live="polite"></div>
-
 <div id="callScreen" data-state="idle" aria-hidden="true">
 <div class="cs-bg"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80" alt="" onerror="__imgFB(this)"></div>
 <div class="cs-top"><span>AURUM · Concierge</span><span class="cs-net"><i></i><span id="csMode">conectando…</span></span></div>
@@ -465,21 +499,34 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="cs-panel" id="chatPanel"><div class="cs-panel-head"><b>Chat con ARIA</b><button type="button" data-close-panel aria-label="Cerrar chat"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div><div id="chatLog"></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px" id="chatQuick"></div><form id="chatForm"><input id="chatInput" placeholder="Escribe a ARIA…" autocomplete="off"><button id="chatSend" type="submit" aria-label="Enviar mensaje"><svg class="ico" viewBox="0 0 24 24"><use href="#i-send"/></svg></button></form></div>
 <div class="cs-panel" id="langPanel"><div class="cs-panel-head"><b>Idioma de la llamada</b><button type="button" data-close-panel aria-label="Cerrar idiomas"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div><div class="lang-grid" id="langGrid"></div></div>
 </div>
-
 <div class="modal" id="sysModal" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal-card">
 <div class="modal-head"><b id="sysTitle">Comprobación del sistema</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div>
 <div id="sysBody"></div>
 <div class="modal-actions" id="sysActions"></div>
 <p class="adm-note">Aunque el micrófono no esté disponible, ARIA sigue atendiendo por chat con voz de salida y la reserva se completa igual.</p>
 </div></div>
-
 <div class="modal" id="waModal" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal-card">
 <div class="modal-head"><b>Reserva lista ✦</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div>
 <div id="waSummary"></div>
 <div class="modal-actions"><a id="waSend" class="btn btn-wa" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Enviar por WhatsApp</a><button id="waCopy" class="btn btn-ghost" type="button"><svg class="ico" viewBox="0 0 24 24"><use href="#i-copy"/></svg>Copiar</button></div>
 <p class="adm-note">El equipo ya recibió la reserva por correo automáticamente. Este WhatsApp es una vía extra por si quieres enviarlo tú también.</p>
 </div></div>
-
+<div class="modal" id="dishModal" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal-card">
+<button class="dm-close" type="button" data-close-modal aria-label="Cerrar detalle"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button>
+<div class="dm-grid">
+<div class="dm-media"><img id="dmImg" src="" alt="" onerror="__imgFB(this)"><div class="dm-top"><span class="chip" id="dmCat"></span></div><span class="dm-price" id="dmPrice"></span></div>
+<div class="dm-body" id="dmBody">
+<div class="dm-nav"><span class="dm-count" id="dmCount"></span><div class="dm-arrows"><button type="button" id="dmPrev" aria-label="Plato anterior"><svg class="ico" viewBox="0 0 24 24" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg></button><button type="button" id="dmNext" aria-label="Plato siguiente"><svg class="ico" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></button></div></div>
+<p class="overline" id="dmOver"></p>
+<h3 class="dm-name" id="dmName"></h3>
+<p class="dm-tag" id="dmTag"></p>
+<p class="dm-story" id="dmStory"></p>
+<div class="dm-chips" id="dmChips"></div>
+<p class="dm-h">Ingredientes</p><ul class="dm-ing" id="dmIng"></ul>
+<p class="dm-h">Alérgenos</p><div class="dm-al" id="dmAl"></div>
+<p class="dm-h">Maridaje sugerido</p><div class="dm-pair"><svg class="ico" viewBox="0 0 24 24"><use href="#i-glass"/></svg><div><b id="dmPair"></b><small id="dmPairNote"></small></div></div>
+<div class="dm-actions"><button class="btn btn-ghost" id="dmPick" type="button"></button><button class="btn btn-call" id="dmBook" type="button"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>Reservar mesa</button><a class="btn btn-wa" id="dmWa" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Consultar</a></div>
+</div></div></div></div>
 <div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal-card" style="width:min(860px,100%)">
 <div class="modal-head"><b>Zona de equipo</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div>
 <form id="admLogin"><div class="frow"><div class="field"><label for="admUser">Usuario</label><input id="admUser" autocomplete="username"></div><div class="field"><label for="admPass">Contraseña</label><input id="admPass" type="password" autocomplete="current-password"></div></div><button class="btn btn-gold" type="submit" style="width:100%">Entrar</button><p class="adm-note">Acceso local de demostración (admin / aurum2026). El libro completo y seguro en la nube está en Airtable: entra con tu cuenta de Airtable.</p></form>
@@ -491,23 +538,22 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <p class="adm-note">Libro de este dispositivo (voz + formulario). Cuando conectes el guardado en la nube, todas las reservas de todos los dispositivos vivirán también en Airtable.</p>
 </div>
 </div></div>
-
 <script>
 (()=>{ 'use strict';
 /* ══════════════════════════════════════════════════════════════
-   ✦ CONFIGURACIÓN DEFINITIVA
-   · vapiKey: PUBLIC KEY de Vapi (dashboard → API Keys → Public).
-   · vapiAssistant: ID del asistente ARIA AURUM.
-   · web3forms: Access Key → email automático al dueño al confirmar.
-   · airtable: enlace de tu base "Reservas AURUM".
+✦ CONFIGURACIÓN DEFINITIVA
+· vapiKey: PUBLIC KEY de Vapi (dashboard → API Keys → Public).
+· vapiAssistant: ID del asistente ARIA AURUM.
+· web3forms: Access Key → email automático al dueño al confirmar.
+· airtable: enlace de tu base "Reservas AURUM".
 ══════════════════════════════════════════════════════════════ */
 const CFG={
- wa:'34602006585',tel:'+34602006585',
- vapiKey:'a9080b39-34a7-42c9-8330-44be8705ac97',
- vapiAssistant:'4ce336d1-f9a4-4251-a00a-9d055be9f5c3',
- adminUser:'admin',adminPass:'aurum2026',
- airtable:'https://airtable.com/',
- web3forms:'5ba217cd-4465-44f7-86b0-bd213306226f'
+wa:'34602006585',tel:'+34602006585',
+vapiKey:'a9080b39-34a7-42c9-8330-44be8705ac97',
+vapiAssistant:'4ce336d1-f9a4-4251-a00a-9d055be9f5c3',
+adminUser:'admin',adminPass:'aurum2026',
+airtable:'https://airtable.com/',
+web3forms:'5ba217cd-4465-44f7-86b0-bd213306226f'
 };
 const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -521,24 +567,23 @@ function toast(msg,type='ok',action){const b=$('#toasts');if(!b)return;const t=d
 async function copyText(text){try{await navigator.clipboard.writeText(text);toast('Copiado ✦')}catch(e){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copiado ✦')}catch(e2){toast('No se pudo copiar','warn')}ta.remove()}}
 const ENV={secure:window.isSecureContext,iframe:(()=>{try{return window.self!==window.top}catch(e){return true}})(),mic:!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia),sr:!!(window.SpeechRecognition||window.webkitSpeechRecognition),tts:'speechSynthesis'in window};
 const SND={on:true};
-
 /* ═════════ ESTADO ═════════ */
 const call={open:false,connected:false,muted:false,speaker:true,captions:true,lang:'es',state:'idle',start:0,timer:null,ring:null,busy:false,speaking:false,listening:false,mode:'local'};
-let vapi=null,vapiBound=false,rec=null,flow={step:null,data:{}},audioCtx=null,pendingRes=null,lastResKey='',pendingAsk='',micGranted=false,connectToken=0;
+let vapi=null,vapiBound=false,rec=null,flow={step:null,data:{}},audioCtx=null,pendingRes=null,lastResKey='',pendingAsk='',micGranted=false,connectToken=0,dmCur=null,dmZoomEl=null;
 const synth=window.speechSynthesis||null;
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition||null;
 const selected=new Set(store.get('aurum_call_sel',[]));
 const LANGS={
- es:{label:'Español',bcp:'es-ES',female:['monica','mónica','paulina','helena','elvira','laura','lucia','sabina','google español']},
- en:{label:'English',bcp:'en-US',female:['samantha','victoria','zira','aria','jenny','susan','serena','google uk english female','google us english']},
- fr:{label:'Français',bcp:'fr-FR',female:['amelie','amélie','audrey','celine','céline','denise','julie','google français']},
- de:{label:'Deutsch',bcp:'de-DE',female:['anna','petra','katja','hedda','vicki','google deutsch']}
+es:{label:'Español',bcp:'es-ES',female:['monica','mónica','paulina','helena','elvira','laura','lucia','sabina','google español']},
+en:{label:'English',bcp:'en-US',female:['samantha','victoria','zira','aria','jenny','susan','serena','google uk english female','google us english']},
+fr:{label:'Français',bcp:'fr-FR',female:['amelie','amélie','audrey','celine','céline','denise','julie','google français']},
+de:{label:'Deutsch',bcp:'de-DE',female:['anna','petra','katja','hedda','vicki','google deutsch']}
 };
 let voices=[];
 function loadVoices(){if(synth)voices=synth.getVoices()}
 if(synth){loadVoices();synth.onvoiceschanged=loadVoices}
-
-/* ═════════ HORARIOS ═════════ */
+/* ═════════ HORARIOS · RELOJ DE ESPAÑA ═════════ */
+const TZ='Europe/Madrid';
 const dinner=[{o:1170,c:1380,label:'cena'}];
 const SCHED={0:[{o:780,c:930,label:'almuerzo'}],1:null,2:dinner,3:dinner,4:dinner,5:dinner,6:dinner};
 const DAYS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
@@ -546,86 +591,154 @@ const pad=n=>String(n).padStart(2,'0');
 const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
 const addDays=n=>{const d=new Date();d.setDate(d.getDate()+n);return d};
 const fmtMin=m=>pad(Math.floor(m/60))+':'+pad(m%60);
-function slotsFor(v){if(!v)return{list:[],hint:'Elige una fecha para ver los pases.',service:''};const[y,m,d]=v.split('-').map(Number),wd=new Date(y,m-1,d).getDay();if(wd===1)return{list:[],hint:'Los lunes cerramos.',closed:true,service:''};let list,hint,service;if(wd===0){list=['13:00','13:30','14:00','14:30','15:00'];hint='Domingo · almuerzo';service='Almuerzo'}else{list=['19:30','20:00','20:30','21:00','21:30','22:00'];hint='Mar–Sáb · cena';service='Cena'}if(v===iso(new Date())){const n=new Date(),nm=n.getHours()*60+n.getMinutes()+60;list=list.filter(s=>{const[h,mi]=s.split(':').map(Number);return h*60+mi>nm});if(!list.length)hint='Hoy ya no quedan pases online.'}return{list,hint,service}}
+function nowParts(){
+const W={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+try{
+const p={};new Intl.DateTimeFormat('en-GB',{timeZone:TZ,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23',weekday:'short'}).formatToParts(new Date()).forEach(x=>{p[x.type]=x.value});
+return{y:+p.year,m:+p.month,d:+p.day,hh:+p.hour,mm:+p.minute,wd:W[p.weekday]??new Date().getDay(),iso:p.year+'-'+p.month+'-'+p.day};
+}catch(e){const n=new Date();return{y:n.getFullYear(),m:n.getMonth()+1,d:n.getDate(),hh:n.getHours(),mm:n.getMinutes(),wd:n.getDay(),iso:iso(n)}}
+}
+function madridVars(){const p=nowParts();let wd=DAYS[p.wd];try{wd=new Intl.DateTimeFormat('es-ES',{timeZone:TZ,weekday:'long'}).format(new Date())}catch(e){}return{fecha_actual:pad(p.d)+'/'+pad(p.m)+'/'+p.y,hora_actual:pad(p.hh)+':'+pad(p.mm),dia_semana:wd}}
+function slotsFor(v){if(!v)return{list:[],hint:'Elige una fecha para ver los pases.',service:''};const[y,m,d]=v.split('-').map(Number),wd=new Date(y,m-1,d).getDay();if(wd===1)return{list:[],hint:'Los lunes cerramos.',closed:true,service:''};let list,hint,service;if(wd===0){list=['13:00','13:30','14:00','14:30','15:00'];hint='Domingo · almuerzo';service='Almuerzo'}else{list=['19:30','20:00','20:30','21:00','21:30','22:00'];hint='Mar–Sáb · cena';service='Cena'}const np=nowParts();if(v===np.iso){const nm=np.hh*60+np.mm+60;list=list.filter(s=>{const[h,mi]=s.split(':').map(Number);return h*60+mi>nm});if(!list.length)hint='Hoy ya no quedan pases online.'}return{list,hint,service}}
 function prettyDate(v,l='es'){if(!v)return'—';const[y,m,d]=v.split('-').map(Number);return new Intl.DateTimeFormat(LANGS[l].bcp,{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date(y,m-1,d))}
-
 /* ═════════ LIBRO DE RESERVAS ═════════ */
 const ledger={all:()=>store.get('aurum_ledger',[]),save(l){store.set('aurum_ledger',l)},add(r){const l=this.all();l.unshift(r);this.save(l);renderLedger()},set(id,st){const l=this.all();const r=l.find(x=>x.id===id);if(r){r.status=st;this.save(l);renderLedger()}},del(id){this.save(this.all().filter(x=>x.id!==id));renderLedger()}};
 function seedLedger(){if(store.has('aurum_ledger'))return;const mk=(id,name,guests,days,time,notes,source,status,lang)=>({id,name,guests,date:iso(addDays(days)),time,notes,source,status,lang:lang||'es',ts:Date.now()-Math.random()*86400000,sent:status!=='Pendiente'});ledger.save([mk('E1','Laura Martín',2,1,'21:00','Aniversario · sin gluten','ejemplo','Pendiente'),mk('E2','James Whitmore',4,2,'20:30','Business dinner · window table','ejemplo','Confirmada','en'),mk('E3','Claire Dubois',2,3,'21:30','Anniversaire','ejemplo','Enviada WA','fr'),mk('E4','Familia Ortega',6,0,'13:30','Cumpleaños · trona para bebé','ejemplo','Pendiente'),mk('E5','Anna Schneider',3,4,'20:00','Vegetarisch','ejemplo','Confirmada','de')])}
-function bookingMsg(b){return`✦ AURUM — RESERVA ✦\n\n👤 Nombre: ${b.name||'—'}\n👥 Comensales: ${b.guests||'—'}\n📅 Fecha: ${b.date?prettyDate(b.date,b.lang||'es'):(b.dateText||'—')}\n🕐 Pase: ${b.time||'—'}\n🗣️ Idioma: ${LANGS[b.lang||'es'].label}${b.notes?`\n📝 Notas: ${b.notes}`:''}\n\nReserva creada con ARIA. Por favor, confirmar.`}
+function bookingMsg(b){return`✦ AURUM — RESERVA ✦
+ Nombre: ${b.name||'—'}
+👥 Comensales: ${b.guests||'—'}
+📅 Fecha: ${b.date?prettyDate(b.date,b.lang||'es'):(b.dateText||'—')}
+🕐 Pase: ${b.time||'—'}
+🗣️ Idioma: ${LANGS[b.lang||'es'].label}${b.notes?`
+📝 Notas: ${b.notes}`:''}
+Reserva creada con ARIA. Por favor, confirmar.`}
 function sendOwnerEmail(rec,source){
- try{ if(!CFG.web3forms)return;
-  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:CFG.web3forms,subject:'✦ Nueva reserva AURUM – '+(rec.name||'cliente'),from_name:'AURUM Web',nombre:rec.name||'—',personas:String(rec.guests||'—'),fecha:rec.date?prettyDate(rec.date,rec.lang||'es'):(rec.dateText||'—'),hora:rec.time||'—',idioma:(LANGS[rec.lang||'es']||{}).label||rec.lang||'es',notas:rec.notes||'—',origen:source||'voz',mensaje:bookingMsg(rec)})}).then(r=>r.json()).then(j=>{if(j&&j.success)toast('Reserva enviada al equipo por correo ✦')}).catch(()=>{})
- }catch(e){}
+try{ if(!CFG.web3forms)return;
+fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:CFG.web3forms,subject:'✦ Nueva reserva AURUM – '+(rec.name||'cliente'),from_name:'AURUM Web',nombre:rec.name||'—',personas:String(rec.guests||'—'),fecha:rec.date?prettyDate(rec.date,rec.lang||'es'):(rec.dateText||'—'),hora:rec.time||'—',idioma:(LANGS[rec.lang||'es']||{}).label||rec.lang||'es',notas:rec.notes||'—',origen:source||'voz',mensaje:bookingMsg(rec)})}).then(r=>r.json()).then(j=>{if(j&&j.success)toast('Reserva enviada al equipo por correo ✦')}).catch(()=>{})
+}catch(e){}
 }
 function registerReservation(r,source){
- const key=(r.name||'')+'|'+(r.date||r.dateText||'')+'|'+(r.time||'');
- if(key===lastResKey)return;lastResKey=key;
- const rec={id:'A'+Date.now().toString(36),name:r.name||'',guests:r.guests||'',date:r.date||'',dateText:r.dateText||'',time:r.time||'',lang:r.lang||call.lang,notes:r.notes||'',source,status:'Pendiente',ts:Date.now(),sent:false};
- ledger.add(rec);pendingRes=rec;
- sendOwnerEmail(rec,source);
- const msg=bookingMsg(rec),url=waURL(msg);
- setCaption(t('done'),[{label:t('sendWa'),href:url,mark:rec.id},{label:'Copiar',onClick:()=>copyText(msg)}]);
- toast('Reserva registrada ✦');
- let w=null;try{w=window.open(url,'_blank','noopener')}catch(e){}
- if(w){rec.sent=true;ledger.set(rec.id,'Enviada WA')}
- else if(!call.open){openWaModal(rec)}
+const key=(r.name||'')+'|'+(r.date||r.dateText||'')+'|'+(r.time||'');
+if(key===lastResKey)return;lastResKey=key;
+const rec={id:'A'+Date.now().toString(36),name:r.name||'',guests:r.guests||'',date:r.date||'',dateText:r.dateText||'',time:r.time||'',lang:r.lang||call.lang,notes:r.notes||'',source,status:'Pendiente',ts:Date.now(),sent:false};
+ledger.add(rec);pendingRes=rec;
+sendOwnerEmail(rec,source);
+const msg=bookingMsg(rec),url=waURL(msg);
+setCaption(t('done'),[{label:t('sendWa'),href:url,mark:rec.id},{label:'Copiar',onClick:()=>copyText(msg)}]);
+toast('Reserva registrada ✦');
+let w=null;try{w=window.open(url,'_blank','noopener')}catch(e){}
+if(w){rec.sent=true;ledger.set(rec.id,'Enviada WA')}
+else if(!call.open){openWaModal(rec)}
 }
 function openWaModal(rec){pendingRes=rec;$('#waSummary').textContent=bookingMsg(rec);const a=$('#waSend');a.href=waURL(bookingMsg(rec));a.onclick=()=>{rec.sent=true;ledger.set(rec.id,'Enviada WA')};openModal('waModal')}
 function openModal(id){const m=document.getElementById(id);if(!m)return;m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.classList.add('lock')}
-function closeModals(){$$('.modal').forEach(m=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')});if(!call.open)document.body.classList.remove('lock')}
-
+function closeModals(){$$('.modal').forEach(m=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')});if(dmZoomEl){dmZoomEl.remove();dmZoomEl=null}const di=$('#dmImg');if(di)di.style.opacity='';if(!call.open)document.body.classList.remove('lock')}
 /* ═════════ WHATSAPP / SELECCIÓN ═════════ */
 function selList(){return $$('.dish').filter(d=>selected.has(d.dataset.id)).map(d=>`• ${$('.dish-name',d).textContent} — ${$('.dish-price',d).textContent}`)}
-function refreshSel(){$$('.dish-pick').forEach(b=>{const on=selected.has(b.dataset.pick);b.classList.toggle('picked',on);b.setAttribute('aria-pressed',String(on))});const n=selected.size;$('#selRow').classList.toggle('show',n>0);$('#selCount').textContent=n;const l=selList();$('#selSend').href=waURL('Hola AURUM ✦ '+(l.length?`Estos platos me interesan:\n\n${l.join('\n')}\n\n¿Me cuentan más?`:'Quiero información de la carta.'));store.set('aurum_call_sel',[...selected]);updatePreview()}
+function refreshSel(){$$('.dish-pick').forEach(b=>{const on=selected.has(b.dataset.pick);b.classList.toggle('picked',on);b.setAttribute('aria-pressed',String(on))});const n=selected.size;$('#selRow').classList.toggle('show',n>0);$('#selCount').textContent=n;const l=selList();$('#selSend').href=waURL('Hola AURUM ✦ '+(l.length?`Estos platos me interesan:
+${l.join('
+')}
+¿Me cuentan más?`:'Quiero información de la carta.'));store.set('aurum_call_sel',[...selected]);paintDmPick();updatePreview()}
 safe('selection',()=>{$$('.dish-pick').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.pick;if(selected.has(id))selected.delete(id);else{selected.add(id);toast('Añadido a tu consulta ✦')}refreshSel()}))});
 safe('filters',()=>{const ds=$$('.dish'),bs=$$('.fbtn');bs.forEach(b=>{const f=b.dataset.f;$('.f-n',b).textContent=f==='all'?ds.length:ds.filter(d=>d.dataset.cat===f).length;b.addEventListener('click',()=>{bs.forEach(x=>x.classList.toggle('active',x===b));ds.forEach(d=>d.classList.toggle('hide',f!=='all'&&d.dataset.cat!==f))})})});
-
+/* ═════════ DETALLE DE PLATOS · ZOOM PREMIUM ═════════ */
+const DISHES={
+oro:{cat:'Tierra',name:'Oro Líquido',price:'38 €',img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=85',tag:'El icono de la casa: un risotto que se sirve como una joya.',story:'Nuestro plato más celebrado. El arroz carnaroli se manteca durante dieciocho minutos con un fondo de ave trufado y azafrán ahumado en casa; termina con mantequilla noisette, parmesano de 36 meses y una lámina de pan de oro de 24 quilates que se funde en el primer bocado.',ing:['Arroz carnaroli','Azafrán ahumado en casa','Mantequilla noisette','Parmesano 36 meses','Fondo de ave trufado','Pan de oro 24 quilates','Cebollino fresco'],al:['Lácteos'],pair:'Champagne Grand Cru · Blanc de Blancs',pairNote:'La burbuja fina limpia la mantequilla y realza el azafrán.',chips:['✦ Icono de la casa','18 min de mantecado','Oro 24 k']},
+marea:{cat:'Mar',name:'Marea Negra',price:'42 €',img:'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1400&q=85',tag:'El océano en tres texturas: glaseado, perla y aire.',story:'Bacalao negro de Alaska marinado 72 horas en miso blanco, lacado a la brasa hasta caramelizar. Llega a la mesa con perlas de cítricos que estallan en el paladar, un aire de mar y brotes de shiso que perfuman cada bocado.',ing:['Bacalao negro de Alaska','Miso blanco · 72 h','Yuzu','Perlas de cítricos','Aire de mar','Brotes de shiso','Lima kaffir'],al:['Pescado','Soja'],pair:'Junmai Daiginjo o Albariño en rama',pairNote:'La salinidad del vino abraza el glaseado umami del miso.',chips:['72 h de marinado','Lacado a la brasa','Esferificación']},
+jardin:{cat:'Huerto',name:'Jardín Suspendido',price:'29 €',img:'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1400&q=85',tag:'Veintiún elementos de nuestro huerto biodinámico, recogidos esa misma mañana.',story:'Un paisaje comestible que cambia cada semana según lo que da la tierra. Hojas vivas, flores, tubérculos glaseados y una tierra de aceituna negra que se come entera. Terminado en mesa con un rocío de hierbas que libera el aroma del huerto al anochecer.',ing:['Hojas vivas del huerto','Flores comestibles','Tierra de aceituna negra','Rocío de hierbas','Tubérculos glaseados','Aceite arbequina','Sal Maldon'],al:[],pair:'Verdejo sobre lías o kombucha de la casa',pairNote:'Frescura vegetal para un plato que es puro jardín.',chips:['🌱 Vegano','21 elementos','Cosecha del día']},
+brasa:{cat:'Tierra',name:'Brasa Imperial',price:'68 €',img:'https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=1400&q=85',tag:'Vaca vieja madurada 45 días, sellada a 480 °C sobre encina.',story:'Seleccionamos cada pieza en nuestras cámaras de maduración y la sellamos sobre brasa de encina a 480 °C para crear una costra profunda y un interior rosado. Se sirve con jugo de tuétano, pimienta de Timut y un puré ahumado de patata violeta.',ing:['Vaca vieja · 45 días','Brasa de encina 480 °C','Jugo de tuétano','Pimienta de Timut','Sal de manantial','Puré de patata violeta'],al:['Sulfitos'],pair:'Ribera del Duero · Gran Reserva',pairNote:'Taninos sedosos para la grasa noble de la maduración.',chips:['🔥 45 días','480 °C','Cámara propia']},
+perla:{cat:'Mar',name:'Perla del Alba',price:'44 €',img:'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1400&q=85',tag:'Vieiras nacaradas con caviar Oscietra: el lujo sereno del Cantábrico.',story:'Vieiras marcadas apenas unos segundos para conservar su nácar, sobre un velouté de coliflor ahumada. Coronadas con caviar Oscietra y un aceite de cítricos que ilumina el conjunto como la primera luz de la mañana.',ing:['Vieiras nacaradas','Velouté de coliflor ahumada','Caviar Oscietra','Aceite de cítricos','Flor de sal','Microperifollo'],al:['Moluscos','Lácteos','Pescado'],pair:'Chablis · Premier Cru',pairNote:'Mineralidad y tensión para el nácar de la vieira.',chips:['✦ Caviar Oscietra','Marcado 40 s','Cantábrico']},
+eclipse:{cat:'Dulce',name:'Eclipse de Cacao',price:'24 €',img:'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1400&q=85',tag:'Una esfera que se funde en mesa: el postre es también un espectáculo.',story:'Delante de ti, una salsa caliente de cacao derrite la esfera de chocolate 70 % y descubre su corazón de avellana del Piemonte, frambuesa liofilizada y pan de oro. Se acompaña de helado de vainilla de Tahití para jugar con el frío y el calor.',ing:['Chocolate 70 % origen único','Avellana del Piemonte','Frambuesa liofilizada','Pan de oro','Salsa caliente de cacao','Helado de vainilla Tahití'],al:['Gluten','Lácteos','Frutos de cáscara'],pair:'PX Viejo o espresso de especialidad',pairNote:'Dulzor profundo que prolonga el cacao sin taparlo.',chips:['✦ Se funde en mesa','70 % cacao','Frío & calor']}
+};
+const DISH_ORDER=['oro','marea','jardin','brasa','perla','eclipse'];
+function paintDmPick(){if(!dmCur)return;const on=selected.has(dmCur),b=$('#dmPick');if(!b)return;b.classList.toggle('picked',on);b.textContent=on?'✓ En tu consulta':'＋ Añadir a mi consulta'}
+function renderDish(id,swap){const d=DISHES[id];if(!d)return;dmCur=id;
+const img=$('#dmImg');img.src=d.img;img.alt=d.name;
+$('#dmCat').textContent=d.cat;$('#dmPrice').textContent=d.price;
+$('#dmCount').textContent=pad(DISH_ORDER.indexOf(id)+1)+' / '+pad(DISH_ORDER.length);
+$('#dmOver').textContent='Carta viva · '+d.cat;
+$('#dmName').textContent=d.name;$('#dmTag').textContent=d.tag;$('#dmStory').textContent=d.story;
+const ch=$('#dmChips');ch.innerHTML='';d.chips.forEach(c=>{const s=document.createElement('span');s.textContent=c;ch.appendChild(s)});
+const ig=$('#dmIng');ig.innerHTML='';d.ing.forEach(i=>{const li=document.createElement('li');li.textContent=i;ig.appendChild(li)});
+const al=$('#dmAl');al.innerHTML='';if(!d.al.length){const s=document.createElement('span');s.className='none';s.textContent='Sin alérgenos declarados · vegano';al.appendChild(s)}else d.al.forEach(a=>{const s=document.createElement('span');s.textContent=a;al.appendChild(s)});
+$('#dmPair').textContent=d.pair;$('#dmPairNote').textContent=d.pairNote;
+$('#dmWa').href=waURL('Hola AURUM ✦ Me gustaría consultar sobre «'+d.name+'» ('+d.price+').');
+paintDmPick();
+if(swap&&!reduced){const b=$('#dmBody');b.classList.remove('dm-swap');void b.offsetWidth;b.classList.add('dm-swap');img.style.animation='none';void img.offsetWidth;img.style.animation=''}
+}
+function openDish(id,src){
+if(!DISHES[id])return;
+renderDish(id,false);openModal('dishModal');
+const img=$('#dmImg');img.style.opacity='';
+if(reduced||!src)return;
+try{
+const from=src.getBoundingClientRect(),to=img.getBoundingClientRect();
+if(!from.width||!to.width)return;
+const z=document.createElement('div');z.className='dm-zoom';
+z.style.cssText='position:fixed;z-index:870;overflow:hidden;pointer-events:none;left:'+from.left+'px;top:'+from.top+'px;width:'+from.width+'px;height:'+from.height+'px;border-radius:18px;';
+const zi=document.createElement('img');zi.src=src.currentSrc||src.src;zi.alt='';z.appendChild(zi);
+document.body.appendChild(z);dmZoomEl=z;img.style.opacity='0';
+requestAnimationFrame(()=>{requestAnimationFrame(()=>{z.style.transition='left .6s cubic-bezier(.22,1,.36,1),top .6s cubic-bezier(.22,1,.36,1),width .6s cubic-bezier(.22,1,.36,1),height .6s cubic-bezier(.22,1,.36,1),border-radius .6s cubic-bezier(.22,1,.36,1)';z.style.left=to.left+'px';z.style.top=to.top+'px';z.style.width=to.width+'px';z.style.height=to.height+'px';z.style.borderRadius='20px'})});
+setTimeout(()=>{img.style.opacity='';if(dmZoomEl===z){z.remove();dmZoomEl=null}},680);
+}catch(e){img.style.opacity=''}
+}
+safe('dish-detail',()=>{
+$$('.dish').forEach(card=>{
+const id=card.dataset.id,img=$('.dish-img img',card),zone=$('.dish-img',card),nameEl=$('.dish-name',card);
+const hint=document.createElement('span');hint.className='dish-view';hint.textContent='Ver detalle ✦';zone.appendChild(hint);
+zone.setAttribute('role','button');zone.setAttribute('tabindex','0');zone.setAttribute('aria-label','Ver detalle de '+nameEl.textContent);
+zone.addEventListener('click',()=>openDish(id,img));
+zone.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openDish(id,img)}});
+nameEl.addEventListener('click',()=>openDish(id,img));
+});
+$('#dmPrev').addEventListener('click',()=>{const i=DISH_ORDER.indexOf(dmCur);renderDish(DISH_ORDER[(i-1+DISH_ORDER.length)%DISH_ORDER.length],true)});
+$('#dmNext').addEventListener('click',()=>{const i=DISH_ORDER.indexOf(dmCur);renderDish(DISH_ORDER[(i+1)%DISH_ORDER.length],true)});
+$('#dmPick').addEventListener('click',()=>{if(!dmCur)return;if(selected.has(dmCur))selected.delete(dmCur);else{selected.add(dmCur);toast('Añadido a tu consulta ✦')}refreshSel()});
+$('#dmBook').addEventListener('click',()=>{const d=DISHES[dmCur];closeModals();openCall('Quiero reservar una mesa y me interesa el plato '+(d?d.name:'de la carta'))});
+});
 /* ═════════ PRELOADER / NAV / SCROLL ═════════ */
 safe('preloader',()=>{const p=$('#preloader'),bar=$('#plBar'),pct=$('#plPct');const finish=()=>{p.classList.add('done');document.body.classList.add('ready');setTimeout(()=>p.remove(),900)};if(reduced){finish();return}const t0=performance.now();const step=n=>{const x=Math.min(1,(n-t0)/1400);bar.style.width=x*100+'%';pct.textContent=Math.round(x*100)+'%';if(x<1)requestAnimationFrame(step);else setTimeout(finish,160)};requestAnimationFrame(step)});
 safe('nav',()=>{
- const nav=$('#nav'),burger=$('#burger'),menu=$('#mobileMenu'),prog=$('#progress'),hero=$('#heroImg');let h=1,tick=false;const measure=()=>h=Math.max(1,document.documentElement.scrollHeight-innerHeight);
- function scroll(){if(tick)return;tick=true;requestAnimationFrame(()=>{const y=scrollY;nav.classList.toggle('scrolled',y>30);prog.style.transform=`scaleX(${Math.min(1,y/h)})`;if(hero&&!reduced&&y<innerHeight)hero.style.transform=`scale(1.06) translateY(${y*.16}px)`;tick=false})}
- addEventListener('scroll',scroll,{passive:true});addEventListener('resize',()=>{measure();scroll()});addEventListener('load',measure);measure();scroll();
- const setMenu=o=>{menu.classList.toggle('open',o);menu.setAttribute('aria-hidden',String(!o));burger.classList.toggle('active',o);burger.setAttribute('aria-expanded',String(o));document.body.classList.toggle('lock',o)};
- burger.addEventListener('click',()=>setMenu(!menu.classList.contains('open')));$$('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
- const links=$$('.nav-link'),map={};links.forEach(l=>map[l.getAttribute('href').slice(1)]=l);
- if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){links.forEach(l=>l.classList.remove('active'));const l=map[en.target.id];if(l)l.classList.add('active')}}),{rootMargin:'-35% 0px -55% 0px'});['experiencia','carta','aria','reserva'].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s)})}
+const nav=$('#nav'),burger=$('#burger'),menu=$('#mobileMenu'),prog=$('#progress'),hero=$('#heroImg');let h=1,tick=false;const measure=()=>h=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+function scroll(){if(tick)return;tick=true;requestAnimationFrame(()=>{const y=scrollY;nav.classList.toggle('scrolled',y>30);prog.style.transform=`scaleX(${Math.min(1,y/h)})`;if(hero&&!reduced&&y<innerHeight)hero.style.transform=`scale(1.06) translateY(${y*.16}px)`;tick=false})}
+addEventListener('scroll',scroll,{passive:true});addEventListener('resize',()=>{measure();scroll()});addEventListener('load',measure);measure();scroll();
+const setMenu=o=>{menu.classList.toggle('open',o);menu.setAttribute('aria-hidden',String(!o));burger.classList.toggle('active',o);burger.setAttribute('aria-expanded',String(o));document.body.classList.toggle('lock',o)};
+burger.addEventListener('click',()=>setMenu(!menu.classList.contains('open')));$$('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+const links=$$('.nav-link'),map={};links.forEach(l=>map[l.getAttribute('href').slice(1)]=l);
+if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){links.forEach(l=>l.classList.remove('active'));const l=map[en.target.id];if(l)l.classList.add('active')}}),{rootMargin:'-35% 0px -55% 0px'});['experiencia','carta','aria','reserva'].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s)})}
 });
 safe('reveals',()=>{const els=$$('[data-reveal]');if(reduced||!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'));return}const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});els.forEach(e=>io.observe(e))});
 safe('counters',()=>{$$('[data-count]').forEach(el=>{const target=+el.dataset.count;const run=()=>{if(reduced){el.textContent=target;return}const t0=performance.now();const f=n=>{const p=Math.min(1,(n-t0)/1300);el.textContent=Math.round(target*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)};if(!('IntersectionObserver'in window)){run();return}const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){run();io.disconnect()}}),{threshold:.5});io.observe(el)})});
 safe('faq',()=>{$$('.faq-item').forEach(it=>{const q=$('.faq-q',it);q.setAttribute('aria-expanded','false');q.addEventListener('click',()=>{const open=it.classList.contains('open');$$('.faq-item.open').forEach(o=>{o.classList.remove('open');$('.faq-q',o).setAttribute('aria-expanded','false')});if(!open){it.classList.add('open');q.setAttribute('aria-expanded','true')}})})});
-
 /* ═════════ FORMULARIO RESERVA ═════════ */
 const rName=$('#rName'),rDate=$('#rDate'),rTime=$('#rTime'),rGuests=$('#rGuests'),rOcc=$('#rOccasion'),rNotes=$('#rNotes');
-function buildResMsg(){const info=slotsFor(rDate.value),sel=selList();const L=['✦ AURUM — SOLICITUD DE RESERVA ✦','',`👤 Nombre: ${rName.value.trim()||'—'}`,`📅 Fecha: ${prettyDate(rDate.value)}`,`🕐 Hora: ${rTime.value||'—'}${info.service?` (${info.service})`:''}`,`👥 Comensales: ${rGuests.value}`];if(rOcc.value)L.push(`🥂 Ocasión: ${rOcc.value}`);if(sel.length){L.push('🍽️ Platos de interés:');L.push(...sel)}if(rNotes.value.trim())L.push(`📝 Notas: ${rNotes.value.trim()}`);L.push('','Enviado desde la web de AURUM');return L.join('\n')}
-function updatePreview(){if($('#pvText'))$('#pvText').textContent=buildResMsg();if($('#pvTime'))$('#pvTime').textContent=new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});if($('#rSubmit'))$('#rSubmit').href=waURL(buildResMsg())}
+function buildResMsg(){const info=slotsFor(rDate.value),sel=selList();const L=['✦ AURUM — SOLICITUD DE RESERVA ✦','',`👤 Nombre: ${rName.value.trim()||'—'}`,`📅 Fecha: ${prettyDate(rDate.value)}`,`🕐 Hora: ${rTime.value||'—'}${info.service?` (${info.service})`:''}`,`👥 Comensales: ${rGuests.value}`];if(rOcc.value)L.push(`🥂 Ocasión: ${rOcc.value}`);if(sel.length){L.push('🍽️ Platos de interés:');L.push(...sel)}if(rNotes.value.trim())L.push(`📝 Notas: ${rNotes.value.trim()}`);L.push('','Enviado desde la web de AURUM');return L.join('
+')}
+function updatePreview(){if($('#pvText'))$('#pvText').textContent=buildResMsg();if($('#pvTime')){const np=nowParts();$('#pvTime').textContent=pad(np.hh)+':'+pad(np.mm)}if($('#rSubmit'))$('#rSubmit').href=waURL(buildResMsg())}
 function fillTimes(keep=true){const info=slotsFor(rDate.value),prev=keep?rTime.value:'';rTime.innerHTML='';const o=document.createElement('option');o.value='';o.textContent=info.closed?'Día de descanso':info.list.length?'Selecciona un pase':'Sin pases';rTime.appendChild(o);info.list.forEach(s=>{const op=document.createElement('option');op.value=s;op.textContent=s;rTime.appendChild(op)});rTime.disabled=!info.list.length;if(prev&&info.list.includes(prev))rTime.value=prev;$('#timeHint').textContent=info.hint;$('#timeHint').classList.toggle('warn',!!info.closed);updatePreview()}
 function setGuests(n){n=Math.max(1,Math.min(10,n));rGuests.value=n;$('#gVal').textContent=n;$('#gMinus').disabled=n<=1;$('#gPlus').disabled=n>=10;$('#guestHint').classList.toggle('show',n>8);updatePreview()}
 function setErr(id,msg){const f=document.getElementById(id).closest('.field');f.classList.add('bad');$('.err',f).textContent=msg}
 function clearErr(id){document.getElementById(id).closest('.field').classList.remove('bad')}
 safe('reservation',()=>{
- const t=new Date();rDate.min=iso(t);const mx=new Date(t);mx.setDate(mx.getDate()+180);rDate.max=iso(mx);
- const d=store.get('aurum_call_draft',{});rName.value=d.n||'';if(d.d&&d.d>=rDate.min)rDate.value=d.d;fillTimes(false);if(d.t)rTime.value=d.t;rOcc.value=d.o||'';rNotes.value=d.nt||'';setGuests(+d.g||2);
- $('#gMinus').addEventListener('click',()=>setGuests(+rGuests.value-1));$('#gPlus').addEventListener('click',()=>setGuests(+rGuests.value+1));
- rDate.addEventListener('change',()=>{clearErr('rDate');fillTimes(true)});[rName,rNotes].forEach(el=>el.addEventListener('input',()=>{clearErr(el.id);updatePreview()}));[rTime,rOcc].forEach(el=>el.addEventListener('change',()=>{clearErr(el.id);updatePreview()}));
- $('#rForm').addEventListener('input',()=>store.set('aurum_call_draft',{n:rName.value,d:rDate.value,t:rTime.value,g:rGuests.value,o:rOcc.value,nt:rNotes.value}));
- $('#rSubmit').addEventListener('click',e=>{let bad=null;if(rName.value.trim().length<2){setErr('rName','Cuéntanos tu nombre.');bad=bad||rName}const v=rDate.value,info=slotsFor(v);if(!v){setErr('rDate','Elige una fecha.');bad=bad||rDate}else if(v<rDate.min){setErr('rDate','Esa fecha ya pasó.');bad=bad||rDate}else if(info.closed){setErr('rDate','Los lunes cerramos.');bad=bad||rDate}if(!rTime.value){setErr('rTime',info.list.length?'Selecciona un pase.':'Elige fecha con pases.');bad=bad||rTime}if(bad){e.preventDefault();toast('Revisa los campos marcados.','warn');bad.focus();return}
-  const rec={id:'F'+Date.now().toString(36),name:rName.value.trim(),guests:+rGuests.value,date:rDate.value,time:rTime.value,lang:'es',notes:[rOcc.value,rNotes.value.trim()].filter(Boolean).join(' · '),source:'formulario',status:'Enviada WA',ts:Date.now(),sent:true};
-  ledger.add(rec);sendOwnerEmail(rec,'formulario');
-  updatePreview();toast('Abriendo WhatsApp con tu solicitud ✦')});
- $('#copyBtn').addEventListener('click',()=>copyText(buildResMsg()));updatePreview();
+const np=nowParts();const t=new Date(np.y,np.m-1,np.d);rDate.min=iso(t);const mx=new Date(t);mx.setDate(mx.getDate()+180);rDate.max=iso(mx);
+const d=store.get('aurum_call_draft',{});rName.value=d.n||'';if(d.d&&d.d>=rDate.min)rDate.value=d.d;fillTimes(false);if(d.t)rTime.value=d.t;rOcc.value=d.o||'';rNotes.value=d.nt||'';setGuests(+d.g||2);
+$('#gMinus').addEventListener('click',()=>setGuests(+rGuests.value-1));$('#gPlus').addEventListener('click',()=>setGuests(+rGuests.value+1));
+rDate.addEventListener('change',()=>{clearErr('rDate');fillTimes(true)});[rName,rNotes].forEach(el=>el.addEventListener('input',()=>{clearErr(el.id);updatePreview()}));[rTime,rOcc].forEach(el=>el.addEventListener('change',()=>{clearErr(el.id);updatePreview()}));
+$('#rForm').addEventListener('input',()=>store.set('aurum_call_draft',{n:rName.value,d:rDate.value,t:rTime.value,g:rGuests.value,o:rOcc.value,nt:rNotes.value}));
+$('#rSubmit').addEventListener('click',e=>{let bad=null;if(rName.value.trim().length<2){setErr('rName','Cuéntanos tu nombre.');bad=bad||rName}const v=rDate.value,info=slotsFor(v);if(!v){setErr('rDate','Elige una fecha.');bad=bad||rDate}else if(v<rDate.min){setErr('rDate','Esa fecha ya pasó.');bad=bad||rDate}else if(info.closed){setErr('rDate','Los lunes cerramos.');bad=bad||rDate}if(!rTime.value){setErr('rTime',info.list.length?'Selecciona un pase.':'Elige fecha con pases.');bad=bad||rTime}if(bad){e.preventDefault();toast('Revisa los campos marcados.','warn');bad.focus();return}
+const rec={id:'F'+Date.now().toString(36),name:rName.value.trim(),guests:+rGuests.value,date:rDate.value,time:rTime.value,lang:'es',notes:[rOcc.value,rNotes.value.trim()].filter(Boolean).join(' · '),source:'formulario',status:'Enviada WA',ts:Date.now(),sent:true};
+ledger.add(rec);sendOwnerEmail(rec,'formulario');
+updatePreview();toast('Abriendo WhatsApp con tu solicitud ✦')});
+$('#copyBtn').addEventListener('click',()=>copyText(buildResMsg()));updatePreview();
 });
-
-/* ═════════ ESTADO ABIERTO/CERRADO ═════════ */
-safe('status',()=>{const now=()=>{const n=new Date(),d=n.getDay(),m=n.getHours()*60+n.getMinutes(),td=SCHED[d];if(td)for(const s of td)if(m>=s.o&&m<s.c)return{open:true,text:`Abierto · ${s.label} hasta ${fmtMin(s.c)}`};for(let i=0;i<8;i++){const dd=(d+i)%7,sl=SCHED[dd];if(!sl)continue;for(const s of sl){if(i===0&&s.o<=m)continue;return{open:false,text:`Cerrado · abre ${i===0?'hoy':i===1?'mañana':'el '+DAYS[dd]} ${fmtMin(s.o)}`}}}return{open:false,text:'Cerrado'}};const render=()=>{const s=now();$$('[data-status]').forEach(b=>{b.classList.toggle('open',s.open);$('[data-status-text]',b).textContent=s.text})};render();setInterval(render,30000);const wd=new Date().getDay();$$('[data-days]').forEach(r=>r.classList.toggle('today',r.dataset.days.split(',').map(Number).includes(wd)))});
-
+/* ═════════ ESTADO ABIERTO/CERRADO (hora de España) ═════════ */
+safe('status',()=>{const now=()=>{const np=nowParts(),d=np.wd,m=np.hh*60+np.mm,td=SCHED[d];if(td)for(const s of td)if(m>=s.o&&m<s.c)return{open:true,text:`Abierto · ${s.label} hasta ${fmtMin(s.c)}`};for(let i=0;i<8;i++){const dd=(d+i)%7,sl=SCHED[dd];if(!sl)continue;for(const s of sl){if(i===0&&s.o<=m)continue;return{open:false,text:`Cerrado · abre ${i===0?'hoy':i===1?'mañana':'el '+DAYS[dd]} ${fmtMin(s.o)}`}}}return{open:false,text:'Cerrado'}};const render=()=>{const s=now();$$('[data-status]').forEach(b=>{b.classList.toggle('open',s.open);$('[data-status-text]',b).textContent=s.text})};render();setInterval(render,30000);const wd=nowParts().wd;$$('[data-days]').forEach(r=>r.classList.toggle('today',r.dataset.days.split(',').map(Number).includes(wd)))});
 /* ═════════ TEXTOS 4 IDIOMAS ═════════ */
 const TXT={
- es:{greet:'Hola, soy ARIA, la anfitriona de AURUM. Puedo responder tus preguntas y reservar tu mesa. ¿Qué necesitas?',ring:'Llamando a ARIA…',conn:'Llamada conectada',muted:'Micrófono en silencio',spkOff:'Altavoz desactivado · respuestas por subtítulos',spkOn:'Altavoz activado',listen:'Escuchando…',think:'ARIA está pensando…',speak:'ARIA hablando…',ready:'En llamada · listo',noMic:'Tu navegador no permite dictado por voz. Usa el chat: ARIA responde hablando.',https:'Para hablar con voz abre esta web en HTTPS. Mientras tanto usa el chat.',denied:'No he podido acceder al micrófono. Revisa el permiso o usa el chat.',askName:'¿A nombre de quién hago la reserva?',askGuests:'¿Para cuántas personas?',askDate:'¿Para qué día? Di mañana, viernes o quince de diciembre.',askTimeD:'Cena de 19:30 a 22:00. ¿A qué hora?',askTimeL:'Domingo almuerzo de 13:00 a 15:00. ¿A qué hora?',confirm:d=>`Confirmo: ${d.guests} personas, a nombre de ${d.name}, ${prettyDate(d.date,'es')} a las ${d.time}. ¿Confirmas?`,done:'Reserva preparada. El equipo ya la recibió por correo; pulsa enviar por WhatsApp si quieres confirmarla tú también.',cancel:'Reserva descartada. Empezamos de nuevo cuando quieras.',closed:'Los lunes cerramos. Elige otro día.',past:'Esa fecha ya pasó.',badDate:'No entendí la fecha. Prueba con mañana o viernes.',badTime:'No entendí la hora. Prueba con 21:00.',noSlots:s=>`Ese pase no está disponible. Pases: ${s}.`,badGuests:'Dime un número del 1 al 10.',badName:'Dime tu nombre, por favor.',yesNo:'¿Confirmas? Responde sí o no.',hours:'Martes a sábado de 19:30 a 23:00. Domingo de 13:00 a 15:30. Lunes cerrado.',location:'Paseo de la Castellana 88, Madrid.',menu:'Oro Líquido, Marea Negra, Jardín Suspendido, Brasa Imperial, Perla del Alba y Eclipse de Cacao. De 29 a 68 euros.',prices:'Platos de 29 a 68 euros. Menú Celeste de 12 tiempos: 185 euros. Maridaje: 95.',tasting:'Menú Celeste: 12 tiempos, 185 euros. Maridaje opcional 95. ¿Reservamos?',allergies:'Adaptamos alergias y dietas con 48 horas de aviso.',dress:'Elegancia contemporánea. Evita ropa deportiva.',events:'Bodega privada para 8, sala para 28 y Mesa del Chef para 6.',parking:'Valet parking y aparcamiento concertado.',kids:'Cenas para mayores de 12. Domingo al mediodía es familiar.',policy:'Cancelación gratis hasta 24 horas antes. Mesa del Chef: 48 horas.',wine:'Bodega con 480 etiquetas y maridaje por pase.',chef:'Chef Adrián Valcárcel: fuego, temporada y precisión.',whatsapp:'Te dejo el enlace directo de WhatsApp.',thanks:'A ti. ¿Reservamos?',bye:'Hasta pronto. Llama a ARIA cuando quieras.',fallback:'Puedo ayudar con reservas, carta, horarios, alergias y eventos.',sendWa:'Enviar por WhatsApp',map:'Abrir mapa',openWa:'Abrir WhatsApp',langSet:l=>`Perfecto, seguimos en ${l}.`,placeholder:'Escribe a ARIA…'},
- en:{greet:'Hello, I am ARIA, AURUM’s voice host. I can answer questions and book your table. What do you need?',ring:'Calling ARIA…',conn:'Call connected',muted:'Microphone muted',spkOff:'Speaker off · replies by captions',spkOn:'Speaker on',listen:'Listening…',think:'ARIA is thinking…',speak:'ARIA speaking…',ready:'In call · ready',noMic:'This browser has no speech input. Use the chat: ARIA replies out loud.',https:'To speak, open this site over HTTPS. Meanwhile use the chat.',denied:'I could not access the microphone. Check permission or use the chat.',askName:'What name should I book under?',askGuests:'For how many people?',askDate:'Which day? Tomorrow, Friday, or December fifteenth.',askTimeD:'Dinner 7:30 to 10 pm. What time?',askTimeL:'Sunday lunch 1 to 3 pm. What time?',confirm:d=>`Confirm: ${d.guests} guests, under ${d.name}, ${prettyDate(d.date,'en')} at ${d.time}. Shall I confirm?`,done:'Booking ready. The team already got it by email; press send via WhatsApp if you want to confirm too.',cancel:'Booking discarded.',closed:'Closed on Mondays.',past:'That date has passed.',badDate:'I did not catch the date.',badTime:'I did not catch the time.',noSlots:s=>`Unavailable. Available: ${s}.`,badGuests:'Say a number from 1 to 10.',badName:'Your name, please.',yesNo:'Shall I confirm? Yes or no.',hours:'Tue–Sat 7:30–11 pm. Sunday 1–3:30 pm. Monday closed.',location:'Paseo de la Castellana 88, Madrid.',menu:'Six signature dishes from 29 to 68 euros.',prices:'Dishes 29–68 euros. Celeste tasting menu 185 euros. Pairing 95.',tasting:'Celeste menu: 12 courses, 185 euros, optional pairing 95. Shall we book?',allergies:'We adapt to allergies and diets with 48 hours notice.',dress:'Contemporary elegance. Avoid sportswear.',events:'Private Bodega for 8, room for 28, Chef’s Table for 6.',parking:'Valet and partner parking.',kids:'Dinner for guests over 12. Sunday lunch is family friendly.',policy:'Free cancellation up to 24 hours before. Chef’s Table 48 hours.',wine:'480 labels and course-by-course pairing.',chef:'Chef Adrián Valcárcel: fire, season, precision.',whatsapp:'I will leave the WhatsApp link.',thanks:'You are welcome. Shall we book?',bye:'See you soon.',fallback:'I can help with bookings, menu, hours, allergies and events.',sendWa:'Send via WhatsApp',map:'Open map',openWa:'Open WhatsApp',langSet:l=>`Perfect, we continue in ${l}.`,placeholder:'Type to ARIA…'},
- fr:{greet:'Bonjour, je suis ARIA, l’hôtesse d’AURUM. Je peux répondre et réserver. Que souhaitez-vous ?',ring:'Appel d’ARIA…',conn:'Appel connecté',muted:'Micro coupé',spkOff:'Haut-parleur désactivé · réponses en sous-titres',spkOn:'Haut-parleur activé',listen:'J’écoute…',think:'ARIA réfléchit…',speak:'ARIA parle…',ready:'En appel · prête',noMic:'Pas de dictée vocale ici. Utilisez le chat : ARIA répond à voix haute.',https:'Pour parler, ouvrez ce site en HTTPS. Sinon, utilisez le chat.',denied:'Micro inaccessible. Vérifiez l’autorisation ou utilisez le chat.',askName:'À quel nom ?',askGuests:'Pour combien de personnes ?',askDate:'Quel jour ? Demain, vendredi ou quinze décembre.',askTimeD:'Dîner 19h30–22h. À quelle heure ?',askTimeL:'Dimanche déjeuner 13h–15h. À quelle heure ?',confirm:d=>`Je confirme : ${d.guests} personnes, au nom de ${d.name}, ${prettyDate(d.date,'fr')} à ${d.time}. Vous confirmez ?`,done:'Réservation prête. L’équipe l’a déjà reçue par e-mail ; envoyez par WhatsApp si vous voulez confirmer aussi.',cancel:'Réservation annulée.',closed:'Fermé le lundi.',past:'Cette date est passée.',badDate:'Je n’ai pas compris la date.',badTime:'Je n’ai pas compris l’heure.',noSlots:s=>`Indisponible. Disponibles : ${s}.`,badGuests:'Un nombre de 1 à 10.',badName:'Votre nom, s’il vous plaît.',yesNo:'Vous confirmez ? Oui ou non.',hours:'Mar–Sam 19h30–23h. Dimanche 13h–15h30. Lundi fermé.',location:'Paseo de la Castellana 88, Madrid.',menu:'Six plats signature, de 29 à 68 euros.',prices:'Plats 29–68 euros. Menu Celeste 12 services : 185 euros. Accord 95.',tasting:'Menu Celeste : 12 services, 185 euros, accord optionnel 95. On réserve ?',allergies:'Allergies et régimes avec 48 h de préavis.',dress:'Élégance contemporaine. Évitez le sportswear.',events:'Bodega privée pour 8, salle pour 28, Table du Chef pour 6.',parking:'Voiturier et parking partenaire.',kids:'Dîner pour plus de 12 ans. Dimanche midi familial.',policy:'Annulation gratuite jusqu’à 24 h avant. Table du Chef : 48 h.',wine:'Cave de 480 références et accord par service.',chef:'Chef Adrián Valcárcel : feu, saison et précision.',whatsapp:'Je laisse le lien WhatsApp.',thanks:'Avec plaisir. On réserve ?',bye:'À bientôt.',fallback:'Je peux aider pour réservations, menu, horaires, allergies et événements.',sendWa:'Envoyer par WhatsApp',map:'Carte',openWa:'WhatsApp',langSet:l=>`Parfait, en ${l}.`,placeholder:'Écrivez à ARIA…'},
- de:{greet:'Hallo, ich bin ARIA, die Gastgeberin von AURUM. Ich beantworte Fragen und reserviere. Was brauchen Sie?',ring:'ARIA wird angerufen…',conn:'Anruf verbunden',muted:'Mikrofon stumm',spkOff:'Lautsprecher aus · Antworten als Untertitel',spkOn:'Lautsprecher ein',listen:'Ich höre…',think:'ARIA denkt nach…',speak:'ARIA spricht…',ready:'Im Gespräch · bereit',noMic:'Keine Spracheingabe hier. Nutzen Sie den Chat: ARIA antwortet mit Stimme.',https:'Zum Sprechen öffnen Sie die Seite über HTTPS. Sonst nutzen Sie den Chat.',denied:'Mikrofon nicht erreichbar. Bitte Berechtigung prüfen oder Chat nutzen.',askName:'Auf welchen Namen?',askGuests:'Für wie viele Personen?',askDate:'Welcher Tag? Morgen, Freitag oder fünfzehnten Dezember.',askTimeD:'Abendessen 19:30–22:00. Um wie viel Uhr?',askTimeL:'Sonntag Mittagessen 13:00–15:00. Um wie viel Uhr?',confirm:d=>`Bestätige: ${d.guests} Personen, auf ${d.name}, ${prettyDate(d.date,'de')} um ${d.time}. Bestätigen?`,done:'Reservierung bereit. Das Team hat sie bereits per E-Mail erhalten; senden Sie per WhatsApp, wenn Sie auch bestätigen möchten.',cancel:'Reservierung verworfen.',closed:'Montags geschlossen.',past:'Dieses Datum ist vorbei.',badDate:'Datum nicht verstanden.',badTime:'Uhrzeit nicht verstanden.',noSlots:s=>`Nicht verfügbar. Frei: ${s}.`,badGuests:'Zahl von 1 bis 10.',badName:'Ihr Name bitte.',yesNo:'Bestätigen? Ja oder nein.',hours:'Di–Sa 19:30–23:00. Sonntag 13:00–15:30. Montag zu.',location:'Paseo de la Castellana 88, Madrid.',menu:'Sechs Signature-Gerichte von 29 bis 68 Euro.',prices:'Gerichte 29–68 Euro. Celeste-Menü 12 Gänge: 185 Euro. Begleitung 95.',tasting:'Celeste-Menü: 12 Gänge, 185 Euro, Begleitung optional 95. Reservieren?',allergies:'Allergien und Diäten mit 48 Stunden Vorlauf.',dress:'Zeitgenössische Eleganz. Sportkleidung vermeiden.',events:'Bodega für 8, Saal für 28, Chef’s Table für 6.',parking:'Valet und Partnerparkplatz.',kids:'Abendessen ab 12 Jahren. Sonntagmittag familiär.',policy:'Kostenlos stornieren bis 24 Stunden vorher. Chef’s Table 48 Stunden.',wine:'480 Etiketten und Begleitung pro Gang.',chef:'Küchenchef Adrián Valcárcel: Feuer, Saison, Präzision.',whatsapp:'Ich lasse den WhatsApp-Link da.',thanks:'Sehr gern. Reservieren wir?',bye:'Bis bald.',fallback:'Ich helfe bei Reservierung, Menü, Zeiten, Allergien und Events.',sendWa:'Über WhatsApp senden',map:'Karte',openWa:'WhatsApp',langSet:l=>`Weiter auf ${l}.`,placeholder:'An ARIA schreiben…'}
+es:{greet:'Hola, soy ARIA, la anfitriona de AURUM. Puedo responder tus preguntas y reservar tu mesa. ¿Qué necesitas?',ring:'Llamando a ARIA…',conn:'Llamada conectada',muted:'Micrófono en silencio',spkOff:'Altavoz desactivado · respuestas por subtítulos',spkOn:'Altavoz activado',listen:'Escuchando…',think:'ARIA está pensando…',speak:'ARIA hablando…',ready:'En llamada · listo',noMic:'Tu navegador no permite dictado por voz. Usa el chat: ARIA responde hablando.',https:'Para hablar con voz abre esta web en HTTPS. Mientras tanto usa el chat.',denied:'No he podido acceder al micrófono. Revisa el permiso o usa el chat.',askName:'¿A nombre de quién hago la reserva?',askGuests:'¿Para cuántas personas?',askDate:'¿Para qué día? Di mañana, viernes o quince de diciembre.',askTimeD:'Cena de 19:30 a 22:00. ¿A qué hora?',askTimeL:'Domingo almuerzo de 13:00 a 15:00. ¿A qué hora?',confirm:d=>`Confirmo: ${d.guests} personas, a nombre de ${d.name}, ${prettyDate(d.date,'es')} a las ${d.time}. ¿Confirmas?`,done:'Reserva preparada. El equipo ya la recibió por correo; pulsa enviar por WhatsApp si quieres confirmarla tú también.',cancel:'Reserva descartada. Empezamos de nuevo cuando quieras.',closed:'Los lunes cerramos. Elige otro día.',past:'Esa fecha ya pasó.',badDate:'No entendí la fecha. Prueba con mañana o viernes.',badTime:'No entendí la hora. Prueba con 21:00.',noSlots:s=>`Ese pase no está disponible. Pases: ${s}.`,badGuests:'Dime un número del 1 al 10.',badName:'Dime tu nombre, por favor.',yesNo:'¿Confirmas? Responde sí o no.',hours:'Martes a sábado de 19:30 a 23:00. Domingo de 13:00 a 15:30. Lunes cerrado.',location:'Paseo de la Castellana 88, Madrid.',menu:'Oro Líquido, Marea Negra, Jardín Suspendido, Brasa Imperial, Perla del Alba y Eclipse de Cacao. De 29 a 68 euros.',prices:'Platos de 29 a 68 euros. Menú Celeste de 12 tiempos: 185 euros. Maridaje: 95.',tasting:'Menú Celeste: 12 tiempos, 185 euros. Maridaje opcional 95. ¿Reservamos?',allergies:'Adaptamos alergias y dietas con 48 horas de aviso.',dress:'Elegancia contemporánea. Evita ropa deportiva.',events:'Bodega privada para 8, sala para 28 y Mesa del Chef para 6.',parking:'Valet parking y aparcamiento concertado.',kids:'Cenas para mayores de 12. Domingo al mediodía es familiar.',policy:'Cancelación gratis hasta 24 horas antes. Mesa del Chef: 48 horas.',wine:'Bodega con 480 etiquetas y maridaje por pase.',chef:'Chef Adrián Valcárcel: fuego, temporada y precisión.',whatsapp:'Te dejo el enlace directo de WhatsApp.',thanks:'A ti. ¿Reservamos?',bye:'Hasta pronto. Llama a ARIA cuando quieras.',fallback:'Puedo ayudar con reservas, carta, horarios, alergias y eventos.',sendWa:'Enviar por WhatsApp',map:'Abrir mapa',openWa:'Abrir WhatsApp',langSet:l=>`Perfecto, seguimos en ${l}.`,placeholder:'Escribe a ARIA…'},
+en:{greet:'Hello, I am ARIA, AURUM’s voice host. I can answer questions and book your table. What do you need?',ring:'Calling ARIA…',conn:'Call connected',muted:'Microphone muted',spkOff:'Speaker off · replies by captions',spkOn:'Speaker on',listen:'Listening…',think:'ARIA is thinking…',speak:'ARIA speaking…',ready:'In call · ready',noMic:'This browser has no speech input. Use the chat: ARIA replies out loud.',https:'To speak, open this site over HTTPS. Meanwhile use the chat.',denied:'I could not access the microphone. Check permission or use the chat.',askName:'What name should I book under?',askGuests:'For how many people?',askDate:'Which day? Tomorrow, Friday, or December fifteenth.',askTimeD:'Dinner 7:30 to 10 pm. What time?',askTimeL:'Sunday lunch 1 to 3 pm. What time?',confirm:d=>`Confirm: ${d.guests} guests, under ${d.name}, ${prettyDate(d.date,'en')} at ${d.time}. Shall I confirm?`,done:'Booking ready. The team already got it by email; press send via WhatsApp if you want to confirm too.',cancel:'Booking discarded.',closed:'Closed on Mondays.',past:'That date has passed.',badDate:'I did not catch the date.',badTime:'I did not catch the time.',noSlots:s=>`Unavailable. Available: ${s}.`,badGuests:'Say a number from 1 to 10.',badName:'Your name, please.',yesNo:'Shall I confirm? Yes or no.',hours:'Tue–Sat 7:30–11 pm. Sunday 1–3:30 pm. Monday closed.',location:'Paseo de la Castellana 88, Madrid.',menu:'Six signature dishes from 29 to 68 euros.',prices:'Dishes 29–68 euros. Celeste tasting menu 185 euros. Pairing 95.',tasting:'Celeste menu: 12 courses, 185 euros, optional pairing 95. Shall we book?',allergies:'We adapt to allergies and diets with 48 hours notice.',dress:'Contemporary elegance. Avoid sportswear.',events:'Private Bodega for 8, room for 28, Chef’s Table for 6.',parking:'Valet and partner parking.',kids:'Dinner for guests over 12. Sunday lunch is family friendly.',policy:'Free cancellation up to 24 hours before. Chef’s Table 48 hours.',wine:'480 labels and course-by-course pairing.',chef:'Chef Adrián Valcárcel: fire, season, precision.',whatsapp:'I will leave the WhatsApp link.',thanks:'You are welcome. Shall we book?',bye:'See you soon.',fallback:'I can help with bookings, menu, hours, allergies and events.',sendWa:'Send via WhatsApp',map:'Open map',openWa:'Open WhatsApp',langSet:l=>`Perfect, we continue in ${l}.`,placeholder:'Type to ARIA…'},
+fr:{greet:'Bonjour, je suis ARIA, l’hôtesse d’AURUM. Je peux répondre et réserver. Que souhaitez-vous ?',ring:'Appel d’ARIA…',conn:'Appel connecté',muted:'Micro coupé',spkOff:'Haut-parleur désactivé · réponses en sous-titres',spkOn:'Haut-parleur activé',listen:'J’écoute…',think:'ARIA réfléchit…',speak:'ARIA parle…',ready:'En appel · prête',noMic:'Pas de dictée vocale ici. Utilisez le chat : ARIA répond à voix haute.',https:'Pour parler, ouvrez ce site en HTTPS. Sinon, utilisez le chat.',denied:'Micro inaccessible. Vérifiez l’autorisation ou utilisez le chat.',askName:'À quel nom ?',askGuests:'Pour combien de personnes ?',askDate:'Quel jour ? Demain, vendredi ou quinze décembre.',askTimeD:'Dîner 19h30–22h. À quelle heure ?',askTimeL:'Dimanche déjeuner 13h–15h. À quelle heure ?',confirm:d=>`Je confirme : ${d.guests} personnes, au nom de ${d.name}, ${prettyDate(d.date,'fr')} à ${d.time}. Vous confirmez ?`,done:'Réservation prête. L’équipe l’a déjà reçue par e-mail ; envoyez par WhatsApp si vous voulez confirmer aussi.',cancel:'Réservation annulée.',closed:'Fermé le lundi.',past:'Cette date est passée.',badDate:'Je n’ai pas compris la date.',badTime:'Je n’ai pas compris l’heure.',noSlots:s=>`Indisponible. Disponibles : ${s}.`,badGuests:'Un nombre de 1 à 10.',badName:'Votre nom, s’il vous plaît.',yesNo:'Vous confirmez ? Oui ou non.',hours:'Mar–Sam 19h30–23h. Dimanche 13h–15h30. Lundi fermé.',location:'Paseo de la Castellana 88, Madrid.',menu:'Six plats signature, de 29 à 68 euros.',prices:'Plats 29–68 euros. Menu Celeste 12 services : 185 euros. Accord 95.',tasting:'Menu Celeste : 12 services, 185 euros, accord optionnel 95. On réserve ?',allergies:'Allergies et régimes avec 48 h de préavis.',dress:'Élégance contemporaine. Évitez le sportswear.',events:'Bodega privée pour 8, salle pour 28, Table du Chef pour 6.',parking:'Voiturier et parking partenaire.',kids:'Dîner pour plus de 12 ans. Dimanche midi familial.',policy:'Annulation gratuite jusqu’à 24 h avant. Table du Chef : 48 h.',wine:'Cave de 480 références et accord par service.',chef:'Chef Adrián Valcárcel : feu, saison et précision.',whatsapp:'Je laisse le lien WhatsApp.',thanks:'Avec plaisir. On réserve ?',bye:'À bientôt.',fallback:'Je peux aider pour réservations, menu, horaires, allergies et événements.',sendWa:'Envoyer par WhatsApp',map:'Carte',openWa:'WhatsApp',langSet:l=>`Parfait, en ${l}.`,placeholder:'Écrivez à ARIA…'},
+de:{greet:'Hallo, ich bin ARIA, die Gastgeberin von AURUM. Ich beantworte Fragen und reserviere. Was brauchen Sie?',ring:'ARIA wird angerufen…',conn:'Anruf verbunden',muted:'Mikrofon stumm',spkOff:'Lautsprecher aus · Antworten als Untertitel',spkOn:'Lautsprecher ein',listen:'Ich höre…',think:'ARIA denkt nach…',speak:'ARIA spricht…',ready:'Im Gespräch · bereit',noMic:'Keine Spracheingabe hier. Nutzen Sie den Chat: ARIA antwortet mit Stimme.',https:'Zum Sprechen öffnen Sie die Seite über HTTPS. Sonst nutzen Sie den Chat.',denied:'Mikrofon nicht erreichbar. Bitte Berechtigung prüfen oder Chat nutzen.',askName:'Auf welchen Namen?',askGuests:'Für wie viele Personen?',askDate:'Welcher Tag? Morgen, Freitag oder fünfzehnten Dezember.',askTimeD:'Abendessen 19:30–22:00. Um wie viel Uhr?',askTimeL:'Sonntag Mittagessen 13:00–15:00. Um wie viel Uhr?',confirm:d=>`Bestätige: ${d.guests} Personen, auf ${d.name}, ${prettyDate(d.date,'de')} um ${d.time}. Bestätigen?`,done:'Reservierung bereit. Das Team hat sie bereits per E-Mail erhalten; senden Sie per WhatsApp, wenn Sie auch bestätigen möchten.',cancel:'Reservierung verworfen.',closed:'Montags geschlossen.',past:'Dieses Datum ist vorbei.',badDate:'Datum nicht verstanden.',badTime:'Uhrzeit nicht verstanden.',noSlots:s=>`Nicht verfügbar. Frei: ${s}.`,badGuests:'Zahl von 1 bis 10.',badName:'Ihr Name bitte.',yesNo:'Bestätigen? Ja oder nein.',hours:'Di–Sa 19:30–23:00. Sonntag 13:00–15:30. Montag zu.',location:'Paseo de la Castellana 88, Madrid.',menu:'Sechs Signature-Gerichte von 29 bis 68 Euro.',prices:'Gerichte 29–68 Euro. Celeste-Menü 12 Gänge: 185 Euro. Begleitung 95.',tasting:'Celeste-Menü: 12 Gänge, 185 Euro, Begleitung optional 95. Reservieren?',allergies:'Allergien und Diäten mit 48 Stunden Vorlauf.',dress:'Zeitgenössische Eleganz. Sportkleidung vermeiden.',events:'Bodega für 8, Saal für 28, Chef’s Table für 6.',parking:'Valet und Partnerparkplatz.',kids:'Abendessen ab 12 Jahren. Sonntagmittag familiär.',policy:'Kostenlos stornieren bis 24 Stunden vorher. Chef’s Table 48 Stunden.',wine:'480 Etiketten und Begleitung pro Gang.',chef:'Küchenchef Adrián Valcárcel: Feuer, Saison, Präzision.',whatsapp:'Ich lasse den WhatsApp-Link da.',thanks:'Sehr gern. Reservieren wir?',bye:'Bis bald.',fallback:'Ich helfe bei Reservierung, Menü, Zeiten, Allergien und Events.',sendWa:'Über WhatsApp senden',map:'Karte',openWa:'WhatsApp',langSet:l=>`Weiter auf ${l}.`,placeholder:'An ARIA schreiben…'}
 };
 function t(k,...a){const v=TXT[call.lang][k]||TXT.es[k];return typeof v==='function'?v(...a):v}
 function setState(s){call.state=s;$('#callScreen').dataset.state=s;const map={ringing:'ring',connected:'conn',listening:'listen',thinking:'think',speaking:'speak',ready:'ready'};$('#csStatus').textContent=t(map[s]||'ready');if(call.connected&&s!=='ringing')$('#csTimer').style.visibility='visible'}
@@ -633,29 +746,28 @@ function setCaption(text,actions){$('#csAria').textContent=text;const box=$('#cs
 function setUserLine(s){$('#csUser').textContent=s?'«'+s+'»':''}
 function addChat(role,text){const log=$('#chatLog'),m=document.createElement('div');m.className='chat-msg '+role;m.textContent=text;log.appendChild(m);log.scrollTop=log.scrollHeight}
 function updateControls(){
- $('#btnMute').classList.toggle('active',call.muted);$('#btnMute').setAttribute('aria-pressed',String(call.muted));$('#btnMute').querySelector('use').setAttribute('href',call.muted?'#i-micoff':'#i-mic');
- $('#btnSpeaker').classList.toggle('active',call.speaker);$('#btnSpeaker').setAttribute('aria-pressed',String(call.speaker));$('#btnSpeaker').querySelector('use').setAttribute('href',call.speaker?'#i-vol':'#i-voloff');
- $('#btnCaptions').classList.toggle('active',call.captions);$('#btnCaptions').setAttribute('aria-pressed',String(call.captions));$('#csCaption').classList.toggle('hide',!call.captions);
- $('#langLabel').textContent=call.lang.toUpperCase();$('#chatInput').placeholder=t('placeholder');
- $$('#langGrid button').forEach(b=>b.classList.toggle('active',b.dataset.lang===call.lang));
+$('#btnMute').classList.toggle('active',call.muted);$('#btnMute').setAttribute('aria-pressed',String(call.muted));$('#btnMute').querySelector('use').setAttribute('href',call.muted?'#i-micoff':'#i-mic');
+$('#btnSpeaker').classList.toggle('active',call.speaker);$('#btnSpeaker').setAttribute('aria-pressed',String(call.speaker));$('#btnSpeaker').querySelector('use').setAttribute('href',call.speaker?'#i-vol':'#i-voloff');
+$('#btnCaptions').classList.toggle('active',call.captions);$('#btnCaptions').setAttribute('aria-pressed',String(call.captions));$('#csCaption').classList.toggle('hide',!call.captions);
+$('#langLabel').textContent=call.lang.toUpperCase();$('#chatInput').placeholder=t('placeholder');
+$$('#langGrid button').forEach(b=>b.classList.toggle('active',b.dataset.lang===call.lang));
 }
 function updateHealth(){
- const box=$('#voiceHealth');if(!box)return;
- const line=(label,ok,warn,text)=>`<div class="vh-line"><span>${label}</span><span class="${ok?'vh-ok':warn?'vh-bad':'vh-no'}">${text}</span></div>`;
- const sdk=!!vapi;
- box.innerHTML='<b style="color:var(--champ)">Diagnóstico en vivo</b>'+
-  line('Conexión segura (HTTPS)',ENV.secure,false,ENV.secure?'Correcta':'Falta HTTPS')+
-  line('Micrófono del navegador',ENV.mic&&ENV.secure,!ENV.mic,ENV.mic?(micGranted?'Permiso concedido':'Disponible · pide permiso'):'No disponible aquí')+
-  line('Vapi (voz en tiempo real)',!!CFG.vapiKey&&ENV.secure,!CFG.vapiKey,CFG.vapiKey?(sdk?'SDK cargado':'Listo para conectar'):'Sin clave')+
-  line('Correo automático al equipo',!!CFG.web3forms,false,CFG.web3forms?'Activo ✓':'Sin configurar')+
-  line('Voz de salida',ENV.tts,false,ENV.tts?'Disponible':'No disponible')+
-  `<div class="vh-actions"><button class="btn btn-ghost btn-sm" type="button" id="vhTest">Probar micrófono</button>${ENV.iframe?'<button class="btn btn-ghost btn-sm" type="button" id="vhTab">Abrir en pestaña completa</button>':''}<button class="btn btn-ghost btn-sm" type="button" id="vhCall">Llamar a ARIA</button></div>`;
- $('#vhTest').addEventListener('click',async()=>{try{await ensureMic();toast('Micrófono correcto ✦ Ya puedes llamar');updateHealth()}catch(e){showSys(micReason(e))}});
- const tab=$('#vhTab');if(tab)tab.addEventListener('click',()=>window.open(location.href,'_blank','noopener'));
- $('#vhCall').addEventListener('click',()=>openCall(''));
- $('#csMode').textContent=call.mode==='vapi'?'voz en tiempo real':(call.mode==='checking'?'comprobando…':'chat + voz');
+const box=$('#voiceHealth');if(!box)return;
+const line=(label,ok,warn,text)=>`<div class="vh-line"><span>${label}</span><span class="${ok?'vh-ok':warn?'vh-bad':'vh-no'}">${text}</span></div>`;
+const sdk=!!vapi;
+box.innerHTML='<b style="color:var(--champ)">Diagnóstico en vivo</b>'+
+line('Conexión segura (HTTPS)',ENV.secure,false,ENV.secure?'Correcta':'Falta HTTPS')+
+line('Micrófono del navegador',ENV.mic&&ENV.secure,!ENV.mic,ENV.mic?(micGranted?'Permiso concedido':'Disponible · pide permiso'):'No disponible aquí')+
+line('Vapi (voz en tiempo real)',!!CFG.vapiKey&&ENV.secure,!CFG.vapiKey,CFG.vapiKey?(sdk?'SDK cargado':'Listo para conectar'):'Sin clave')+
+line('Correo automático al equipo',!!CFG.web3forms,false,CFG.web3forms?'Activo ✓':'Sin configurar')+
+line('Voz de salida',ENV.tts,false,ENV.tts?'Disponible':'No disponible')+
+`<div class="vh-actions"><button class="btn btn-ghost btn-sm" type="button" id="vhTest">Probar micrófono</button>${ENV.iframe?'<button class="btn btn-ghost btn-sm" type="button" id="vhTab">Abrir en pestaña completa</button>':''}<button class="btn btn-ghost btn-sm" type="button" id="vhCall">Llamar a ARIA</button></div>`;
+$('#vhTest').addEventListener('click',async()=>{try{await ensureMic();toast('Micrófono correcto ✦ Ya puedes llamar');updateHealth()}catch(e){showSys(micReason(e))}});
+const tab=$('#vhTab');if(tab)tab.addEventListener('click',()=>window.open(location.href,'_blank','noopener'));
+$('#vhCall').addEventListener('click',()=>openCall(''));
+$('#csMode').textContent=call.mode==='vapi'?'voz en tiempo real':(call.mode==='checking'?'comprobando…':'chat + voz');
 }
-
 /* ═════════ TONOS ═════════ */
 function ensureAudio(){if(!SND.on||!call.speaker)return null;try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx}catch(e){return null}}
 function beep(freq=440,dur=.15,vol=.04,type='sine'){const ac=ensureAudio();if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(0,ac.currentTime);g.gain.linearRampToValueAtTime(vol,ac.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+dur);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+dur+.02)}
@@ -667,282 +779,308 @@ function dtmf(k){const p=DTMF[k];if(!p)return;beep(p[0],.12,.03,'sine');beep(p[1
 function applySpeaker(){const on=call.speaker&&SND.on;document.querySelectorAll('audio').forEach(a=>{a.muted=!on})}
 new MutationObserver(ms=>{ms.forEach(m=>m.addedNodes.forEach(n=>{if(n.nodeType===1){if(n.tagName==='AUDIO')n.muted=!(call.speaker&&SND.on);n.querySelectorAll&&n.querySelectorAll('audio').forEach(a=>a.muted=!(call.speaker&&SND.on))}}))}).observe(document.body,{childList:true,subtree:true});
 safe('sound',()=>{const b=$('#soundToggle');const paint=()=>{b.classList.toggle('off',!SND.on);b.setAttribute('aria-pressed',String(SND.on));b.setAttribute('aria-label',SND.on?'Silenciar todos los sonidos':'Activar sonido');b.title=SND.on?'Sonido activado · pulsa para silenciar todo':'Sonido silenciado · pulsa para activar';b.querySelector('use').setAttribute('href',SND.on?'#i-vol':'#i-voloff')};b.addEventListener('click',()=>{SND.on=!SND.on;if(!SND.on){stopRing();try{synth&&synth.cancel()}catch(e){}call.speaking=false}else ensureAudio();applySpeaker();paint();toast(SND.on?'Sonido activado ✦':'Sonido silenciado')});paint()});
-
 /* ═════════ MICRÓFONO · DIAGNÓSTICO ═════════ */
 async function ensureMic(){
- if(!ENV.secure){const e=new Error('insecure');e.name='SecurityError';throw e}
- if(!ENV.mic){const e=new Error('no getUserMedia');e.name='NotFoundError';throw e}
- const s=await navigator.mediaDevices.getUserMedia({audio:true});
- s.getTracks().forEach(tr=>tr.stop());
- micGranted=true;updateHealth();return true;
+if(!ENV.secure){const e=new Error('insecure');e.name='SecurityError';throw e}
+if(!ENV.mic){const e=new Error('no getUserMedia');e.name='NotFoundError';throw e}
+const s=await navigator.mediaDevices.getUserMedia({audio:true});
+s.getTracks().forEach(tr=>tr.stop());
+micGranted=true;updateHealth();return true;
 }
 function micReason(err){
- if(!ENV.secure)return'https';
- if(ENV.iframe&&!ENV.mic)return'iframe';
- const n=err&&err.name;
- if(n==='NotAllowedError'||n==='PermissionDeniedError'||n==='SecurityError')return'denied';
- if(n==='NotFoundError'||n==='DevicesNotFoundError'||n==='OverconstrainedError')return'nodevice';
- if(n==='NotReadableError'||n==='AbortError')return'busy';
- return'unsupported';
+if(!ENV.secure)return'https';
+if(ENV.iframe&&!ENV.mic)return'iframe';
+const n=err&&err.name;
+if(n==='NotAllowedError'||n==='PermissionDeniedError'||n==='SecurityError')return'denied';
+if(n==='NotFoundError'||n==='DevicesNotFoundError'||n==='OverconstrainedError')return'nodevice';
+if(n==='NotReadableError'||n==='AbortError')return'busy';
+return'unsupported';
 }
 function showSys(reason){
- const M={
-  https:{title:'Falta publicar la web en HTTPS',body:'El micrófono solo funciona en conexiones seguras (<b>https://</b>). Estás abriendo el archivo en local o en http://.<ol><li>Sube este <b>index.html</b> a GitHub Pages o Netlify (gratis).</li><li>Abre la URL <b>https://</b> que te den.</li><li>Pulsa «Llamar a ARIA» y acepta el micrófono.</li></ol>Mientras tanto, ARIA atiende por chat con voz.'},
-  iframe:{title:'Estás dentro de una vista previa',body:'Esta vista previa integrada no entrega el micrófono a la página.<ol><li>Pulsa <b>«Abrir en pestaña completa»</b>.</li><li>En la pestaña nueva, acepta el permiso de micrófono.</li><li>Si sigue bloqueado, abre la URL publicada en HTTPS directamente en Safari.</li></ol>'},
-  denied:{title:'Safari tiene el micrófono bloqueado',body:'El navegador denegó el permiso.<ol><li>En Safari, toca el icono <b>«AA»</b> o el candado de la barra de direcciones.</li><li>Entra en <b>Ajustes del sitio web → Micrófono → Permitir</b>.</li><li>Vuelve aquí y pulsa <b>«Reintentar micrófono»</b>.</li></ol>En iPhone/iPad también: Ajustes → Safari → Micrófono → Preguntar o Permitir.'},
-  nodevice:{title:'No se detecta micrófono',body:'El dispositivo no ha encontrado un micrófono utilizable. Conecta unos auriculares con micro o revisa Ajustes → Privacidad → Micrófono. Puedes seguir con el chat con voz.'},
-  busy:{title:'El micrófono está ocupado',body:'Otra app o pestaña está usando el micrófono. Ciérrala y pulsa «Reintentar micrófono». También puedes continuar con el chat con voz.'},
-  unsupported:{title:'Micrófono no disponible en este navegador',body:'Este navegador no expone micrófono a la web. Abre la página en Safari o Chrome actualizados, o continúa con el chat con voz de ARIA.'}
- };
- const m=M[reason]||M.unsupported;
- $('#sysTitle').textContent=m.title;$('#sysBody').innerHTML=m.body;
- const box=$('#sysActions');box.innerHTML='';
- const mk=(label,cls,fn)=>{const b=document.createElement('button');b.type='button';b.className='btn '+cls+' btn-sm';b.textContent=label;b.addEventListener('click',fn);box.appendChild(b)};
- if(reason!=='https')mk('Reintentar micrófono','btn-gold',async()=>{try{await ensureMic();closeModals();toast('Micrófono correcto ✦');if(call.open&&call.mode!=='vapi')upgradeToVapi()}catch(e){showSys(micReason(e))}});
- if(ENV.iframe||reason==='https'||reason==='unsupported')mk('Abrir en pestaña completa','btn-ghost',()=>window.open(location.href,'_blank','noopener'));
- mk('Continuar con chat','btn-ghost',()=>{closeModals();if(call.open)togglePanel('chat')});
- openModal('sysModal');
+const M={
+https:{title:'Falta publicar la web en HTTPS',body:'El micrófono solo funciona en conexiones seguras (<b>https://</b>). Estás abriendo el archivo en local o en http://.<ol><li>Sube este <b>index.html</b> a GitHub Pages o Netlify (gratis).</li><li>Abre la URL <b>https://</b> que te den.</li><li>Pulsa «Llamar a ARIA» y acepta el micrófono.</li></ol>Mientras tanto, ARIA atiende por chat con voz.'},
+iframe:{title:'Estás dentro de una vista previa',body:'Esta vista previa integrada no entrega el micrófono a la página.<ol><li>Pulsa <b>«Abrir en pestaña completa»</b>.</li><li>En la pestaña nueva, acepta el permiso de micrófono.</li><li>Si sigue bloqueado, abre la URL publicada en HTTPS directamente en Safari.</li></ol>'},
+denied:{title:'Safari tiene el micrófono bloqueado',body:'El navegador denegó el permiso.<ol><li>En Safari, toca el icono <b>«AA»</b> o el candado de la barra de direcciones.</li><li>Entra en <b>Ajustes del sitio web → Micrófono → Permitir</b>.</li><li>Vuelve aquí y pulsa <b>«Reintentar micrófono»</b>.</li></ol>En iPhone/iPad también: Ajustes → Safari → Micrófono → Preguntar o Permitir.'},
+nodevice:{title:'No se detecta micrófono',body:'El dispositivo no ha encontrado un micrófono utilizable. Conecta unos auriculares con micro o revisa Ajustes → Privacidad → Micrófono. Puedes seguir con el chat con voz.'},
+busy:{title:'El micrófono está ocupado',body:'Otra app o pestaña está usando el micrófono. Ciérrala y pulsa «Reintentar micrófono». También puedes continuar con el chat con voz.'},
+unsupported:{title:'Micrófono no disponible en este navegador',body:'Este navegador no expone micrófono a la web. Abre la página en Safari o Chrome actualizados, o continúa con el chat con voz de ARIA.'}
+};
+const m=M[reason]||M.unsupported;
+$('#sysTitle').textContent=m.title;$('#sysBody').innerHTML=m.body;
+const box=$('#sysActions');box.innerHTML='';
+const mk=(label,cls,fn)=>{const b=document.createElement('button');b.type='button';b.className='btn '+cls+' btn-sm';b.textContent=label;b.addEventListener('click',fn);box.appendChild(b)};
+if(reason!=='https')mk('Reintentar micrófono','btn-gold',async()=>{try{await ensureMic();closeModals();toast('Micrófono correcto ✦');if(call.open&&call.mode!=='vapi')upgradeToVapi()}catch(e){showSys(micReason(e))}});
+if(ENV.iframe||reason==='https'||reason==='unsupported')mk('Abrir en pestaña completa','btn-ghost',()=>window.open(location.href,'_blank','noopener'));
+mk('Continuar con chat','btn-ghost',()=>{closeModals();if(call.open)togglePanel('chat')});
+openModal('sysModal');
 }
 async function upgradeToVapi(){
- if(!CFG.vapiKey||!CFG.vapiAssistant)return;
- try{const V=await loadVapi();bindVapi();await V.start(CFG.vapiAssistant);call.mode='vapi';updateHealth()}catch(e){console.warn(e);toast('Vapi no disponible: seguimos con chat + voz','warn')}
+if(!CFG.vapiKey||!CFG.vapiAssistant)return;
+try{const V=await loadVapi();bindVapi();await V.start(CFG.vapiAssistant,{variableValues:madridVars()});call.mode='vapi';updateHealth()}catch(e){console.warn(e);toast('Vapi no disponible: seguimos con chat + voz','warn')}
 }
-
 /* ═════════ VOZ LOCAL ═════════ */
 function pickVoice(l){const pool=voices.filter(v=>v.lang.toLowerCase().startsWith(l));if(!pool.length)return null;const fem=LANGS[l].female;return pool.sort((a,b)=>{const sc=v=>{const n=v.name.toLowerCase();let s=0;if(n.includes('female'))s+=4;fem.forEach(f=>{if(n.includes(f))s+=3});return s};return sc(b)-sc(a)})[0]}
 function speak(text,done){
- if(!call.speaker||!SND.on||!synth){done&&done();return}
- try{synth.cancel()}catch(e){}
- call.speaking=true;setState('speaking');const u=new SpeechSynthesisUtterance(text);const v=pickVoice(call.lang);if(v)u.voice=v;u.lang=LANGS[call.lang].bcp;u.rate=.98;u.pitch=1.05;let fin=false;const end=()=>{if(fin)return;fin=true;call.speaking=false;done&&done()};u.onend=end;u.onerror=end;synth.speak(u);setTimeout(end,Math.max(5000,text.length*80));
+if(!call.speaker||!SND.on||!synth){done&&done();return}
+try{synth.cancel()}catch(e){}
+call.speaking=true;setState('speaking');const u=new SpeechSynthesisUtterance(text);const v=pickVoice(call.lang);if(v)u.voice=v;u.lang=LANGS[call.lang].bcp;u.rate=.98;u.pitch=1.05;let fin=false;const end=()=>{if(fin)return;fin=true;call.speaking=false;done&&done()};u.onend=end;u.onerror=end;synth.speak(u);setTimeout(end,Math.max(5000,text.length*80));
 }
 function setupRec(){
- if(!SR)return;rec=new SR();rec.lang=LANGS[call.lang].bcp;rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
- rec.onstart=()=>{call.listening=true;setState('listening')};
- rec.onresult=e=>{let final='',inter='';for(let i=e.resultIndex;i<e.results.length;i++){const r=e.results[i];if(r.isFinal)final+=r[0].transcript;else inter+=r[0].transcript}setUserLine(inter||final);if(final){setUserLine('');call.listening=false;try{rec.stop()}catch(e){}handleUser(final)}};
- rec.onerror=e=>{call.listening=false;const k=e.error==='not-allowed'||e.error==='service-not-allowed'?'denied':e.error==='no-speech'?'ready':'denied';setState('ready');setCaption(t(k))};
- rec.onend=()=>{call.listening=false;if(call.state==='listening')setState('ready')};
+if(!SR)return;rec=new SR();rec.lang=LANGS[call.lang].bcp;rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
+rec.onstart=()=>{call.listening=true;setState('listening')};
+rec.onresult=e=>{let final='',inter='';for(let i=e.resultIndex;i<e.results.length;i++){const r=e.results[i];if(r.isFinal)final+=r[0].transcript;else inter+=r[0].transcript}setUserLine(inter||final);if(final){setUserLine('');call.listening=false;try{rec.stop()}catch(e){}handleUser(final)}};
+rec.onerror=e=>{call.listening=false;const k=e.error==='not-allowed'||e.error==='service-not-allowed'?'denied':e.error==='no-speech'?'ready':'denied';setState('ready');setCaption(t(k))};
+rec.onend=()=>{call.listening=false;if(call.state==='listening')setState('ready')};
 }
 function startListening(){
- if(!call.open||!call.connected||call.muted||call.busy||call.speaking||call.mode!=='local')return;
- if(!SR){setCaption(t('noMic'));return}
- if(!window.isSecureContext){setCaption(t('https'));return}
- if(!rec)setupRec();rec.lang=LANGS[call.lang].bcp;try{rec.start()}catch(e){}
+if(!call.open||!call.connected||call.muted||call.busy||call.speaking||call.mode!=='local')return;
+if(!SR){setCaption(t('noMic'));return}
+if(!window.isSecureContext){setCaption(t('https'));return}
+if(!rec)setupRec();rec.lang=LANGS[call.lang].bcp;try{rec.start()}catch(e){}
 }
 function stopListening(){try{rec&&rec.stop()}catch(e){}call.listening=false}
-
 /* ═════════ CONVERSACIÓN LOCAL ═════════ */
 function handleUser(text){
- text=String(text||'').trim();if(!text||call.busy)return;
- const detected=detectLang(text);if(detected)call.lang=detected;updateControls();
- setUserLine('');addChat('user',text);call.busy=true;setState('thinking');
- setTimeout(()=>{const r=route(text);setCaption(r.text,r.actions);speak(r.text,()=>{call.busy=false;setState('ready');setTimeout(startListening,400)})},350);
+text=String(text||'').trim();if(!text||call.busy)return;
+const detected=detectLang(text);if(detected)call.lang=detected;updateControls();
+setUserLine('');addChat('user',text);call.busy=true;setState('thinking');
+setTimeout(()=>{const r=route(text);setCaption(r.text,r.actions);speak(r.text,()=>{call.busy=false;setState('ready');setTimeout(startListening,400)})},350);
 }
 function detectLang(s){const n=norm(s),sc={es:0,en:0,fr:0,de:0};const W={es:['hola','quiero','reservar','mesa','horario','donde','precio','gracias','manana','personas'],en:['hello','want','book','table','hours','where','price','thanks','tomorrow','people'],fr:['bonjour','voudrais','reserver','table','horaires','ou','prix','merci','demain'],de:['hallo','ich','mochte','reservieren','tisch','zeiten','wo','danke','morgen']};for(const l in W)W[l].forEach(w=>{if(n.includes(w))sc[l]++});const b=Object.keys(sc).sort((a,b)=>sc[b]-sc[a])[0];return sc[b]>0?b:null}
 function route(text){
- const n=norm(text);if(flow.step)return flowStep(text,n);const has=a=>a.some(w=>n.includes(w));
- if(has(['reservar','reserva','book','reserve','reservation','reserver','reservieren','buchen','tisch']))return startReservation(text,n);
- if(has(['horario','hours','opening','horaires','offnungszeiten','zeiten','cuando abren']))return{text:t('hours')};
- if(has(['donde','direccion','where','address','adresse','wo','castellana']))return{text:t('location'),actions:[{label:t('map'),href:'https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid'}]};
- if(has(['celeste','degustacion','tasting','12 tiempos','12 courses','12 gange']))return{text:t('tasting')};
- if(has(['alergia','alergeno','gluten','vegano','vegetarian','allergy','vegan','allergie','allergien']))return{text:t('allergies')};
- if(has(['vestimenta','dress','ropa','tenue','kleidung']))return{text:t('dress')};
- if(has(['evento','privado','private','evenement','feier','bodega','chef table','mesa del chef']))return{text:t('events'),actions:[{label:t('openWa'),href:waURL('Hola AURUM ✦ Quiero consultar un evento privado.')}]};
- if(has(['parking','aparcamiento','valet','parken']))return{text:t('parking')};
- if(has(['ninos','kids','children','enfant','kinder','familia']))return{text:t('kids')};
- if(has(['cancelar','cancelacion','cancel','annulation','stornieren']))return{text:t('policy')};
- if(has(['vino','wine','maridaje','vin','wein']))return{text:t('wine')};
- if(has(['chef','adrian']))return{text:t('chef')};
- if(has(['whatsapp','mensaje','message','nachricht']))return{text:t('whatsapp'),actions:[{label:t('openWa'),href:waURL('Hola AURUM ✦ Tengo una consulta.')}]};
- if(has(['precio','cuesta','cuanto','price','cost','prix','preis']))return{text:t('prices')};
- if(has(['menu','carta','platos','dishes','speisekarte','gerichte']))return{text:t('menu')};
- if(has(['gracias','thanks','merci','danke']))return{text:t('thanks')};
- if(has(['adios','bye','au revoir','tschuss']))return{text:t('bye')};
- if(has(['hola','hello','bonjour','salut','hallo','guten']))return{text:t('greet')};
- return{text:t('fallback'),actions:[{label:t('openWa'),href:waURL('Hola AURUM ✦ Necesito ayuda del equipo.')}]};
+const n=norm(text);if(flow.step)return flowStep(text,n);const has=a=>a.some(w=>n.includes(w));
+if(has(['reservar','reserva','book','reserve','reservation','reserver','reservieren','buchen','tisch']))return startReservation(text,n);
+if(has(['horario','hours','opening','horaires','offnungszeiten','zeiten','cuando abren']))return{text:t('hours')};
+if(has(['donde','direccion','where','address','adresse','wo','castellana']))return{text:t('location'),actions:[{label:t('map'),href:'https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid'}]};
+if(has(['celeste','degustacion','tasting','12 tiempos','12 courses','12 gange']))return{text:t('tasting')};
+if(has(['alergia','alergeno','gluten','vegano','vegetarian','allergy','vegan','allergie','allergien']))return{text:t('allergies')};
+if(has(['vestimenta','dress','ropa','tenue','kleidung']))return{text:t('dress')};
+if(has(['evento','privado','private','evenement','feier','bodega','chef table','mesa del chef']))return{text:t('events'),actions:[{label:t('openWa'),href:waURL('Hola AURUM ✦ Quiero consultar un evento privado.')}]};
+if(has(['parking','aparcamiento','valet','parken']))return{text:t('parking')};
+if(has(['ninos','kids','children','enfant','kinder','familia']))return{text:t('kids')};
+if(has(['cancelar','cancelacion','cancel','annulation','stornieren']))return{text:t('policy')};
+if(has(['vino','wine','maridaje','vin','wein']))return{text:t('wine')};
+if(has(['chef','adrian']))return{text:t('chef')};
+if(has(['whatsapp','mensaje','message','nachricht']))return{text:t('whatsapp'),actions:[{label:t('openWa'),href:waURL('Hola AURUM ✦ Tengo una consulta.')}]};
+if(has(['precio','cuesta','cuanto','price','cost','prix','preis']))return{text:t('prices')};
+if(has(['menu','carta','platos','dishes','speisekarte','gerichte']))return{text:t('menu')};
+if(has(['gracias','thanks','merci','danke']))return{text:t('thanks')};
+if(has(['adios','bye','au revoir','tschuss']))return{text:t('bye')};
+if(has(['hola','hello','bonjour','salut','hallo','guten']))return{text:t('greet')};
+return{text:t('fallback'),actions:[{label:t('openWa'),href:waURL('Hola AURUM ✦ Necesito ayuda del equipo.')}]};
 }
 const NUM={es:{un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12},en:{one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12},fr:{un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8,neuf:9,dix:10,onze:11,douze:12},de:{eins:1,ein:1,eine:1,zwei:2,drei:3,vier:4,funf:5,fünf:5,sechs:6,sieben:7,acht:8,neun:9,zehn:10,elf:11,zwolf:12,zwölf:12}};
 const WEEK={es:['domingo','lunes','martes','miercoles','jueves','viernes','sabado'],en:['sun','mon','tues','wednes','thurs','fri','satur'],fr:['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],de:['sonntag','montag','dienstag','mittwoch','donnerstag','freitag','samstag']};
 const MONTH={es:['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],en:['january','february','march','april','may','june','july','august','september','october','november','december'],fr:['janvier','fevrier','mars','avril','mai','juin','juillet','aout','septembre','octobre','novembre','decembre'],de:['januar','februar','marz','april','mai','juni','juli','august','september','oktober','november','dezember']};
 function parseGuests(n){const m=n.match(/\b(\d{1,2})\b/);if(m)return Math.max(1,Math.min(10,+m[1]));for(const l in NUM){const k=Object.keys(NUM[l]).find(w=>new RegExp('\\b'+w+'\\b').test(n));if(k)return NUM[l][k]}return null}
-function nextWeekday(i){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+((i-d.getDay()+7)%7));return d}
-function parseDate(n){const now=new Date();now.setHours(0,0,0,0);if(/pasado manana|day after tomorrow|apres demain|ubermorgen/.test(n)){const d=new Date(now);d.setDate(d.getDate()+2);return d}if(/manana|tomorrow|demain|morgen/.test(n)){const d=new Date(now);d.setDate(d.getDate()+1);return d}if(/\bhoy\b|today|aujourd|heute/.test(n))return now;for(const l in WEEK){const i=WEEK[l].findIndex(w=>new RegExp('\\b'+w).test(n));if(i>=0)return nextWeekday(i)}let m=n.match(/(\d{1,2})[\/.-](\d{1,2})(?:[\/.-](\d{2,4}))?/);if(m){let y=m[3]?+m[3]:now.getFullYear();if(y<100)y+=2000;return new Date(y,+m[2]-1,+m[1])}for(const l in MONTH){const i=MONTH[l].findIndex(mo=>n.includes(mo));if(i>=0){const mo=MONTH[l][i];let dm=n.match(new RegExp('(\\d{1,2})(?:st|nd|rd|th)?\\s*(?:de|\\.|of)?\\s*'+mo));if(!dm)dm=n.match(new RegExp(mo+'\\s+(\\d{1,2})'));if(dm){const ym=n.match(/\b(20\d{2})\b/);const d=new Date(ym?+ym[1]:now.getFullYear(),i,+dm[1]);if(d<now)d.setFullYear(d.getFullYear()+1);return d}}}m=n.match(/(?:el|the|le|am|den)\s+(\d{1,2})/);if(m){const d=new Date(now.getFullYear(),now.getMonth(),+m[1]);if(d<now)d.setMonth(d.getMonth()+1);return d}return null}
+function nextWeekday(i){const np=nowParts();const d=new Date(np.y,np.m-1,np.d);d.setDate(d.getDate()+((i-np.wd+7)%7));return d}
+function parseDate(n){const np=nowParts();const now=new Date(np.y,np.m-1,np.d);if(/pasado manana|day after tomorrow|apres demain|ubermorgen/.test(n)){const d=new Date(now);d.setDate(d.getDate()+2);return d}if(/manana|tomorrow|demain|morgen/.test(n)){const d=new Date(now);d.setDate(d.getDate()+1);return d}if(/\bhoy\b|today|aujourd|heute/.test(n))return now;for(const l in WEEK){const i=WEEK[l].findIndex(w=>new RegExp('\\b'+w).test(n));if(i>=0)return nextWeekday(i)}let m=n.match(/(\d{1,2})[\/.-](\d{1,2})(?:[\/.-](\d{2,4}))?/);if(m){let y=m[3]?+m[3]:np.y;if(y<100)y+=2000;return new Date(y,+m[2]-1,+m[1])}for(const l in MONTH){const i=MONTH[l].findIndex(mo=>n.includes(mo));if(i>=0){const mo=MONTH[l][i];let dm=n.match(new RegExp('(\\d{1,2})(?:st|nd|rd|th)?\\s*(?:de|\\.|of)?\\s*'+mo));if(!dm)dm=n.match(new RegExp(mo+'\\s+(\\d{1,2})'));if(dm){const ym=n.match(/\b(20\d{2})\b/);const d=new Date(ym?+ym[1]:np.y,i,+dm[1]);if(d<now)d.setFullYear(d.getFullYear()+1);return d}}}m=n.match(/(?:el|the|le|am|den)\s+(\d{1,2})/);if(m){const d=new Date(np.y,np.m-1,+m[1]);if(d<now)d.setMonth(d.getMonth()+1);return d}return null}
 function parseTime(n,loose,service){let h=null,m=0;const half=n.match(/halb\s+(\d{1,2}|\w+)/);if(half){h=/^\d+$/.test(half[1])?+half[1]:(NUM[call.lang][half[1]]||0);if(h)return{h:h-1,m:30}}let x=n.match(/(\d{1,2})[:.h]\s*(\d{2})/);if(x){h=+x[1];m=+x[2]}if(h==null){x=n.match(/(\d{1,2})\s*(am|pm)/);if(x){h=+x[1];if(x[2]==='pm'&&h<12)h+=12;if(x[2]==='am'&&h===12)h=0}}if(h==null){const pref=loose?'(?:a las|a la|at|a|à|um)?\\s*':'(?:a las|a la|at|à|um)\\s+';const re=new RegExp(pref+'(\\d{1,2}|\\w+)(?:\\s*(?:y|and|et|und)\\s*(media|half|demie|cuarto|quarter|quart))?');x=n.match(re);if(x){h=/^\d+$/.test(x[1])?+x[1]:(NUM[call.lang][x[1]]??null);if(/media|half|demie/.test(x[2]||''))m=30;else if(/cuarto|quarter|quart/.test(x[2]||''))m=15}}if(h==null)return null;if(/tarde|noche|pm|afternoon|evening|night|soir|abend/.test(n)&&h<12)h+=12;if(service==='Cena'&&h>=1&&h<=11)h+=12;if(service==='Almuerzo'&&h>=1&&h<=3)h+=12;if(h>23||m>59)return null;return{h,m}}
 function cleanName(s){return String(s||'').replace(/[.,;!?]+$/,'').trim().slice(0,40).replace(/\b\w/g,c=>c.toUpperCase())}
 function extractName(text){const m=String(text||'').match(/(?:me llamo|mi nombre es|soy|a nombre de|my name is|i am|i'm|im|je m'appelle|je suis|au nom de|ich heisse|ich heiße|ich bin|auf den namen)\s+(.+)$/i);return m?cleanName(m[1]):null}
-function validDate(d){const t0=new Date();t0.setHours(0,0,0,0);return d>=t0&&d.getDay()!==1}
+function validDate(d){const np=nowParts();const t0=new Date(np.y,np.m-1,np.d);return d>=t0&&d.getDay()!==1}
 function ask(step){if(step==='name')return{text:t('askName')};if(step==='guests')return{text:t('askGuests')};if(step==='date')return{text:t('askDate')};if(step==='time')return{text:slotsFor(flow.data.date).service==='Almuerzo'?t('askTimeL'):t('askTimeD')};return{text:t('confirm',flow.data)}}
 function startReservation(text,n){const d={};const g=n.match(/(?:para|for|pour|fur|für)\s+(\d{1,2}|\w+)/);if(g)d.guests=/^\d+$/.test(g[1])?Math.max(1,Math.min(10,+g[1])):parseGuests(g[1]);const dt=parseDate(n);if(dt&&validDate(dt))d.date=iso(dt);const tm=parseTime(n,false);if(tm)d.time=pad(tm.h)+':'+pad(tm.m);const nm=extractName(text);if(nm)d.name=nm;flow.data=d;flow.step=!d.name?'name':!d.guests?'guests':!d.date?'date':!d.time?'time':'confirm';if(flow.step==='confirm'&&!slotsFor(d.date).list.includes(d.time)){flow.step='time';return{text:t('noSlots',slotsFor(d.date).list.join(', '))}}return ask(flow.step)}
 function flowStep(text,n){if(/cancelar|cancel|annuler|abbrechen|stop/.test(n)){flow={step:null,data:{}};return{text:t('cancel')}}if(flow.step==='name'){const nm=extractName(text)||cleanName(text);if(nm.length<2)return{text:t('badName')};flow.data.name=nm;flow.step='guests';return ask('guests')}if(flow.step==='guests'){const g=parseGuests(n);if(!g)return{text:t('badGuests')};flow.data.guests=g;flow.step='date';return ask('date')}if(flow.step==='date'){const d=parseDate(n);if(!d)return{text:t('badDate')};if(!validDate(d))return{text:d.getDay()===1?t('closed'):t('past')};flow.data.date=iso(d);flow.step='time';return ask('time')}if(flow.step==='time'){const info=slotsFor(flow.data.date),tm=parseTime(n,true,info.service);if(!tm)return{text:t('badTime')};const ts=pad(tm.h)+':'+pad(tm.m);if(!info.list.includes(ts))return{text:t('noSlots',info.list.join(', '))};flow.data.time=ts;flow.step='confirm';return ask('confirm')}if(flow.step==='confirm'){if(/si|yes|oui|ja|confirmo|confirm|vale|ok|claro|genau|klar/.test(n))return completeBooking();if(/no|nein|non/.test(n)){flow={step:null,data:{}};return{text:t('cancel')}}return{text:t('yesNo')}}return startReservation(text,n)}
 function completeBooking(){const b={...flow.data,lang:call.lang};flow={step:null,data:{}};registerReservation(b,'voz-local');return{text:t('done')}}
-
 /* ═════════ VAPI · VOZ EN TIEMPO REAL ═════════ */
 function withTimeout(p,ms){return new Promise((res,rej)=>{const id=setTimeout(()=>rej(new Error('timeout')),ms);p.then(v=>{clearTimeout(id);res(v)},e=>{clearTimeout(id);rej(e)})})}
 async function loadVapi(){
- if(vapi)return vapi;
- const urls=['https://cdn.jsdelivr.net/npm/@vapi-ai/web@2/+esm','https://esm.sh/@vapi-ai/web@2'];
- let last=null;
- for(const u of urls){try{const mod=await withTimeout(import(u),12000);const C=mod.default||mod.Vapi||mod;vapi=new C(CFG.vapiKey);updateHealth();return vapi}catch(e){last=e}}
- throw last||new Error('SDK no cargó');
+if(vapi)return vapi;
+const urls=['https://cdn.jsdelivr.net/npm/@vapi-ai/web@2/+esm','https://esm.sh/@vapi-ai/web@2'];
+let last=null;
+for(const u of urls){try{const mod=await withTimeout(import(u),12000);const C=mod.default||mod.Vapi||mod;vapi=new C(CFG.vapiKey);updateHealth();return vapi}catch(e){last=e}}
+throw last||new Error('SDK no cargó');
+}
+function sendToolResult(id,result){
+if(!vapi||!id)return;const r=String(result);
+try{vapi.send({type:'add-tool-call-result',toolCallId:id,result:r})}catch(e){}
+try{vapi.send({type:'tool-calls-result',toolCallId:id,result:r})}catch(e){}
+}
+function validateBooking(r){
+const g=parseInt(r.guests,10);
+if(!r.name||String(r.name).trim().length<2)return{ok:false,reason:'Falta el nombre del cliente.'};
+if(!g||g<1||g>10)return{ok:false,reason:'El aforo debe estar entre 1 y 10 personas.'};
+if(!r.date||!/^\d{4}-\d{2}-\d{2}$/.test(r.date))return{ok:false,reason:'Falta la fecha absoluta (AAAA-MM-DD).'};
+const np=nowParts(),t0=new Date(np.y,np.m-1,np.d);const[y,m,d]=r.date.split('-').map(Number);const dt=new Date(y,m-1,d);
+if(isNaN(dt.getTime()))return{ok:false,reason:'La fecha no es válida.'};
+if(dt<t0)return{ok:false,reason:'Esa fecha ya pasó.'};
+if(dt.getDay()===1)return{ok:false,reason:'Los lunes el restaurante está cerrado.'};
+const info=slotsFor(r.date);
+if(!r.time||!info.list.includes(r.time))return{ok:false,reason:'Hora fuera de servicio. Pases disponibles: '+(info.list.join(', ')||'ninguno ese día')+'.'};
+return{ok:true};
 }
 function bindVapi(){
- if(vapiBound||!vapi)return;vapiBound=true;
- vapi.on('call-start',()=>{if(!call.open)return;stopListening();try{synth&&synth.cancel()}catch(e){}clearInterval(call.timer);call.connected=true;call.mode='vapi';stopRing();call.start=Date.now();setState('connected');updateHealth();beep(660,.12,.04);call.timer=setInterval(()=>{const s=Math.floor((Date.now()-call.start)/1000);$('#csTimer').textContent=pad(Math.floor(s/60))+':'+pad(s%60)},1000);applySpeaker();if(pendingAsk){const a=pendingAsk;pendingAsk='';try{vapi.send({type:'add-message',message:{role:'user',content:a}})}catch(e){}}});
- vapi.on('call-end',()=>{if(!call.open)return;finishCall()});
- vapi.on('speech-start',()=>setState('speaking'));
- vapi.on('speech-end',()=>{if(call.connected)setState('ready')});
- vapi.on('message',m=>{
-  if(!m)return;
-  if(m.type==='transcript'){
-   const txt=m.transcript||'';
-   if(m.role==='user'){if(m.transcriptType==='final'){setUserLine('');addChat('user',txt)}else setUserLine(txt)}
-   else{if(m.transcriptType==='final'){setCaption(txt);detectReservation(txt)}else{$('#csAria').textContent=txt}}
-  }else if(m.type==='tool-calls'){
-   (m.toolCalls||m.toolCallList||[]).forEach(tc=>{
-    const fn=tc.function||{};const name=fn.name||tc.name||'';
-    if(!/reserva|booking|reservation/i.test(name))return;
-    let args=fn.arguments||tc.arguments||{};if(typeof args==='string'){try{args=JSON.parse(args)}catch(e){args={}}}
-    const r=normalizeRes(args);if(r)registerReservation(r,'voz');
-    try{vapi.send({type:'tool-calls-result',toolCallId:tc.id,result:'Reserva registrada. El equipo la recibió por correo.'})}catch(e){}
-   });
-  }
- });
- vapi.on('error',e=>{
-  console.warn('Vapi error',e);
-  const msg=String((e&&(e.message||e.error&&e.error.message))||e||'');
-  if(/key|unauthorized|401|403|auth/i.test(msg))toast('La clave de Vapi no es válida para web: usa la PUBLIC KEY del dashboard.','warn');
-  if(!call.connected&&call.open){toast('Vapi no disponible: entro en modo respaldo','warn');startLocal(pendingAsk);pendingAsk=''}
-  else if(call.open)toast('Incidencia en la llamada. Puedes usar el chat.','warn');
- });
+if(vapiBound||!vapi)return;vapiBound=true;
+vapi.on('call-start',()=>{if(!call.open)return;stopListening();try{synth&&synth.cancel()}catch(e){}clearInterval(call.timer);call.connected=true;call.mode='vapi';stopRing();call.start=Date.now();setState('connected');updateHealth();beep(660,.12,.04);call.timer=setInterval(()=>{const s=Math.floor((Date.now()-call.start)/1000);$('#csTimer').textContent=pad(Math.floor(s/60))+':'+pad(s%60)},1000);applySpeaker();if(pendingAsk){const a=pendingAsk;pendingAsk='';try{vapi.send({type:'add-message',message:{role:'user',content:a}})}catch(e){}}});
+vapi.on('call-end',()=>{if(!call.open||call.mode!=='vapi')return;finishCall()});
+vapi.on('speech-start',()=>setState('speaking'));
+vapi.on('speech-end',()=>{if(call.connected)setState('ready')});
+vapi.on('message',m=>{
+if(!m)return;
+if(m.type==='transcript'){
+const txt=m.transcript||'';
+if(m.role==='user'){if(m.transcriptType==='final'){setUserLine('');addChat('user',txt)}else setUserLine(txt)}
+else{if(m.transcriptType==='final'){setCaption(txt);detectReservation(txt)}else{$('#csAria').textContent=txt}}
+}else if(m.type==='tool-calls'){
+(m.toolCalls||m.toolCallList||[]).forEach(tc=>{
+const fn=tc.function||{};const name=fn.name||tc.name||'';
+let args=fn.arguments||tc.arguments||{};if(typeof args==='string'){try{args=JSON.parse(args)}catch(e){args={}}}
+if(/datetime|current|fecha_actual|hora_actual|get_time/i.test(name)&&!/reserva|booking|reservation/i.test(name)){
+const v=madridVars();sendToolResult(tc.id,JSON.stringify({iso:new Date().toISOString(),date:v.fecha_actual,time:v.hora_actual,weekday:v.dia_semana,timezone:TZ}));return;
+}
+if(!/reserva|booking|reservation/i.test(name))return;
+const r=normalizeRes(args);
+if(!r){sendToolResult(tc.id,'ERROR: faltan datos para registrar la reserva.');return}
+const v=validateBooking(r);
+if(!v.ok){sendToolResult(tc.id,'ERROR: '+v.reason+' No se ha registrado. Ofrece al cliente una alternativa válida.');return}
+registerReservation(r,'voz');
+sendToolResult(tc.id,'OK: reserva registrada y enviada al equipo por correo. Responde al cliente: Perfecto, queda anotado, nuestro equipo lo confirma en breve.');
+});
+}
+});
+vapi.on('error',e=>{
+console.warn('Vapi error',e);
+const msg=String((e&&(e.message||e.error&&e.error.message))||e||'');
+if(/key|unauthorized|401|403|auth/i.test(msg))toast('La clave de Vapi no es válida para web: usa la PUBLIC KEY del dashboard.','warn');
+if(!call.connected&&call.open){toast('Vapi no disponible: entro en modo respaldo','warn');startLocal(pendingAsk);pendingAsk=''}
+else if(call.open)toast('Incidencia en la llamada. Puedes usar el chat.','warn');
+});
 }
 function normalizeRes(a){
- if(!a||typeof a!=='object')return null;
- const name=a.nombre||a.name||a.cliente||'';
- const guests=a.personas||a.guests||a.comensales||'';
- let date=a.fecha||a.date||'';const dateText=a.fecha_texto||a.dateText||'';
- const time=a.hora||a.time||'';
- if(date&&!/^\d{4}-\d{2}-\d{2}$/.test(date)){const d=parseDate(norm(String(date)));date=d?iso(d):''}
- if(!name&&!guests&&!date&&!time)return null;
- return{name:String(name),guests:String(guests),date,dateText:String(dateText||(!date?a.fecha||a.date||'':'')),time:String(time),lang:a.idioma||a.lang||call.lang,notes:a.notas||a.notes||''};
+if(!a||typeof a!=='object')return null;
+const name=a.nombre||a.name||a.cliente||'';
+const guests=a.personas??a.guests??a.comensales??'';
+let date=String(a.fecha||a.date||'').trim();const dateText=a.fecha_texto||a.dateText||'';
+let time=String(a.hora||a.time||'').trim().replace(/[.h]/,':');
+const tm=time.match(/^(\d{1,2}):(\d{2})/);if(tm)time=pad(+tm[1])+':'+tm[2];
+const dm=date.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{2,4})$/);
+if(dm){let y=+dm[3];if(y<100)y+=2000;date=y+'-'+pad(+dm[2])+'-'+pad(+dm[1])}
+else if(date&&!/^\d{4}-\d{2}-\d{2}$/.test(date)){const d=parseDate(norm(date));date=d?iso(d):''}
+if(!name&&!guests&&!date&&!time)return null;
+const LM={es:'es',espanol:'es',spanish:'es',en:'en',ingles:'en',english:'en',fr:'fr',frances:'fr',francais:'fr',french:'fr',de:'de',aleman:'de',deutsch:'de',german:'de'};
+const lang=LM[norm(String(a.idioma||a.lang||''))]||call.lang;
+return{name:String(name).trim(),guests:String(guests),date,dateText:String(dateText||(!date?(a.fecha||a.date||''):'')),time,lang,notes:a.notas||a.notes||''};
 }
 function detectReservation(text){
- if(!text)return;
- let m=text.match(/RESERVA[_ ]LISTA\s*:\s*([^\n]+)/i);
- if(m){
-  const parts=m[1].split(',').map(s=>s.trim());
-  const whole=m[1];
-  const gm=whole.match(/(\d{1,2})\s*personas/i);
-  const tm=whole.match(/(\d{1,2}[:.h]\d{2})/);
-  const name=parts[0]||'';
-  const datePart=parts.find(p=>p&&!/personas/i.test(p)&&!/\d{1,2}[:.h]\d{2}/.test(p)&&p!==name)||'';
-  const d=parseDate(norm(datePart));
-  registerReservation({name,guests:gm?gm[1]:'',date:d?iso(d):'',dateText:datePart,time:tm?tm[1].replace('.',':').replace('h',':'):'',lang:call.lang},'voz');
-  return;
- }
- m=text.match(/\{[\s\S]*?"(?:nombre|name)"[\s\S]*?\}/);
- if(m){try{const r=normalizeRes(JSON.parse(m[0]));if(r)registerReservation(r,'voz')}catch(e){}}
+if(!text)return;
+let m=text.match(/RESERVA[_ ]LISTA\s*:\s*([^\n]+)/i);
+if(m){
+const parts=m[1].split(',').map(s=>s.trim());
+const whole=m[1];
+const gm=whole.match(/(\d{1,2})\s*personas/i);
+const tm=whole.match(/(\d{1,2}[:.h]\d{2})/);
+const name=parts[0]||'';
+const datePart=parts.find(p=>p&&!/personas/i.test(p)&&!/\d{1,2}[:.h]\d{2}/.test(p)&&p!==name)||'';
+const d=parseDate(norm(datePart));
+const r={name,guests:gm?gm[1]:'',date:d?iso(d):'',dateText:datePart,time:tm?tm[1].replace('.',':').replace('h',':'):'',lang:call.lang};
+if(validateBooking(r).ok)registerReservation(r,'voz');
+return;
+}
+m=text.match(/\{[\s\S]*?"(?:nombre|name)"[\s\S]*?\}/);
+if(m){try{const r=normalizeRes(JSON.parse(m[0]));if(r&&validateBooking(r).ok)registerReservation(r,'voz')}catch(e){}}
 }
 async function openCall(ask=''){
- if(call.open)return;
- const token=++connectToken;
- call.open=true;call.connected=false;call.muted=false;call.speaker=true;call.captions=true;call.busy=false;call.speaking=false;call.listening=false;call.mode='checking';flow={step:null,data:{}};pendingRes=null;lastResKey='';pendingAsk=ask;
- $('#callScreen').classList.add('open');$('#callScreen').setAttribute('aria-hidden','false');document.body.classList.add('lock');$('#csTimer').style.visibility='hidden';$('#csTimer').textContent='00:00';$('#chatLog').innerHTML='';$('#csUser').textContent='';updateControls();setState('ringing');setCaption(t('ring'));closePanels();ensureAudio();startRing();updateHealth();
- if(ENV.secure&&ENV.mic&&CFG.vapiKey&&CFG.vapiAssistant){
-  try{await ensureMic()}catch(e){if(token!==connectToken)return;showSys(micReason(e));startLocal(ask);pendingAsk='';return}
-  if(token!==connectToken)return;
-  try{const V=await loadVapi();if(token!==connectToken)return;bindVapi();await V.start(CFG.vapiAssistant);return}catch(e){console.warn('Vapi start falló',e);if(token!==connectToken)return;const msg=String(e&&e.message||e);if(/key|unauthorized|401|403|auth/i.test(msg))toast('Clave Vapi inválida para web: usa la PUBLIC KEY.','warn');else toast('Vapi no disponible: modo respaldo activo','warn');try{vapi&&vapi.stop()}catch(e2){}}
- }else if(!ENV.secure){showSys('https')}else if(ENV.iframe&&!ENV.mic){showSys('iframe')}
- if(token!==connectToken)return;
- startLocal(ask);pendingAsk='';
+if(call.open)return;
+const token=++connectToken;
+call.open=true;call.connected=false;call.muted=false;call.speaker=true;call.captions=true;call.busy=false;call.speaking=false;call.listening=false;call.mode='checking';flow={step:null,data:{}};pendingRes=null;lastResKey='';pendingAsk=ask;
+$('#callScreen').classList.add('open');$('#callScreen').setAttribute('aria-hidden','false');document.body.classList.add('lock');$('#csTimer').style.visibility='hidden';$('#csTimer').textContent='00:00';$('#chatLog').innerHTML='';$('#csUser').textContent='';updateControls();setState('ringing');setCaption(t('ring'));closePanels();ensureAudio();startRing();updateHealth();
+if(ENV.secure&&ENV.mic&&CFG.vapiKey&&CFG.vapiAssistant){
+try{await ensureMic()}catch(e){if(token!==connectToken)return;showSys(micReason(e));startLocal(ask);pendingAsk='';return}
+if(token!==connectToken)return;
+try{const V=await loadVapi();if(token!==connectToken)return;bindVapi();await V.start(CFG.vapiAssistant,{variableValues:madridVars()});return}catch(e){console.warn('Vapi start falló',e);if(token!==connectToken)return;const msg=String(e&&e.message||e);if(/key|unauthorized|401|403|auth/i.test(msg))toast('Clave Vapi inválida para web: usa la PUBLIC KEY.','warn');else toast('Vapi no disponible: modo respaldo activo','warn');call.mode='local';try{vapi&&vapi.stop()}catch(e2){}}
+}else if(!ENV.secure){showSys('https')}else if(ENV.iframe&&!ENV.mic){showSys('iframe')}
+if(token!==connectToken)return;
+startLocal(ask);pendingAsk='';
 }
 function startLocal(ask){
- call.mode='local';updateHealth();
- setTimeout(()=>{if(!call.open||call.mode==='vapi')return;call.connected=true;stopRing();call.start=Date.now();setState('connected');beep(660,.12,.04);call.timer=setInterval(()=>{const s=Math.floor((Date.now()-call.start)/1000);$('#csTimer').textContent=pad(Math.floor(s/60))+':'+pad(s%60)},1000);const g=ask?'':t('greet');if(g){setCaption(g);speak(g,()=>{setState('ready');setTimeout(startListening,500)})}else{setState('ready');setTimeout(()=>handleUser(ask),350)}},1300);
+call.mode='local';updateHealth();
+setTimeout(()=>{if(!call.open||call.mode==='vapi')return;call.connected=true;stopRing();call.start=Date.now();setState('connected');beep(660,.12,.04);call.timer=setInterval(()=>{const s=Math.floor((Date.now()-call.start)/1000);$('#csTimer').textContent=pad(Math.floor(s/60))+':'+pad(s%60)},1000);const g=ask?'':t('greet');if(g){setCaption(g);speak(g,()=>{setState('ready');setTimeout(startListening,500)})}else{setState('ready');setTimeout(()=>handleUser(ask),350)}},1300);
 }
 function finishCall(){
- connectToken++;
- call.connected=false;call.busy=false;call.speaking=false;call.listening=false;stopRing();clearInterval(call.timer);call.timer=null;stopListening();try{synth&&synth.cancel()}catch(e){}
- $('#callScreen').classList.remove('open');$('#callScreen').setAttribute('aria-hidden','true');if(!$$('.modal.open').length)document.body.classList.remove('lock');closePanels();setState('idle');
- if(pendingRes&&!pendingRes.sent)openWaModal(pendingRes);
+if(!call.open)return;
+call.open=false;call.connected=false;call.busy=false;call.speaking=false;call.listening=false;pendingAsk='';connectToken++;
+stopRing();clearInterval(call.timer);call.timer=null;stopListening();try{synth&&synth.cancel()}catch(e){}
+$('#callScreen').classList.remove('open');$('#callScreen').setAttribute('aria-hidden','true');if(!$$('.modal.open').length)document.body.classList.remove('lock');closePanels();setState('idle');
+if(pendingRes&&!pendingRes.sent)openWaModal(pendingRes);
 }
 function closeCall(){if(call.mode==='vapi'&&vapi){try{vapi.stop()}catch(e){}}finishCall()}
 function closePanels(){$$('.cs-panel').forEach(p=>p.classList.remove('open'));$('#btnKeypad').classList.remove('active');$('#btnChat').classList.remove('active');$('#btnLang').classList.remove('active')}
 function togglePanel(which){const p=$('#'+which+'Panel');const willOpen=!p.classList.contains('open');closePanels();if(willOpen){p.classList.add('open');$('#btn'+which.charAt(0).toUpperCase()+which.slice(1)).classList.add('active');if(which==='chat')setTimeout(()=>$('#chatInput').focus(),250)}}
-
 /* ═════════ UI LLAMADA ═════════ */
 safe('call-ui',()=>{
- const wave=$('#csWave');for(let i=0;i<28;i++)wave.appendChild(document.createElement('i'));
- const kp=$('#keypad');['1','2','3','4','5','6','7','8','9','*','0','#'].forEach(k=>{const b=document.createElement('button');b.type='button';b.textContent=k;b.setAttribute('aria-label','Tecla '+k);b.addEventListener('click',()=>{$('#keypadDigits').textContent+=k;dtmf(k);setTimeout(()=>{$('#keypadDigits').textContent=$('#keypadDigits').textContent.slice(0,20)},50)})});
- const lg=$('#langGrid');Object.keys(LANGS).forEach(l=>{const b=document.createElement('button');b.type='button';b.dataset.lang=l;b.textContent=LANGS[l].label;b.addEventListener('click',()=>{call.lang=l;updateControls();if(call.mode==='vapi'&&vapi&&call.connected){try{vapi.send({type:'add-message',message:{role:'system',content:'From now on, continue the conversation only in '+LANGS[l].label+'.'}})}catch(e){}setCaption(t('langSet',LANGS[l].label))}else{const msg=t('langSet',LANGS[l].label);setCaption(msg);speak(msg,()=>setTimeout(startListening,400))}closePanels()})});
- const quick=$('#chatQuick');[['Reservar','Quiero reservar una mesa'],['Horarios','¿Cuál es el horario?'],['Carta','¿Qué platos tienen?'],['WhatsApp','Quiero hablar por WhatsApp']].forEach(([l,q])=>{const b=document.createElement('button');b.type='button';b.className='aex';b.textContent=l;b.addEventListener('click',()=>sendChat(q));quick.appendChild(b)});
- $('#btnMute').addEventListener('click',()=>{call.muted=!call.muted;updateControls();if(call.mode==='vapi'&&vapi){try{vapi.setMuted(call.muted)}catch(e){}}if(call.muted){stopListening();setCaption(t('muted'))}else{setCaption(t('ready'));setTimeout(startListening,300)}});
- $('#btnSpeaker').addEventListener('click',()=>{call.speaker=!call.speaker;updateControls();applySpeaker();if(!call.speaker){stopRing();try{synth&&synth.cancel()}catch(e){}call.speaking=false;setCaption(t('spkOff'))}else{ensureAudio();setCaption(t('spkOn'));beep(660,.1,.03)}});
- $('#btnCaptions').addEventListener('click',()=>{call.captions=!call.captions;updateControls()});
- $('#btnKeypad').addEventListener('click',()=>togglePanel('keypad'));$('#btnChat').addEventListener('click',()=>togglePanel('chat'));$('#btnLang').addEventListener('click',()=>togglePanel('lang'));
- $$('[data-close-panel]').forEach(b=>b.addEventListener('click',closePanels));
- $('#btnEnd').addEventListener('click',closeCall);
- $('#chatForm').addEventListener('submit',e=>{e.preventDefault();const v=$('#chatInput').value;$('#chatInput').value='';sendChat(v)});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($$('.modal.open').length)closeModals();else if(call.open)closeCall()}});
- document.addEventListener('click',e=>{const el=e.target.closest('[data-call]');if(!el)return;e.preventDefault();openCall(el.dataset.ask||'')});
- updateHealth();
+const wave=$('#csWave');for(let i=0;i<28;i++)wave.appendChild(document.createElement('i'));
+const kp=$('#keypad');['1','2','3','4','5','6','7','8','9','*','0','#'].forEach(k=>{const b=document.createElement('button');b.type='button';b.textContent=k;b.setAttribute('aria-label','Tecla '+k);b.addEventListener('click',()=>{$('#keypadDigits').textContent+=k;dtmf(k);setTimeout(()=>{$('#keypadDigits').textContent=$('#keypadDigits').textContent.slice(0,20)},50)})});
+const lg=$('#langGrid');Object.keys(LANGS).forEach(l=>{const b=document.createElement('button');b.type='button';b.dataset.lang=l;b.textContent=LANGS[l].label;b.addEventListener('click',()=>{call.lang=l;updateControls();if(call.mode==='vapi'&&vapi&&call.connected){try{vapi.send({type:'add-message',message:{role:'system',content:'From now on, continue the conversation only in '+LANGS[l].label+'.'}})}catch(e){}setCaption(t('langSet',LANGS[l].label))}else{const msg=t('langSet',LANGS[l].label);setCaption(msg);speak(msg,()=>setTimeout(startListening,400))}closePanels()})});
+const quick=$('#chatQuick');[['Reservar','Quiero reservar una mesa'],['Horarios','¿Cuál es el horario?'],['Carta','¿Qué platos tienen?'],['WhatsApp','Quiero hablar por WhatsApp']].forEach(([l,q])=>{const b=document.createElement('button');b.type='button';b.className='aex';b.textContent=l;b.addEventListener('click',()=>sendChat(q));quick.appendChild(b)});
+$('#btnMute').addEventListener('click',()=>{call.muted=!call.muted;updateControls();if(call.mode==='vapi'&&vapi){try{vapi.setMuted(call.muted)}catch(e){}}if(call.muted){stopListening();setCaption(t('muted'))}else{setCaption(t('ready'));setTimeout(startListening,300)}});
+$('#btnSpeaker').addEventListener('click',()=>{call.speaker=!call.speaker;updateControls();applySpeaker();if(!call.speaker){stopRing();try{synth&&synth.cancel()}catch(e){}call.speaking=false;setCaption(t('spkOff'))}else{ensureAudio();setCaption(t('spkOn'));beep(660,.1,.03)}});
+$('#btnCaptions').addEventListener('click',()=>{call.captions=!call.captions;updateControls()});
+$('#btnKeypad').addEventListener('click',()=>togglePanel('keypad'));$('#btnChat').addEventListener('click',()=>togglePanel('chat'));$('#btnLang').addEventListener('click',()=>togglePanel('lang'));
+$$('[data-close-panel]').forEach(b=>b.addEventListener('click',closePanels));
+$('#btnEnd').addEventListener('click',closeCall);
+$('#chatForm').addEventListener('submit',e=>{e.preventDefault();const v=$('#chatInput').value;$('#chatInput').value='';sendChat(v)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($$('.modal.open').length)closeModals();else if(call.open)closeCall()}});
+document.addEventListener('click',e=>{const el=e.target.closest('[data-call]');if(!el)return;e.preventDefault();openCall(el.dataset.ask||'')});
+updateHealth();
 });
 function sendChat(v){v=String(v||'').trim();if(!v)return;if(call.mode==='vapi'&&vapi&&call.connected){addChat('user',v);try{vapi.send({type:'add-message',message:{role:'user',content:v}})}catch(e){handleUser(v)}}else handleUser(v)}
-
 /* ═════════ ADMINISTRACIÓN ═════════ */
 const admSel=new Set();let undoBin=null;
 function visibleLedger(){
- const q=norm($('#admSearch').value||''),f=$('#admFilter').value,s=$('#admSort').value;
- let l=ledger.all();
- if(f!=='all')l=l.filter(r=>r.status===f);
- if(q)l=l.filter(r=>norm([r.name,r.notes,r.date,r.dateText,r.time,r.source].join(' ')).includes(q));
- l=[...l];
- if(s==='date')l.sort((a,b)=>String(a.date||'9999').localeCompare(String(b.date||'9999'))||String(a.time).localeCompare(String(b.time)));
- else if(s==='name')l.sort((a,b)=>String(a.name).localeCompare(String(b.name),'es'));
- else l.sort((a,b)=>b.ts-a.ts);
- return l;
+const q=norm($('#admSearch').value||''),f=$('#admFilter').value,s=$('#admSort').value;
+let l=ledger.all();
+if(f!=='all')l=l.filter(r=>r.status===f);
+if(q)l=l.filter(r=>norm([r.name,r.notes,r.date,r.dateText,r.time,r.source].join(' ')).includes(q));
+l=[...l];
+if(s==='date')l.sort((a,b)=>String(a.date||'9999').localeCompare(String(b.date||'9999'))||String(a.time).localeCompare(String(b.time)));
+else if(s==='name')l.sort((a,b)=>String(a.name).localeCompare(String(b.name),'es'));
+else l.sort((a,b)=>b.ts-a.ts);
+return l;
 }
 function renderLedger(){
- const tb=$('#admTable tbody');if(!tb)return;tb.innerHTML='';
- const l=visibleLedger();
- if(!l.length){tb.innerHTML='<tr><td colspan="7" style="padding:18px 8px;color:var(--dim)">No hay reservas que coincidan.</td></tr>'}
- l.forEach(r=>{
-  const tr=document.createElement('tr');
-  const st=r.status==='Confirmada'?'c':r.status==='Cancelada'?'x':r.status==='Enviada WA'?'e':'p';
-  tr.innerHTML='<td><input type="checkbox" class="adm-check" aria-label="Seleccionar reserva"></td><td><b></b><br><small></small></td><td></td><td></td><td></td><td><span class="adm-st '+st+'"></span></td><td></td>';
-  const td=tr.children;
-  const chk=td[0].querySelector('input');chk.checked=admSel.has(r.id);chk.addEventListener('change',()=>{chk.checked?admSel.add(r.id):admSel.delete(r.id);paintSel()});
-  td[1].querySelector('b').textContent=r.name||'—';
-  td[1].querySelector('small').textContent=new Date(r.ts).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
-  td[2].textContent=r.guests||'—';
-  td[3].textContent=(r.date?prettyDate(r.date,'es'):(r.dateText||'—'))+' · '+(r.time||'—');
-  td[4].textContent=r.source;
-  td[5].querySelector('span').textContent=r.status;
-  const acts=td[6];
-  [['✓','Confirmada'],['✕','Cancelada'],['🗑','del']].forEach(([lab,val])=>{const b=document.createElement('button');b.type='button';b.className='adm-mini';b.textContent=lab;b.title=val==='del'?'Eliminar':'Marcar '+val;b.addEventListener('click',()=>{if(val==='del'){undoBin=[r];ledger.del(r.id);toast('Reserva eliminada','warn',{label:'Deshacer',fn:()=>{undoBin.forEach(x=>ledger.add(x));undoBin=null}})}else ledger.set(r.id,val)});acts.appendChild(b)});
-  tb.appendChild(tr);
- });
- paintSel();
+const tb=$('#admTable tbody');if(!tb)return;tb.innerHTML='';
+const l=visibleLedger();
+if(!l.length){tb.innerHTML='<tr><td colspan="7" style="padding:18px 8px;color:var(--dim)">No hay reservas que coincidan.</td></tr>'}
+l.forEach(r=>{
+const tr=document.createElement('tr');
+const st=r.status==='Confirmada'?'c':r.status==='Cancelada'?'x':r.status==='Enviada WA'?'e':'p';
+tr.innerHTML='<td><input type="checkbox" class="adm-check" aria-label="Seleccionar reserva"></td><td><b></b><br><small></small></td><td></td><td></td><td></td><td><span class="adm-st '+st+'"></span></td><td></td>';
+const td=tr.children;
+const chk=td[0].querySelector('input');chk.checked=admSel.has(r.id);chk.addEventListener('change',()=>{chk.checked?admSel.add(r.id):admSel.delete(r.id);paintSel()});
+td[1].querySelector('b').textContent=r.name||'—';
+td[1].querySelector('small').textContent=new Date(r.ts).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+td[2].textContent=r.guests||'—';
+td[3].textContent=(r.date?prettyDate(r.date,'es'):(r.dateText||'—'))+' · '+(r.time||'—');
+td[4].textContent=r.source;
+td[5].querySelector('span').textContent=r.status;
+const acts=td[6];
+[['✓','Confirmada'],['✕','Cancelada'],['🗑','del']].forEach(([lab,val])=>{const b=document.createElement('button');b.type='button';b.className='adm-mini';b.textContent=lab;b.title=val==='del'?'Eliminar':'Marcar '+val;b.addEventListener('click',()=>{if(val==='del'){undoBin=[r];ledger.del(r.id);toast('Reserva eliminada','warn',{label:'Deshacer',fn:()=>{undoBin.forEach(x=>ledger.add(x));undoBin=null}})}else ledger.set(r.id,val)});acts.appendChild(b)});
+tb.appendChild(tr);
+});
+paintSel();
 }
 function paintSel(){$('#admSelCount').textContent=admSel.size+' seleccionadas';const l=visibleLedger();$('#admSelAll').checked=l.length>0&&l.every(r=>admSel.has(r.id))}
 function bulkDelete(){const ids=[...admSel];if(!ids.length)return;undoBin=ledger.all().filter(r=>ids.includes(r.id));ledger.save(ledger.all().filter(r=>!ids.includes(r.id)));admSel.clear();renderLedger();toast(ids.length+' reservas eliminadas','warn',{label:'Deshacer',fn:()=>{undoBin.forEach(x=>ledger.add(x));undoBin=null}})}
 safe('admin',()=>{
- seedLedger();
- $('#admAirtable').href=CFG.airtable;
- document.addEventListener('click',e=>{if(e.target.closest('[data-admin]')){e.preventDefault();openModal('adminModal');if(sstore.get('aurum_adm')==='1'){$('#admLogin').hidden=true;$('#admPanel').hidden=false;renderLedger()}}});
- $$('[data-close-modal]').forEach(b=>b.addEventListener('click',closeModals));
- $('#admLogin').addEventListener('submit',e=>{e.preventDefault();if($('#admUser').value.trim()===CFG.adminUser&&$('#admPass').value===CFG.adminPass){sstore.set('aurum_adm','1');$('#admLogin').hidden=true;$('#admPanel').hidden=false;renderLedger();toast('Bienvenido, equipo ✦')}else toast('Usuario o contraseña incorrectos','warn')});
- $('#admOut').addEventListener('click',()=>{sstore.del('aurum_adm');$('#admPanel').hidden=true;$('#admLogin').hidden=false});
- ['admSearch','admFilter','admSort'].forEach(id=>document.getElementById(id).addEventListener('input',renderLedger));
- $('#admSelAll').addEventListener('change',e=>{const l=visibleLedger();if(e.target.checked)l.forEach(r=>admSel.add(r.id));else l.forEach(r=>admSel.delete(r.id));renderLedger()});
- $('#admConfirmSel').addEventListener('click',()=>{if(!admSel.size)return;admSel.forEach(id=>ledger.set(id,'Confirmada'));toast(admSel.size+' reservas confirmadas ✦');admSel.clear();renderLedger()});
- $('#admDeleteSel').addEventListener('click',bulkDelete);
- $('#admClearEx').addEventListener('click',()=>{const ex=ledger.all().filter(r=>r.source==='ejemplo');if(!ex.length){toast('No hay ejemplos');return}undoBin=ex;ledger.save(ledger.all().filter(r=>r.source!=='ejemplo'));renderLedger();toast('Ejemplos borrados','warn',{label:'Deshacer',fn:()=>{undoBin.forEach(x=>ledger.add(x));undoBin=null}})});
- $('#admCsv').addEventListener('click',()=>{const l=visibleLedger();const rows=[['Nombre','Personas','Fecha','Hora','Idioma','Origen','Estado','Notas'],...l.map(r=>[r.name,r.guests,r.date||r.dateText,r.time,r.lang,r.source,r.status,r.notes])];const csv=rows.map(r=>r.map(c=>'"'+String(c??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='reservas-aurum.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast('CSV exportado ✦')});
- $('#waCopy').addEventListener('click',()=>copyText($('#waSummary').textContent));
- renderLedger();
+seedLedger();
+$('#admAirtable').href=CFG.airtable;
+document.addEventListener('click',e=>{if(e.target.closest('[data-admin]')){e.preventDefault();openModal('adminModal');if(sstore.get('aurum_adm')==='1'){$('#admLogin').hidden=true;$('#admPanel').hidden=false;renderLedger()}}});
+$$('[data-close-modal]').forEach(b=>b.addEventListener('click',closeModals));
+$('#admLogin').addEventListener('submit',e=>{e.preventDefault();if($('#admUser').value.trim()===CFG.adminUser&&$('#admPass').value===CFG.adminPass){sstore.set('aurum_adm','1');$('#admLogin').hidden=true;$('#admPanel').hidden=false;renderLedger();toast('Bienvenido, equipo ✦')}else toast('Usuario o contraseña incorrectos','warn')});
+$('#admOut').addEventListener('click',()=>{sstore.del('aurum_adm');$('#admPanel').hidden=true;$('#admLogin').hidden=false});
+['admSearch','admFilter','admSort'].forEach(id=>document.getElementById(id).addEventListener('input',renderLedger));
+$('#admSelAll').addEventListener('change',e=>{const l=visibleLedger();if(e.target.checked)l.forEach(r=>admSel.add(r.id));else l.forEach(r=>admSel.delete(r.id));renderLedger()});
+$('#admConfirmSel').addEventListener('click',()=>{if(!admSel.size)return;admSel.forEach(id=>ledger.set(id,'Confirmada'));toast(admSel.size+' reservas confirmadas ✦');admSel.clear();renderLedger()});
+$('#admDeleteSel').addEventListener('click',bulkDelete);
+$('#admClearEx').addEventListener('click',()=>{const ex=ledger.all().filter(r=>r.source==='ejemplo');if(!ex.length){toast('No hay ejemplos');return}undoBin=ex;ledger.save(ledger.all().filter(r=>r.source!=='ejemplo'));renderLedger();toast('Ejemplos borrados','warn',{label:'Deshacer',fn:()=>{undoBin.forEach(x=>ledger.add(x));undoBin=null}})});
+$('#admCsv').addEventListener('click',()=>{const l=visibleLedger();const rows=[['Nombre','Personas','Fecha','Hora','Idioma','Origen','Estado','Notas'],...l.map(r=>[r.name,r.guests,r.date||r.dateText,r.time,r.lang,r.source,r.status,r.notes])];const csv=rows.map(r=>r.map(c=>'"'+String(c??'').replace(/"/g,'""')+'"').join(',')).join('
+');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='reservas-aurum.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast('CSV exportado ✦')});
+$('#waCopy').addEventListener('click',()=>copyText($('#waSummary').textContent));
+renderLedger();
 });
-
 /* ═════════ INIT ═════════ */
-safe('init',()=>{refreshSel();updatePreview();$('#year').textContent=new Date().getFullYear();updateHealth()});
+safe('init',()=>{refreshSel();updatePreview();$('#year').textContent=nowParts().y;updateHealth()});
 })();
 </script>
 </body>
