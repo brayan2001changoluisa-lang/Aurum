@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090806">
+<title>AURUM · Restaurante 5★ — Llamada con ARIA</title>
+<meta name="description" content="Restaurante de lujo en Madrid. Reserva por WhatsApp o llama a ARIA, tu concierge de voz.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23090806'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia' font-size='36' fill='%23D4AF37'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>window.__imgFB=function(i){i.onerror=null;var s='<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1A1712"/><stop offset=".5" stop-color="#8C6D1F"/><stop offset="1" stop-color="#2E5E8C"/></linearGradient></defs><rect width="1200" height="800" fill="url(#g)"/><circle cx="600" cy="400" r="180" fill="none" stroke="#F0D687" stroke-width="5"/><text x="600" y="430" font-family="Georgia" font-size="86" fill="#F5EEDF" text-anchor="middle">AURUM</text></svg>';i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s)};</script>
+<style>
+:root{color-scheme:dark;--bg:#090806;--s1:#14120E;--s2:#1D1A14;--s3:#28221A;--gold:#D4AF37;--champ:#F0D687;--deep:#8C6D1F;--wine:#A63446;--emer:#2E8B6E;--sapp:#3D6E9E;--ink:#F5EEDF;--muted:#A79B82;--dim:#756C59;--ok:#3FA97C;--warn:#E8B23D;--bad:#D95360;--wa:#25D366;--line:rgba(212,175,55,.18);--fd:'Italiana',Georgia,serif;--fs:'Cormorant Garamond',Georgia,serif;--fu:'Manrope',system-ui,sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-color:var(--deep) var(--bg);scrollbar-width:thin}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--fu);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+::selection{background:var(--gold);color:#151006}
+::-webkit-scrollbar{width:11px;height:11px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:linear-gradient(var(--deep),var(--gold),var(--champ));border-radius:8px;border:3px solid var(--bg)}::-webkit-scrollbar-thumb:hover{background:var(--champ)}
+:focus-visible{outline:2px solid var(--champ);outline-offset:3px}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;color:inherit;background:none;border:0}
+img{display:block;max-width:100%}
+[id]{scroll-margin-top:96px}
+.container{width:min(1220px,calc(100% - 48px));margin-inline:auto}
+section{position:relative;padding:clamp(86px,10vh,130px) 0}
+section::before{content:'';position:absolute;inset:0;pointer-events:none}
+#experiencia::before{background:radial-gradient(52% 44% at 12% 18%,rgba(46,139,110,.08),transparent 70%)}
+#carta::before{background:radial-gradient(58% 48% at 88% 12%,rgba(166,52,70,.09),transparent 70%)}
+#aria::before{background:radial-gradient(64% 56% at 50% 30%,rgba(212,175,55,.1),transparent 70%),radial-gradient(42% 40% at 82% 82%,rgba(46,139,110,.07),transparent 70%)}
+#reserva::before{background:radial-gradient(60% 54% at 50% 8%,rgba(212,175,55,.08),transparent 70%)}
+section>.container,footer>.container{position:relative;z-index:1}
+.overline{display:inline-flex;align-items:center;gap:12px;font:800 10px var(--fu);letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+.overline::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+h1,h2,h3,.num{font-family:var(--fd);font-weight:400}
+h2{font-size:clamp(2.2rem,5.2vw,3.8rem);line-height:1.08;margin:16px 0 18px}
+h2 em,.em{font-family:var(--fs);font-style:italic;color:var(--champ)}
+.sec-head{max-width:760px;margin-bottom:50px}.sec-head.center{margin-inline:auto;text-align:center}.sec-head.center .overline::before{display:none}
+.sec-head p{color:var(--muted);font-size:1.02rem;max-width:620px}.sec-head.center p{margin-inline:auto}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:999px;font:800 11px var(--fu);letter-spacing:.12em;text-transform:uppercase;transition:transform .3s var(--ease),box-shadow .3s,background .3s,border-color .3s;overflow:hidden;white-space:nowrap}
+.btn:hover{transform:translateY(-3px)}.btn .ico{width:17px;height:17px}
+.btn-gold{background:linear-gradient(135deg,#F7E7B5,var(--gold) 55%,#B8860B);color:#1A1406;box-shadow:0 10px 32px rgba(212,175,55,.3)}
+.btn-call{background:linear-gradient(135deg,var(--champ),var(--gold) 45%,var(--emer));color:#0E1206;box-shadow:0 10px 32px rgba(46,139,110,.28)}
+.btn-wa{background:linear-gradient(135deg,#35E87F,#1FA855);color:#03160A;box-shadow:0 8px 28px rgba(37,211,102,.32)}
+.btn-ghost{border:1px solid rgba(212,175,55,.4);color:var(--champ);background:rgba(212,175,55,.05)}
+.btn-ghost:hover{background:rgba(212,175,55,.13);border-color:var(--gold)}
+.btn-sm{padding:10px 17px;font-size:9.5px}
+.ico{width:18px;height:18px;flex:none}
+#ambient{position:fixed;inset:-12%;z-index:0;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(95px);mix-blend-mode:screen;opacity:.45;will-change:transform}
+.b1{width:46vw;height:46vw;min-width:320px;min-height:320px;top:-10%;left:-8%;background:rgba(212,175,55,.18);animation:d1 44s ease-in-out infinite alternate}
+.b2{width:40vw;height:40vw;min-width:290px;min-height:290px;top:22%;right:-10%;background:rgba(46,139,110,.14);animation:d2 52s ease-in-out infinite alternate}
+.b3{width:36vw;height:36vw;min-width:270px;min-height:270px;bottom:-14%;left:24%;background:rgba(166,52,70,.13);animation:d3 58s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(9vw,7vh) scale(1.15)}}@keyframes d2{to{transform:translate(-8vw,-6vh) scale(1.1)}}@keyframes d3{to{transform:translate(7vw,-9vh) scale(.9)}}
+#grain{position:fixed;inset:0;z-index:240;pointer-events:none;opacity:.045;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");background-size:160px}
+main,footer{position:relative;z-index:1}
+#progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:300;background:linear-gradient(90deg,var(--deep),var(--gold),var(--champ),var(--emer));transform:scaleX(0);transform-origin:0 50%}
+#preloader{position:fixed;inset:0;z-index:900;background:var(--bg);display:grid;place-items:center}
+#preloader.done{opacity:0;visibility:hidden;transition:opacity .7s,visibility 0s .7s}
+.pl-wrap{text-align:center}.pl-logo{font:400 58px var(--fd);letter-spacing:.18em;color:var(--champ);margin-bottom:18px}
+.pl-bar{width:220px;height:2px;background:rgba(212,175,55,.18);margin:0 auto 14px;overflow:hidden;border-radius:2px}
+#plBar{height:100%;width:0;background:linear-gradient(90deg,var(--deep),var(--champ))}
+#plPct{font:700 11px var(--fu);letter-spacing:.2em;color:var(--muted)}
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
+#nav.scrolled{background:rgba(9,8,6,.86);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom-color:var(--line)}
+.nav-in{height:80px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{display:flex;align-items:center;gap:10px;font:400 25px var(--fd);letter-spacing:.22em}.logo .ico{width:16px;height:16px;color:var(--gold)}
+.nav-links{display:flex;gap:26px}
+.nav-link{position:relative;font:800 10px var(--fu);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+.nav-link::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav-link:hover,.nav-link.active{color:var(--champ)}.nav-link.active::after,.nav-link:hover::after{transform:scaleX(1)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-ico{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--champ);transition:background .3s,border-color .3s}
+.nav-ico:hover{background:rgba(212,175,55,.12);border-color:var(--gold)}
+.nav-ico.wa{border-color:rgba(37,211,102,.4);color:#43E786}
+.nav-ico.off{color:var(--dim);border-color:rgba(117,108,89,.4)}
+#burger{display:none;width:44px;height:44px;position:relative}
+#burger span{position:absolute;left:10px;width:24px;height:1.6px;background:var(--champ);transition:all .35s var(--ease)}
+#burger span:nth-child(1){top:18px}#burger span:nth-child(2){top:26px}
+#burger.active span:nth-child(1){top:22px;transform:rotate(45deg)}#burger.active span:nth-child(2){top:22px;transform:rotate(-45deg)}
+#mobileMenu{position:fixed;inset:0;z-index:190;background:rgba(9,8,6,.97);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);display:flex;flex-direction:column;justify-content:center;padding:100px 30px 40px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all .4s var(--ease),visibility 0s .4s}
+#mobileMenu.open{opacity:1;visibility:visible;transform:none;transition:all .4s var(--ease)}
+.mm-links{display:flex;flex-direction:column;gap:4px;margin-bottom:30px}
+.mm-links a{display:flex;gap:16px;align-items:baseline;font:400 clamp(1.8rem,6vw,2.5rem) var(--fd);padding:10px 0;border-bottom:1px solid var(--line)}
+.mm-links i{font:800 9px var(--fu);font-style:normal;color:var(--gold)}
+.mm-foot{display:flex;flex-direction:column;gap:13px}
+.hero{min-height:100vh;min-height:100svh;display:grid;align-items:center;padding:132px 0 92px;overflow:hidden}
+.hero-photo{position:absolute;inset:0;z-index:0}
+.hero-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.4) saturate(.85);transform:scale(1.06)}
+.hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,8,6,.95) 0%,rgba(9,8,6,.66) 48%,rgba(9,8,6,.4) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 34%)}
+.hero-inner{position:relative;z-index:2;max-width:780px}
+.hero-stars{display:flex;align-items:center;gap:13px;margin-bottom:16px}.stars{display:flex;gap:4px}.star{width:15px;height:15px;color:var(--gold)}
+.hero-stars small{font:800 9px var(--fu);letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.hero-title{font-size:clamp(4rem,13vw,10rem);line-height:.9;letter-spacing:.1em;margin-bottom:18px;background:linear-gradient(180deg,#F9EDC4,var(--gold) 58%,#96751F);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 34px rgba(212,175,55,.25))}
+.hero-sub{font:400 clamp(1.15rem,2.3vw,1.55rem)/1.5 var(--fs);color:#E6DCC8;max-width:600px;margin-bottom:28px}.hero-sub em{color:var(--champ)}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+.hero-meta{display:flex;gap:22px;flex-wrap:wrap;color:var(--muted);font-size:.82rem}
+.hero-meta span{display:inline-flex;gap:8px;align-items:center}.hero-meta .ico{width:14px;height:14px;color:var(--gold)}
+.status-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);font:600 .72rem var(--fu);color:var(--muted)}
+.status-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--dim)}
+.status-badge.open{border-color:rgba(63,169,124,.45);color:#91E3BC}.status-badge.open .dot{background:var(--ok);box-shadow:0 0 10px var(--ok)}
+.hero-scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:9px;font:800 8px var(--fu);letter-spacing:.34em;color:var(--dim)}
+.hero-scroll .line{width:1px;height:40px;background:linear-gradient(var(--gold),transparent);animation:scrollLine 2.2s ease-in-out infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.js .hero-el{opacity:0;transform:translateY(30px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
+body.ready .hero-el{opacity:1;transform:none}
+.marquee{overflow:hidden;padding:17px 0;border-block:1px solid var(--line);background:rgba(212,175,55,.035);position:relative;z-index:1}
+.marquee-track{display:flex;gap:52px;width:max-content;animation:marquee 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.mq-item{display:flex;gap:13px;align-items:center;font:800 10px var(--fu);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap}.mq-item b{color:var(--gold);font-weight:400}
+.js [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js [data-reveal="left"]{transform:translateX(-32px)}.js [data-reveal="right"]{transform:translateX(32px)}
+.js [data-reveal].in{opacity:1;transform:none}
+.photo-frame{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);background:var(--s2)}
+.photo-frame::before{content:'';position:absolute;inset:14px;border:1px solid rgba(240,214,135,.28);border-radius:16px;z-index:2;pointer-events:none}
+.photo-frame img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}.photo-frame:hover img{transform:scale(1.06)}
+.exp-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:60px;align-items:start}
+.exp-left{position:sticky;top:112px}.exp-left>p{color:var(--muted)}.exp-photo{height:440px;margin-top:28px}
+.pillar{display:grid;grid-template-columns:76px 1fr;gap:22px;padding:40px 0;border-top:1px solid var(--line)}
+.pillar:first-child{border-top:0;padding-top:4px}.pillar .idx{font:400 2.2rem var(--fd);color:rgba(212,175,55,.5)}
+.pillar h3{font-size:1.45rem;color:var(--champ);margin-bottom:9px}.pillar p{color:var(--muted);font-size:.97rem}
+.counters{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding:48px 0 4px;border-top:1px solid var(--line);margin-top:64px;text-align:center}
+.num{font-size:clamp(2.2rem,4.5vw,3.2rem);color:var(--gold)}
+.counters small{display:block;font:800 9px var(--fu);letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:8px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.fbtn{padding:10px 17px;border-radius:999px;border:1px solid var(--line);font:800 9.5px var(--fu);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.fbtn.active{background:linear-gradient(135deg,var(--champ),var(--gold));color:#1A1406;border-color:transparent}.f-n{opacity:.65;margin-left:5px}
+.sel-row{display:none;align-items:center;gap:15px;flex-wrap:wrap;margin:6px 0 24px;padding:12px 17px;border:1px dashed rgba(212,175,55,.4);border-radius:14px;background:rgba(212,175,55,.06);font-size:.88rem;color:var(--champ)}
+.sel-row.show{display:flex}
+.dish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(310px,100%),1fr));gap:24px;margin-top:24px}
+.dish.hide{display:none!important}
+.dish-in{height:100%;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--s1);transition:transform .4s var(--ease),border-color .35s,box-shadow .4s}
+.dish:hover .dish-in{transform:translateY(-7px);border-color:rgba(212,175,55,.5);box-shadow:0 26px 60px rgba(0,0,0,.5)}
+.dish-img{position:relative;aspect-ratio:4/3;overflow:hidden}.dish-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+.dish:hover .dish-img img{transform:scale(1.08)}
+.dish-img::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,8,6,.7),transparent 55%)}
+.dish-top{position:absolute;top:14px;left:14px;right:14px;z-index:2;display:flex;justify-content:space-between;align-items:center}
+.chip{font:800 .56rem var(--fu);letter-spacing:.14em;text-transform:uppercase;padding:6px 10px;border-radius:999px;border:1px solid rgba(240,214,135,.5);background:rgba(9,8,6,.65);color:var(--champ);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.dish-price{font:400 1.3rem var(--fd);color:var(--champ);text-shadow:0 2px 8px #000}
+.dish-body{padding:22px;display:flex;flex-direction:column;flex:1}.dish-name{font-size:1.45rem}
+.dish-desc{color:var(--muted);font-size:.9rem;line-height:1.6;margin:8px 0 13px;flex:1}
+.dish-tags{display:flex;flex-wrap:wrap;gap:6px}.dish-tags span{font:600 .64rem var(--fu);color:var(--muted);background:rgba(255,255,255,.05);padding:4px 8px;border-radius:6px}
+.dish-tags .tag-hot{color:var(--champ);border:1px solid rgba(212,175,55,.3)}
+.dish-pick{width:100%;margin-top:14px;padding:12px;border-radius:12px;border:1px solid rgba(212,175,55,.4);font:800 9px var(--fu);letter-spacing:.12em;text-transform:uppercase;color:var(--champ)}
+.dish-pick .pick-on{display:none}
+.dish-pick.picked{background:linear-gradient(135deg,var(--champ),var(--gold));color:#1A1406;border-color:transparent}
+.dish-pick.picked .pick-on{display:inline}.dish-pick.picked .pick-off{display:none}
+.tasting{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:52px;padding:36px 40px;border-radius:26px;border:1px solid rgba(212,175,55,.35);background:linear-gradient(120deg,rgba(212,175,55,.13),rgba(166,52,70,.1) 50%,rgba(46,139,110,.09))}
+.tasting h3{font-size:clamp(1.6rem,3vw,2.3rem);color:var(--champ);margin:8px 0 6px}.tasting p{color:var(--muted);max-width:460px}
+.t-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}.t-chips span{font:700 .66rem var(--fu);padding:7px 12px;border-radius:999px;border:1px solid rgba(240,214,135,.35);color:var(--champ)}
+.aria-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:58px;align-items:center}.aria-photo{height:520px}
+.aria-badge{position:absolute;left:24px;bottom:24px;right:24px;z-index:3;padding:18px;border-radius:16px;background:rgba(9,8,6,.82);border:1px solid rgba(212,175,55,.35);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.aria-badge b{display:block;font:400 1.3rem var(--fd);color:var(--champ)}.aria-badge small{color:var(--muted);font-size:.78rem}
+.lang-pills{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 24px}
+.lang-pills span{font:800 9px var(--fu);letter-spacing:.1em;padding:7px 12px;border-radius:8px;background:rgba(212,175,55,.1);border:1px solid var(--line);color:var(--champ)}
+.aria-feats{display:grid;gap:13px;margin-bottom:22px}
+.afeat{display:flex;gap:14px;padding:16px;border-radius:15px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.afeat .ico{width:21px;height:21px;color:var(--gold);margin-top:2px}.afeat b{display:block;font:700 .92rem var(--fu);margin-bottom:3px}.afeat p{color:var(--muted);font-size:.85rem}
+.aria-examples{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.aex{padding:10px 14px;border-radius:999px;border:1px solid rgba(212,175,55,.35);background:rgba(212,175,55,.06);font-size:.8rem;color:var(--champ)}
+.voice-health{margin-top:18px;padding:16px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:.78rem;color:var(--muted)}
+.vh-line{display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px dashed rgba(212,175,55,.12)}
+.vh-line:last-of-type{border-bottom:0}
+.vh-ok{color:var(--ok);font-weight:700}.vh-bad{color:var(--warn);font-weight:700}.vh-no{color:var(--bad);font-weight:700}
+.vh-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.res-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:start}
+.res-top{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.steps{display:flex;gap:18px;flex-wrap:wrap;list-style:none;margin-bottom:24px}
+.steps li{display:flex;gap:9px;align-items:center;font-size:.8rem;color:var(--muted)}
+.steps b{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--champ),var(--gold));color:#1A1406;display:grid;place-items:center;font:800 .7rem var(--fu)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-bottom:17px}.field{display:flex;flex-direction:column}
+.field label{font:800 9px var(--fu);letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;background:rgba(9,8,6,.7);border:1px solid rgba(212,175,55,.22);border-radius:12px;padding:13px 15px;color:var(--ink);font:400 16px var(--fu)}
+.field textarea{resize:vertical;min-height:90px}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%23D4AF37' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,175,55,.14)}
+.hint{font-size:.74rem;color:var(--muted);margin-top:7px}.hint.warn{color:var(--warn)}
+.err{display:none;color:var(--bad);font-size:.76rem;margin-top:7px}
+.field.bad input,.field.bad select{border-color:var(--bad)}.field.bad .err{display:block}
+.stepper{display:flex;align-items:center;gap:15px;background:rgba(9,8,6,.7);border:1px solid rgba(212,175,55,.22);border-radius:12px;padding:8px 12px;width:max-content}
+.stepper button{width:36px;height:36px;border-radius:50%;border:1px solid rgba(212,175,55,.4);color:var(--champ);display:grid;place-items:center}.stepper button:disabled{opacity:.3}
+#gVal{font:400 1.4rem var(--fd);min-width:32px;text-align:center}
+#guestHint{display:none;font-size:.74rem;color:var(--sapp);margin-top:8px}#guestHint.show{display:block}
+#rSubmit{width:100%;margin-top:6px;padding:17px}
+.form-note{font-size:.76rem;color:var(--dim);text-align:center;margin-top:12px}
+.wa-card{border-radius:22px;overflow:hidden;border:1px solid rgba(37,211,102,.3);background:#0D1512}
+.wa-head{display:flex;gap:12px;align-items:center;padding:14px 17px;background:linear-gradient(135deg,#123B2A,#0E2B1F)}
+.wa-ava{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--champ),var(--gold));color:#1A1406;display:grid;place-items:center;font:400 18px var(--fd)}
+.wa-head b{display:block;font:700 .88rem var(--fu)}.wa-head small{color:#8FE3B8;font-size:.7rem}
+.wa-body{padding:18px 16px;background-image:radial-gradient(rgba(212,175,55,.05) 1px,transparent 1px);background-size:18px 18px}
+.bubble{background:linear-gradient(160deg,#144D33,#0F3D28);border:1px solid rgba(37,211,102,.22);border-radius:14px 14px 4px 14px;padding:14px 16px;max-height:320px;overflow:auto}
+#pvText{white-space:pre-wrap;font:400 .84rem/1.6 var(--fu);color:#E9F5EC}
+.pv-meta{display:flex;justify-content:flex-end;gap:6px;font-size:.66rem;color:rgba(233,245,236,.55);margin-top:8px}.ticks{color:#6FD9A8}
+.pv-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:13px}.pv-note{font-size:.72rem;color:var(--dim)}
+.res-info{margin-top:24px;display:flex;flex-direction:column;gap:17px}
+.hrow{display:flex;justify-content:space-between;gap:14px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:.87rem;color:var(--muted)}
+.hrow b{color:var(--ink);font-weight:600}.hrow.today{color:var(--champ)}.hrow.today b{color:var(--gold)}
+.policies{list-style:none;display:flex;flex-direction:column;gap:10px}.policies li{display:flex;gap:10px;font-size:.83rem;color:var(--muted)}.policies .ico{width:15px;height:15px;color:var(--ok);margin-top:3px}
+.faq-wrap{max-width:800px;margin-inline:auto}
+.faq-item{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03);margin-bottom:11px;overflow:hidden}
+.faq-item.open{border-color:rgba(212,175,55,.45)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;padding:19px 21px;font:600 .96rem var(--fu)}
+.faq-q .ico{width:16px;height:16px;color:var(--gold);transition:transform .4s var(--ease)}.faq-item.open .faq-q .ico{transform:rotate(180deg)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}.faq-item.open .faq-a{grid-template-rows:1fr}
+.faq-a-in{overflow:hidden;min-height:0}.faq-a p{padding:0 21px 20px;color:var(--muted);font-size:.9rem;line-height:1.75}
+footer{background:rgba(5,4,3,.8);border-top:1px solid var(--line);padding:76px 0 28px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:44px;margin-bottom:52px}
+.f-brand .logo{margin-bottom:14px}.f-brand .stars{margin-bottom:14px}.f-brand p{color:var(--muted);font-size:.88rem;max-width:280px}
+.f-social{display:flex;gap:9px;margin-top:18px}
+.f-social a,.f-social button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--champ)}
+footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:17px}
+.f-col address{font-style:normal;color:var(--muted);font-size:.88rem;line-height:1.9}
+.f-link{display:inline-flex;gap:7px;align-items:center;color:var(--champ);font-size:.83rem;margin-top:10px}
+.f-contact{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:13px}
+.f-contact a{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:.85rem}.f-contact .ico{width:14px;height:14px;color:var(--gold)}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line);font-size:.73rem;color:var(--dim)}
+.fab-dock{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:210;display:flex;flex-direction:column;gap:12px}
+.fab{position:relative;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;color:#0E1206;transition:transform .3s var(--ease)}
+.fab:hover{transform:translateY(-4px) scale(1.04)}
+.fab-call{background:linear-gradient(135deg,var(--champ),var(--gold),var(--emer));box-shadow:0 12px 36px rgba(212,175,55,.4)}
+.fab-call::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid rgba(212,175,55,.6);animation:fabPulse 2.6s ease-out infinite}
+.fab-wa{background:linear-gradient(135deg,#35E87F,#1FA855);color:#03160A;box-shadow:0 10px 30px rgba(37,211,102,.35)}
+@keyframes fabPulse{0%{transform:scale(1);opacity:1}70%,100%{transform:scale(1.55);opacity:0}}
+.fab .ico{width:27px;height:27px}
+.fab-tip{position:absolute;right:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--s2);border:1px solid var(--line);padding:8px 13px;border-radius:999px;font:700 .7rem var(--fu);color:var(--champ);opacity:0;pointer-events:none;transition:opacity .3s}
+.fab:hover .fab-tip{opacity:1}
+#callScreen{position:fixed;inset:0;z-index:800;display:flex;flex-direction:column;align-items:center;background:#0A0908;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s var(--ease),visibility 0s .45s;overflow:hidden}
+#callScreen.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .45s var(--ease)}
+.cs-bg{position:absolute;inset:0;z-index:0}.cs-bg img{width:100%;height:100%;object-fit:cover;filter:blur(18px) brightness(.28) saturate(.7);transform:scale(1.15)}
+.cs-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(70% 50% at 50% 22%,rgba(212,175,55,.2),transparent 70%),linear-gradient(180deg,rgba(9,8,6,.5),rgba(9,8,6,.92))}
+.cs-top{position:relative;z-index:2;width:100%;padding:calc(18px + env(safe-area-inset-top)) 24px 0;display:flex;justify-content:space-between;align-items:center;font:700 .72rem var(--fu);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.cs-net{display:flex;align-items:center;gap:8px}.cs-net i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+.cs-body{position:relative;z-index:2;flex:1;width:min(560px,100%);display:flex;flex-direction:column;align-items:center;padding:20px 22px calc(20px + env(safe-area-inset-bottom));min-height:0;overflow-y:auto}
+.cs-avatar{position:relative;width:132px;height:132px;margin:clamp(10px,3vh,30px) 0 18px;flex:none}
+.cs-avatar .ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(212,175,55,.5)}
+.cs-avatar .r1{animation:csRing 3s ease-out infinite}.cs-avatar .r2{animation:csRing 3s ease-out infinite .9s}.cs-avatar .r3{animation:csRing 3s ease-out infinite 1.8s}
+@keyframes csRing{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.7);opacity:0}}
+.cs-ava{position:absolute;inset:12px;border-radius:50%;background:linear-gradient(135deg,#F7E7B5,var(--gold) 50%,var(--emer));display:grid;place-items:center;font:400 52px var(--fd);color:#141006;box-shadow:0 0 60px rgba(212,175,55,.45)}
+.cs-name{font:400 clamp(2.2rem,7vw,3.2rem) var(--fd);letter-spacing:.06em;color:var(--champ)}
+.cs-role{font:600 .74rem var(--fu);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.cs-status{margin-top:14px;font:700 .82rem var(--fu);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.cs-timer{font:400 1.5rem var(--fd);color:var(--ink);margin-top:4px;font-variant-numeric:tabular-nums}
+.cs-wave{display:flex;align-items:flex-end;justify-content:center;gap:4px;height:44px;margin:18px 0 10px;flex:none}
+.cs-wave i{width:4px;border-radius:4px;background:linear-gradient(var(--champ),var(--gold));height:8px;transition:height .12s}
+#callScreen[data-state="listening"] .cs-wave i{animation:wave 1s ease-in-out infinite}
+#callScreen[data-state="speaking"] .cs-wave i{animation:wave .55s ease-in-out infinite}
+#callScreen[data-state="thinking"] .cs-wave i{animation:wave 1.4s ease-in-out infinite}
+.cs-wave i:nth-child(2n){animation-delay:.15s}.cs-wave i:nth-child(3n){animation-delay:.3s}.cs-wave i:nth-child(4n){animation-delay:.45s}
+@keyframes wave{0%,100%{height:8px}50%{height:38px}}
+.cs-caption{width:100%;max-width:480px;background:rgba(29,26,20,.72);border:1px solid rgba(212,175,55,.28);border-radius:18px;padding:16px 18px;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);text-align:center;min-height:88px;display:flex;flex-direction:column;justify-content:center;gap:8px;flex:none}
+.cs-caption.hide{display:none}
+#csAria{font:400 1.05rem/1.5 var(--fs);color:var(--ink)}
+#csUser{font-size:.78rem;color:#7FB3E3;font-style:italic;min-height:18px}
+#csActions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}#csActions .btn{font-size:8px;padding:9px 13px}
+.cs-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 26px;width:min(400px,100%);margin-top:auto;padding-top:22px;flex:none}
+.cs-btn{display:flex;flex-direction:column;align-items:center;gap:8px}
+.cs-btn .round{width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;color:var(--ink);transition:all .25s;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.cs-btn .round .ico{width:26px;height:26px}
+.cs-btn span{font:700 .64rem var(--fu);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cs-btn.active .round{background:linear-gradient(135deg,var(--champ),var(--gold));color:#141006;border-color:transparent;box-shadow:0 0 26px rgba(212,175,55,.4)}
+.cs-btn.active span{color:var(--champ)}
+.cs-end{margin-top:26px;flex:none}.cs-end .round{width:78px;height:78px;background:linear-gradient(135deg,#FF6B7A,var(--bad) 50%,#8E2F3C);color:#fff;border:0;box-shadow:0 14px 40px rgba(217,83,96,.4)}
+.cs-end .round .ico{width:32px;height:32px;transform:rotate(135deg)}
+.cs-panel{position:absolute;left:50%;bottom:0;transform:translate(-50%,100%);width:min(520px,100%);background:rgba(20,18,14,.97);border:1px solid rgba(212,175,55,.3);border-radius:24px 24px 0 0;padding:22px;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);transition:transform .45s var(--ease);z-index:5;max-height:70vh;overflow:auto}
+.cs-panel.open{transform:translate(-50%,0)}
+.cs-panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.cs-panel-head b{font:700 .9rem var(--fu);letter-spacing:.1em;text-transform:uppercase;color:var(--champ)}
+.cs-panel-head button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--champ)}
+#keypadDigits{font:400 1.6rem var(--fd);color:var(--champ);text-align:center;min-height:36px;letter-spacing:.2em;margin-bottom:14px}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.keypad button{aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);font:400 1.6rem var(--fd);color:var(--ink);transition:all .2s}
+.keypad button:active{background:rgba(212,175,55,.25);transform:scale(.94)}
+#chatLog{display:flex;flex-direction:column;gap:10px;max-height:38vh;overflow:auto;margin-bottom:14px;padding-right:4px}
+.chat-msg{max-width:88%;padding:11px 14px;border-radius:14px;font-size:.86rem;line-height:1.55}
+.chat-msg.user{align-self:flex-end;background:rgba(61,110,158,.22);border:1px solid rgba(91,155,213,.3);border-bottom-right-radius:4px}
+.chat-msg.aria{align-self:flex-start;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);border-bottom-left-radius:4px}
+#chatForm{display:flex;gap:9px}
+#chatInput{flex:1;min-width:0;background:rgba(9,8,6,.8);border:1px solid rgba(212,175,55,.25);border-radius:999px;padding:12px 16px;color:var(--ink);font:400 15px var(--fu)}
+#chatSend{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--champ),var(--gold));color:#141006;display:grid;place-items:center;flex:none}
+.lang-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.lang-grid button{padding:14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);font:700 .82rem var(--fu);color:var(--ink);text-align:left}
+.lang-grid button.active{border-color:var(--gold);background:rgba(212,175,55,.14);color:var(--champ)}
+#toasts{position:fixed;top:92px;left:50%;transform:translateX(-50%);z-index:950;display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none;width:min(92vw,520px)}
+.toast{pointer-events:auto;display:flex;gap:11px;align-items:center;background:var(--s2);border:1px solid rgba(212,175,55,.4);border-radius:13px;padding:12px 17px;font-size:.83rem;box-shadow:0 16px 44px rgba(0,0,0,.6);opacity:0;transform:translateY(-12px);transition:all .4s var(--ease)}
+.toast.show{opacity:1;transform:none}.toast-ico{color:var(--gold)}.toast-warn{border-color:rgba(232,178,61,.5)}.toast-warn .toast-ico{color:var(--warn)}
+.toast button{font:800 10px var(--fu);letter-spacing:.1em;text-transform:uppercase;color:var(--champ);border:1px solid rgba(212,175,55,.4);border-radius:999px;padding:6px 12px;margin-left:6px;flex:none}
+.modal{position:fixed;inset:0;z-index:850;display:grid;place-items:center;padding:20px;background:rgba(5,4,3,.8);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.modal.open{opacity:1;visibility:visible;transition:opacity .35s}
+.modal-card{width:min(600px,100%);max-height:88vh;overflow:auto;background:var(--s1);border:1px solid rgba(212,175,55,.35);border-radius:24px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:12px}
+.modal-head b{font:400 1.5rem var(--fd);color:var(--champ)}
+.modal-head button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--champ);flex:none}
+#waSummary,#sysBody{white-space:pre-wrap;background:rgba(9,8,6,.7);border:1px solid var(--line);border-radius:14px;padding:16px;font-size:.86rem;line-height:1.7;margin-bottom:16px}
+#sysBody{white-space:normal}
+#sysBody b{color:var(--champ)}
+#sysBody ol{margin:10px 0 0 18px}
+#sysBody li{margin-bottom:6px}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+.adm-note{font-size:.74rem;color:var(--dim);margin-top:14px;line-height:1.6}
+.adm-tools{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px;margin:14px 0}
+.adm-tools input,.adm-tools select{width:100%;background:rgba(9,8,6,.7);border:1px solid rgba(212,175,55,.22);border-radius:10px;padding:10px 12px;color:var(--ink);font:400 14px var(--fu)}
+.adm-bulk{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px;font-size:.78rem;color:var(--muted)}
+.adm-scroll{overflow:auto;max-height:44vh;border:1px solid var(--line);border-radius:14px}
+#admTable{width:100%;border-collapse:collapse;font-size:.8rem;min-width:640px}
+#admTable th{font:800 9px var(--fu);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--s1);z-index:1}
+#admTable td{padding:10px 8px;border-bottom:1px solid var(--line);color:var(--muted);vertical-align:top}
+#admTable td b{color:var(--ink)}
+#admTable tr:last-child td{border-bottom:0}
+.adm-st{font:700 .62rem var(--fu);padding:4px 8px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.adm-st.p{color:var(--warn);border-color:rgba(232,178,61,.4)}.adm-st.c{color:var(--ok);border-color:rgba(63,169,124,.4)}.adm-st.x{color:var(--bad);border-color:rgba(217,83,96,.4)}.adm-st.e{color:#7FB3E3;border-color:rgba(91,155,213,.4)}
+.adm-mini{font:700 .62rem var(--fu);padding:5px 9px;border-radius:8px;border:1px solid var(--line);color:var(--champ);margin:2px 2px 0 0}
+.adm-mini:hover{background:rgba(212,175,55,.12)}
+@media (max-width:1060px){.nav-links{display:none}#burger{display:block}.exp-grid,.aria-grid,.res-grid{grid-template-columns:1fr;gap:42px}.exp-left{position:static}.f-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:900px){.counters{grid-template-columns:repeat(2,1fr);gap:32px 14px}.aria-photo{height:400px}}
+@media (max-width:620px){.container{width:calc(100% - 36px)}.hero{padding-top:116px}.hero-cta{flex-direction:column}.hero-cta .btn{width:100%}.frow{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr}.tasting{padding:28px 22px}.pillar{grid-template-columns:1fr;gap:8px;padding:32px 0}.nav-ico.wa{display:none}.fab-tip{display:none}.f-bottom{flex-direction:column;text-align:center}.cs-avatar{width:112px;height:112px}.cs-ava{font-size:44px}.cs-controls{gap:14px 18px}.cs-btn .round{width:60px;height:60px}.cs-btn .round .ico{width:23px;height:23px}.cs-end .round{width:70px;height:70px}.cs-caption{min-height:80px;padding:14px}.cs-name{font-size:2rem}.adm-tools{grid-template-columns:1fr}.modal-card{padding:20px}}
+@media (max-height:700px){.cs-avatar{width:96px;height:96px;margin:6px 0 10px}.cs-ava{font-size:38px}.cs-wave{height:32px;margin:10px 0 8px}.cs-controls{gap:12px 20px;padding-top:14px}.cs-btn .round{width:56px;height:56px}.cs-end{margin-top:16px}.cs-end .round{width:64px;height:64px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.js [data-reveal],.js .hero-el{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
+<symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 012.89 6.99c0 5.45-4.44 9.89-9.89 9.89m8.41-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 005.69 1.45c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 005 5L15 13l5 2v4a2 2 0 01-2 2A17 17 0 013 6a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+<symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M5 11a7 7 0 0014 0M12 18v3M8 21h8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+<symbol id="i-micoff" viewBox="0 0 24 24"><path d="M9 9v2a3 3 0 005.1 2.1M15 9.3V6a3 3 0 00-5.9-.7M5 11a7 7 0 0011.5 5.4M19 11a7 7 0 01-.6 2.8M12 18v3M8 21h8M3 3l18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+<symbol id="i-vol" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4zM16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+<symbol id="i-voloff" viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4zM16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+<symbol id="i-keypad" viewBox="0 0 24 24"><circle cx="6" cy="6" r="1.6" fill="currentColor"/><circle cx="12" cy="6" r="1.6" fill="currentColor"/><circle cx="18" cy="6" r="1.6" fill="currentColor"/><circle cx="6" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="18" cy="12" r="1.6" fill="currentColor"/><circle cx="6" cy="18" r="1.6" fill="currentColor"/><circle cx="12" cy="18" r="1.6" fill="currentColor"/><circle cx="18" cy="18" r="1.6" fill="currentColor"/></symbol>
+<symbol id="i-caption" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7 11h4M7 15h7M14 11h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4V5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+<symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 10.3 3M20 4v7h-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<div id="preloader"><div class="pl-wrap"><div class="pl-logo">AURUM</div><div class="pl-bar"><div id="plBar"></div></div><div id="plPct">Cargando experiencia…</div></div></div>
+<div id="progress"></div>
+<div id="ambient" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div id="grain" aria-hidden="true"></div>
+
+<header id="nav"><div class="container nav-in">
+<a class="logo" href="#inicio"><svg class="ico" viewBox="0 0 24 24"><use href="#i-star"/></svg>AURUM</a>
+<nav class="nav-links"><a class="nav-link" href="#experiencia">Experiencia</a><a class="nav-link" href="#carta">Carta</a><a class="nav-link" href="#aria">ARIA</a><a class="nav-link" href="#reserva">Reservar</a></nav>
+<div class="nav-right">
+<button class="nav-ico" id="soundToggle" type="button" aria-pressed="true" aria-label="Silenciar todos los sonidos" title="Sonido de la experiencia"><svg class="ico" viewBox="0 0 24 24"><use href="#i-vol"/></svg></button>
+<a class="nav-ico wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg></a>
+<button class="btn btn-call btn-sm" type="button" data-call><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>Llamar</button>
+<button id="burger" type="button" aria-label="Menú" aria-expanded="false"><span></span><span></span></button>
+</div></div></header>
+
+<div id="mobileMenu" aria-hidden="true"><nav class="mm-links"><a href="#inicio"><i>00</i>Inicio</a><a href="#experiencia"><i>01</i>Experiencia</a><a href="#carta"><i>02</i>Carta</a><a href="#aria"><i>03</i>ARIA</a><a href="#reserva"><i>04</i>Reservar</a></nav><div class="mm-foot"><button class="btn btn-call" type="button" data-call><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>Llamar a ARIA</button><a class="btn btn-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>WhatsApp +34 602 006 585</a></div></div>
+
+<main>
+<section id="inicio" class="hero">
+<div class="hero-photo"><img id="heroImg" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2200&q=85" alt="Sala AURUM" onerror="__imgFB(this)"></div>
+<div class="container hero-inner">
+<div class="hero-stars hero-el" style="--d:.1s"><span class="stars"><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg></span><small>Restaurante cinco estrellas · Madrid</small></div>
+<h1 class="hero-title hero-el" style="--d:.25s">AURUM</h1>
+<p class="hero-sub hero-el" style="--d:.42s">Alta cocina de autor en Madrid. Doce tiempos, una voz que te guía en <em>cuatro idiomas</em> y una mesa que no olvidarás.</p>
+<div class="hero-cta hero-el" style="--d:.58s"><button class="btn btn-call" type="button" data-call><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>Llamar a ARIA</button><a class="btn btn-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar%20una%20mesa." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Reservar por WhatsApp</a><a class="btn btn-ghost" href="#carta">Ver carta<svg class="ico" viewBox="0 0 24 24"><use href="#i-arrow"/></svg></a></div>
+<div class="hero-meta hero-el" style="--d:.74s"><span><svg class="ico" viewBox="0 0 24 24"><use href="#i-pin"/></svg>P.º de la Castellana 88</span><span class="status-badge" data-status><i class="dot"></i><span data-status-text>Consultando horario</span></span></div>
+</div><a class="hero-scroll" href="#experiencia"><span class="line"></span>DESLIZA</a>
+</section>
+
+<div class="marquee"><div class="marquee-track"><span class="mq-item"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item"><b>✦</b> Guía Celeste 2026</span><span class="mq-item"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item"><b>✦</b> ARIA · voz en 4 idiomas</span><span class="mq-item" aria-hidden="true"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item" aria-hidden="true"><b>✦</b> Guía Celeste 2026</span><span class="mq-item" aria-hidden="true"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item" aria-hidden="true"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item" aria-hidden="true"><b>✦</b> ARIA · voz en 4 idiomas</span></div></div>
+
+<section id="experiencia"><div class="container"><div class="exp-grid">
+<div class="exp-left" data-reveal="left"><p class="overline">01 — Esencia</p><h2>Un laboratorio de <em>belleza comestible</em></h2><p>Cada noche, veintiocho comensales se sientan a responder una pregunta: ¿a qué sabe el mañana? La sala respira con el menú, la luz sigue el ritmo de los pases y la cocina trabaja con precisión de relojero.</p><div class="photo-frame exp-photo"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85" alt="Interior AURUM" loading="lazy" onerror="__imgFB(this)"></div></div>
+<div class="exp-right"><div class="pillar" data-reveal><span class="idx">01</span><div><h3>Fuego &amp; precisión</h3><p>Brasa de encina a 480 °C, cámaras de maduración propias y una cocina-laboratorio donde cada grado importa.</p></div></div><div class="pillar" data-reveal style="--d:.08s"><span class="idx">02</span><div><h3>Producto kilómetro cero</h3><p>Lonja de madrugada, huerto biodinámico propio y 42 pequeños productores que nos llaman por el nombre de pila.</p></div></div><div class="pillar" data-reveal style="--d:.16s"><span class="idx">03</span><div><h3>Teatro sensorial</h3><p>Luz que sigue el ritmo del menú, aromas escenografiados y una sala que se transforma con cada pase.</p></div></div></div>
+</div><div class="counters" data-reveal><div><span class="num" data-count="5">0</span><small>Estrellas</small></div><div><span class="num" data-count="12">0</span><small>Tiempos</small></div><div><span class="num" data-count="28">0</span><small>Asientos</small></div><div><span class="num" data-count="480">0</span><small>Etiquetas bodega</small></div></div></div></section>
+
+<section id="carta"><div class="container">
+<div class="sec-head" data-reveal><p class="overline">02 — Carta viva · 2026</p><h2>Seis platos, <em>seis mundos</em></h2><p>Añade los platos que te conquisten y los incluiremos en tu mensaje de WhatsApp.</p></div>
+<div class="filters" data-reveal><button class="fbtn active" type="button" data-f="all">Todos<span class="f-n"></span></button><button class="fbtn" type="button" data-f="mar">Del mar<span class="f-n"></span></button><button class="fbtn" type="button" data-f="tierra">De la tierra<span class="f-n"></span></button><button class="fbtn" type="button" data-f="huerto">Del huerto<span class="f-n"></span></button><button class="fbtn" type="button" data-f="dulce">Dulces<span class="f-n"></span></button></div>
+<div id="selRow" class="sel-row"><span>✦ <b id="selCount">0</b> platos en tu consulta</span><a id="selSend" class="btn btn-wa btn-sm" href="https://wa.me/34602006585" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Enviar selección</a></div>
+<div class="dish-grid">
+<article class="dish" data-id="oro" data-cat="tierra" data-reveal><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=85" alt="Oro Líquido" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Tierra</span><span class="dish-price">38 €</span></div></div><div class="dish-body"><h3 class="dish-name">Oro Líquido</h3><p class="dish-desc">Risotto de azafrán ahumado, mantequilla noisette y pan de oro de 24 quilates.</p><div class="dish-tags"><span>Lácteos</span><span class="tag-hot">✦ Icono</span></div><button class="dish-pick" type="button" data-pick="oro"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
+<article class="dish" data-id="marea" data-cat="mar" data-reveal style="--d:.06s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=85" alt="Marea Negra" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Mar</span><span class="dish-price">42 €</span></div></div><div class="dish-body"><h3 class="dish-name">Marea Negra</h3><p class="dish-desc">Bacalao negro glaseado en miso de 72 horas, perlas de cítricos y aire de mar.</p><div class="dish-tags"><span>Pescado</span><span>Soja</span></div><button class="dish-pick" type="button" data-pick="marea"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
+<article class="dish" data-id="jardin" data-cat="huerto" data-reveal style="--d:.12s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=85" alt="Jardín Suspendido" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Huerto</span><span class="dish-price">29 €</span></div></div><div class="dish-body"><h3 class="dish-name">Jardín Suspendido</h3><p class="dish-desc">Nuestro huerto en 21 elementos: hojas vivas, flores, tierra de aceituna negra y rocío de hierbas.</p><div class="dish-tags"><span class="tag-hot">🌱 Vegano</span></div><button class="dish-pick" type="button" data-pick="jardin"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
+<article class="dish" data-id="brasa" data-cat="tierra" data-reveal style="--d:.18s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=900&q=85" alt="Brasa Imperial" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Tierra</span><span class="dish-price">68 €</span></div></div><div class="dish-body"><h3 class="dish-name">Brasa Imperial</h3><p class="dish-desc">Vaca vieja madurada 45 días a la brasa de encina, jugo de tuétano y pimienta de Timut.</p><div class="dish-tags"><span>Sulfitos</span><span class="tag-hot">🔥 45 días</span></div><button class="dish-pick" type="button" data-pick="brasa"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
+<article class="dish" data-id="perla" data-cat="mar" data-reveal style="--d:.24s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=900&q=85" alt="Perla del Alba" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Mar</span><span class="dish-price">44 €</span></div></div><div class="dish-body"><h3 class="dish-name">Perla del Alba</h3><p class="dish-desc">Vieiras nacaradas, velouté de coliflor ahumada, caviar Oscietra y aceite de cítricos.</p><div class="dish-tags"><span>Moluscos</span><span>Lácteos</span></div><button class="dish-pick" type="button" data-pick="perla"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
+<article class="dish" data-id="eclipse" data-cat="dulce" data-reveal style="--d:.3s"><div class="dish-in"><div class="dish-img"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=85" alt="Eclipse de Cacao" loading="lazy" onerror="__imgFB(this)"><div class="dish-top"><span class="chip">Dulce</span><span class="dish-price">24 €</span></div></div><div class="dish-body"><h3 class="dish-name">Eclipse de Cacao</h3><p class="dish-desc">Esfera de chocolate 70 % que se funde en mesa: corazón de avellana, oro y frambuesa liofilizada.</p><div class="dish-tags"><span>Gluten</span><span>Lácteos</span><span class="tag-hot">✦ En mesa</span></div><button class="dish-pick" type="button" data-pick="eclipse"><span class="pick-off">＋ Añadir a mi consulta</span><span class="pick-on">✓ En tu consulta</span></button></div></div></article>
+</div>
+<div class="tasting" data-reveal><div><p class="overline">La experiencia completa</p><h3>Menú Celeste · 12 tiempos</h3><p>Tres horas fuera del tiempo. Doce pases narrados por el equipo, con maridaje opcional de nuestra bodega de 480 etiquetas.</p><div class="t-chips"><span>185 € / persona</span><span>Maridaje +95 €</span><span>Mesa del Chef 220 €</span></div></div><a class="btn btn-gold" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20el%20Men%C3%BA%20Celeste." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Consultar Celeste</a></div>
+</div></section>
+
+<section id="aria"><div class="container aria-grid">
+<div class="photo-frame aria-photo" data-reveal="left"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=85" alt="Mesa AURUM" loading="lazy" onerror="__imgFB(this)"><div class="aria-badge"><b>ARIA · Anfitriona de voz</b><small>Voz en tiempo real · subtítulos · reserva al instante</small></div></div>
+<div data-reveal="right"><p class="overline">03 — Llamada inteligente</p><h2>Llama a ARIA, <em>como a una persona</em></h2><p style="color:var(--muted)">Pulsa llamar y habla con ARIA de verdad. Al confirmar tu reserva, el equipo la recibe al instante por WhatsApp y queda anotada en el libro.</p>
+<div class="lang-pills"><span>ESPAÑOL</span><span>ENGLISH</span><span>FRANÇAIS</span><span>DEUTSCH</span></div>
+<div class="aria-feats"><div class="afeat"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg><div><b>Llamada real en pantalla</b><p>Avatar, tono, contador y controles tipo móvil. iPhone, iPad, Android y ordenador.</p></div></div><div class="afeat"><svg class="ico" viewBox="0 0 24 24"><use href="#i-mic"/></svg><div><b>Habla en el momento</b><p>Voz en tiempo real con Vapi. Si el micrófono no está disponible, entra el chat con voz.</p></div></div><div class="afeat"><svg class="ico" viewBox="0 0 24 24"><use href="#i-cal"/></svg><div><b>Reserva que llega sola</b><p>WhatsApp preparado con todos los datos al +34 602 006 585 y registro en el libro de reservas.</p></div></div></div>
+<button class="btn btn-call" type="button" data-call><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>Llamar ahora</button>
+<div class="aria-examples"><button class="aex" type="button" data-call data-ask="Reserva para 2 mañana a las 21:00 a nombre de Laura">«Reserva para 2 mañana a las 21:00»</button><button class="aex" type="button" data-call data-ask="What are your opening hours?">«What are your opening hours?»</button></div>
+<div class="voice-health" id="voiceHealth" aria-live="polite"></div>
+</div></div></section>
+
+<section id="reserva"><div class="container">
+<div class="sec-head" data-reveal><p class="overline">04 — Reservas</p><h2>Tu mesa te espera <em>en el futuro</em></h2><p>Habla con ARIA o completa el formulario. El envío final es un enlace real a WhatsApp: siempre funciona.</p></div>
+<div class="res-grid"><div data-reveal="left"><div class="res-top"><button class="btn btn-call" type="button" data-call data-ask="Quiero reservar una mesa"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>Reservar hablando</button><a class="btn btn-ghost" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar." target="_blank" rel="noopener">WhatsApp directo</a></div><ol class="steps"><li><b>1</b>Completa</li><li><b>2</b>Envía por WhatsApp</li><li><b>3</b>Confirmamos &lt; 2 h</li></ol>
+<form id="rForm" novalidate>
+<div class="frow"><div class="field"><label for="rName">Nombre</label><input id="rName" type="text" placeholder="Tu nombre completo" autocomplete="name" maxlength="60"><small class="err"></small></div><div class="field"><label>Comensales</label><div class="stepper"><button id="gMinus" type="button" aria-label="Menos comensales"><svg class="ico" viewBox="0 0 24 24"><use href="#i-minus"/></svg></button><span id="gVal">2</span><button id="gPlus" type="button" aria-label="Más comensales"><svg class="ico" viewBox="0 0 24 24"><use href="#i-plus"/></svg></button></div><input id="rGuests" type="hidden" value="2"><small id="guestHint">Para más de 8, te sugerimos evento privado ✦</small></div></div>
+<div class="frow"><div class="field"><label for="rDate">Fecha</label><input id="rDate" type="date"><small class="err"></small></div><div class="field"><label for="rTime">Pase</label><select id="rTime"><option value="">Elige primero una fecha</option></select><small class="hint" id="timeHint">Elige una fecha para ver los pases.</small><small class="err"></small></div></div>
+<div class="frow"><div class="field"><label for="rOccasion">Ocasión</label><select id="rOccasion"><option value="">Sin ocasión especial</option><option>Cumpleaños</option><option>Aniversario</option><option>Pedida de mano</option><option>Cena de negocios</option><option>Celebración especial</option></select></div><div class="field"><label for="rNotes">Notas</label><textarea id="rNotes" placeholder="Alergias, preferencias, algo que debamos saber…" maxlength="400"></textarea></div></div>
+<a id="rSubmit" class="btn btn-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar%20una%20mesa." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Enviar solicitud por WhatsApp</a><p class="form-note">El enlace se actualiza solo con tus datos. Solo tendrás que pulsar «Enviar» en WhatsApp.</p>
+</form></div>
+<div data-reveal="right"><div class="wa-card"><div class="wa-head"><span class="wa-ava">A</span><div><b>Concierge AURUM</b><small>en línea</small></div></div><div class="wa-body"><div class="bubble"><div id="pvText"></div><div class="pv-meta"><span id="pvTime">--:--</span><span class="ticks">✓✓</span></div></div></div></div><div class="pv-row"><button id="copyBtn" class="btn btn-ghost btn-sm" type="button"><svg class="ico" viewBox="0 0 24 24"><use href="#i-copy"/></svg>Copiar texto</button><span class="pv-note">Vista previa exacta</span></div><div class="res-info"><span class="status-badge" data-status><i class="dot"></i><span data-status-text>Consultando horario</span></span><div><div class="hrow" data-days="1"><span>Lunes</span><b>Cerrado</b></div><div class="hrow" data-days="2,3,4,5,6"><span>Martes — Sábado</span><b>19:30 – 23:00</b></div><div class="hrow" data-days="0"><span>Domingo</span><b>13:00 – 15:30</b></div></div><ul class="policies"><li><svg class="ico" viewBox="0 0 24 24"><use href="#i-check"/></svg>Confirmación humana en menos de 2 horas.</li><li><svg class="ico" viewBox="0 0 24 24"><use href="#i-clock"/></svg>Cancelación gratuita hasta 24 h antes.</li><li><svg class="ico" viewBox="0 0 24 24"><use href="#i-star"/></svg>Dress code: elegancia contemporánea.</li></ul><a class="f-link" href="tel:+34602006585"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>+34 602 006 585</a></div></div>
+</div></div></section>
+
+<section id="faq"><div class="container"><div class="sec-head center" data-reveal><p class="overline">05 — Preguntas</p><h2>Todo lo que quieres <em>preguntar</em></h2></div><div class="faq-wrap" data-reveal>
+<div class="faq-item"><button class="faq-q" type="button">¿Por qué a veces dice «modo respaldo»?<svg class="ico" viewBox="0 0 24 24"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>La voz en tiempo real necesita tres cosas: web publicada en HTTPS, permiso de micrófono y una clave pública de Vapi válida. Si falta alguna, ARIA sigue atendiendo por chat con voz de salida para que nunca te quedes sin respuesta. El diagnóstico de la sección ARIA te dice exactamente qué falta.</p></div></div></div>
+<div class="faq-item"><button class="faq-q" type="button">¿La llamada funciona en iPad/iPhone?<svg class="ico" viewBox="0 0 24 24"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Sí, con la web publicada en HTTPS y aceptando el micrófono. Safari, Chrome y Android son compatibles. Si Safari tiene el micrófono bloqueado, el diagnóstico te muestra cómo reactivarlo en Ajustes del sitio.</p></div></div></div>
+<div class="faq-item"><button class="faq-q" type="button">¿Cómo llega mi reserva al restaurante?<svg class="ico" viewBox="0 0 24 24"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Al confirmar con ARIA, la web prepara un WhatsApp con todos los datos y lo abre para que solo pulses «Enviar». El equipo lo recibe al instante en el +34 602 006 585, lo confirma en menos de 2 horas y la reserva queda anotada en el libro.</p></div></div></div>
+<div class="faq-item"><button class="faq-q" type="button">¿En qué idiomas habla?<svg class="ico" viewBox="0 0 24 24"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Español, inglés, francés y alemán. ARIA detecta tu idioma automáticamente y puedes cambiarlo durante la llamada con el botón «Idioma».</p></div></div></div>
+</div></div></section>
+</main>
+
+<footer id="contacto"><div class="container"><div class="f-grid">
+<div class="f-brand"><a class="logo" href="#inicio"><svg class="ico" viewBox="0 0 24 24"><use href="#i-star"/></svg>AURUM</a><span class="stars"><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24"><use href="#i-star"/></svg></span><p>Alta cocina de autor en Madrid. Doce tiempos, una voz que te guía y una mesa que no olvidarás.</p><div class="f-social"><button type="button" data-call aria-label="Llamar a ARIA"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg></button><a href="https://wa.me/34602006585" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg></a><a href="tel:+34602006585" aria-label="Teléfono"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg></a><a href="https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid" target="_blank" rel="noopener" aria-label="Mapa"><svg class="ico" viewBox="0 0 24 24"><use href="#i-pin"/></svg></a></div></div>
+<div class="f-col"><h4>Visítanos</h4><address>Paseo de la Castellana 88<br>28046 Madrid, España</address><a class="f-link" href="https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid" target="_blank" rel="noopener">Google Maps<svg class="ico" viewBox="0 0 24 24"><use href="#i-ext"/></svg></a><ul class="f-contact"><li><a href="tel:+34602006585"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg>+34 602 006 585</a></li><li><a href="mailto:reservas@aurum.rest"><svg class="ico" viewBox="0 0 24 24"><use href="#i-mail"/></svg>reservas@aurum.rest</a></li></ul></div>
+<div class="f-col"><h4>Horarios</h4><div class="hrow" data-days="1"><span>Lunes</span><b>Cerrado</b></div><div class="hrow" data-days="2,3,4,5,6"><span>Mar — Sáb</span><b>19:30 – 23:00</b></div><div class="hrow" data-days="0"><span>Domingo</span><b>13:00 – 15:30</b></div></div>
+</div><div class="f-bottom"><span>© <span id="year">2026</span> AURUM · Madrid</span><span>WhatsApp · +34 602 006 585</span><button type="button" data-admin style="color:var(--dim);font:inherit;display:inline-flex;gap:6px;align-items:center"><svg class="ico" viewBox="0 0 24 24" style="width:12px;height:12px"><use href="#i-lock"/></svg>Acceso equipo</button></div></div></footer>
+
+<div class="fab-dock"><button class="fab fab-call" type="button" data-call aria-label="Llamar a ARIA"><span class="fab-tip">Llamar a ARIA ✦</span><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg></button><a class="fab fab-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="WhatsApp"><span class="fab-tip">WhatsApp +34 602 006 585</span><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg></a></div>
+<div id="toasts" aria-live="polite"></div>
+
+<div id="callScreen" data-state="idle" aria-hidden="true">
+<div class="cs-bg"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80" alt="" onerror="__imgFB(this)"></div>
+<div class="cs-top"><span>AURUM · Concierge</span><span class="cs-net"><i></i><span id="csMode">conectando…</span></span></div>
+<div class="cs-body">
+<div class="cs-avatar"><span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><div class="cs-ava">A</div></div>
+<div class="cs-name">ARIA</div>
+<div class="cs-role">Anfitriona de voz · AURUM</div>
+<div class="cs-status" id="csStatus">Llamando…</div>
+<div class="cs-timer" id="csTimer">00:00</div>
+<div class="cs-wave" id="csWave" aria-hidden="true"></div>
+<div class="cs-caption" id="csCaption"><div id="csAria">Preparando llamada…</div><div id="csUser"></div><div id="csActions"></div></div>
+<div class="cs-controls">
+<button class="cs-btn" id="btnMute" type="button" aria-pressed="false"><span class="round"><svg class="ico" viewBox="0 0 24 24"><use href="#i-mic"/></svg></span><span>Silencio</span></button>
+<button class="cs-btn active" id="btnSpeaker" type="button" aria-pressed="true"><span class="round"><svg class="ico" viewBox="0 0 24 24"><use href="#i-vol"/></svg></span><span>Altavoz</span></button>
+<button class="cs-btn" id="btnKeypad" type="button"><span class="round"><svg class="ico" viewBox="0 0 24 24"><use href="#i-keypad"/></svg></span><span>Teclado</span></button>
+<button class="cs-btn active" id="btnCaptions" type="button" aria-pressed="true"><span class="round"><svg class="ico" viewBox="0 0 24 24"><use href="#i-caption"/></svg></span><span>Subtítulos</span></button>
+<button class="cs-btn" id="btnLang" type="button"><span class="round"><svg class="ico" viewBox="0 0 24 24"><use href="#i-globe"/></svg></span><span id="langLabel">ES</span></button>
+<button class="cs-btn" id="btnChat" type="button"><span class="round"><svg class="ico" viewBox="0 0 24 24"><use href="#i-chat"/></svg></span><span>Chat</span></button>
+</div>
+<div class="cs-end"><button class="cs-btn" id="btnEnd" type="button" aria-label="Colgar"><span class="round"><svg class="ico" viewBox="0 0 24 24"><use href="#i-phone"/></svg></span><span>Colgar</span></button></div>
+</div>
+<div class="cs-panel" id="keypadPanel"><div class="cs-panel-head"><b>Teclado</b><button type="button" data-close-panel aria-label="Cerrar teclado"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div><div id="keypadDigits"></div><div class="keypad" id="keypad"></div></div>
+<div class="cs-panel" id="chatPanel"><div class="cs-panel-head"><b>Chat con ARIA</b><button type="button" data-close-panel aria-label="Cerrar chat"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div><div id="chatLog"></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px" id="chatQuick"></div><form id="chatForm"><input id="chatInput" placeholder="Escribe a ARIA…" autocomplete="off"><button id="chatSend" type="submit" aria-label="Enviar mensaje"><svg class="ico" viewBox="0 0 24 24"><use href="#i-send"/></svg></button></form></div>
+<div class="cs-panel" id="langPanel"><div class="cs-panel-head"><b>Idioma de la llamada</b><button type="button" data-close-panel aria-label="Cerrar idiomas"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div><div class="lang-grid" id="langGrid"></div></div>
+</div>
+
+<div class="modal" id="sysModal" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal-card">
+<div class="modal-head"><b id="sysTitle">Comprobación del sistema</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div>
+<div id="sysBody"></div>
+<div class="modal-actions" id="sysActions"></div>
+<p class="adm-note">Aunque el micrófono no esté disponible, ARIA sigue atendiendo por chat con voz de salida y la reserva se completa igual.</p>
+</div></div>
+
+<div class="modal" id="waModal" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal-card">
+<div class="modal-head"><b>Reserva lista ✦</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div>
+<div id="waSummary"></div>
+<div class="modal-actions"><a id="waSend" class="btn btn-wa" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-wa"/></svg>Enviar por WhatsApp</a><button id="waCopy" class="btn btn-ghost" type="button"><svg class="ico" viewBox="0 0 24 24"><use href="#i-copy"/></svg>Copiar</button></div>
+<p class="adm-note">Pulsa «Enviar» en WhatsApp y el equipo recibirá tu reserva al instante. También queda anotada en el libro de reservas.</p>
+</div></div>
+
+<div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal-card" style="width:min(860px,100%)">
+<div class="modal-head"><b>Zona de equipo</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24"><use href="#i-close"/></svg></button></div>
+<form id="admLogin"><div class="frow"><div class="field"><label for="admUser">Usuario</label><input id="admUser" autocomplete="username"></div><div class="field"><label for="admPass">Contraseña</label><input id="admPass" type="password" autocomplete="current-password"></div></div><button class="btn btn-gold" type="submit" style="width:100%">Entrar</button><p class="adm-note">Acceso local de demostración (admin / aurum2026). El libro completo y seguro en la nube está en Airtable: entra con tu cuenta de Airtable.</p></form>
+<div id="admPanel" hidden>
+<div class="modal-actions" style="margin-bottom:6px"><a id="admAirtable" class="btn btn-ghost btn-sm" href="https://airtable.com/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24"><use href="#i-ext"/></svg>Libro en Airtable</a><button id="admCsv" class="btn btn-ghost btn-sm" type="button">Exportar CSV</button><button id="admClearEx" class="btn btn-ghost btn-sm" type="button">Borrar ejemplos</button><button id="admOut" class="btn btn-ghost btn-sm" type="button">Salir</button></div>
+<div class="adm-tools"><input id="admSearch" type="search" placeholder="Buscar cliente, nota, fecha…" aria-label="Buscar reservas"><select id="admFilter" aria-label="Filtrar por estado"><option value="all">Todos los estados</option><option>Pendiente</option><option>Enviada WA</option><option>Confirmada</option><option>Cancelada</option></select><select id="admSort" aria-label="Ordenar"><option value="new">Más recientes primero</option><option value="date">Fecha de reserva</option><option value="name">Nombre A–Z</option></select></div>
+<div class="adm-bulk"><label style="display:inline-flex;gap:8px;align-items:center"><input type="checkbox" id="admSelAll"> Seleccionar visibles</label><span id="admSelCount">0 seleccionadas</span><button id="admConfirmSel" class="adm-mini" type="button">Confirmar sel.</button><button id="admDeleteSel" class="adm-mini" type="button">Eliminar sel.</button></div>
+<div class="adm-scroll"><table id="admTable"><thead><tr><th></th><th>Cliente</th><th>Pers.</th><th>Fecha · Hora</th><th>Origen</th><th>Estado</th><th>Acciones</th></tr></thead><tbody></tbody></table></div>
+<p class="adm-note">Libro de este dispositivo (voz + formulario). Cuando conectes el guardado en la nube, todas las reservas de todos los dispositivos vivirán también en Airtable.</p>
+</div>
+</div></div>
+
+<script>
+(()=>{ 'use strict';
+/* ══════════════════════════════════════════════════════════════
+   ✦ CONFIGURACIÓN
+   · vapiKey: PUBLIC KEY de Vapi (dashboard → API Keys → Public).
+     Una clave privada/secret NO funciona en el navegador.
+   · vapiAssistant: ID del asistente ARIA AURUM.
+   · airtable: enlace de tu base "Reservas AURUM".
+══════════════════════════════════════════════════════════════ */
+const CFG={
+ wa:'34602006585',tel:'+34602006585',
+ vapiKey:'a9080b39-34a7-42c9-8330-44be8705ac97',
+ vapiAssistant:'4ce336d1-f9a4-4251-a00a-9d055be9f5c3',
+ adminUser:'admin',adminPass:'aurum2026',
+ airtable:'https://airtable.com/'
+};
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={get(k,f){try{const v=localStorage.getItem(k);return v===null?f:JSON.parse(v)}catch(e){return f}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},has(k){try{return localStorage.getItem(k)!==null}catch(e){return false}}};
+const sstore={get(k){try{return sessionStorage.getItem(k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem(k,v)}catch(e){}},del(k){try{sessionStorage.removeItem(k)}catch(e){}}};
+const safe=(n,f)=>{try{f()}catch(e){console.warn('AURUM:',n,e)}};
+document.documentElement.classList.add('js');
+const waURL=t=>'https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(t);
+const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+function toast(msg,type='ok',action){const b=$('#toasts');if(!b)return;const t=document.createElement('div');t.className='toast toast-'+type;const ic=document.createElement('span');ic.className='toast-ico';ic.textContent=type==='ok'?'✦':'⚠';const sp=document.createElement('span');sp.textContent=msg;t.append(ic,sp);if(action){const btn=document.createElement('button');btn.type='button';btn.textContent=action.label;btn.addEventListener('click',()=>{action.fn();t.remove()});t.appendChild(btn)}b.appendChild(t);requestAnimationFrame(()=>t.classList.add('show'));setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),450)},action?8000:4200)}
+async function copyText(text){try{await navigator.clipboard.writeText(text);toast('Copiado ✦')}catch(e){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copiado ✦')}catch(e2){toast('No se pudo copiar','warn')}ta.remove()}}
+const ENV={secure:window.isSecureContext,iframe:(()=>{try{return window.self!==window.top}catch(e){return true}})(),mic:!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia),sr:!!(window.SpeechRecognition||window.webkitSpeechRecognition),tts:'speechSynthesis'in window};
+const SND={on:true};
+
+/* ═════════ ESTADO ═════════ */
+const call={open:false,connected:false,muted:false,speaker:true,captions:true,lang:'es',state:'idle',start:0,timer:null,ring:null,busy:false,speaking:false,listening:false,mode:'local'};
+let vapi=null,vapiBound=false,rec=null,flow={step:null,data:{}},audioCtx=null,pendingRes=null,lastResKey='',pendingAsk='',micGranted=false,connectToken=0;
+const synth=window.speechSynthesis||null;
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition||null;
+const selected=new Set(store.get('aurum_call_sel',[]));
+const LANGS={
+ es:{label:'Español',bcp:'es-ES',female:['monica','mónica','paulina','helena','elvira','laura','lucia','sabina','google español']},
+ en:{label:'English',bcp:'en-US',female:['samantha','victoria','zira','aria','jenny','susan','serena','google uk english female','google us english']},
+ fr:{label:'Français',bcp:'fr-FR',female:['amelie','amélie','audrey','celine','céline','denise','julie','google français']},
+ de:{label:'Deutsch',bcp:'de-DE',female:['anna','petra','katja','hedda','vicki','google deutsch']}
+};
+let voices=[];
+function loadVoices(){if(synth)voices=synth.getVoices()}
+if(synth){loadVoices();synth.onvoiceschanged=loadVoices}
+
+/* ═════════ HORARIOS ═════════ */
+const dinner=[{o:1170,c:1380,label:'cena'}];
+const SCHED={0:[{o:780,c:930,label:'almuerzo'}],1:null,2:dinner,3:dinner,4:dinner,5:dinner,6:dinner};
+const DAYS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const addDays=n=>{const d=new Date();d.setDate(d.getDate()+n);return d};
+const fmtMin=m=>pad(Math.floor(m/60))+':'+pad(m%60);
+function slotsFor(v){if(!v)return{list:[],hint:'Elige una fecha para ver los pases.',service:''};const[y,m,d]=v.split('-').map(Number),wd=new Date(y,m-1,d).getDay();if(wd===1)return{list:[],hint:'Los lunes cerramos.',closed:true,service:''};let list,hint,service;if(wd===0){list=['13:00','13:30','14:00','14:30','15:00'];hint='Domingo · almuerzo';service='Almuerzo'}else{list=['19:30','20:00','20:30','21:00','21:30','22:00'];hint='Mar–Sáb · cena';service='Cena'}if(v===iso(new Date())){const n=new Date(),nm=n.getHours()*60+n.getMinutes()+60;list=list.filter(s=>{const[h,mi]=s.split(':').map(Number);return h*60+mi>nm});if(!list.length)hint='Hoy ya no quedan pases online.'}return{list,hint,service}}
+function prettyDate(v,l='es'){if(!v)return'—';const[y,m,d]=v.split('-').map(Number);return new Intl.DateTimeFormat(LANGS[l].bcp,{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(new Date(y,m-1,d))}
+
+/* ═════════ LIBRO DE RESERVAS ═════════ */
+const ledger={all:()=>store.get('aurum_ledger',[]),save(l){store.set('aurum_ledger',l)},add(r){const l=this.all();l.unshift(r);this.save(l);renderLedger()},set(id,st){const l=this.all();const r=l.find(x=>x.id===id);if(r){r.status=st;this.save(l);renderLedger()}},del(id){this.save(this.all().filter(x=>x.id!==id));renderLedger()}};
+function seedLedger(){if(store.has('aurum_ledger'))return;const mk=(id,name,guests,days,time,notes,source,status,lang)=>({id,name,guests,date:iso(addDays(days)),time,notes,source,status,lang:lang||'es',ts:Date.now()-Math.random()*86400000,sent:status!=='Pendiente'});ledger.save([mk('E1','Laura Martín',2,1,'21:00','Aniversario · sin gluten','ejemplo','Pendiente'),mk('E2','James Whitmore',4,2,'20:30','Business dinner · window table','ejemplo','Confirmada','en'),mk('E3','Claire Dubois',2,3,'21:30','Anniversaire','ejemplo','Enviada WA','fr'),mk('E4','Familia Ortega',6,0,'13:30','Cumpleaños · trona para bebé','ejemplo','Pendiente'),mk('E5','Anna Schneider',3,4,'20:00','Vegetarisch','ejemplo','Confirmada','de')])}
+function bookingMsg(b){return`✦ AURUM — RESERVA ✦\n\n👤 Nombre: ${b.name||'—'}\n👥 Comensales: ${b.guests||'—'}\n📅 Fecha: ${b.date?prettyDate(b.date,b.lang||'es'):(b.dateText||'—')}\n🕐 Pase: ${b.time||'—'}\n🗣️ Idioma: ${LANGS[b.lang||'es'].label}${b.notes?`\n📝 Notas: ${b.notes}`:''}\n\nReserva creada con ARIA. Por favor, confirmar.`}
+function registerReservation(r,source){
+ const key=(r.name||'')+'|'+(r.date||r.dateText||'')+'|'+(r.time||'');
+ if(key===lastResKey)return;lastResKey=key;
+ const rec={id:'A'+Date.now().toString(36),name:r.name||'',guests:r.guests||'',date:r.date||'',dateText:r.dateText||'',time:r.time||'',lang:r.lang||call.lang,notes:r.notes||'',source,status:'Pendiente',ts:Date.now(),sent:false};
+ ledger.add(rec);pendingRes=rec;
+ const msg=bookingMsg(rec),url=waURL(msg);
+ setCaption(t('done'),[{label:t('sendWa'),href:url,mark:rec.id},{label:'Copiar',onClick:()=>copyText(msg)}]);
+ toast('Reserva registrada ✦ Envíala por WhatsApp');
+ let w=null;try{w=window.open(url,'_blank','noopener')}catch(e){}
+ if(!w){openWaModal(rec)}else{rec.sent=true;ledger.set(rec.id,'Enviada WA')}
+}
+function openWaModal(rec){pendingRes=rec;$('#waSummary').textContent=bookingMsg(rec);const a=$('#waSend');a.href=waURL(bookingMsg(rec));a.onclick=()=>{rec.sent=true;ledger.set(rec.id,'Enviada WA')};openModal('waModal')}
+function openModal(id){const m=document.getElementById(id);if(!m)return;m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.classList.add('lock')}
+function closeModals(){$$('.modal').forEach(m=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')});if(!call.open)document.body.classList.remove('lock')}
+
+/* ═════════ WHATSAPP / SELECCIÓN ═════════ */
+function selList(){return $$('.dish').filter(d=>selected.has(d.dataset.id)).map(d=>`• ${$('.dish-name',d).textContent} — ${$('.dish-price',d).textContent}`)}
+function refreshSel(){$$('.dish-pick').forEach(b=>{const on=selected.has(b.dataset.pick);b.classList.toggle('picked',on);b.setAttribute('aria-pressed',String(on))});const n=selected.size;$('#selRow').classList.toggle('show',n>0);$('#selCount').textContent=n;const l=selList();$('#selSend').href=waURL('Hola AURUM ✦ '+(l.length?`Estos platos me interesan:\n\n${l.join('\n')}\n\n¿Me cuentan más?`:'Quiero información de la carta.'));store.set('aurum_call_sel',[...selected]);updatePreview()}
+safe('selection',()=>{$$('.dish-pick').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.pick;if(selected.has(id))selected.delete(id);else{selected.add(id);toast('Añadido a tu consulta ✦')}refreshSel()}))});
+safe('filters',()=>{const ds=$$('.dish'),bs=$$('.fbtn');bs.forEach(b=>{const f=b.dataset.f;$('.f-n',b).textContent=f==='all'?ds.length:ds.filter(d=>d.dataset.cat===f).length;b.addEventListener('click',()=>{bs.forEach(x=>x.classList.toggle('active',x===b));ds.forEach(d=>d.classList.toggle('hide',f!=='all'&&d.dataset.cat!==f))})})});
+
+/* ═════════ PRELOADER / NAV / SCROLL ═════════ */
+safe('preloader',()=>{const p=$('#preloader'),bar=$('#plBar'),pct=$('#plPct');const finish=()=>{p.classList.add('done');document.body.classList.add('ready');setTimeout(()=>p.remove(),900)};if(reduced){finish();return}const t0=performance.now();const step=n=>{const x=Math.min(1,(n-t0)/1400);bar.style.width=x*100+'%';pct.textContent=Math.round(x*100)+'%';if(x<1)requestAnimationFrame(step);else setTimeout(finish,160)};requestAnimationFrame(step)});
+safe('nav',()=>{
+ const nav=$('#nav'),burger=$('#burger'),menu=$('#mobileMenu'),prog=$('#progress'),hero=$('#heroImg');let h=1,tick=false;const measure=()=>h=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+ function scroll(){if(tick)return;tick=true;requestAnimationFrame(()=>{const y=scrollY;nav.classList.toggle('scrolled',y>30);prog.style.transform=`scaleX(${Math.min(1,y/h)})`;if(hero&&!reduced&&y<innerHeight)hero.style.transform=`scale(1.06) translateY(${y*.16}px)`;tick=false})}
+ addEventListener('scroll',scroll,{passive:true});addEventListener('resize',()=>{measure();scroll()});addEventListener('load',measure);measure();scroll();
+ const setMenu=o=>{menu.classList.toggle('open',o);menu.setAttribute('aria-hidden',String(!o));burger.classList.toggle('active',o);burger.setAttribute('aria-expanded',String(o));document.body.classList.toggle('lock',o)};
+ burger.addEventListener('click',()=>setMenu(!menu.classList.contains('open')));$$('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+ const links=$$('.nav-link'),map={};links.forEach(l=>map[l.getAttribute('href').slice(1)]=l);
+ if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){links.forEach(l=>l.classList.remove('active'));const l=map[en.target.id];if(l)l.classList.add('active')}}),{rootMargin:'-35% 0px -55% 0px'});['experiencia','carta','aria','reserva'].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s)})}
+});
+safe('reveals',()=>{const els=$$('[data-reveal]');if(reduced||!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'));return}const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});els.forEach(e=>io.observe(e))});
+safe('counters',()=>{$$('[data-count]').forEach(el=>{const target=+el.dataset.count;const run=()=>{if(reduced){el.textContent=target;return}const t0=performance.now();const f=n=>{const p=Math.min(1,(n-t0)/1300);el.textContent=Math.round(target*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)};if(!('IntersectionObserver'in window)){run();return}const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){run();io.disconnect()}}),{threshold:.5});io.observe(el)})});
+safe('faq',()=>{$$('.faq-item').forEach(it=>{const q=$('.faq-q',it);q.setAttribute('aria-expanded','false');q.addEventListener('click',()=>{const open=it.classList.contains('open');$$('.faq-item.open').forEach(o=>{o.classList.remove('open');$('.faq-q',o).setAttribute('aria-expanded','false')});if(!open){it.classList.add('open');q.setAttribute('aria-expanded','true')}})})});
+
+/* ═════════ FORMULARIO RESERVA ═════════ */
+const rName=$('#rName'),rDate=$('#rDate'),rTime=$('#rTime'),rGuests=$('#rGuests'),rOcc=$('#rOccasion'),rNotes=$('#rNotes');
+function buildResMsg(){const info=slotsFor(rDate.value),sel=selList();const L=['✦ AURUM — SOLICITUD DE RESERVA ✦','',` Nombre: ${rName.value.trim()||'—'}`,`📅 Fecha: ${prettyDate(rDate.value)}`,`🕐 Hora: ${rTime.value||'—'}${info.service?` (${info.service})`:''}`,`👥 Comensales: ${rGuests.value}`];if(rOcc.value)L.push(`🥂 Ocasión: ${rOcc.value}`);if(sel.length){L.push('🍽️ Platos de interés:');L.push(...sel)}if(rNotes.value.trim())L.push(`📝 Notas: ${rNotes.value.trim()}`);L.push('','Enviado desde la web de AURUM');return L.join('\n')}
+function updatePreview(){if($('#pvText'))$('#pvText').textContent=buildResMsg();if($('#pvTime'))$('#pvTime').textContent=new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});if($('#rSubmit'))$('#rSubmit').href=waURL(buildResMsg())}
+function fillTimes(keep=true){const info=slotsFor(rDate.value),prev=keep?rTime.value:'';rTime.innerHTML='';const o=document.createElement('option');o.value='';o.textContent=info.closed?'Día de descanso':info.list.length?'Selecciona un pase':'Sin pases';rTime.appendChild(o);info.list.forEach(s=>{const op=document.createElement('option');op.value=s;op.textContent=s;rTime.appendChild(op)});rTime.disabled=!info.list.length;if(prev&&info.list.includes(prev))rTime.value=prev;$('#timeHint').textContent=info.hint;$('#timeHint').classList.toggle('warn',!!info.closed);updatePreview()}
+function setGuests(n){n=Math.max(1,Math.min(10,n));rGuests.value=n;$('#gVal').textContent=n;$('#gMinus').disabled=n<=1;$('#gPlus').disabled=n>=10;$('#guestHint').classList.toggle('show',n>8);updatePreview()}
+function setErr(id,msg){const f=document.getElementById(id).closest('.field');f.classList.add('bad');$('.err',f).textContent=msg}
+function clearErr(id){document.getElementById(id).closest('.field').classList.remove('bad')}
+safe('reservation',()=>{
+ const t=new Date();rDate.min=iso(t);const mx=new Date(t);mx.setDate(mx.getDate()+180);rDate.max=iso(mx);
+ const d=store.get('aurum_call_draft',{});rName.value=d.n||'';if(d.d&&d.d>=rDate.min)rDate.value=d.d;fillTimes(false);if(d.t)rTime.value=d.t;rOcc.value=d.o||'';rNotes.value=d.nt||'';setGuests(+d.g||2);
+ $('#gMinus').addEventListener('click',()=>setGuests(+rGuests.value-1));$('#gPlus').addEventListener('click',()=>setGuests(+rGuests.value+1));
+ rDate.addEventListener('change',()=>{clearErr('rDate');fillTimes(true)});[rName,rNotes].forEach(el=>el.addEventListener('input',()=>{clearErr(el.id);updatePreview()}));[rTime,rOcc].forEach(el=>el.addEventListener('change',()=>{clearErr(el.id);updatePreview()}));
+ $('#rForm').addEventListener('input',()=>store.set('aurum_call_draft',{n:rName.value,d:rDate.value,t:rTime.value,g:rGuests.value,o:rOcc.value,nt:rNotes.value}));
+ $('#rSubmit').addEventListener('click',e=>{let bad=null;if(rName.value.trim().length<2){setErr('rName','Cuéntanos tu nombre.');bad=bad||rName}const v=rDate.value,info=slotsFor(v);if(!v){setErr('rDate','Elige una fecha.');bad=bad||rDate}else if(v<rDate.min){setErr('rDate','Esa fecha ya pasó.');bad=bad||rDate}else if(info.closed){setErr('rDate','Los lunes cerramos.');bad=bad||rDate}if(!rTime.value){setErr('rTime',info.list.length?'Selecciona un pase.':'Elige fecha con pases.');bad=bad||rTime}if(bad){e.preventDefault();toast('Revisa los campos marcados.','warn');bad.focus();return}
+  ledger.add({id:'F'+Date.now().toString(36),name:rName.value.trim(),guests:+rGuests.value,date:rDate.value,time:rTime.value,lang:'es',notes:[rOcc.value,rNotes.value.trim()].filter(Boolean).join(' · '),source:'formulario',status:'Enviada WA',ts:Date.now(),sent:true});
+  updatePreview();toast('Abriendo WhatsApp con tu solicitud ✦')});
+ $('#copyBtn').addEventListener('click',()=>copyText(buildResMsg()));updatePreview();
+});
+
+/* ═════════ ESTADO ABIERTO/CERRADO ═════════ */
+safe('status',()=>{const now=()=>{const n=new Date(),d=n.getDay(),m=n.getHours()*60+n.getMinutes(),td=SCHED[d];if(td)for(const s of td)if(m>=s.o&&m<s.c)return{open:true,text:`Abierto · ${s.label} hasta ${fmtMin(s.c)}`};for(let i=0;i<8;i++){const dd=(d+i)%7,sl=SCHED[dd];if(!sl)continue;for(const s of sl){if(i===0&&s.o<=m)continue;return{open:false,text:`Cerrado · abre ${i===0?'hoy':i===1?'mañana':'el '+DAYS[dd]} ${fmtMin(s.o)}`}}}return{open:false,text:'Cerrado'}};const render=()=>{const s=now();$$('[data-status]').forEach(b=>{b.classList.toggle('open',s.open);$('[data-status-text]',b).textContent=s.text})};render();setInterval(render,30000);const wd=new Date().getDay();$$('[data-days]').forEach(r=>r.classList.toggle('today',r.dataset.days.split(',').map(Number).includes(wd)))});
+
+/* ═════════ TEXTOS 4 IDIOMAS ═════════ */
+const TXT={
+ es:{greet:'Hola, soy ARIA, la anfitriona de AURUM. Puedo responder tus preguntas y reservar tu mesa. ¿Qué necesitas?',ring:'Llamando a ARIA…',conn:'Llamada conectada',muted:'Micrófono en silencio',spkOff:'Altavoz desactivado · respuestas por subtítulos',spkOn:'Altavoz activado',listen:'Escuchando…',think:'ARIA está pensando…',speak:'ARIA hablando…',ready:'En llamada · listo',noMic:'Tu navegador no permite dictado por voz. Usa el chat: ARIA responde hablando.',https:'Para hablar con voz abre esta web en HTTPS. Mientras tanto usa el chat.',denied:'No he podido acceder al micrófono. Revisa el permiso o usa el chat.',askName:'¿A nombre de quién hago la reserva?',askGuests:'¿Para cuántas personas?',askDate:'¿Para qué día? Di mañana, viernes o quince de diciembre.',askTimeD:'Cena de 19:30 a 22:00. ¿A qué hora?',askTimeL:'Domingo almuerzo de 13:00 a 15:00. ¿A qué hora?',confirm:d=>`Confirmo: ${d.guests} personas, a nombre de ${d.name}, ${prettyDate(d.date,'es')} a las ${d.time}. ¿Confirmas?`,done:'Reserva preparada. Pulsa enviar por WhatsApp para que el equipo la confirme.',cancel:'Reserva descartada. Empezamos de nuevo cuando quieras.',closed:'Los lunes cerramos. Elige otro día.',past:'Esa fecha ya pasó.',badDate:'No entendí la fecha. Prueba con mañana o viernes.',badTime:'No entendí la hora. Prueba con 21:00.',noSlots:s=>`Ese pase no está disponible. Pases: ${s}.`,badGuests:'Dime un número del 1 al 10.',badName:'Dime tu nombre, por favor.',yesNo:'¿Confirmas? Responde sí o no.',hours:'Martes a sábado de 19:30 a 23:00. Domingo de 13:00 a 15:30. Lunes cerrado.',location:'Paseo de la Castellana 88, Madrid.',menu:'Oro Líquido, Marea Negra, Jardín Suspendido, Brasa Imperial, Perla del Alba y Eclipse de Cacao. De 29 a 68 euros.',prices:'Platos de 29 a 68 euros. Menú Celeste de 12 tiempos: 185 euros. Maridaje: 95.',tasting:'Menú Celeste: 12 tiempos, 185 euros. Maridaje opcional 95. ¿Reservamos?',allergies:'Adaptamos alergias y dietas con 48 horas de aviso.',dress:'Elegancia contemporánea. Evita ropa deportiva.',events:'Bodega privada para 8, sala para 28 y Mesa del Chef para 6.',parking:'Valet parking y aparcamiento concertado.',kids:'Cenas para mayores de 12. Domingo al mediodía es familiar.',policy:'Cancelación gratis hasta 24 horas antes. Mesa del Chef: 48 horas.',wine:'Bodega con 480 etiquetas y maridaje por pase.',chef:'Chef Adrián Valcárcel: fuego, temporada y precisión.',whatsapp:'Te dejo el enlace directo de WhatsApp.',thanks:'A ti. ¿Reservamos?',bye:'Hasta pronto. Llama a ARIA cuando quieras.',fallback:'Puedo ayudar con reservas, carta, horarios, alergias y eventos.',sendWa:'Enviar por WhatsApp',map:'Abrir mapa',openWa:'Abrir WhatsApp',langSet:l=>`Perfecto, seguimos en ${l}.`,placeholder:'Escribe a ARIA…'},
+ en:{greet:'Hello, I am ARIA, AURUM’s voice host. I can answer questions and book your table. What do you need?',ring:'Calling ARIA…',conn:'Call connected',muted:'Microphone muted',spkOff:'Speaker off · replies by captions',spkOn:'Speaker on',listen:'Listening…',think:'ARIA is thinking…',speak:'ARIA speaking…',ready:'In call · ready',noMic:'This browser has no speech input. Use the chat: ARIA replies out loud.',https:'To speak, open this site over HTTPS. Meanwhile use the chat.',denied:'I could not access the microphone. Check permission or use the chat.',askName:'What name should I book under?',askGuests:'For how many people?',askDate:'Which day? Tomorrow, Friday, or December fifteenth.',askTimeD:'Dinner 7:30 to 10 pm. What time?',askTimeL:'Sunday lunch 1 to 3 pm. What time?',confirm:d=>`Confirm: ${d.guests} guests, under ${d.name}, ${prettyDate(d.date,'en')} at ${d.time}. Shall I confirm?`,done:'Booking prepared. Press send via WhatsApp so the team can confirm.',cancel:'Booking discarded.',closed:'Closed on Mondays.',past:'That date has passed.',badDate:'I did not catch the date.',badTime:'I did not catch the time.',noSlots:s=>`Unavailable. Available: ${s}.`,badGuests:'Say a number from 1 to 10.',badName:'Your name, please.',yesNo:'Shall I confirm? Yes or no.',hours:'Tue–Sat 7:30–11 pm. Sunday 1–3:30 pm. Monday closed.',location:'Paseo de la Castellana 88, Madrid.',menu:'Six signature dishes from 29 to 68 euros.',prices:'Dishes 29–68 euros. Celeste tasting menu 185 euros. Pairing 95.',tasting:'Celeste menu: 12 courses, 185 euros, optional pairing 95. Shall we book?',allergies:'We adapt to allergies and diets with 48 hours notice.',dress:'Contemporary elegance. Avoid sportswear.',events:'Private Bodega for 8, room for 28, Chef’s Table for 6.',parking:'Valet and partner parking.',kids:'Dinner for guests over 12. Sunday lunch is family friendly.',policy:'Free cancellation up to 24 hours before. Chef’s Table 48 hours.',wine:'480 labels and course-by-course pairing.',chef:'Chef Adrián Valcárcel: fire, season, precision.',whatsapp:'I will leave the WhatsApp link.',thanks:'You are welcome. Shall we book?',bye:'See you soon.',fallback:'I can help with bookings, menu, hours, allergies and events.',sendWa:'Send via WhatsApp',map:'Open map',openWa:'Open WhatsApp',langSet:l=>`Perfect, we continue in ${l}.`,placeholder:'Type to ARIA…'},
+ fr:{greet:'Bonjour, je suis ARIA, l’hôtesse d’AURUM. Je peux répondre et réserver. Que souhaitez-vous ?',ring:'Appel d’ARIA…',conn:'Appel connecté',muted:'Micro coupé',spkOff:'Haut-parleur désactivé · réponses en sous-titres',spkOn:'Haut-parleur activé',listen:'J’écoute…',think:'ARIA réfléchit…',speak:'ARIA parle…',ready:'En appel · prête',noMic:'Pas de dictée vocale ici. Utilisez le chat : ARIA répond à voix haute.',https:'Pour parler, ouvrez ce site en HTTPS. Sinon, utilisez le chat.',denied:'Micro inaccessible. Vérifiez l’autorisation ou utilisez le chat.',askName:'À quel nom ?',askGuests:'Pour combien de personnes ?',askDate:'Quel jour ? Demain, vendredi ou quinze décembre.',askTimeD:'Dîner 19h30–22h. À quelle heure ?',askTimeL:'Dimanche déjeuner 13h–15h. À quelle heure ?',confirm:d=>`Je confirme : ${d.guests} personnes, au nom de ${d.name}, ${prettyDate(d.date,'fr')} à ${d.time}. Vous confirmez ?`,done:'Réservation préparée. Appuyez sur WhatsApp pour confirmation.',cancel:'Réservation annulée.',closed:'Fermé le lundi.',past:'Cette date est passée.',badDate:'Je n’ai pas compris la date.',badTime:'Je n’ai pas compris l’heure.',noSlots:s=>`Indisponible. Disponibles : ${s}.`,badGuests:'Un nombre de 1 à 10.',badName:'Votre nom, s’il vous plaît.',yesNo:'Vous confirmez ? Oui ou non.',hours:'Mar–Sam 19h30–23h. Dimanche 13h–15h30. Lundi fermé.',location:'Paseo de la Castellana 88, Madrid.',menu:'Six plats signature, de 29 à 68 euros.',prices:'Plats 29–68 euros. Menu Celeste 12 services : 185 euros. Accord 95.',tasting:'Menu Celeste : 12 services, 185 euros, accord optionnel 95. On réserve ?',allergies:'Allergies et régimes avec 48 h de préavis.',dress:'Élégance contemporaine. Évitez le sportswear.',events:'Bodega privée pour 8, salle pour 28, Table du Chef pour 6.',parking:'Voiturier et parking partenaire.',kids:'Dîner pour plus de 12 ans. Dimanche midi familial.',policy:'Annulation gratuite jusqu’à 24 h avant. Table du Chef : 48 h.',wine:'Cave de 480 références et accord par service.',chef:'Chef Adrián Valcárcel : feu, saison et précision.',whatsapp:'Je laisse le lien WhatsApp.',thanks:'Avec plaisir. On réserve ?',bye:'À bientôt.',fallback:'Je peux aider pour réservations, menu, horaires, allergies et événements.',sendWa:'Envoyer par WhatsApp',map:'Carte',openWa:'WhatsApp',langSet:l=>`Parfait, en ${l}.`,placeholder:'Écrivez à ARIA…'},
+ de:{greet:'Hallo, ich bin ARIA, die Gastgeberin von AURUM. Ich beantworte Fragen und reserviere. Was brauchen Sie?',ring:'ARIA wird angerufen…',conn:'Anruf verbunden',muted:'Mikrofon stumm',spkOff:'Lautsprecher aus · Antworten als Untertitel',spkOn:'Lautsprecher ein',listen:'Ich höre…',think:'ARIA denkt nach…',speak:'ARIA spricht…',ready:'Im Gespräch · bereit',noMic:'Keine Spracheingabe hier. Nutzen Sie den Chat: ARIA antwortet mit Stimme.',https:'Zum Sprechen öffnen Sie die Seite über HTTPS. Sonst nutzen Sie den Chat.',denied:'Mikrofon nicht erreichbar. Bitte Berechtigung prüfen oder Chat nutzen.',askName:'Auf welchen Namen?',askGuests:'Für wie viele Personen?',askDate:'Welcher Tag? Morgen, Freitag oder fünfzehnten Dezember.',askTimeD:'Abendessen 19:30–22:00. Um wie viel Uhr?',askTimeL:'Sonntag Mittagessen 13:00–15:00. Um wie viel Uhr?',confirm:d=>`Bestätige: ${d.guests} Personen, auf ${d.name}, ${prettyDate(d.date,'de')} um ${d.time}. Bestätigen?`,done:'Reservierung vorbereitet. Bitte über WhatsApp senden.',cancel:'Reservierung verworfen.',closed:'Montags geschlossen.',past:'Dieses Datum ist vorbei.',badDate:'Datum nicht verstanden.',badTime:'Uhrzeit nicht verstanden.',noSlots:s=>`Nicht verfügbar. Frei: ${s}.`,badGuests:'Zahl von 1 bis 10.',badName:'Ihr Name bitte.',yesNo:'Bestätigen? Ja oder nein.',hours:'Di–Sa 19:30–23:00. Sonntag 13:00–15:30. Montag zu.',location:'Paseo de la Castellana 88, Madrid.',menu:'Sechs Signature-Gerichte von 29 bis 68 Euro.',prices:'Gerichte 29–68 Euro. Celeste-Menü 12 Gänge: 185 Euro. Begleitung 95.',tasting:'Celeste-Menü: 12 Gänge, 185 Euro, Begleitung optional 95. Reservieren?',allergies:'Allergien und Diäten mit 48 Stunden Vorlauf.',dress:'Zeitgenössische Eleganz. Sportkleidung vermeiden.',events:'Bodega für 8, Saal für 28, Chef’s Table für 6.',parking:'Valet und Partnerparkplatz.',kids:'Abendessen ab 12 Jahren. Sonntagmittag familiär.',policy:'Kostenlos stornieren bis 24 Stunden vorher. Chef’s Table 48 Stunden.',wine:'480 Etiketten und Begleitung pro Gang.',chef:'Küchenchef Adrián Valcárcel: Feuer, Saison, Präzision.',whatsapp:'Ich lasse den WhatsApp-Link da.',thanks:'Sehr gern. Reservieren wir?',bye:'Bis bald.',fallback:'Ich helfe bei Reservierung, Menü, Zeiten, Allergien und Events.',sendWa:'Über WhatsApp senden',map:'Karte',openWa:'WhatsApp',langSet:l=>`Weiter auf ${l}.`,placeholder:'An ARIA schreiben…'}
+};
+function t(k,...a){const v=TXT[call.lang][k]||TXT.es[k];return typeof v==='function'?v(...a):v}
+function setState(s){call.state=s;$('#callScreen').dataset.state=s;const map={ringing:'ring',connected:'conn',listening:'listen',thinking:'think',speaking:'speak',ready:'ready'};$('#csStatus').textContent=t(map[s]||'ready');if(call.connected&&s!=='ringing')$('#csTimer').style.visibility='visible'}
+function setCaption(text,actions){$('#csAria').textContent=text;const box=$('#csActions');box.innerHTML='';if(actions)actions.forEach(a=>{let el;if(a.href){el=document.createElement('a');el.className='btn btn-wa btn-sm';el.href=a.href;el.target='_blank';el.rel='noopener';if(a.mark)el.addEventListener('click',()=>{ledger.set(a.mark,'Enviada WA')})}else{el=document.createElement('button');el.type='button';el.className='btn btn-ghost btn-sm';el.addEventListener('click',a.onClick||(()=>{}))}el.textContent=a.label;box.appendChild(el)});addChat('aria',text)}
+function setUserLine(s){$('#csUser').textContent=s?'«'+s+'»':''}
+function addChat(role,text){const log=$('#chatLog'),m=document.createElement('div');m.className='chat-msg '+role;m.textContent=text;log.appendChild(m);log.scrollTop=log.scrollHeight}
+function updateControls(){
+ $('#btnMute').classList.toggle('active',call.muted);$('#btnMute').setAttribute('aria-pressed',String(call.muted));$('#btnMute').querySelector('use').setAttribute('href',call.muted?'#i-micoff':'#i-mic');
+ $('#btnSpeaker').classList.toggle('active',call.speaker);$('#btnSpeaker').setAttribute('aria-pressed',String(call.speaker));$('#btnSpeaker').querySelector('use').setAttribute('href',call.speaker?'#i-vol':'#i-voloff');
+ $('#btnCaptions').classList.toggle('active',call.captions);$('#btnCaptions').setAttribute('aria-pressed',String(call.captions));$('#csCaption').classList.toggle('hide',!call.captions);
+ $('#langLabel').textContent=call.lang.toUpperCase();$('#chatInput').placeholder=t('placeholder');
+ $$('#langGrid button').forEach(b=>b.classList.toggle('active',b.dataset.lang===call.lang));
+}
+function updateHealth(){
+ const box=$('#voiceHealth');if(!box)return;
+ const line=(label,ok,warn,text)=>`<div class="vh-line"><span>${label}</span><span class="${ok?'vh-ok':warn?'vh-bad':'vh-no'}">${text}</span></div>`;
+ const sdk=!!vapi;
+ box.innerHTML='<b style="color:var(--champ)">Diagnóstico en vivo</b>'+
+  line('Conexión segura (HTTPS)',ENV.secure,false,ENV.secure?'Correcta':'Falta HTTPS')+
+  line('Micrófono del navegador',ENV.mic&&ENV.secure,!ENV.mic,ENV.mic?(micGranted?'Permiso concedido':'Disponible · pide permiso'):'No disponible aquí')+
+  line('Vapi (voz en tiempo real)',!!CFG.vapiKey&&ENV.secure,!CFG.vapiKey,CFG.vapiKey?(sdk?'SDK cargado':'Listo para conectar'):'Sin clave')+
+  line('Voz de salida',ENV.tts,false,ENV.tts?'Disponible':'No disponible')+
+  `<div class="vh-actions"><button class="btn btn-ghost btn-sm" type="button" id="vhTest">Probar micrófono</button>${ENV.iframe?'<button class="btn btn-ghost btn-sm" type="button" id="vhTab">Abrir en pestaña completa</button>':''}<button class="btn btn-ghost btn-sm" type="button" id="vhCall">Llamar a ARIA</button></div>`;
+ $('#vhTest').addEventListener('click',async()=>{try{await ensureMic();toast('Micrófono correcto ✦ Ya puedes llamar');updateHealth()}catch(e){showSys(micReason(e))}});
+ const tab=$('#vhTab');if(tab)tab.addEventListener('click',()=>window.open(location.href,'_blank','noopener'));
+ $('#vhCall').addEventListener('click',()=>openCall(''));
+ $('#csMode').textContent=call.mode==='vapi'?'voz en tiempo real':(call.mode==='checking'?'comprobando…':'chat + voz');
+}
+
+/* ═════════ TONOS ═════════ */
+function ensureAudio(){if(!SND.on||!call.speaker)return null;try{audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx}catch(e){return null}}
+function beep(freq=440,dur=.15,vol=.04,type='sine'){const ac=ensureAudio();if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(0,ac.currentTime);g.gain.linearRampToValueAtTime(vol,ac.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+dur);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+dur+.02)}
+function ringTone(){beep(425,.35,.035);setTimeout(()=>beep(425,.35,.035),450)}
+function startRing(){ringTone();call.ring=setInterval(()=>{if(call.open&&!call.connected&&call.speaker)ringTone()},2400)}
+function stopRing(){clearInterval(call.ring);call.ring=null}
+const DTMF={'1':[697,1209],'2':[697,1336],'3':[697,1477],'4':[770,1209],'5':[770,1336],'6':[770,1477],'7':[852,1209],'8':[852,1336],'9':[852,1477],'*':[941,1209],'0':[941,1336],'#':[941,1477]};
+function dtmf(k){const p=DTMF[k];if(!p)return;beep(p[0],.12,.03,'sine');beep(p[1],.12,.03,'sine')}
+function applySpeaker(){const on=call.speaker&&SND.on;document.querySelectorAll('audio').forEach(a=>{a.muted=!on})}
+new MutationObserver(ms=>{ms.forEach(m=>m.addedNodes.forEach(n=>{if(n.nodeType===1){if(n.tagName==='AUDIO')n.muted=!(call.speaker&&SND.on);n.querySelectorAll&&n.querySelectorAll('audio').forEach(a=>a.muted=!(call.speaker&&SND.on))}}))}).observe(document.body,{childList:true,subtree:true});
+safe('sound',()=>{const b=$('#soundToggle');const paint=()=>{b.classList.toggle('off',!SND.on);b.setAttribute('aria-pressed',String(SND.on));b.setAttribute('aria-label',SND.on?'Silenciar todos los sonidos':'Activar sonido');b.title=SND.on?'Sonido activado · pulsa para silenciar todo':'Sonido silenciado · pulsa para activar';b.querySelector('use').setAttribute('href',SND.on?'#i-vol':'#i-voloff')};b.addEventListener('click',()=>{SND.on=!SND.on;if(!SND.on){stopRing();try{synth&&synth.cancel()}catch(e){}call.speaking=false}else ensureAudio();applySpeaker();paint();toast(SND.on?'Sonido activado ✦':'Sonido silenciado')});paint()});
+
+/* ═════════ MICRÓFONO · DIAGNÓSTICO ═════════ */
+async function ensureMic(){
+ if(!ENV.secure){const e=new Error('insecure');e.name='SecurityError';throw e}
+ if(!ENV.mic){const e=new Error('no getUserMedia');e.name='NotFoundError';throw e}
+ const s=await navigator.mediaDevices.getUserMedia({audio:true});
+ s.getTracks().forEach(tr=>tr.stop());
+ micGranted=true;updateHealth();return true;
+}
+function micReason(err){
+ if(!ENV.secure)return'https';
+ if(ENV.iframe&&!ENV.mic)return'iframe';
+ const n=err&&err.name;
+ if(n==='NotAllowedError'||n==='PermissionDeniedError'||n==='SecurityError')return'denied';
+ if(n==='NotFoundError'||n==='DevicesNotFoundError'||n==='OverconstrainedError')return'nodevice';
+ if(n==='NotReadableError'||n==='AbortError')return'busy';
+ return'unsupported';
+}
+function showSys(reason){
+ const M={
+  https:{title:'Falta publicar la web en HTTPS',body:'El micrófono solo funciona en conexiones seguras (<b>https://</b>). Estás abriendo el archivo en local o en http://.<ol><li>Sube este <b>index.html</b> a GitHub Pages o Netlify (gratis).</li><li>Abre la URL <b>https://</b> que te den.</li><li>Pulsa «Llamar a ARIA» y acepta el micrófono.</li></ol>Mientras tanto, ARIA atiende por chat con voz.'},
+  iframe:{title:'Estás dentro de una vista previa',body:'Esta vista previa integrada no entrega el micrófono a la página.<ol><li>Pulsa <b>«Abrir en pestaña completa»</b>.</li><li>En la pestaña nueva, acepta el permiso de micrófono.</li><li>Si sigue bloqueado, abre la URL publicada en HTTPS directamente en Safari.</li></ol>'},
+  denied:{title:'Safari tiene el micrófono bloqueado',body:'El navegador denegó el permiso.<ol><li>En Safari, toca el icono <b>«AA»</b> o el candado de la barra de direcciones.</li><li>Entra en <b>Ajustes del sitio web → Micrófono → Permitir</b>.</li><li>Vuelve aquí y pulsa <b>«Reintentar micrófono»</b>.</li></ol>En iPhone/iPad también: Ajustes → Safari → Micrófono → Preguntar o Permitir.'},
+  nodevice:{title:'No se detecta micrófono',body:'El dispositivo no ha encontrado un micrófono utilizable. Conecta unos auriculares con micro o revisa Ajustes → Privacidad → Micrófono. Puedes seguir con el chat con voz.'},
+  busy:{title:'El micrófono está ocupado',body:'Otra app o pestaña está usando el micrófono. Ciérrala y pulsa «Reintentar micrófono». También puedes continuar con el chat con voz.'},
+  unsupported:{title:'Micrófono no disponible en este navegador',body:'Este navegador no expone micrófono a la web. Abre la página en Safari o Chrome actualizados, o continúa con el chat con voz de ARIA.'}
+ };
+ const m=M[reason]||M.unsupported;
+ $('#sysTitle').textContent=m.title;$('#sysBody').innerHTML=m.body;
+ const box=$('#sysActions');box.innerHTML='';
+ const mk=(label,cls,fn)=>{const b=document.createElement('button');b.type='button';b.className='btn '+cls+' btn-sm';b.textContent=label;b.addEventListener('click',fn);box.appendChild(b)};
+ if(reason!=='https')mk('Reintentar micrófono','btn-gold',async()=>{try{await ensureMic();closeModals();toast('Micrófono correcto ✦');if(call.open&&call.mode!=='vapi')upgradeToVapi()}catch(e){showSys(micReason(e))}});
+ if(ENV.iframe||reason==='https'||reason==='unsupported')mk('Abrir en pestaña completa','btn-ghost',()=>window.open(location.href,'_blank','noopener'));
+ mk('Continuar con chat','btn-ghost',()=>{closeModals();if(call.open)togglePanel('chat')});
+ openModal('sysModal');
+}
+async function upgradeToVapi(){
+ if(!CFG.vapiKey||!CFG.vapiAssistant)return;
+ try{const V=await loadVapi();bindVapi();await V.start(CFG.vapiAssistant);call.mode='vapi';updateHealth()}catch(e){console.warn(e);toast('Vapi no disponible: seguimos con chat + voz','warn')}
+}
+
+/* ═════════ VOZ LOCAL ═════════ */
+function pickVoice(l){const pool=voices.filter(v=>v.lang.toLowerCase().startsWith(l));if(!pool.length)return null;const fem=LANGS[l].female;return pool.sort((a,b)=>{const sc=v=>{const n=v.name.toLowerCase();let s=0;if(n.includes('female'))s+=4;fem.forEach(f=>{if(n.includes(f))s+=3});return s};return sc(b)-sc(a)})[0]}
+function speak(text,done){
+ if(!call.speaker||!SND.on||!synth){done&&done();return}
+ try{synth.cancel()}catch(e){}
+ call.speaking=true;setState('speaking');const u=new SpeechSynthesisUtterance(text);const v=pickVoice(call.lang);if(v)u.voice=v;u.lang=LANGS[call.lang].bcp;u.rate=.98;u.pitch=1.05;let fin=false;const end=()=>{if(fin)return;fin=true;call.speaking=false;done&&done()};u.onend=end;u.onerror=end;synth.speak(u);setTimeout(end,Math.max(5000,text.length*80));
+}
+function setupRec(){
+ if(!SR)return;rec=new SR();rec.lang=LANGS[call.lang].bcp;rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
+ rec.onstart=()=>{call.listening=true;setState('listening')};
+ rec.onresult=e=>{let final='',inter='';for(let i=e.resultIndex;i<e.results.length;i++){const r=e.results[i];if(r.isFinal)final+=r[0].transcript;else inter+=r[0].transcript}setUserLine(inter||final);if(final){setUserLine('');call.listening=false;try{rec.stop()}catch(e){}handleUser(final)}};
+ rec.onerror=e=>{call.listening=false;const k=e.error==='not-allowed'||e.error==='service-not-allowed'?'denied':e.error==='no-speech'?'ready':'denied';setState('ready');setCaption(t(k))};
+ rec.onend=()=>{call.listening=false;if(call.state==='listening')setState('ready')};
+}
+function startListening(){
+ if(!call.open||!call.connected||call.muted||call.busy||call.speaking||call.mode!=='local')return;
+ if(!SR){setCaption(t('noMic'));return}
+ if(!window.isSecureContext){setCaption(t('https'));return}
+ if(!rec)setupRec();rec.lang=LANGS[call.lang].bcp;try{rec.start()}catch(e){}
+}
+function stopListening(){try{rec&&rec.stop()}catch(e){}call.listening=false}
+
+/* ═════════ CONVERSACIÓN LOCAL ═════════ */
+function handleUser(text){
+ text=String(text||'').trim();if(!text||call.busy)return;
+ const detected=detectLang(text);if(detected)call.lang=detected;updateControls();
+ setUserLine('');addChat('user',text);call.busy=true;setState('thinking');
+ setTimeout(()=>{const r=route(text);setCaption(r.text,r.actions);speak(r.text,()=>{call.busy=false;setState('ready');setTimeout(startListening,400)})},350);
+}
+function detectLang(s){const n=norm(s),sc={es:0,en:0,fr:0,de:0};const W={es:['hola','quiero','reservar','mesa','horario','donde','precio','gracias','manana','personas'],en:['hello','want','book','table','hours','where','price','thanks','tomorrow','people'],fr:['bonjour','voudrais','reserver','table','horaires','ou','prix','merci','demain'],de:['hallo','ich','mochte','reservieren','tisch','zeiten','wo','danke','morgen']};for(const l in W)W[l].forEach(w=>{if(n.includes(w))sc[l]++});const b=Object.keys(sc).sort((a,b)=>sc[b]-sc[a])[0];return sc[b]>0?b:null}
+function route(text){
+ const n=norm(text);if(flow.step)return flowStep(text,n);const has=a=>a.some(w=>n.includes(w));
+ if(has(['reservar','reserva','book','reserve','reservation','reserver','reservieren','buchen','tisch']))return startReservation(text,n);
+ if(has(['horario','hours','opening','horaires','offnungszeiten','zeiten','cuando abren']))return{text:t('hours')};
+ if(has(['donde','direccion','where','address','adresse','wo','castellana']))return{text:t('location'),actions:[{label:t('map'),href:'https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid'}]};
+ if(has(['celeste','degustacion','tasting','12 tiempos','12 courses','12 gange']))return{text:t('tasting')};
+ if(has(['alergia','alergeno','gluten','vegano','vegetarian','allergy','vegan','allergie','allergien']))return{text:t('allergies')};
+ if(has(['vestimenta','dress','ropa','tenue','kleidung']))return{text:t('dress')};
+ if(has(['evento','privado','private','evenement','feier','bodega','chef table','mesa del chef']))return{text:t('events'),actions:[{label:t('openWa'),href:waURL('Hola AURUM ✦ Quiero consultar un evento privado.')}]};
+ if(has(['parking','aparcamiento','valet','parken']))return{text:t('parking')};
+ if(has(['ninos','kids','children','enfant','kinder','familia']))return{text:t('kids')};
+ if(has(['cancelar','cancelacion','cancel','annulation','stornieren']))return{text:t('policy')};
+ if(has(['vino','wine','maridaje','vin','wein']))return{text:t('wine')};
+ if(has(['chef','adrian']))return{text:t('chef')};
+ if(has(['whatsapp','mensaje','message','nachricht']))return{text:t('whatsapp'),actions:[{label:t('openWa'),href:waURL('Hola AURUM ✦ Tengo una consulta.')}]};
+ if(has(['precio','cuesta','cuanto','price','cost','prix','preis']))return{text:t('prices')};
+ if(has(['menu','carta','platos','dishes','speisekarte','gerichte']))return{text:t('menu')};
+ if(has(['gracias','thanks','merci','danke']))return{text:t('thanks')};
+ if(has(['adios','bye','au revoir','tschuss']))return{text:t('bye')};
+ if(has(['hola','hello','bonjour','salut','hallo','guten']))return{text:t('greet')};
+ return{text:t('fallback'),actions:[{label:t('openWa'),href:waURL('Hola AURUM ✦ Necesito ayuda del equipo.')}]};
+}
+const NUM={es:{un:1,una:1,uno:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12},en:{one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12},fr:{un:1,une:1,deux:2,trois:3,quatre:4,cinq:5,six:6,sept:7,huit:8,neuf:9,dix:10,onze:11,douze:12},de:{eins:1,ein:1,eine:1,zwei:2,drei:3,vier:4,funf:5,fünf:5,sechs:6,sieben:7,acht:8,neun:9,zehn:10,elf:11,zwolf:12,zwölf:12}};
+const WEEK={es:['domingo','lunes','martes','miercoles','jueves','viernes','sabado'],en:['sun','mon','tues','wednes','thurs','fri','satur'],fr:['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'],de:['sonntag','montag','dienstag','mittwoch','donnerstag','freitag','samstag']};
+const MONTH={es:['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],en:['january','february','march','april','may','june','july','august','september','october','november','december'],fr:['janvier','fevrier','mars','avril','mai','juin','juillet','aout','septembre','octobre','novembre','decembre'],de:['januar','februar','marz','april','mai','juni','juli','august','september','oktober','november','dezember']};
+function parseGuests(n){const m=n.match(/\b(\d{1,2})\b/);if(m)return Math.max(1,Math.min(10,+m[1]));for(const l in NUM){const k=Object.keys(NUM[l]).find(w=>new RegExp('\\b'+w+'\\b').test(n));if(k)return NUM[l][k]}return null}
+function nextWeekday(i){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+((i-d.getDay()+7)%7));return d}
+function parseDate(n){const now=new Date();now.setHours(0,0,0,0);if(/pasado manana|day after tomorrow|apres demain|ubermorgen/.test(n)){const d=new Date(now);d.setDate(d.getDate()+2);return d}if(/manana|tomorrow|demain|morgen/.test(n)){const d=new Date(now);d.setDate(d.getDate()+1);return d}if(/\bhoy\b|today|aujourd|heute/.test(n))return now;for(const l in WEEK){const i=WEEK[l].findIndex(w=>new RegExp('\\b'+w).test(n));if(i>=0)return nextWeekday(i)}let m=n.match(/(\d{1,2})[\/.-](\d{1,2})(?:[\/.-](\d{2,4}))?/);if(m){let y=m[3]?+m[3]:now.getFullYear();if(y<100)y+=2000;return new Date(y,+m[2]-1,+m[1])}for(const l in MONTH){const i=MONTH[l].findIndex(mo=>n.includes(mo));if(i>=0){const mo=MONTH[l][i];let dm=n.match(new RegExp('(\\d{1,2})(?:st|nd|rd|th)?\\s*(?:de|\\.|of)?\\s*'+mo));if(!dm)dm=n.match(new RegExp(mo+'\\s+(\\d{1,2})'));if(dm){const ym=n.match(/\b(20\d{2})\b/);const d=new Date(ym?+ym[1]:now.getFullYear(),i,+dm[1]);if(d<now)d.setFullYear(d.getFullYear()+1);return d}}}m=n.match(/(?:el|the|le|am|den)\s+(\d{1,2})/);if(m){const d=new Date(now.getFullYear(),now.getMonth(),+m[1]);if(d<now)d.setMonth(d.getMonth()+1);return d}return null}
+function parseTime(n,loose,service){let h=null,m=0;const half=n.match(/halb\s+(\d{1,2}|\w+)/);if(half){h=/^\d+$/.test(half[1])?+half[1]:(NUM[call.lang][half[1]]||0);if(h)return{h:h-1,m:30}}let x=n.match(/(\d{1,2})[:.h]\s*(\d{2})/);if(x){h=+x[1];m=+x[2]}if(h==null){x=n.match(/(\d{1,2})\s*(am|pm)/);if(x){h=+x[1];if(x[2]==='pm'&&h<12)h+=12;if(x[2]==='am'&&h===12)h=0}}if(h==null){const pref=loose?'(?:a las|a la|at|a|à|um)?\\s*':'(?:a las|a la|at|à|um)\\s+';const re=new RegExp(pref+'(\\d{1,2}|\\w+)(?:\\s*(?:y|and|et|und)\\s*(media|half|demie|cuarto|quarter|quart))?');x=n.match(re);if(x){h=/^\d+$/.test(x[1])?+x[1]:(NUM[call.lang][x[1]]??null);if(/media|half|demie/.test(x[2]||''))m=30;else if(/cuarto|quarter|quart/.test(x[2]||''))m=15}}if(h==null)return null;if(/tarde|noche|pm|afternoon|evening|night|soir|abend/.test(n)&&h<12)h+=12;if(service==='Cena'&&h>=1&&h<=11)h+=12;if(service==='Almuerzo'&&h>=1&&h<=3)h+=12;if(h>23||m>59)return null;return{h,m}}
+function cleanName(s){return String(s||'').replace(/[.,;!?]+$/,'').trim().slice(0,40).replace(/\b\w/g,c=>c.toUpperCase())}
+function extractName(text){const m=String(text||'').match(/(?:me llamo|mi nombre es|soy|a nombre de|my name is|i am|i'm|im|je m'appelle|je suis|au nom de|ich heisse|ich heiße|ich bin|auf den namen)\s+(.+)$/i);return m?cleanName(m[1]):null}
+function validDate(d){const t0=new Date();t0.setHours(0,0,0,0);return d>=t0&&d.getDay()!==1}
+function ask(step){if(step==='name')return{text:t('askName')};if(step==='guests')return{text:t('askGuests')};if(step==='date')return{text:t('askDate')};if(step==='time')return{text:slotsFor(flow.data.date).service==='Almuerzo'?t('askTimeL'):t('askTimeD')};return{text:t('confirm',flow.data)}}
+function startReservation(text,n){const d={};const g=n.match(/(?:para|for|pour|fur|für)\s+(\d{1,2}|\w+)/);if(g)d.guests=/^\d+$/.test(g[1])?Math.max(1,Math.min(10,+g[1])):parseGuests(g[1]);const dt=parseDate(n);if(dt&&validDate(dt))d.date=iso(dt);const tm=parseTime(n,false);if(tm)d.time=pad(tm.h)+':'+pad(tm.m);const nm=extractName(text);if(nm)d.name=nm;flow.data=d;flow.step=!d.name?'name':!d.guests?'guests':!d.date?'date':!d.time?'time':'confirm';if(flow.step==='confirm'&&!slotsFor(d.date).list.includes(d.time)){flow.step='time';return{text:t('noSlots',slotsFor(d.date).list.join(', '))}}return ask(flow.step)}
+function flowStep(text,n){if(/cancelar|cancel|annuler|abbrechen|stop/.test(n)){flow={step:null,data:{}};return{text:t('cancel')}}if(flow.step==='name'){const nm=extractName(text)||cleanName(text);if(nm.length<2)return{text:t('badName')};flow.data.name=nm;flow.step='guests';return ask('guests')}if(flow.step==='guests'){const g=parseGuests(n);if(!g)return{text:t('badGuests')};flow.data.guests=g;flow.step='date';return ask('date')}if(flow.step==='date'){const d=parseDate(n);if(!d)return{text:t('badDate')};if(!validDate(d))return{text:d.getDay()===1?t('closed'):t('past')};flow.data.date=iso(d);flow.step='time';return ask('time')}if(flow.step==='time'){const info=slotsFor(flow.data.date),tm=parseTime(n,true,info.service);if(!tm)return{text:t('badTime')};const ts=pad(tm.h)+':'+pad(tm.m);if(!info.list.includes(ts))return{text:t('noSlots',info.list.join(', '))};flow.data.time=ts;flow.step='confirm';return ask('confirm')}if(flow.step==='confirm'){if(/si|yes|oui|ja|confirmo|confirm|vale|ok|claro|genau|klar/.test(n))return completeBooking();if(/no|nein|non/.test(n)){flow={step:null,data:{}};return{text:t('cancel')}}return{text:t('yesNo')}}return startReservation(text,n)}
+function completeBooking(){const b={...flow.data,lang:call.lang};flow={step:null,data:{}};registerReservation(b,'voz-local');return{text:t('done')}}
+
+/* ═════════ VAPI · VOZ EN TIEMPO REAL ═════════ */
+function withTimeout(p,ms){return new Promise((res,rej)=>{const id=setTimeout(()=>rej(new Error('timeout')),ms);p.then(v=>{clearTimeout(id);res(v)},e=>{clearTimeout(id);rej(e)})})}
+async function loadVapi(){
+ if(vapi)return vapi;
+ const urls=['https://cdn.jsdelivr.net/npm/@vapi-ai/web@2/+esm','https://esm.sh/@vapi-ai/web@2'];
+ let last=null;
+ for(const u of urls){try{const mod=await withTimeout(import(u),12000);const C=mod.default||mod.Vapi||mod;vapi=new C(CFG.vapiKey);updateHealth();return vapi}catch(e){last=e}}
+ throw last||new Error('SDK no cargó');
+}
+function bindVapi(){
+ if(vapiBound||!vapi)return;vapiBound=true;
+ vapi.on('call-start',()=>{if(!call.open)return;stopListening();try{synth&&synth.cancel()}catch(e){}clearInterval(call.timer);call.connected=true;call.mode='vapi';stopRing();call.start=Date.now();setState('connected');updateHealth();beep(660,.12,.04);call.timer=setInterval(()=>{const s=Math.floor((Date.now()-call.start)/1000);$('#csTimer').textContent=pad(Math.floor(s/60))+':'+pad(s%60)},1000);applySpeaker();if(pendingAsk){const a=pendingAsk;pendingAsk='';try{vapi.send({type:'add-message',message:{role:'user',content:a}})}catch(e){}}});
+ vapi.on('call-end',()=>{if(!call.open)return;finishCall()});
+ vapi.on('speech-start',()=>setState('speaking'));
+ vapi.on('speech-end',()=>{if(call.connected)setState('ready')});
+ vapi.on('message',m=>{
+  if(!m)return;
+  if(m.type==='transcript'){
+   const txt=m.transcript||'';
+   if(m.role==='user'){if(m.transcriptType==='final'){setUserLine('');addChat('user',txt)}else setUserLine(txt)}
+   else{if(m.transcriptType==='final'){setCaption(txt);detectReservation(txt)}else{$('#csAria').textContent=txt}}
+  }else if(m.type==='tool-calls'){
+   (m.toolCalls||m.toolCallList||[]).forEach(tc=>{
+    const fn=tc.function||{};const name=fn.name||tc.name||'';
+    if(!/reserva|booking|reservation/i.test(name))return;
+    let args=fn.arguments||tc.arguments||{};if(typeof args==='string'){try{args=JSON.parse(args)}catch(e){args={}}}
+    const r=normalizeRes(args);if(r)registerReservation(r,'voz');
+    try{vapi.send({type:'tool-calls-result',toolCallId:tc.id,result:'Reserva registrada. El cliente la enviará por WhatsApp al equipo.'})}catch(e){}
+   });
+  }
+ });
+ vapi.on('error',e=>{
+  console.warn('Vapi error',e);
+  const msg=String((e&&(e.message||e.error&&e.error.message))||e||'');
+  if(/key|unauthorized|401|403|auth/i.test(msg))toast('La clave de Vapi no es válida para web: usa la PUBLIC KEY del dashboard.','warn');
+  if(!call.connected&&call.open){toast('Vapi no disponible: entro en modo respaldo','warn');startLocal(pendingAsk);pendingAsk=''}
+  else if(call.open)toast('Incidencia en la llamada. Puedes usar el chat.','warn');
+ });
+}
+function normalizeRes(a){
+ if(!a||typeof a!=='object')return null;
+ const name=a.nombre||a.name||a.cliente||'';
+ const guests=a.personas||a.guests||a.comensales||'';
+ let date=a.fecha||a.date||'';const dateText=a.fecha_texto||a.dateText||'';
+ const time=a.hora||a.time||'';
+ if(date&&!/^\d{4}-\d{2}-\d{2}$/.test(date)){const d=parseDate(norm(String(date)));date=d?iso(d):''}
+ if(!name&&!guests&&!date&&!time)return null;
+ return{name:String(name),guests:String(guests),date,dateText:String(dateText||(!date?a.fecha||a.date||'':'')),time:String(time),lang:a.idioma||a.lang||call.lang,notes:a.notas||a.notes||''};
+}
+function detectReservation(text){
+ if(!text)return;
+ let m=text.match(/RESERVA[_ ]LISTA\s*:\s*([^\n]+)/i);
+ if(m){
+  const parts=m[1].split(',').map(s=>s.trim());
+  const whole=m[1];
+  const gm=whole.match(/(\d{1,2})\s*personas/i);
+  const tm=whole.match(/(\d{1,2}[:.h]\d{2})/);
+  const name=parts[0]||'';
+  const datePart=parts.find(p=>p&&!/personas/i.test(p)&&!/\d{1,2}[:.h]\d{2}/.test(p)&&p!==name)||'';
+  const d=parseDate(norm(datePart));
+  registerReservation({name,guests:gm?gm[1]:'',date:d?iso(d):'',dateText:datePart,time:tm?tm[1].replace('.',':').replace('h',':'):'',lang:call.lang},'voz');
+  return;
+ }
+ m=text.match(/\{[\s\S]*?"(?:nombre|name)"[\s\S]*?\}/);
+ if(m){try{const r=normalizeRes(JSON.parse(m[0]));if(r)registerReservation(r,'voz')}catch(e){}}
+}
+async function openCall(ask=''){
+ if(call.open)return;
+ const token=++connectToken;
+ call.open=true;call.connected=false;call.muted=false;call.speaker=true;call.captions=true;call.busy=false;call.speaking=false;call.listening=false;call.mode='checking';flow={step:null,data:{}};pendingRes=null;lastResKey='';pendingAsk=ask;
+ $('#callScreen').classList.add('open');$('#callScreen').setAttribute('aria-hidden','false');document.body.classList.add('lock');$('#csTimer').style.visibility='hidden';$('#csTimer').textContent='00:00';$('#chatLog').innerHTML='';$('#csUser').textContent='';updateControls();setState('ringing');setCaption(t('ring'));closePanels();ensureAudio();startRing();updateHealth();
+ if(ENV.secure&&ENV.mic&&CFG.vapiKey&&CFG.vapiAssistant){
+  try{await ensureMic()}catch(e){if(token!==connectToken)return;showSys(micReason(e));startLocal(ask);pendingAsk='';return}
+  if(token!==connectToken)return;
+  try{const V=await loadVapi();if(token!==connectToken)return;bindVapi();await V.start(CFG.vapiAssistant);return}catch(e){console.warn('Vapi start falló',e);if(token!==connectToken)return;const msg=String(e&&e.message||e);if(/key|unauthorized|401|403|auth/i.test(msg))toast('Clave Vapi inválida para web: usa la PUBLIC KEY.','warn');else toast('Vapi no disponible: modo respaldo activo','warn');try{vapi&&vapi.stop()}catch(e2){}}
+ }else if(!ENV.secure){showSys('https')}else if(ENV.iframe&&!ENV.mic){showSys('iframe')}
+ if(token!==connectToken)return;
+ startLocal(ask);pendingAsk='';
+}
+function startLocal(ask){
+ call.mode='local';updateHealth();
+ setTimeout(()=>{if(!call.open||call.mode==='vapi')return;call.connected=true;stopRing();call.start=Date.now();setState('connected');beep(660,.12,.04);call.timer=setInterval(()=>{const s=Math.floor((Date.now()-call.start)/1000);$('#csTimer').textContent=pad(Math.floor(s/60))+':'+pad(s%60)},1000);const g=ask?'':t('greet');if(g){setCaption(g);speak(g,()=>{setState('ready');setTimeout(startListening,500)})}else{setState('ready');setTimeout(()=>handleUser(ask),350)}},1300);
+}
+function finishCall(){
+ connectToken++;
+ call.connected=false;call.busy=false;call.speaking=false;call.listening=false;stopRing();clearInterval(call.timer);call.timer=null;stopListening();try{synth&&synth.cancel()}catch(e){}
+ $('#callScreen').classList.remove('open');$('#callScreen').setAttribute('aria-hidden','true');if(!$$('.modal.open').length)document.body.classList.remove('lock');closePanels();setState('idle');
+ if(pendingRes&&!pendingRes.sent)openWaModal(pendingRes);
+}
+function closeCall(){if(call.mode==='vapi'&&vapi){try{vapi.stop()}catch(e){}}finishCall()}
+function closePanels(){$$('.cs-panel').forEach(p=>p.classList.remove('open'));$('#btnKeypad').classList.remove('active');$('#btnChat').classList.remove('active');$('#btnLang').classList.remove('active')}
+function togglePanel(which){const p=$('#'+which+'Panel');const willOpen=!p.classList.contains('open');closePanels();if(willOpen){p.classList.add('open');$('#btn'+which.charAt(0).toUpperCase()+which.slice(1)).classList.add('active');if(which==='chat')setTimeout(()=>$('#chatInput').focus(),250)}}
+
+/* ═════════ UI LLAMADA ═════════ */
+safe('call-ui',()=>{
+ const wave=$('#csWave');for(let i=0;i<28;i++)wave.appendChild(document.createElement('i'));
+ const kp=$('#keypad');['1','2','3','4','5','6','7','8','9','*','0','#'].forEach(k=>{const b=document.createElement('button');b.type='button';b.textContent=k;b.setAttribute('aria-label','Tecla '+k);b.addEventListener('click',()=>{$('#keypadDigits').textContent+=k;dtmf(k);setTimeout(()=>{$('#keypadDigits').textContent=$('#keypadDigits').textContent.slice(0,20)},50)})});
+ const lg=$('#langGrid');Object.keys(LANGS).forEach(l=>{const b=document.createElement('button');b.type='button';b.dataset.lang=l;b.textContent=LANGS[l].label;b.addEventListener('click',()=>{call.lang=l;updateControls();if(call.mode==='vapi'&&vapi&&call.connected){try{vapi.send({type:'add-message',message:{role:'system',content:'From now on, continue the conversation only in '+LANGS[l].label+'.'}})}catch(e){}setCaption(t('langSet',LANGS[l].label))}else{const msg=t('langSet',LANGS[l].label);setCaption(msg);speak(msg,()=>setTimeout(startListening,400))}closePanels()})});
+ const quick=$('#chatQuick');[['Reservar','Quiero reservar una mesa'],['Horarios','¿Cuál es el horario?'],['Carta','¿Qué platos tienen?'],['WhatsApp','Quiero hablar por WhatsApp']].forEach(([l,q])=>{const b=document.createElement('button');b.type='button';b.className='aex';b.textContent=l;b.addEventListener('click',()=>sendChat(q));quick.appendChild(b)});
+ $('#btnMute').addEventListener('click',()=>{call.muted=!call.muted;updateControls();if(call.mode==='vapi'&&vapi){try{vapi.setMuted(call.muted)}catch(e){}}if(call.muted){stopListening();setCaption(t('muted'))}else{setCaption(t('ready'));setTimeout(startListening,300)}});
+ $('#btnSpeaker').addEventListener('click',()=>{call.speaker=!call.speaker;updateControls();applySpeaker();if(!call.speaker){stopRing();try{synth&&synth.cancel()}catch(e){}call.speaking=false;setCaption(t('spkOff'))}else{ensureAudio();setCaption(t('spkOn'));beep(660,.1,.03)}});
+ $('#btnCaptions').addEventListener('click',()=>{call.captions=!call.captions;updateControls()});
+ $('#btnKeypad').addEventListener('click',()=>togglePanel('keypad'));$('#btnChat').addEventListener('click',()=>togglePanel('chat'));$('#btnLang').addEventListener('click',()=>togglePanel('lang'));
+ $$('[data-close-panel]').forEach(b=>b.addEventListener('click',closePanels));
+ $('#btnEnd').addEventListener('click',closeCall);
+ $('#chatForm').addEventListener('submit',e=>{e.preventDefault();const v=$('#chatInput').value;$('#chatInput').value='';sendChat(v)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($$('.modal.open').length)closeModals();else if(call.open)closeCall()}});
+ document.addEventListener('click',e=>{const el=e.target.closest('[data-call]');if(!el)return;e.preventDefault();openCall(el.dataset.ask||'')});
+ updateHealth();
+});
+function sendChat(v){v=String(v||'').trim();if(!v)return;if(call.mode==='vapi'&&vapi&&call.connected){addChat('user',v);try{vapi.send({type:'add-message',message:{role:'user',content:v}})}catch(e){handleUser(v)}}else handleUser(v)}
+
+/* ═════════ ADMINISTRACIÓN ═════════ */
+const admSel=new Set();let undoBin=null;
+function visibleLedger(){
+ const q=norm($('#admSearch').value||''),f=$('#admFilter').value,s=$('#admSort').value;
+ let l=ledger.all();
+ if(f!=='all')l=l.filter(r=>r.status===f);
+ if(q)l=l.filter(r=>norm([r.name,r.notes,r.date,r.dateText,r.time,r.source].join(' ')).includes(q));
+ l=[...l];
+ if(s==='date')l.sort((a,b)=>String(a.date||'9999').localeCompare(String(b.date||'9999'))||String(a.time).localeCompare(String(b.time)));
+ else if(s==='name')l.sort((a,b)=>String(a.name).localeCompare(String(b.name),'es'));
+ else l.sort((a,b)=>b.ts-a.ts);
+ return l;
+}
+function renderLedger(){
+ const tb=$('#admTable tbody');if(!tb)return;tb.innerHTML='';
+ const l=visibleLedger();
+ if(!l.length){tb.innerHTML='<tr><td colspan="7" style="padding:18px 8px;color:var(--dim)">No hay reservas que coincidan.</td></tr>'}
+ l.forEach(r=>{
+  const tr=document.createElement('tr');
+  const st=r.status==='Confirmada'?'c':r.status==='Cancelada'?'x':r.status==='Enviada WA'?'e':'p';
+  tr.innerHTML='<td><input type="checkbox" class="adm-check" aria-label="Seleccionar reserva"></td><td><b></b><br><small></small></td><td></td><td></td><td></td><td><span class="adm-st '+st+'"></span></td><td></td>';
+  const td=tr.children;
+  const chk=td[0].querySelector('input');chk.checked=admSel.has(r.id);chk.addEventListener('change',()=>{chk.checked?admSel.add(r.id):admSel.delete(r.id);paintSel()});
+  td[1].querySelector('b').textContent=r.name||'—';
+  td[1].querySelector('small').textContent=new Date(r.ts).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+  td[2].textContent=r.guests||'—';
+  td[3].textContent=(r.date?prettyDate(r.date,'es'):(r.dateText||'—'))+' · '+(r.time||'—');
+  td[4].textContent=r.source;
+  td[5].querySelector('span').textContent=r.status;
+  const acts=td[6];
+  [['✓','Confirmada'],['✕','Cancelada'],['🗑','del']].forEach(([lab,val])=>{const b=document.createElement('button');b.type='button';b.className='adm-mini';b.textContent=lab;b.title=val==='del'?'Eliminar':'Marcar '+val;b.addEventListener('click',()=>{if(val==='del'){undoBin=[r];ledger.del(r.id);toast('Reserva eliminada','warn',{label:'Deshacer',fn:()=>{undoBin.forEach(x=>ledger.add(x));undoBin=null}})}else ledger.set(r.id,val)});acts.appendChild(b)});
+  tb.appendChild(tr);
+ });
+ paintSel();
+}
+function paintSel(){$('#admSelCount').textContent=admSel.size+' seleccionadas';const l=visibleLedger();$('#admSelAll').checked=l.length>0&&l.every(r=>admSel.has(r.id))}
+function bulkDelete(){const ids=[...admSel];if(!ids.length)return;undoBin=ledger.all().filter(r=>ids.includes(r.id));ledger.save(ledger.all().filter(r=>!ids.includes(r.id)));admSel.clear();renderLedger();toast(ids.length+' reservas eliminadas','warn',{label:'Deshacer',fn:()=>{undoBin.forEach(x=>ledger.add(x));undoBin=null}})}
+safe('admin',()=>{
+ seedLedger();
+ $('#admAirtable').href=CFG.airtable;
+ document.addEventListener('click',e=>{if(e.target.closest('[data-admin]')){e.preventDefault();openModal('adminModal');if(sstore.get('aurum_adm')==='1'){$('#admLogin').hidden=true;$('#admPanel').hidden=false;renderLedger()}}});
+ $$('[data-close-modal]').forEach(b=>b.addEventListener('click',closeModals));
+ $('#admLogin').addEventListener('submit',e=>{e.preventDefault();if($('#admUser').value.trim()===CFG.adminUser&&$('#admPass').value===CFG.adminPass){sstore.set('aurum_adm','1');$('#admLogin').hidden=true;$('#admPanel').hidden=false;renderLedger();toast('Bienvenido, equipo ✦')}else toast('Usuario o contraseña incorrectos','warn')});
+ $('#admOut').addEventListener('click',()=>{sstore.del('aurum_adm');$('#admPanel').hidden=true;$('#admLogin').hidden=false});
+ ['admSearch','admFilter','admSort'].forEach(id=>document.getElementById(id).addEventListener('input',renderLedger));
+ $('#admSelAll').addEventListener('change',e=>{const l=visibleLedger();if(e.target.checked)l.forEach(r=>admSel.add(r.id));else l.forEach(r=>admSel.delete(r.id));renderLedger()});
+ $('#admConfirmSel').addEventListener('click',()=>{if(!admSel.size)return;admSel.forEach(id=>ledger.set(id,'Confirmada'));toast(admSel.size+' reservas confirmadas ✦');admSel.clear();renderLedger()});
+ $('#admDeleteSel').addEventListener('click',bulkDelete);
+ $('#admClearEx').addEventListener('click',()=>{const ex=ledger.all().filter(r=>r.source==='ejemplo');if(!ex.length){toast('No hay ejemplos');return}undoBin=ex;ledger.save(ledger.all().filter(r=>r.source!=='ejemplo'));renderLedger();toast('Ejemplos borrados','warn',{label:'Deshacer',fn:()=>{undoBin.forEach(x=>ledger.add(x));undoBin=null}})});
+ $('#admCsv').addEventListener('click',()=>{const l=visibleLedger();const rows=[['Nombre','Personas','Fecha','Hora','Idioma','Origen','Estado','Notas'],...l.map(r=>[r.name,r.guests,r.date||r.dateText,r.time,r.lang,r.source,r.status,r.notes])];const csv=rows.map(r=>r.map(c=>'"'+String(c??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='reservas-aurum.csv';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000);toast('CSV exportado ✦')});
+ $('#waCopy').addEventListener('click',()=>copyText($('#waSummary').textContent));
+ renderLedger();
+});
+
+/* ═════════ INIT ═════════ */
+safe('init',()=>{refreshSel();updatePreview();$('#year').textContent=new Date().getFullYear();updateHealth()});
+})();
+</script>
+</body>
+</html>
