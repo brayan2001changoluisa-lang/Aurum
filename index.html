@@ -23,7 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script>window.__imgFB=function(i){i.onerror=null;i.removeAttribute('srcset');var s='<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0D1220"/><stop offset=".5" stop-color="#9A7A22"/><stop offset="1" stop-color="#A63446"/></linearGradient></defs><rect width="1200" height="800" fill="url(#g)"/><circle cx="600" cy="400" r="180" fill="none" stroke="#F6E7B0" stroke-width="5"/><text x="600" y="430" font-family="Georgia" font-size="86" fill="#F5EEDF" text-anchor="middle">AURUM</text></svg>';i.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s)};</script>
 <style>
-:root{color-scheme:dark;--bg:#06080F;--s1:#0D1220;--s2:#141A2C;--s3:#1C2338;--gold:#D4AF37;--champ:#F6E7B0;--deep:#9A7A22;--ember:#E0763A;--wine:#A63446;--emer:#2E8B6E;--sapp:#3D6E9E;--ink:#F5EEDF;--muted:#ABA493;--dim:#7C7668;--ok:#3FA97C;--warn:#E8B23D;--bad:#D95360;--wa:#25D366;--line:rgba(212,175,55,.16);--fd:'Cinzel',Georgia,serif;--fs:'Cormorant Garamond',Georgia,serif;--fu:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--ease:cubic-bezier(.22,1,.36,1);--goldtext:linear-gradient(100deg,#6E5413 0%,#B8912A 18%,#F8EBC0 38%,#FFF6DA 46%,#D4AF37 60%,#8E6F1E 82%,#C9A227 100%);--caret:linear-gradient(var(--champ),var(--ember))}
+:root{color-scheme:dark;--bg:#06080F;--s1:#0D1220;--s2:#141A2C;--s3:#1C2338;--gold:#D4AF37;--champ:#F6E7B0;--deep:#9A7A22;--ember:#E0763A;--wine:#A63446;--emer:#2E8B6E;--sapp:#3D6E9E;--ink:#F5EEDF;--muted:#ABA493;--dim:#7C7668;--ok:#3FA97C;--warn:#E8B23D;--bad:#D95360;--wa:#25D366;--line:rgba(212,175,55,.16);--fd:'Cinzel',Georgia,serif;--fs:'Cormorant Garamond',Georgia,serif;--fu:'Manrope',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--ease:cubic-bezier(.22,1,.36,1);--goldtext:linear-gradient(100deg,#6E5413 0%,#B8912A 18%,#F8EBC0 38%,#FFF6DA 46%,#D4AF37 60%,#8E6F1E 82%,#C9A227 100%)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:96px;scrollbar-color:var(--deep) var(--bg);scrollbar-width:thin;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{background:radial-gradient(75% 55% at 78% -8%,rgba(61,110,158,.16),transparent 62%),radial-gradient(55% 45% at 4% 102%,rgba(166,52,70,.12),transparent 62%),var(--bg);color:var(--ink);font:400 16px/1.65 var(--fu);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
@@ -82,11 +82,13 @@ h2 em,.em{font-family:var(--fs);font-style:italic;font-weight:500;color:var(--ch
 #grain{position:fixed;inset:0;z-index:240;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");background-size:160px}
 main,footer{position:relative;z-index:1}
 #progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:300;background:linear-gradient(90deg,var(--sapp),var(--deep),var(--gold),var(--champ),var(--ember),var(--wine));transform:scaleX(0);transform-origin:0 50%;will-change:transform}
-/* ═══════════ INTRO · CARTOUCHE D'OR ═══════════ */
-#preloader{position:fixed;inset:0;z-index:900;display:grid;place-items:center;overflow:hidden;padding:24px;background:radial-gradient(58% 46% at 50% -4%,rgba(212,175,55,.16),transparent 62%),radial-gradient(50% 44% at 10% 90%,rgba(61,110,158,.22),transparent 66%),radial-gradient(48% 42% at 90% 86%,rgba(166,52,70,.18),transparent 66%),linear-gradient(160deg,#0A0E1A,#06080F 60%,#080B14);animation:plSafety .8s ease 7.5s forwards}
+/* ═══════════ INTRO ═══════════ */
+#preloader{position:fixed;inset:0;z-index:900;display:grid;place-items:center;overflow:hidden;padding:24px;will-change:opacity;transform:translateZ(0);background:radial-gradient(58% 46% at 50% -4%,rgba(212,175,55,.16),transparent 62%),radial-gradient(50% 44% at 10% 90%,rgba(61,110,158,.22),transparent 66%),radial-gradient(48% 42% at 90% 86%,rgba(166,52,70,.18),transparent 66%),linear-gradient(160deg,#0A0E1A,#06080F 60%,#080B14);animation:plSafety .8s ease 7.5s forwards}
 #preloader::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");background-size:160px;opacity:.05;mix-blend-mode:overlay;pointer-events:none}
 @keyframes plSafety{to{opacity:0;visibility:hidden;pointer-events:none}}
-#preloader.done{animation:none;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .85s var(--ease),visibility 0s .85s}
+#preloader.done{animation:none;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .6s ease,visibility 0s .6s}
+#preloader.done .pl-card{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+#preloader.done .pl-aurora,#preloader.done .pl-dust i,#preloader.done .crest-gem,#preloader.done .pl-l b,#preloader.done .pl-word::before,#preloader.done .pl-caret,#preloader.done .pl-stars b,#preloader.done .pl-cn{animation:none!important}
 .pl-aurora{position:absolute;border-radius:50%;filter:blur(95px);mix-blend-mode:screen;opacity:.5;pointer-events:none;will-change:transform}
 .pa1{width:46vmin;height:46vmin;left:4%;top:8%;background:rgba(212,175,55,.3);animation:paD1 8s ease-in-out infinite alternate}
 .pa2{width:40vmin;height:40vmin;right:4%;bottom:10%;background:rgba(61,110,158,.3);animation:paD2 10s ease-in-out infinite alternate}
@@ -97,8 +99,6 @@ main,footer{position:relative;z-index:1}
 @keyframes plFloat{0%{opacity:0;transform:translate3d(0,0,0)}12%{opacity:.85}80%{opacity:.5}100%{opacity:0;transform:translate3d(var(--sw),-105vh,0)}}
 .pl-card{position:relative;z-index:2;text-align:center;width:min(700px,94vw);padding:clamp(30px,5vw,54px) clamp(22px,6vw,70px);border-radius:3px;background:linear-gradient(160deg,rgba(20,26,44,.6),rgba(6,8,15,.42));-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 44px 130px rgba(0,0,0,.65),inset 0 0 90px rgba(212,175,55,.05);animation:cardIn 1s var(--ease) both}
 @keyframes cardIn{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
-#preloader.done .pl-card{animation:cardOut .85s var(--ease) forwards}
-@keyframes cardOut{to{opacity:0;transform:scale(1.03)}}
 .pl-card::before{content:'';position:absolute;inset:11px;border:1px solid rgba(212,175,55,.15);pointer-events:none;opacity:0;animation:plFade .9s ease 1s forwards}
 .pl-line{position:absolute;pointer-events:none}
 .pl-line.lt,.pl-line.lb{left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--deep),var(--gold),var(--champ),var(--gold),var(--deep),transparent);transform:scaleX(0)}
@@ -123,9 +123,7 @@ main,footer{position:relative;z-index:1}
 .pl-l b{display:inline-block;font-weight:600;background:var(--goldtext);background-size:320% 100%;background-position:140% 0;-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;filter:drop-shadow(0 0 10px rgba(212,175,55,.45));animation:plType .6s var(--ease) calc(.9s + var(--i)*.18s) both,plGold 3.4s ease-in-out calc(1.85s + var(--i)*.2s) infinite}
 @keyframes plType{0%{opacity:0;transform:translateY(20px) scale(.92)}62%{opacity:1;transform:translateY(-2px) scale(1.02)}100%{opacity:1;transform:none}}
 @keyframes plGold{0%{background-position:140% 0}30%{background-position:-40% 0}100%{background-position:-40% 0}}
-#preloader.done .pl-l b{animation:plFlare .7s ease calc(var(--i)*.06s) both}
-@keyframes plFlare{0%{opacity:1}45%{opacity:1;filter:drop-shadow(0 0 22px rgba(246,231,176,.85))}100%{opacity:1;filter:drop-shadow(0 0 12px rgba(212,175,55,.5))}}
-.pl-caret{display:inline-block;flex:0 0 auto;position:relative;z-index:1;width:3px;height:.74em;margin:0 0 .07em .12em;background:var(--caret);border-radius:2px;box-shadow:0 0 16px rgba(246,231,176,.8);animation:plBlink .78s steps(1,start) infinite,plCaretOut .4s ease 2.5s forwards}
+.pl-caret{display:inline-block;flex:0 0 auto;position:relative;z-index:1;width:3px;height:.74em;margin:0 0 .07em .12em;background:linear-gradient(var(--champ),var(--ember));border-radius:2px;box-shadow:0 0 16px rgba(246,231,176,.8);animation:plBlink .78s steps(1,start) infinite,plCaretOut .4s ease 2.5s forwards}
 @keyframes plBlink{0%,55%{opacity:1}56%,100%{opacity:0}}
 @keyframes plCaretOut{to{opacity:0;transform:scaleY(.15)}}
 .pl-rule{width:min(280px,66vw);height:1px;margin:15px auto 12px;background:linear-gradient(90deg,transparent,var(--gold),var(--ember),var(--gold),transparent);transform:scaleX(0);animation:lineX .9s var(--ease) 2s forwards}
@@ -142,6 +140,29 @@ main,footer{position:relative;z-index:1}
 #plMsg{text-transform:uppercase;font-size:8px;letter-spacing:.18em;text-align:right}
 #plSkip{position:absolute;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:3;min-height:42px;font:800 9px var(--fu);letter-spacing:.26em;text-transform:uppercase;color:var(--dim);border:1px solid rgba(212,175,55,.25);border-radius:999px;padding:10px 18px;background:rgba(6,8,15,.5);transition:color .3s,border-color .3s;opacity:0;animation:plFade .8s ease 1.4s forwards}
 #plSkip:hover{color:var(--champ);border-color:var(--gold)}
+/* ═══════════ PINCEL DE ARIA · agente escriba ═══════════ */
+.q-ready .ql{display:inline-block;opacity:0;transform:translateY(.16em) rotate(-2deg);transition:opacity .2s ease,transform .2s var(--ease)}
+.q-ready .ql.on{opacity:1;transform:none;animation:inkWet .5s ease}
+.q-measure .ql{transition:none!important;transform:none!important;animation:none!important}
+.q-done .ql{transition:none;animation:none;transform:none}
+@keyframes inkWet{0%{text-shadow:0 0 15px rgba(246,231,176,.8)}100%{text-shadow:0 0 0 rgba(246,231,176,0)}}
+.js [data-reveal].quill-host{transform:none!important}
+#quillLayer{position:fixed;inset:0;z-index:860;pointer-events:none;contain:layout style}
+#quillTrail{position:absolute;left:0;top:0;height:2px;width:0;border-radius:2px;transform-origin:0 50%;transform:translate3d(0,0,0) scaleX(0);opacity:0;background:linear-gradient(90deg,rgba(212,175,55,0),rgba(212,175,55,.7) 35%,rgba(246,231,176,.95));will-change:transform,opacity}
+#quillBrush{position:absolute;left:0;top:0;width:40px;height:120px;transform-origin:20px 116px;transform:translate3d(-200px,-200px,0) rotate(-30deg);opacity:0;will-change:transform,opacity}
+#quillBrush svg{display:block;width:40px;height:120px;overflow:visible}
+#quillBrush .qtip{position:absolute;left:20px;top:116px;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:radial-gradient(circle,rgba(246,231,176,.9),rgba(212,175,55,.28) 45%,transparent 70%);opacity:0;transition:opacity .2s}
+#quillBrush.writing .qtip{opacity:1;animation:tipPulse .9s ease-in-out infinite}
+@keyframes tipPulse{0%,100%{transform:scale(.85);opacity:.75}50%{transform:scale(1.12);opacity:1}}
+#quillDock{position:fixed;left:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:210;width:48px;height:48px;border-radius:50%;border:1px solid rgba(212,175,55,.42);background:rgba(13,18,32,.74);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:grid;place-items:center;color:var(--champ);transition:border-color .3s,background .3s,transform .3s var(--ease)}
+#quillDock:hover{border-color:var(--gold);background:rgba(212,175,55,.14);transform:translateY(-3px)}
+#quillDock .ico{width:22px;height:22px}
+#quillDock::before{content:'';position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(212,175,55,.55);opacity:0}
+#quillDock.busy::before{animation:dockRing 1.4s ease-out infinite}
+@keyframes dockRing{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+#quillDock.busy{color:var(--gold);border-color:var(--gold)}
+.qd-tip{position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--s2);border:1px solid var(--line);padding:8px 13px;border-radius:999px;font:700 .68rem var(--fu);letter-spacing:.06em;color:var(--champ);opacity:0;pointer-events:none;transition:opacity .3s}
+#quillDock:hover .qd-tip,#quillDock:focus-visible .qd-tip{opacity:1}
 /* ═══════════ NAV ═══════════ */
 #nav{position:fixed;top:0;left:0;right:0;z-index:200;border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
 #nav.scrolled{background:rgba(6,8,15,.86);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border-bottom-color:var(--line)}
@@ -181,22 +202,11 @@ main,footer{position:relative;z-index:1}
 .hero-copy{max-width:660px;min-width:0}
 .hero-kicker{display:inline-flex;align-items:center;gap:10px;padding:9px 15px;border-radius:999px;border:1px solid rgba(212,175,55,.4);background:linear-gradient(135deg,rgba(212,175,55,.12),rgba(61,110,158,.1));font:800 9px var(--fu);letter-spacing:.26em;text-transform:uppercase;color:var(--champ);margin-bottom:18px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .hero-kicker .ico{width:13px;height:13px;color:var(--gold)}
-/* título escrito a máquina, letra a letra, con cursor que avanza */
-.hero-title{position:relative;display:flex;flex-wrap:nowrap;white-space:nowrap;width:max-content;max-width:100%;font-size:clamp(2.75rem,8vw,6rem);font-weight:600;line-height:.95;letter-spacing:.06em;margin-bottom:16px}
+.hero-title{position:relative;display:block;white-space:nowrap;width:max-content;max-width:100%;font-size:clamp(2.75rem,8vw,6rem);font-weight:600;line-height:.95;letter-spacing:.06em;margin-bottom:16px;min-height:1em}
+.hero-title.hero-el{transform:none!important}
 .hero-title::before{content:'';position:absolute;left:-5%;right:-5%;top:-28%;bottom:-28%;background:radial-gradient(50% 60% at 28% 50%,rgba(212,175,55,.24),transparent 70%);filter:blur(30px);opacity:0;pointer-events:none;will-change:opacity}
-body.ready .hero-title::before{animation:wordGlow 3.6s ease-in-out 1.5s infinite}
-.hero-title .hl{position:relative;z-index:1;display:inline-block;flex:0 0 auto;opacity:0;background:var(--goldtext);background-size:320% 100%;background-position:140% 0;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 12px rgba(212,175,55,.35))}
-.hero-title .hl::after{content:'';position:absolute;right:-.085em;bottom:.1em;width:.05em;height:.7em;border-radius:1px;background:var(--caret);box-shadow:0 0 12px rgba(246,231,176,.85);opacity:0}
-.hero-caret{position:absolute;right:-.1em;bottom:.1em;z-index:2;width:.05em;height:.7em;border-radius:1px;background:var(--caret);box-shadow:0 0 12px rgba(246,231,176,.85);opacity:0}
-body.ready .hero-title .hl{animation:heroType .01s steps(1,start) calc(.5s + var(--i)*.17s) both,heroGold 3.6s ease-in-out calc(1.5s + var(--i)*.2s) infinite}
-body.ready .hero-title .hl::after{animation:caretPass .17s linear calc(.5s + var(--i)*.17s) forwards}
-body.ready .hero-caret{animation:caretOn .01s steps(1,start) 1.35s both,caretBlink .62s linear 1.35s 3,caretOff .3s ease 3.3s forwards}
-@keyframes heroType{from{opacity:0}to{opacity:1}}
-@keyframes caretPass{0%,92%{opacity:1}100%{opacity:0}}
-@keyframes caretOn{from{opacity:0}to{opacity:1}}
-@keyframes caretBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
-@keyframes caretOff{to{opacity:0}}
-@keyframes heroGold{0%{background-position:140% 0}30%{background-position:-40% 0}100%{background-position:-40% 0}}
+.hero-title.written::before{animation:wordGlow 3.6s ease-in-out infinite}
+.hero-title .ql{background:var(--goldtext);background-size:320% 100%;background-position:-40% 0;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 12px rgba(212,175,55,.35))}
 .hero-sub{font:italic 500 clamp(1.12rem,2.2vw,1.5rem)/1.55 var(--fs);color:#E9E0CC;max-width:580px;margin-bottom:26px}.hero-sub em{color:var(--champ)}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}
 .hero-meta{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.82rem}
@@ -472,7 +482,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 .dm-arrows button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);color:var(--champ);display:grid;place-items:center;transition:background .25s,border-color .25s;flex:0 0 auto}
 .dm-arrows button:hover{background:rgba(212,175,55,.14);border-color:var(--gold)}
 .dm-arrows .ico{width:16px;height:16px}
-.dm-name{font-size:clamp(1.9rem,4vw,2.7rem);color:var(--ink);margin:8px 0 4px;line-height:1.1;overflow-wrap:anywhere}
+.dm-name{font-size:clamp(1.9rem,4vw,2.7rem);color:var(--ink);margin:8px 0 4px;line-height:1.1;overflow-wrap:anywhere;min-height:1.1em}
 .dm-tag{font:italic 500 1.08rem var(--fs);color:var(--champ);margin-bottom:12px}
 .dm-story{color:var(--muted);font-size:.92rem;line-height:1.75}
 .dm-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
@@ -494,31 +504,34 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 .dm-zoom{will-change:left,top,width,height;box-shadow:0 30px 80px rgba(0,0,0,.7)}
 .dm-zoom img{width:100%;height:100%;object-fit:cover}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-/* ═══════════ ADAPTACIÓN · OS / DISPOSITIVOS / RENDIMIENTO ═══════════ */
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){#nav.scrolled{background:rgba(6,8,15,.97)}.modal{background:rgba(4,6,12,.96)}.cs-caption,.aria-badge,.portal-badge,.portal-badge2,.pl-card,.hero-kicker{background:rgba(13,18,32,.97)}}
+/* ═══════════ ADAPTACIÓN ═══════════ */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){#nav.scrolled{background:rgba(6,8,15,.97)}.modal{background:rgba(4,6,12,.96)}.cs-caption,.aria-badge,.portal-badge,.portal-badge2,.pl-card,.hero-kicker,#quillDock{background:rgba(13,18,32,.97)}}
 @media (max-width:1200px){.side-rail{display:none}}
 @media (max-width:1100px){.hero-grid{grid-template-columns:1fr;gap:30px}.hero-visual{order:-1}.portal{width:min(340px,70vw)}.hero-copy{max-width:100%}.hero-scroll{display:none}.hero{padding:112px 0 56px}}
 @media (max-width:1060px){.nav-links{display:none}#burger{display:block}.exp-grid,.aria-grid,.res-grid{grid-template-columns:1fr;gap:42px}.exp-left{position:static}.f-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:900px){.counters{grid-template-columns:repeat(2,1fr);gap:16px}.aria-photo{height:400px}.exp-photo{height:380px}}
 @media (max-width:820px){.dm-grid{grid-template-columns:1fr}.dm-media{min-height:240px;aspect-ratio:16/10}.dm-body{max-height:none;overflow:visible}#dishModal .modal-card{max-height:90vh;max-height:90svh;overflow:auto}.dm-nav{padding-right:44px}}
-@media (max-width:700px){.hero{padding:106px 0 50px}.portal{width:min(300px,66vw)}.hero-title{letter-spacing:.05em}.hero-sub{font-size:clamp(1.08rem,4.4vw,1.3rem)}.hero-meta{gap:12px;font-size:.78rem}.hero-kicker{letter-spacing:.2em;font-size:8.5px}.aria-photo{height:340px}.exp-photo{height:320px}.portal-text{animation:none}.blob{filter:blur(64px)}.b3{display:none}#grain{display:none}}
-@media (max-width:620px){.container{width:calc(100% - 36px)}.hero-cta{flex-direction:column}.hero-cta .btn{width:100%}.frow{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr}.tasting{padding:28px 22px}.pillar{grid-template-columns:1fr;gap:12px;padding:26px 20px}.nav-ico.wa{display:none}.fab-tip{display:none}.f-bottom{flex-direction:column;text-align:center}.cs-avatar{width:112px;height:112px}.cs-ava{font-size:44px}.cs-controls{gap:14px 18px}.cs-btn .round{width:62px;height:62px}.cs-btn .round .ico{width:24px;height:24px}.cs-end .round{width:72px;height:72px}.cs-caption{min-height:80px;padding:14px}.cs-name{font-size:2rem}.adm-tools{grid-template-columns:1fr}.modal-card{padding:20px}.dm-body{padding:22px 20px}.portal-badge,.portal-badge2{display:none}#rForm{padding:20px}.pl-card{padding:28px 20px}.pl-crest{width:130px;height:38px}.fab-dock{right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}.fab{width:56px;height:56px}.res-top .btn{flex:1 1 100%}.modal-actions .btn{flex:1 1 100%}}
+@media (max-width:700px){.hero{padding:106px 0 50px}.portal{width:min(300px,66vw)}.hero-title{letter-spacing:.05em}.hero-sub{font-size:clamp(1.08rem,4.4vw,1.3rem)}.hero-meta{gap:12px;font-size:.78rem}.hero-kicker{letter-spacing:.2em;font-size:8.5px}.aria-photo{height:340px}.exp-photo{height:320px}.portal-text{animation:none}.blob{filter:blur(64px)}.b3{display:none}#grain{display:none}.qd-tip{display:none}}
+@media (max-width:620px){.container{width:calc(100% - 36px)}.hero-cta{flex-direction:column}.hero-cta .btn{width:100%}.frow{grid-template-columns:1fr}.f-grid{grid-template-columns:1fr}.tasting{padding:28px 22px}.pillar{grid-template-columns:1fr;gap:12px;padding:26px 20px}.nav-ico.wa{display:none}.fab-tip{display:none}.f-bottom{flex-direction:column;text-align:center}.cs-avatar{width:112px;height:112px}.cs-ava{font-size:44px}.cs-controls{gap:14px 18px}.cs-btn .round{width:62px;height:62px}.cs-btn .round .ico{width:24px;height:24px}.cs-end .round{width:72px;height:72px}.cs-caption{min-height:80px;padding:14px}.cs-name{font-size:2rem}.adm-tools{grid-template-columns:1fr}.modal-card{padding:20px}.dm-body{padding:22px 20px}.portal-badge,.portal-badge2{display:none}#rForm{padding:20px}.pl-card{padding:28px 20px}.pl-crest{width:130px;height:38px}.fab-dock{right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}.fab{width:56px;height:56px}#quillDock{left:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:44px;height:44px}.res-top .btn{flex:1 1 100%}.modal-actions .btn{flex:1 1 100%}}
 @media (max-width:480px){.container{width:calc(100% - 28px)}.hero{padding:100px 0 44px}.portal{width:min(260px,62vw)}.hero-cta{gap:10px}.btn{padding:13px 20px;font-size:10px}.counters{gap:12px;padding-top:36px;margin-top:36px}.counters>div{padding:20px 10px}.tasting{padding:24px 18px}.cs-controls{gap:12px 14px}.pl-card{padding:24px 16px}.nav-in{height:74px}.logo{font-size:22px}section{padding:76px 0}.sec-head{margin-bottom:38px}.dish-grid{gap:18px}.dish-body{padding:18px}.f-social a,.f-social button{width:42px;height:42px}}
 @media (max-width:360px){.hero-title{font-size:2.5rem}.portal{width:min(230px,60vw)}.nav-in{gap:8px}.logo{font-size:20px;letter-spacing:.14em}.nav-right{gap:6px}.nav-ico,#burger{width:40px;height:40px}.btn-sm{padding:9px 13px;font-size:9px}.cs-controls{gap:10px 8px}.cs-btn .round{width:54px;height:54px}.cs-btn span{font-size:.58rem;letter-spacing:.06em}.lang-grid{grid-template-columns:1fr}.hero-kicker{letter-spacing:.14em}}
 @media (pointer:coarse){.fbtn,.aex{min-height:44px}.stepper button{width:44px;height:44px}.nav-ico,#burger{width:46px;height:46px}.dm-arrows button,.modal-head button{width:44px;height:44px}.faq-q{padding:18px}.adm-mini{min-height:36px}.cs-panel-head button{width:42px;height:42px}#grain{display:none}.b3{display:none}}
-@media (hover:none){.btn:hover,.fab:hover,.dish:hover .dish-in,.pillar:hover,.afeat:hover{transform:none}.photo-frame:hover img,.dish:hover .dish-img img{transform:none}.dish-view{opacity:1;transform:none}.btn-gold::after,.btn-call::after,.btn-wa::after{display:none}}
+@media (hover:none){.btn:hover,.fab:hover,.dish:hover .dish-in,.pillar:hover,.afeat:hover,#quillDock:hover{transform:none}.photo-frame:hover img,.dish:hover .dish-img img{transform:none}.dish-view{opacity:1;transform:none}.btn-gold::after,.btn-call::after,.btn-wa::after{display:none}}
 @media (max-height:700px){.cs-avatar{width:96px;height:96px;margin:6px 0 10px}.cs-ava{font-size:38px}.cs-wave{height:34px;margin:10px 0 8px}.cs-wave i{height:30px}.cs-controls{gap:12px 20px;padding-top:14px}.cs-btn .round{width:56px;height:56px}.cs-end{margin-top:16px}.cs-end .round{width:64px;height:64px}.pl-crest{height:32px;margin-bottom:8px}.pl-stars{margin:11px 0 13px}.pl-over{margin-bottom:8px}.pl-card{padding:22px 20px}}
 @media (max-height:560px){.pl-tag,.pl-stars{display:none}.pl-crest{height:26px;margin-bottom:6px}.pl-card{padding:18px}.pl-over{margin-bottom:6px}.pl-rule{margin:10px auto 8px}#plSkip{bottom:calc(10px + env(safe-area-inset-bottom))}}
 @media (max-height:560px) and (orientation:landscape){.hero{min-height:auto;padding:96px 0 40px}.hero-grid{grid-template-columns:1.1fr .9fr;gap:24px}.hero-visual{order:0}.portal{width:min(240px,34vw)}.hero-scroll{display:none}.hero-sub{margin-bottom:18px}.hero-cta{flex-direction:row}.hero-cta .btn{width:auto}.cs-avatar{width:80px;height:80px;margin:4px 0 8px}.cs-ava{font-size:32px}.cs-wave{height:26px;margin:8px 0 6px}.cs-wave i{height:24px}.cs-controls{gap:10px 16px;padding-top:10px}.cs-btn .round{width:50px;height:50px}.cs-btn .round .ico{width:20px;height:20px}.cs-end{margin-top:10px}.cs-end .round{width:56px;height:56px}.cs-caption{min-height:64px;padding:10px}.cs-name{font-size:1.7rem}}
-@media (prefers-reduced-transparency:reduce){#nav.scrolled,.pl-card,.cs-caption,.aria-badge,.portal-badge,.portal-badge2,.modal,.toast,.hero-kicker,.status-badge,.nav-ico,.fbtn,.voice-health,.cs-panel,.modal-card,#mobileMenu{background:var(--s1)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
-@media (forced-colors:active){.btn,.nav-ico,.fbtn,.aex,.dish-pick,.fab{border:1px solid ButtonText}.hero-title .hl,.pl-l b,.num{color:CanvasText;background:none;-webkit-text-fill-color:CanvasText;filter:none}.hero-title .hl::after,.hero-caret,.pl-caret{display:none}.blob,#grain,.pl-dust,.pl-aurora,.portal-glow,.pl-word::before,.hero-title::before{display:none}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.js [data-reveal],.js .hero-el{opacity:1;transform:none}.pl-l b,.hero-title .hl{opacity:1;animation:none;background-position:40% 0}.pl-caret,.hero-caret,.hero-title .hl::after{display:none}#ambient,#grain,.pl-dust,.pl-aurora{display:none}.portal-text,.portal-rings,.portal-img img{animation:none}}
+@media (prefers-reduced-transparency:reduce){#nav.scrolled,.pl-card,.cs-caption,.aria-badge,.portal-badge,.portal-badge2,.modal,.toast,.hero-kicker,.status-badge,.nav-ico,.fbtn,.voice-health,.cs-panel,.modal-card,#mobileMenu,#quillDock{background:var(--s1)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+@media (forced-colors:active){.btn,.nav-ico,.fbtn,.aex,.dish-pick,.fab,#quillDock{border:1px solid ButtonText}.hero-title .ql,.pl-l b,.num{color:CanvasText;background:none;-webkit-text-fill-color:CanvasText;filter:none}#quillLayer,.blob,#grain,.pl-dust,.pl-aurora,.portal-glow,.pl-word::before,.hero-title::before{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.js [data-reveal],.js .hero-el{opacity:1;transform:none}.q-ready .ql{opacity:1!important;transform:none!important}.pl-l b{opacity:1;animation:none;background-position:40% 0}.pl-caret{display:none}#ambient,#grain,.pl-dust,.pl-aurora,#quillLayer{display:none}.portal-text,.portal-rings,.portal-img img{animation:none}}
+.hero-title.written .ql{animation:heroGold 3.6s ease-in-out calc(var(--qi,0)*.2s) infinite}
+@keyframes heroGold{0%{background-position:140% 0}30%{background-position:-40% 0}100%{background-position:-40% 0}}
 </style>
 </head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
 <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 012.89 6.99c0 5.45-4.44 9.89-9.89 9.89m8.41-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 005.69 1.45c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42"/></symbol>
 <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></symbol>
+<symbol id="i-brush" viewBox="0 0 24 24"><path d="M14.5 3.2l6.3 6.3-8.2 8.2-6.3-6.3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6.3 11.4l6.3 6.3-2.6 2.6c-1.5 1.5-4.2 1.9-5.6.5s-1-4.1.5-5.6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4.6 19.4l-1.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 005 5L15 13l5 2v4a2 2 0 01-2 2A17 17 0 013 6a2 2 0 012-2z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
 <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M5 11a7 7 0 0014 0M12 18v3M8 21h8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
 <symbol id="i-micoff" viewBox="0 0 24 24"><path d="M9 9v2a3 3 0 005.1 2.1M15 9.3V6a3 3 0 00-5.9-.7M5 11a7 7 0 0011.5 5.4M19 11a7 7 0 01-.6 2.8M12 18v3M8 21h8M3 3l18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
@@ -575,12 +588,38 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </div>
 <button id="plSkip" type="button">Saltar intro ✦</button>
 </div>
-<script>window.addEventListener('error',function(){var p=document.getElementById('preloader');if(p&&p.parentNode){p.classList.add('done');if(document.body)document.body.classList.add('ready');setTimeout(function(){if(p.parentNode)p.parentNode.removeChild(p)},900)}});</script>
-<noscript><style>#preloader{display:none}.hero-el{opacity:1!important;transform:none!important}.hero-title .hl{opacity:1!important;animation:none!important;background-position:40% 0}.hero-caret,.hero-title .hl::after{display:none!important}.js [data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+<script>window.addEventListener('error',function(){var p=document.getElementById('preloader');if(p&&p.parentNode){p.classList.add('done');if(document.body)document.body.classList.add('ready');setTimeout(function(){if(p.parentNode)p.parentNode.removeChild(p)},700)}});</script>
+<noscript><style>#preloader,#quillLayer,#quillDock{display:none}.hero-el{opacity:1!important;transform:none!important}.js [data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 
 <div id="progress"></div>
 <div id="ambient" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
 <div id="grain" aria-hidden="true"></div>
+
+<!-- ═══════════ PINCEL DE ARIA ═══════════ -->
+<div id="quillLayer" aria-hidden="true">
+<div id="quillTrail"></div>
+<div id="quillBrush">
+<svg viewBox="0 0 40 120"><defs>
+<linearGradient id="qHandle" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#131829"/><stop offset=".42" stop-color="#3A4360"/><stop offset=".58" stop-color="#252C42"/><stop offset="1" stop-color="#0D1120"/></linearGradient>
+<linearGradient id="qGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8E6F1E"/><stop offset=".38" stop-color="#F8EBC0"/><stop offset=".62" stop-color="#D4AF37"/><stop offset="1" stop-color="#7A5E16"/></linearGradient>
+<linearGradient id="qHair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFE4C8"/><stop offset=".42" stop-color="#CBB68C"/><stop offset=".78" stop-color="#8C7A55"/><stop offset="1" stop-color="#F6E7B0"/></linearGradient>
+</defs>
+<path d="M20 2 C24 2 26 6 26 12 L24.6 60 L15.4 60 L14 12 C14 6 16 2 20 2 Z" fill="url(#qHandle)"/>
+<path d="M19 4 C21 4 22.4 7 22.4 12 L21.6 58 L20.4 58 L20.6 12 C20.6 8 20 5.6 19 4 Z" fill="#5A6488" opacity=".55"/>
+<rect x="14.4" y="19" width="11.2" height="2.6" rx="1.3" fill="url(#qGold)" opacity=".9"/>
+<rect x="14" y="55" width="12" height="4.4" rx="2.2" fill="url(#qGold)"/>
+<path d="M14.4 59.4 L25.6 59.4 L25 73 C25 79 23 83.4 20 85.6 C17 83.4 15 79 15 73 Z" fill="url(#qGold)"/>
+<path d="M15.6 73 C15.6 84 17.2 96 20 116 C22.8 96 24.4 84 24.4 73 C22 77.4 18 77.4 15.6 73 Z" fill="url(#qHair)"/>
+<path d="M20 90 C21.3 99 21.3 106 20 116 C18.7 106 18.7 99 20 90 Z" fill="#FFF6DA" opacity=".5"/>
+<circle cx="20" cy="115" r="2.1" fill="#FFF6DA"/></svg>
+<span class="qtip"></span>
+</div>
+</div>
+<button id="quillDock" type="button" aria-label="Pincel de ARIA: reescribir el título de esta sección">
+<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-brush"/></svg>
+<span class="qd-tip">Pincel de ARIA ✦ reescribir</span>
+</button>
+
 <nav class="side-rail" aria-label="Secciones"><a class="rail-link active" href="#inicio" data-label="Inicio" aria-label="Inicio"></a><a class="rail-link" href="#experiencia" data-label="Experiencia" aria-label="Experiencia"></a><a class="rail-link" href="#carta" data-label="Carta" aria-label="Carta"></a><a class="rail-link" href="#aria" data-label="ARIA" aria-label="ARIA"></a><a class="rail-link" href="#reserva" data-label="Reservar" aria-label="Reservar"></a></nav>
 
 <header id="nav"><div class="container nav-in">
@@ -600,12 +639,12 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="container hero-grid">
 <div class="hero-copy">
 <p class="hero-kicker hero-el" style="--d:.05s"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Restaurante cinco estrellas · Madrid</p>
-<h1 class="hero-title hero-el" style="--d:.1s" aria-label="AURUM"><span class="hl" style="--i:0" aria-hidden="true">A</span><span class="hl" style="--i:1" aria-hidden="true">U</span><span class="hl" style="--i:2" aria-hidden="true">R</span><span class="hl" style="--i:3" aria-hidden="true">U</span><span class="hl" style="--i:4" aria-hidden="true">M</span><i class="hero-caret" aria-hidden="true"></i></h1>
-<p class="hero-sub hero-el" style="--d:.5s">Doce tiempos alrededor de un fuego central. Una voz, <em>ARIA</em>, que te guía en cuatro idiomas. Y una mesa que recordarás cuando ya se haya apagado la brasa.</p>
-<div class="hero-cta hero-el" style="--d:.62s"><button class="btn btn-call" type="button" data-call><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Llamar a ARIA</button><a class="btn btn-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar%20una%20mesa." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Reservar por WhatsApp</a><a class="btn btn-ghost" href="#carta">Ver carta<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
-<div class="hero-meta hero-el" style="--d:.76s"><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg>P.º de la Castellana 88</span><span class="status-badge" data-status><i class="dot"></i><span data-status-text>Consultando horario</span></span></div>
+<h1 class="hero-title hero-el" id="heroTitle" data-quill="hero" style="--d:.08s">AURUM</h1>
+<p class="hero-sub hero-el" style="--d:.42s">Doce tiempos alrededor de un fuego central. Una voz, <em>ARIA</em>, que te guía en cuatro idiomas. Y una mesa que recordarás cuando ya se haya apagado la brasa.</p>
+<div class="hero-cta hero-el" style="--d:.56s"><button class="btn btn-call" type="button" data-call><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Llamar a ARIA</button><a class="btn btn-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar%20una%20mesa." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Reservar por WhatsApp</a><a class="btn btn-ghost" href="#carta">Ver carta<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+<div class="hero-meta hero-el" style="--d:.7s"><span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg>P.º de la Castellana 88</span><span class="status-badge" data-status><i class="dot"></i><span data-status-text>Consultando horario</span></span></div>
 </div>
-<div class="hero-visual hero-el" style="--d:.46s">
+<div class="hero-visual hero-el" style="--d:.4s">
 <div class="portal" id="portal" aria-hidden="true">
 <div class="portal-glow"></div>
 <div class="portal-img"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" srcset="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=480&q=72 480w,https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80 800w" sizes="(max-width:700px) 62vw, 380px" alt="" decoding="async" onerror="__imgFB(this)"></div>
@@ -622,12 +661,12 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="marquee" aria-hidden="true"><div class="marquee-track"><span class="mq-item"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item"><b>✦</b> Guía Celeste 2026</span><span class="mq-item"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item"><b>✦</b> ARIA · voz en 4 idiomas</span><span class="mq-item"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item"><b>✦</b> Guía Celeste 2026</span><span class="mq-item"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item"><b>✦</b> ARIA · voz en 4 idiomas</span></div></div>
 
 <section id="experiencia"><div class="container"><div class="exp-grid">
-<div class="exp-left" data-reveal="left"><p class="overline">01 — Esencia</p><h2>Un laboratorio de <em>belleza comestible</em></h2><p>Cada noche, veintiocho comensales se sientan alrededor del fuego a responder una pregunta: ¿a qué sabe el mañana? La sala respira con el menú, la luz sigue el ritmo de los pases y la cocina trabaja con precisión de relojero.</p><div class="photo-frame exp-photo"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" srcset="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=72 700w,https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80 1000w" sizes="(max-width:1060px) 92vw, 520px" alt="Interior del comedor AURUM" loading="lazy" decoding="async" onerror="__imgFB(this)"></div></div>
+<div class="exp-left quill-host" data-reveal="left"><p class="overline">01 — Esencia</p><h2 data-quill>Un laboratorio de <em>belleza comestible</em></h2><p>Cada noche, veintiocho comensales se sientan alrededor del fuego a responder una pregunta: ¿a qué sabe el mañana? La sala respira con el menú, la luz sigue el ritmo de los pases y la cocina trabaja con precisión de relojero.</p><div class="photo-frame exp-photo"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" srcset="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=72 700w,https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80 1000w" sizes="(max-width:1060px) 92vw, 520px" alt="Interior del comedor AURUM" loading="lazy" decoding="async" onerror="__imgFB(this)"></div></div>
 <div class="exp-right"><div class="pillar" data-reveal><span class="idx">01</span><div><h3>Fuego &amp; precisión</h3><p>Brasa de encina a 480 °C, cámaras de maduración propias y una cocina-laboratorio donde cada grado importa.</p></div></div><div class="pillar" data-reveal style="--d:.08s"><span class="idx">02</span><div><h3>Producto kilómetro cero</h3><p>Lonja de madrugada, huerto biodinámico propio y 42 pequeños productores que nos llaman por el nombre de pila.</p></div></div><div class="pillar" data-reveal style="--d:.16s"><span class="idx">03</span><div><h3>Teatro sensorial</h3><p>Luz que sigue el ritmo del menú, aromas escenografiados y una sala que se transforma con cada pase.</p></div></div></div>
 </div><div class="counters" data-reveal><div><span class="num" data-count="5">0</span><small>Estrellas</small></div><div><span class="num" data-count="12">0</span><small>Tiempos</small></div><div><span class="num" data-count="28">0</span><small>Asientos</small></div><div><span class="num" data-count="480">0</span><small>Etiquetas bodega</small></div></div></div></section>
 
 <section id="carta"><div class="container">
-<div class="sec-head" data-reveal><p class="overline">02 — Carta viva · 2026</p><h2>Seis platos, <em>seis mundos</em></h2><p>Toca cualquier plato para acercarte a él: historia, ingredientes y maridaje. Añade los que te conquisten y los incluiremos en tu mensaje de WhatsApp.</p></div>
+<div class="sec-head quill-host" data-reveal><p class="overline">02 — Carta viva · 2026</p><h2 data-quill>Seis platos, <em>seis mundos</em></h2><p>Toca cualquier plato para acercarte a él: historia, ingredientes y maridaje. Añade los que te conquisten y los incluiremos en tu mensaje de WhatsApp.</p></div>
 <div class="filters" data-reveal role="group" aria-label="Filtrar carta"><button class="fbtn active" type="button" data-f="all" aria-pressed="true">Todos<span class="f-n"></span></button><button class="fbtn" type="button" data-f="mar" aria-pressed="false">Del mar<span class="f-n"></span></button><button class="fbtn" type="button" data-f="tierra" aria-pressed="false">De la tierra<span class="f-n"></span></button><button class="fbtn" type="button" data-f="huerto" aria-pressed="false">Del huerto<span class="f-n"></span></button><button class="fbtn" type="button" data-f="dulce" aria-pressed="false">Dulces<span class="f-n"></span></button></div>
 <div id="selRow" class="sel-row"><span>✦ <b id="selCount">0</b> platos en tu consulta</span><a id="selSend" class="btn btn-wa btn-sm" href="https://wa.me/34602006585" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Enviar selección</a></div>
 <div class="dish-grid">
@@ -643,7 +682,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 
 <section id="aria"><div class="container aria-grid">
 <div class="photo-frame aria-photo" data-reveal="left"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80" srcset="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=700&q=72 700w,https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80 1000w" sizes="(max-width:1060px) 92vw, 480px" alt="Mesa preparada en AURUM" loading="lazy" decoding="async" onerror="__imgFB(this)"><div class="aria-badge"><b>ARIA · Anfitriona de voz</b><small>Voz en tiempo real · subtítulos · reserva al instante</small></div></div>
-<div data-reveal="right"><p class="overline">03 — Llamada inteligente</p><h2>Llama a ARIA, <em>como a una persona</em></h2><p style="color:var(--muted)">Pulsa llamar y habla con ARIA de verdad. Al confirmar tu reserva, el equipo la recibe al instante por correo y WhatsApp, y queda anotada en el libro.</p>
+<div class="quill-host" data-reveal="right"><p class="overline">03 — Llamada inteligente</p><h2 data-quill>Llama a ARIA, <em>como a una persona</em></h2><p style="color:var(--muted)">Pulsa llamar y habla con ARIA de verdad. Al confirmar tu reserva, el equipo la recibe al instante por correo y WhatsApp, y queda anotada en el libro.</p>
 <div class="lang-pills"><span>ESPAÑOL</span><span>ENGLISH</span><span>FRANÇAIS</span><span>DEUTSCH</span></div>
 <div class="aria-feats"><div class="afeat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg><div><b>Llamada real en pantalla</b><p>Avatar, tono, contador y controles tipo móvil. iPhone, iPad, Android y ordenador.</p></div></div><div class="afeat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mic"/></svg><div><b>Habla en el momento</b><p>Voz en tiempo real con Vapi. Si el micrófono no está disponible, entra el chat con voz.</p></div></div><div class="afeat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cal"/></svg><div><b>Reserva que llega sola</b><p>Correo automático al equipo al confirmar + WhatsApp preparado + registro en el libro.</p></div></div></div>
 <button class="btn btn-call" type="button" data-call><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Llamar ahora</button>
@@ -652,7 +691,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </div></div></section>
 
 <section id="reserva"><div class="container">
-<div class="sec-head" data-reveal><p class="overline">04 — Reservas</p><h2>Tu mesa te espera <em>en el futuro</em></h2><p>Habla con ARIA o completa el formulario. El envío final es un enlace real a WhatsApp: siempre funciona.</p></div>
+<div class="sec-head quill-host" data-reveal><p class="overline">04 — Reservas</p><h2 data-quill>Tu mesa te espera <em>en el futuro</em></h2><p>Habla con ARIA o completa el formulario. El envío final es un enlace real a WhatsApp: siempre funciona.</p></div>
 <div class="res-grid"><div data-reveal="left"><div class="res-top"><button class="btn btn-call" type="button" data-call data-ask="Quiero reservar una mesa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Reservar hablando</button><a class="btn btn-ghost" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar." target="_blank" rel="noopener">WhatsApp directo</a></div><ol class="steps"><li><b>1</b>Completa</li><li><b>2</b>Envía por WhatsApp</li><li><b>3</b>Confirmamos &lt; 2 h</li></ol>
 <form id="rForm" novalidate>
 <div class="frow"><div class="field"><label for="rName">Nombre</label><input id="rName" type="text" placeholder="Tu nombre completo" autocomplete="name" maxlength="60"><small class="err"></small></div><div class="field"><label id="gLabel">Comensales</label><div class="stepper" role="group" aria-labelledby="gLabel"><button id="gMinus" type="button" aria-label="Menos comensales"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-minus"/></svg></button><span id="gVal" aria-live="polite">2</span><button id="gPlus" type="button" aria-label="Más comensales"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plus"/></svg></button></div><input id="rGuests" type="hidden" value="2"><small id="guestHint">Para más de 8, te sugerimos evento privado ✦</small></div></div>
@@ -663,7 +702,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div data-reveal="right"><div class="wa-card"><div class="wa-head"><span class="wa-ava">A</span><div><b>Concierge AURUM</b><small>en línea</small></div></div><div class="wa-body"><div class="bubble"><div id="pvText"></div><div class="pv-meta"><span id="pvTime">--:--</span><span class="ticks">✓✓</span></div></div></div></div><div class="pv-row"><button id="copyBtn" class="btn btn-ghost btn-sm" type="button"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>Copiar texto</button><span class="pv-note">Vista previa exacta</span></div><div class="res-info"><span class="status-badge" data-status><i class="dot"></i><span data-status-text>Consultando horario</span></span><div><div class="hrow" data-days="1"><span>Lunes</span><b>Cerrado</b></div><div class="hrow" data-days="2,3,4,5,6"><span>Martes — Sábado</span><b>19:30 – 23:00</b></div><div class="hrow" data-days="0"><span>Domingo</span><b>13:00 – 15:30</b></div></div><ul class="policies"><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Confirmación humana en menos de 2 horas.</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>Cancelación gratuita hasta 24 h antes.</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Dress code: elegancia contemporánea.</li></ul><a class="f-link" href="tel:+34602006585"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>+34 602 006 585</a></div></div>
 </div></div></section>
 
-<section id="faq"><div class="container"><div class="sec-head center" data-reveal><p class="overline">05 — Preguntas</p><h2>Todo lo que quieres <em>preguntar</em></h2></div><div class="faq-wrap" data-reveal>
+<section id="faq"><div class="container"><div class="sec-head center quill-host" data-reveal><p class="overline">05 — Preguntas</p><h2 data-quill>Todo lo que quieres <em>preguntar</em></h2></div><div class="faq-wrap" data-reveal>
 <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">¿Por qué a veces dice «modo respaldo»?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>La voz en tiempo real necesita tres cosas: web publicada en HTTPS, permiso de micrófono y una clave pública de Vapi válida. Si falta alguna, ARIA sigue atendiendo por chat con voz de salida para que nunca te quedes sin respuesta. El diagnóstico de la sección ARIA te dice exactamente qué falta.</p></div></div></div>
 <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">¿La llamada funciona en iPad/iPhone?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Sí, con la web publicada en HTTPS y aceptando el micrófono. Safari, Chrome, Edge, Firefox y Android son compatibles. Si Safari tiene el micrófono bloqueado, el diagnóstico te muestra cómo reactivarlo en Ajustes del sitio. Firefox no incluye dictado por voz: allí ARIA funciona con chat hablado.</p></div></div></div>
 <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">¿Cómo llega mi reserva al restaurante?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Al confirmar con ARIA, la reserva se envía <b>automáticamente al correo del equipo</b>, se anota en el libro y además se prepara un WhatsApp con todos los datos para enviarlo con un toque. El equipo confirma en menos de 2 horas.</p></div></div></div>
@@ -708,7 +747,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="modal" id="dishModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="dmName"><div class="modal-card">
 <button class="dm-close" type="button" data-close-modal aria-label="Cerrar detalle"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button>
 <div class="dm-grid"><div class="dm-media"><img id="dmImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" decoding="async" onerror="__imgFB(this)"><div class="dm-top"><span class="chip" id="dmCat"></span></div><span class="dm-price" id="dmPrice"></span></div>
-<div class="dm-body" id="dmBody"><div class="dm-nav"><span class="dm-count" id="dmCount"></span><div class="dm-arrows"><button type="button" id="dmPrev" aria-label="Plato anterior"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg></button><button type="button" id="dmNext" aria-label="Plato siguiente"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button></div></div><p class="overline" id="dmOver"></p><h3 class="dm-name" id="dmName"></h3><p class="dm-tag" id="dmTag"></p><p class="dm-story" id="dmStory"></p><div class="dm-chips" id="dmChips"></div><p class="dm-h">Ingredientes</p><ul class="dm-ing" id="dmIng"></ul><p class="dm-h">Alérgenos</p><div class="dm-al" id="dmAl"></div><p class="dm-h">Maridaje sugerido</p><div class="dm-pair"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-glass"/></svg><div><b id="dmPair"></b><small id="dmPairNote"></small></div></div><div class="dm-actions"><button class="btn btn-ghost" id="dmPick" type="button" aria-pressed="false"></button><button class="btn btn-call" id="dmBook" type="button"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Reservar mesa</button><a class="btn btn-wa" id="dmWa" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Consultar</a></div></div></div></div></div>
+<div class="dm-body" id="dmBody"><div class="dm-nav"><span class="dm-count" id="dmCount"></span><div class="dm-arrows"><button type="button" id="dmPrev" aria-label="Plato anterior"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="transform:rotate(180deg)"><use href="#i-arrow"/></svg></button><button type="button" id="dmNext" aria-label="Plato siguiente"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button></div></div><p class="overline" id="dmOver"></p><h3 class="dm-name" id="dmName" data-quill="dish"></h3><p class="dm-tag" id="dmTag"></p><p class="dm-story" id="dmStory"></p><div class="dm-chips" id="dmChips"></div><p class="dm-h">Ingredientes</p><ul class="dm-ing" id="dmIng"></ul><p class="dm-h">Alérgenos</p><div class="dm-al" id="dmAl"></div><p class="dm-h">Maridaje sugerido</p><div class="dm-pair"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-glass"/></svg><div><b id="dmPair"></b><small id="dmPairNote"></small></div></div><div class="dm-actions"><button class="btn btn-ghost" id="dmPick" type="button" aria-pressed="false"></button><button class="btn btn-call" id="dmBook" type="button"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Reservar mesa</button><a class="btn btn-wa" id="dmWa" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Consultar</a></div></div></div></div></div>
 <div class="modal" id="adminModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Zona de equipo"><div class="modal-card" style="width:min(860px,100%)"><div class="modal-head"><b>Zona de equipo</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button></div>
 <form id="admLogin"><div class="frow"><div class="field"><label for="admUser">Usuario</label><input id="admUser" type="text" autocomplete="username"></div><div class="field"><label for="admPass">Contraseña</label><input id="admPass" type="password" autocomplete="current-password"></div></div><button class="btn btn-gold" type="submit" style="width:100%">Entrar</button><p class="adm-note">Acceso local de demostración (admin / aurum2026). El libro completo y seguro en la nube está en Airtable: entra con tu cuenta de Airtable.</p></form>
 <div id="admPanel" hidden><div class="modal-actions" style="margin-bottom:6px"><a id="admAirtable" class="btn btn-ghost btn-sm" href="https://airtable.com/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ext"/></svg>Libro en Airtable</a><button id="admCsv" class="btn btn-ghost btn-sm" type="button">Exportar CSV</button><button id="admClearEx" class="btn btn-ghost btn-sm" type="button">Borrar ejemplos</button><button id="admOut" class="btn btn-ghost btn-sm" type="button">Salir</button></div>
@@ -757,7 +796,7 @@ function sendOwnerEmail(rec,source){try{if(!CFG.web3forms)return;fetch('https://
 function registerReservation(r,source){const key=(r.name||'')+'|'+(r.date||r.dateText||'')+'|'+(r.time||'');if(key===lastResKey)return;lastResKey=key;const rec={id:'A'+Date.now().toString(36),name:r.name||'',guests:r.guests||'',date:r.date||'',dateText:r.dateText||'',time:r.time||'',lang:r.lang||call.lang,notes:r.notes||'',source,status:'Pendiente',ts:Date.now(),sent:false};ledger.add(rec);pendingRes=rec;sendOwnerEmail(rec,source);const msg=bookingMsg(rec),url=waURL(msg);setCaption(t('done'),[{label:t('sendWa'),href:url,mark:rec.id},{label:'Copiar',onClick:()=>copyText(msg)}]);toast('Reserva registrada ✦');openWaModal(rec)}
 function openWaModal(rec){pendingRes=rec;$('#waSummary').textContent=bookingMsg(rec);const a=$('#waSend');a.href=waURL(bookingMsg(rec));a.onclick=()=>{rec.sent=true;ledger.set(rec.id,'Enviada WA');closeModals()};openModal('waModal')}
 function openModal(id){const m=document.getElementById(id);if(!m)return;if(!$$('.modal.open').length)lastFocus=document.activeElement;m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.classList.add('lock');const f=m.querySelector('.dm-close,[data-close-modal],a[href],button:not([disabled]),input:not([disabled])');if(f)try{f.focus({preventScroll:true})}catch(e){}}
-function closeModals(){const had=$$('.modal.open').length;$$('.modal').forEach(m=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')});if(dmZoomEl){dmZoomEl.remove();dmZoomEl=null}const di=$('#dmImg');if(di)di.style.opacity='';if(!call.open)document.body.classList.remove('lock');if(had&&lastFocus&&document.contains(lastFocus))try{lastFocus.focus({preventScroll:true})}catch(e){}lastFocus=null}
+function closeModals(){const had=$$('.modal.open').length;$$('.modal').forEach(m=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')});if(dmZoomEl){dmZoomEl.remove();dmZoomEl=null}const di=$('#dmImg');if(di)di.style.opacity='';if(!call.open)document.body.classList.remove('lock');if(had&&lastFocus&&document.contains(lastFocus))try{lastFocus.focus({preventScroll:true})}catch(e){}lastFocus=null;if(window.QUILL)QUILL.abort()}
 function selList(){return $$('.dish').filter(d=>selected.has(d.dataset.id)).map(d=>`• ${$('.dish-name',d).textContent} — ${$('.dish-price',d).textContent}`)}
 function refreshSel(){$$('.dish-pick').forEach(b=>{const on=selected.has(b.dataset.pick);b.classList.toggle('picked',on);b.setAttribute('aria-pressed',String(on))});const n=selected.size;$('#selRow').classList.toggle('show',n>0);$('#selCount').textContent=n;const l=selList();$('#selSend').href=waURL('Hola AURUM ✦ '+(l.length?`Estos platos me interesan:
 ${l.join(NL)}
@@ -774,19 +813,144 @@ eclipse:{cat:'Dulce',name:'Eclipse de Cacao',price:'24 €',img:'https://images.
 };
 const DISH_ORDER=['oro','marea','jardin','brasa','perla','eclipse'];
 function paintDmPick(){if(!dmCur)return;const on=selected.has(dmCur),b=$('#dmPick');if(!b)return;b.classList.toggle('picked',on);b.setAttribute('aria-pressed',String(on));b.textContent=on?'✓ En tu consulta':'＋ Añadir a mi consulta'}
-function renderDish(id,swap){const d=DISHES[id];if(!d)return;dmCur=id;const img=$('#dmImg');img.removeAttribute('srcset');img.src=d.img;img.alt=d.name;$('#dmCat').textContent=d.cat;$('#dmPrice').textContent=d.price;$('#dmCount').textContent=pad(DISH_ORDER.indexOf(id)+1)+' / '+pad(DISH_ORDER.length);$('#dmOver').textContent='Carta viva · '+d.cat;$('#dmName').textContent=d.name;$('#dmTag').textContent=d.tag;$('#dmStory').textContent=d.story;const ch=$('#dmChips');ch.textContent='';d.chips.forEach(c=>{const s=document.createElement('span');s.textContent=c;ch.appendChild(s)});const ig=$('#dmIng');ig.textContent='';d.ing.forEach(i=>{const li=document.createElement('li');li.textContent=i;ig.appendChild(li)});const al=$('#dmAl');al.textContent='';if(!d.al.length){const s=document.createElement('span');s.className='none';s.textContent='Sin alérgenos declarados · vegano';al.appendChild(s)}else d.al.forEach(a=>{const s=document.createElement('span');s.textContent=a;al.appendChild(s)});$('#dmPair').textContent=d.pair;$('#dmPairNote').textContent=d.pairNote;$('#dmWa').href=waURL('Hola AURUM ✦ Me gustaría consultar sobre «'+d.name+'» ('+d.price+').');paintDmPick();if(swap&&!reduced){const b=$('#dmBody');b.classList.remove('dm-swap');void b.offsetWidth;b.classList.add('dm-swap')}}
+function renderDish(id,swap){const d=DISHES[id];if(!d)return;dmCur=id;const img=$('#dmImg');img.removeAttribute('srcset');img.src=d.img;img.alt=d.name;$('#dmCat').textContent=d.cat;$('#dmPrice').textContent=d.price;$('#dmCount').textContent=pad(DISH_ORDER.indexOf(id)+1)+' / '+pad(DISH_ORDER.length);$('#dmOver').textContent='Carta viva · '+d.cat;const nm=$('#dmName');nm.textContent=d.name;QUILL.reset(nm);$('#dmTag').textContent=d.tag;$('#dmStory').textContent=d.story;const ch=$('#dmChips');ch.textContent='';d.chips.forEach(c=>{const s=document.createElement('span');s.textContent=c;ch.appendChild(s)});const ig=$('#dmIng');ig.textContent='';d.ing.forEach(i=>{const li=document.createElement('li');li.textContent=i;ig.appendChild(li)});const al=$('#dmAl');al.textContent='';if(!d.al.length){const s=document.createElement('span');s.className='none';s.textContent='Sin alérgenos declarados · vegano';al.appendChild(s)}else d.al.forEach(a=>{const s=document.createElement('span');s.textContent=a;al.appendChild(s)});$('#dmPair').textContent=d.pair;$('#dmPairNote').textContent=d.pairNote;$('#dmWa').href=waURL('Hola AURUM ✦ Me gustaría consultar sobre «'+d.name+'» ('+d.price+').');paintDmPick();if(swap&&!reduced){const b=$('#dmBody');b.classList.remove('dm-swap');void b.offsetWidth;b.classList.add('dm-swap')}QUILL.write(nm,520)}
 function openDish(id,src){if(!DISHES[id])return;renderDish(id,false);openModal('dishModal');const img=$('#dmImg');img.style.opacity='';if(reduced||!src)return;try{const from=src.getBoundingClientRect(),to=img.getBoundingClientRect();if(!from.width||!to.width)return;const z=document.createElement('div');z.className='dm-zoom';z.style.cssText='position:fixed;z-index:870;overflow:hidden;pointer-events:none;left:'+from.left+'px;top:'+from.top+'px;width:'+from.width+'px;height:'+from.height+'px;border-radius:18px;';const zi=document.createElement('img');zi.src=src.currentSrc||src.src;zi.alt='';z.appendChild(zi);document.body.appendChild(z);dmZoomEl=z;img.style.opacity='0';requestAnimationFrame(()=>{requestAnimationFrame(()=>{z.style.transition='left .55s cubic-bezier(.22,1,.36,1),top .55s cubic-bezier(.22,1,.36,1),width .55s cubic-bezier(.22,1,.36,1),height .55s cubic-bezier(.22,1,.36,1),border-radius .55s cubic-bezier(.22,1,.36,1)';z.style.left=to.left+'px';z.style.top=to.top+'px';z.style.width=to.width+'px';z.style.height=to.height+'px';z.style.borderRadius='20px'})});setTimeout(()=>{img.style.opacity='';if(dmZoomEl===z){z.remove();dmZoomEl=null}},640)}catch(e){img.style.opacity=''}}
 safe('dish-detail',()=>{$$('.dish').forEach(card=>{const id=card.dataset.id,img=$('.dish-img img',card),zone=$('.dish-img',card),nameEl=$('.dish-name',card);const hint=document.createElement('span');hint.className='dish-view';hint.textContent='Ver detalle ✦';zone.appendChild(hint);zone.setAttribute('role','button');zone.setAttribute('tabindex','0');zone.setAttribute('aria-label','Ver detalle de '+nameEl.textContent);zone.addEventListener('click',()=>openDish(id,img));zone.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openDish(id,img)}});nameEl.addEventListener('click',()=>openDish(id,img))});$('#dmPrev').addEventListener('click',()=>{const i=DISH_ORDER.indexOf(dmCur);renderDish(DISH_ORDER[(i-1+DISH_ORDER.length)%DISH_ORDER.length],true)});$('#dmNext').addEventListener('click',()=>{const i=DISH_ORDER.indexOf(dmCur);renderDish(DISH_ORDER[(i+1)%DISH_ORDER.length],true)});$('#dmPick').addEventListener('click',()=>{if(!dmCur)return;if(selected.has(dmCur))selected.delete(dmCur);else{selected.add(dmCur);toast('Añadido a tu consulta ✦')}refreshSel()});$('#dmBook').addEventListener('click',()=>{const d=DISHES[dmCur];closeModals();openCall('Quiero reservar una mesa y me interesa el plato '+(d?d.name:'de la carta'))});document.addEventListener('keydown',e=>{if(!$('#dishModal').classList.contains('open'))return;if(e.key==='ArrowLeft')$('#dmPrev').click();if(e.key==='ArrowRight')$('#dmNext').click()})});
-/* ═══ INTRO · 3,4 s + salida · reloj único con limpieza total ═══ */
+/* ═══════════ PINCEL DE ARIA · motor de escritura ═══════════ */
+const QUILL=(()=>{
+const layer=$('#quillLayer'),brush=$('#quillBrush'),trail=$('#quillTrail'),dock=$('#quillDock');
+const TIPX=20,TIPY=116,FLY=460,OUT=420;
+let raf=0,job=null,unlocked=false,timers=new Map(),pending=[],scale=1,obs=null;
+const easeOut=t=>1-Math.pow(1-t,3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function setScale(){scale=innerWidth<700?.78:1}
+setScale();
+function split(el){
+ const label=(el.textContent||'').replace(/\s+/g,' ').trim();
+ if(el.__q&&el.__q.label===label)return el.__q;
+ if(el.__q){el.innerHTML='';el.appendChild(document.createTextNode(label))}
+ el.setAttribute('aria-label',label);
+ const chars=[];
+ const walk=node=>{[...node.childNodes].forEach(n=>{
+  if(n.nodeType===3){const frag=document.createDocumentFragment();for(const ch of n.nodeValue){if(/\s/.test(ch)){frag.appendChild(document.createTextNode(ch));continue}const s=document.createElement('span');s.className='ql';s.textContent=ch;s.setAttribute('aria-hidden','true');s.style.setProperty('--qi',chars.length);frag.appendChild(s);chars.push(s)}node.replaceChild(frag,n)}
+  else if(n.nodeType===1&&!n.classList.contains('ql'))walk(n)})};
+ walk(el);
+ el.classList.add('q-ready');el.classList.remove('q-done','written');
+ el.__q={label,chars};
+ return el.__q;
+}
+function revealAll(el){const q=el.__q||split(el);q.chars.forEach(s=>s.classList.add('on'));el.classList.add('q-done');if(el.dataset.quill==='hero')el.classList.add('written');el.dataset.qWritten='1'}
+function hideBrush(){if(brush){brush.style.opacity='0';brush.classList.remove('writing')}if(trail)trail.style.opacity='0';if(dock)dock.classList.remove('busy')}
+function place(x,y,rot,op){if(!brush)return;brush.style.transform='translate3d('+(x-TIPX).toFixed(1)+'px,'+(y-TIPY).toFixed(1)+'px,0) rotate('+rot.toFixed(1)+'deg) scale('+scale+')';if(op!=null)brush.style.opacity=String(op)}
+function stop(){if(raf){cancelAnimationFrame(raf);raf=0}if(job){const el=job.el;job=null;revealAll(el)}hideBrush()}
+function chime(){if(!SND.on)return;try{beep(1180,.07,.022);setTimeout(()=>beep(1560,.09,.018),70)}catch(e){}}
+function run(el){
+ if(!el||!el.isConnected)return;
+ const q=split(el);
+ if(!q.chars.length){el.dataset.qWritten='1';return}
+ if(reduced||!brush){revealAll(el);return}
+ stop();
+ el.classList.remove('q-done','written');
+ q.chars.forEach(s=>s.classList.remove('on'));
+ el.classList.add('q-measure');
+ const base=el.getBoundingClientRect();
+ const pos=q.chars.map(s=>{const b=s.getBoundingClientRect();return{x:b.right,y:b.top+b.height*.6}});
+ el.classList.remove('q-measure');
+ if(!base.width){revealAll(el);return}
+ const single=Math.abs(pos[0].y-pos[pos.length-1].y)<4;
+ const x0=pos[0].x-(q.chars[0].getBoundingClientRect().width||8),yLine=pos[0].y+Math.max(10,base.height*.16);
+ const width=Math.max(24,pos[pos.length-1].x-x0);
+ if(trail){trail.style.width=width.toFixed(1)+'px';trail.style.opacity='0';trail.style.transform='translate3d('+x0.toFixed(1)+'px,'+yLine.toFixed(1)+'px,0) scaleX(0)'}
+ const per=Math.max(20,Math.min(46,1250/q.chars.length));
+ const total=q.chars.length*per;
+ const dr=dock?dock.getBoundingClientRect():null;
+ const from=dr?{x:dr.left+dr.width/2,y:dr.top+dr.height/2}:{x:60,y:innerHeight-60};
+ job={el,q,pos,base,single,x0,yLine,per,total,phase:'fly',t0:performance.now(),cx:from.x,cy:from.y,i:0};
+ if(dock)dock.classList.add('busy');
+ raf=requestAnimationFrame(tick);
+}
+function tick(now){
+ const j=job;if(!j){raf=0;return}
+ const el=j.el;
+ if(!el.isConnected){job=null;raf=0;hideBrush();return}
+ const r=el.getBoundingClientRect();
+ const dx=r.left-j.base.left,dy=r.top-j.base.top;
+ if(r.bottom<-40||r.top>innerHeight+40){stop();return}
+ const target=i=>({x:j.pos[Math.min(i,j.pos.length-1)].x+dx,y:j.pos[Math.min(i,j.pos.length-1)].y+dy});
+ if(j.phase==='fly'){
+  const p=Math.min(1,(now-j.t0)/FLY),e=easeOut(p),tg=target(0);
+  j.cx=lerp(j.cx,tg.x,e*.34+.06);j.cy=lerp(j.cy,tg.y,e*.34+.06);
+  place(j.cx,j.cy,-55+27*e,p);
+  if(p>=1){j.phase='write';j.t0=now;brush.classList.add('writing');if(trail&&j.single)trail.style.opacity='.85'}
+ } else if(j.phase==='write'){
+  const el2=now-j.t0,idx=Math.min(j.q.chars.length-1,Math.floor(el2/j.per));
+  while(j.i<=idx&&j.i<j.q.chars.length){j.q.chars[j.i].classList.add('on');j.i++}
+  const tg=target(idx),wob=Math.sin(now*.011)*1.4;
+  j.cx=lerp(j.cx,tg.x,.42);j.cy=lerp(j.cy,tg.y+wob,.42);
+  place(j.cx,j.cy,-28+Math.sin(now*.008)*2.2,1);
+  if(trail&&j.single){const pr=Math.min(1,(j.cx-j.x0)/(j.pos[j.pos.length-1].x-j.x0||1));trail.style.transform='translate3d('+(j.x0+dx).toFixed(1)+'px,'+(j.yLine+dy).toFixed(1)+'px,0) scaleX('+pr.toFixed(3)+')'}
+  if(el2>=j.total){j.q.chars.forEach(s=>s.classList.add('on'));j.phase='out';j.t0=now;brush.classList.remove('writing');chime()}
+ } else {
+  const p=Math.min(1,(now-j.t0)/OUT),e=easeOut(p);
+  place(j.cx+30*e,j.cy-40*e,-28+16*e,1-e);
+  if(trail)trail.style.opacity=String(.85*(1-e));
+  if(p>=1){const elx=j.el;job=null;raf=0;hideBrush();revealAll(elx);return}
+ }
+ raf=requestAnimationFrame(tick);
+}
+function request(el){
+ if(!el)return;
+ if(!unlocked){if(!pending.includes(el))pending.push(el);return}
+ if(call.open&&el.dataset.quill!=='dish')return;
+ if(el.dataset.qWritten==='1'&&job&&job.el===el)return;
+ run(el);
+}
+function write(el,delay){
+ if(!el)return;
+ const prev=timers.get(el);if(prev)clearTimeout(prev);
+ const id=setTimeout(()=>{timers.delete(el);request(el)},Math.max(0,delay||0));
+ timers.set(el,id);
+}
+function reset(el){if(!el)return;const prev=timers.get(el);if(prev){clearTimeout(prev);timers.delete(el)}if(job&&job.el===el){if(raf)cancelAnimationFrame(raf);raf=0;job=null;hideBrush()}delete el.__q;el.classList.remove('q-ready','q-done','written');delete el.dataset.qWritten}
+function unlock(){unlocked=true;const list=pending.splice(0);list.forEach(e=>request(e))}
+function currentHeading(){
+ const list=$$('[data-quill]').filter(e=>e.isConnected&&e.offsetParent!==null);
+ let best=null,bestScore=1e9;
+ list.forEach(e=>{const r=e.getBoundingClientRect();if(r.bottom<80||r.top>innerHeight-40)return;const sc=Math.abs(r.top+r.height/2-innerHeight*.34);if(sc<bestScore){bestScore=sc;best=e}});
+ return best||$('#heroTitle');
+}
+safe('quill-init',()=>{
+ if(!layer||!brush){$$('[data-quill]').forEach(e=>e.removeAttribute('data-quill'));return}
+ $$('[data-quill]').forEach(e=>{try{split(e)}catch(err){}});
+ if(reduced||!('IntersectionObserver'in window)){$$('[data-quill]').forEach(revealAll);if(dock)dock.style.display='none';return}
+ obs=new IntersectionObserver(es=>{es.forEach(en=>{if(!en.isIntersecting)return;const el=en.target;if(el.dataset.quill==='hero')return;obs.unobserve(el);if(el.dataset.qWritten==='1')return;request(el)})},{threshold:.35,rootMargin:'0px 0px -12% 0px'});
+ $$('[data-quill]').forEach(e=>{if(e.dataset.quill!=='hero')obs.observe(e)});
+ if(dock)dock.addEventListener('click',()=>{const el=currentHeading();if(!el)return;reset(el);ensureAudio();beep(880,.06,.02);request(el);toast('ARIA reescribe con su pincel ✦')});
+ addEventListener('resize',()=>{setScale();if(job)stop()},{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&job)stop()});
+ addEventListener('pagehide',()=>{if(raf)cancelAnimationFrame(raf);timers.forEach(t=>clearTimeout(t));timers.clear()});
+});
+return {request,write,reset,abort:stop,unlock,split};
+})();
+window.QUILL=QUILL;
+/* ═══ INTRO · salida limpia, sin coste de filtros ═══ */
 safe('intro',()=>{
-const p=$('#preloader');if(!p){document.body.classList.add('ready');return}
+const p=$('#preloader');if(!p){document.body.classList.add('ready');QUILL.unlock();QUILL.write($('#heroTitle'),200);return}
 const bar=$('#plBar'),pct=$('#plPct'),msg=$('#plMsg'),skip=$('#plSkip');
 const MSGS=['Encendiendo la brasa de encina…','Puliendo la plata de la sala…','Despertando a ARIA…','Preparando tu mesa…','Sirviendo el primer pase…'];
 const DUR=reduced?100:3400,t0=Date.now();
 let mi=0,done=false,clock=null,phrase=null,guard=null,exit=null;
 const onKey=e=>{if(e.key==='Enter'||e.key==='Escape'||e.key===' '){e.preventDefault();finish()}};
 function cleanup(){clearInterval(clock);clearInterval(phrase);clearTimeout(guard);clearTimeout(exit);removeEventListener('keydown',onKey);if(skip)skip.removeEventListener('click',finish)}
-function finish(){if(done)return;done=true;cleanup();if(bar)bar.style.width='100%';if(pct)pct.textContent='100%';p.classList.add('done');document.body.classList.add('ready');setTimeout(()=>{if(p.parentNode)p.parentNode.removeChild(p)},900)}
+function finish(){
+ if(done)return;done=true;cleanup();
+ if(bar)bar.style.width='100%';if(pct)pct.textContent='100%';
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  p.classList.add('done');document.body.classList.add('ready');
+  QUILL.unlock();QUILL.write($('#heroTitle'),340);
+  setTimeout(()=>{if(p.parentNode)p.parentNode.removeChild(p)},700);
+ }));
+}
 if(skip)skip.addEventListener('click',finish);
 addEventListener('keydown',onKey);
 phrase=setInterval(()=>{mi=(mi+1)%MSGS.length;if(msg)msg.textContent=MSGS[mi]},780);
@@ -889,6 +1053,7 @@ function normalizeRes(a){if(!a||typeof a!=='object')return null;const name=a.nom
 function detectReservation(text){if(!text)return;let m=text.match(/RESERVA[_ ]LISTA\s*:\s*(.*)/i);if(m){const parts=m[1].split(',').map(s=>s.trim());const whole=m[1];const gm=whole.match(/(\d{1,2})\s*personas/i);const tm=whole.match(/(\d{1,2}[:.h]\d{2})/);const name=parts[0]||'';const datePart=parts.find(p=>p&&!/personas/i.test(p)&&!/\d{1,2}[:.h]\d{2}/.test(p)&&p!==name)||'';const d=parseDate(norm(datePart));const r={name,guests:gm?gm[1]:'',date:d?iso(d):'',dateText:datePart,time:tm?tm[1].replace('.',':').replace('h',':'):'',lang:call.lang};if(validateBooking(r).ok)registerReservation(r,'voz');return}m=text.match(/\{[\s\S]*?"(?:nombre|name)"[\s\S]*?\}/);if(m){try{const r=normalizeRes(JSON.parse(m[0]));if(r&&validateBooking(r).ok)registerReservation(r,'voz')}catch(e){}}}
 async function openCall(ask=''){
 if(call.open)return;
+QUILL.abort();
 const token=++connectToken;
 call.open=true;call.connected=false;call.muted=false;call.speaker=true;call.captions=true;call.busy=false;call.speaking=false;call.listening=false;call.mode='checking';recBlocked=false;recRestarts=0;recWindow=0;flow={step:null,data:{}};pendingRes=null;lastResKey='';pendingAsk=ask;
 if(closeMenuFn)closeMenuFn();
