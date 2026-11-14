@@ -5,6 +5,73 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#06080F">
 <meta name="color-scheme" content="dark">
+<!-- ═══ PARCHE MÓVIL · solo teléfonos · estética y funciones intactas ═══ -->
+<script>
+(function(){
+'use strict';
+var d=document.documentElement;
+try{
+var coarse=false;try{coarse=matchMedia('(pointer:coarse)').matches}catch(e){}
+var ua=navigator.userAgent||'';
+var phoneUA=/iPhone|iPod|IEMobile|Windows Phone|Opera Mini|Android.*Mobile|Mobile.*Firefox/i.test(ua);
+var small=Math.min(screen.width||9999,screen.height||9999)<620;
+var lowMem=(navigator.deviceMemory||8)<=3;
+if(phoneUA||(coarse&&small)||lowMem)d.classList.add('lite');
+}catch(e){}
+function rescue(){
+try{
+var b=document.body;if(!b)return;
+var p=document.getElementById('preloader');
+if(p){p.classList.add('done');setTimeout(function(){if(p.parentNode)p.parentNode.removeChild(p)},800)}
+b.classList.add('ready');
+if(window.QUILL&&window.QUILL.unlock){try{window.QUILL.unlock();var h=document.getElementById('heroTitle');if(h&&h.dataset.qWritten!=='1')window.QUILL.write(h,120)}catch(e){}}
+else{
+var i,els=document.querySelectorAll('[data-reveal]');for(i=0;i<els.length;i++)els[i].classList.add('in');
+els=document.querySelectorAll('.ql');for(i=0;i<els.length;i++)els[i].classList.add('on');
+var t=document.getElementById('heroTitle');if(t)t.classList.add('written');
+}
+}catch(e){}
+}
+window.addEventListener('error',function(){var p=document.getElementById('preloader');if(p||!(document.body&&document.body.classList.contains('ready')))setTimeout(rescue,60)});
+window.addEventListener('pageshow',function(e){if(e.persisted){var p=document.getElementById('preloader');if(p)rescue()}});
+setTimeout(function(){var p=document.getElementById('preloader');if(p||!(document.body&&document.body.classList.contains('ready')))rescue()},9000);
+})();
+</script>
+<style>
+/* ═══ MODO LITE · teléfonos: mismo aspecto, sin los efectos que congelan el navegador móvil ═══ */
+html.lite #preloader{will-change:auto}
+html.lite #preloader::after{display:none}
+html.lite .pl-aurora{filter:none;mix-blend-mode:normal;opacity:.6}
+html.lite .pa1{background:radial-gradient(circle,rgba(212,175,55,.32),transparent 70%)}
+html.lite .pa2{background:radial-gradient(circle,rgba(61,110,158,.32),transparent 70%)}
+html.lite .pa3{background:radial-gradient(circle,rgba(224,118,58,.27),transparent 70%)}
+html.lite .pl-card{-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(160deg,rgba(20,26,44,.95),rgba(6,8,15,.9))}
+html.lite .pl-word::before{filter:none}
+html.lite .pl-l b{filter:none}
+html.lite .pl-dust i{will-change:auto;box-shadow:none}
+html.lite .blob{filter:none;mix-blend-mode:normal;opacity:.6}
+html.lite .b1{background:radial-gradient(circle,rgba(212,175,55,.2),transparent 68%)}
+html.lite .b2{background:radial-gradient(circle,rgba(61,110,158,.2),transparent 68%)}
+html.lite .b3{background:radial-gradient(circle,rgba(224,118,58,.15),transparent 68%)}
+html.lite #grain{display:none}
+html.lite .hero-title::before{filter:none}
+html.lite .hero-title .ql{filter:none}
+html.lite .hero-title.written .ql{animation:none}
+html.lite .portal-glow{filter:none}
+html.lite .portal-img img{animation:none}
+html.lite .portal-text{animation:none}
+html.lite #nav.scrolled{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(6,8,15,.96)}
+html.lite .hero-kicker{-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(135deg,rgba(28,34,54,.95),rgba(15,21,37,.95))}
+html.lite .portal-badge,html.lite .portal-badge2{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(13,18,32,.95)}
+html.lite .aria-badge{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(6,8,15,.94)}
+html.lite #quillDock{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(13,18,32,.96)}
+html.lite #mobileMenu{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(6,8,15,.98)}
+html.lite .modal{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(4,6,12,.94)}
+html.lite .cs-panel{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(13,18,32,.99)}
+html.lite .cs-caption{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(20,26,44,.96)}
+html.lite .cs-bg img{filter:brightness(.18) saturate(.6)}
+html.lite .cs-wave i{will-change:auto}
+</style>
 <title>AURUM · Restaurante 5★ — Llamada con ARIA</title>
 <meta name="description" content="Restaurante de lujo en Madrid. Reserva por WhatsApp o llama a ARIA, tu concierge de voz en cuatro idiomas.">
 <meta property="og:title" content="AURUM · Restaurante cinco estrellas — Madrid">
@@ -546,7 +613,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
 <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
 <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
-<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
 <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
 <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
@@ -558,7 +625,6 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
 <symbol id="i-glass" viewBox="0 0 24 24"><path d="M8 3h8l-.6 6a3.4 3.4 0 01-6.8 0L8 3zM12 12.5V19M8.5 21h7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>
-
 <!-- ═══════════ INTRO · sin barra final ═══════════ -->
 <div id="preloader">
 <div class="pl-aurora pa1" aria-hidden="true"></div><div class="pl-aurora pa2" aria-hidden="true"></div><div class="pl-aurora pa3" aria-hidden="true"></div>
@@ -589,11 +655,9 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </div>
 <script>window.addEventListener('error',function(){var p=document.getElementById('preloader');if(p&&p.parentNode){p.classList.add('done');if(document.body)document.body.classList.add('ready');setTimeout(function(){if(p.parentNode)p.parentNode.removeChild(p)},700)}});</script>
 <noscript><style>#preloader,#quillLayer,#quillDock{display:none}.hero-el{opacity:1!important;transform:none!important}.js [data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
-
 <div id="progress"></div>
 <div id="ambient" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
 <div id="grain" aria-hidden="true"></div>
-
 <!-- ═══════════ PINCEL DE ARIA ═══════════ -->
 <div id="quillLayer" aria-hidden="true">
 <div id="quillTrail"></div>
@@ -618,9 +682,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-brush"/></svg>
 <span class="qd-tip">Pincel de ARIA ✦ reescribir</span>
 </button>
-
 <nav class="side-rail" aria-label="Secciones"><a class="rail-link active" href="#inicio" data-label="Inicio" aria-label="Inicio"></a><a class="rail-link" href="#experiencia" data-label="Experiencia" aria-label="Experiencia"></a><a class="rail-link" href="#carta" data-label="Carta" aria-label="Carta"></a><a class="rail-link" href="#aria" data-label="ARIA" aria-label="ARIA"></a><a class="rail-link" href="#reserva" data-label="Reservar" aria-label="Reservar"></a></nav>
-
 <header id="nav"><div class="container nav-in">
 <a class="logo" href="#inicio"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>AURUM</a>
 <nav class="nav-links" aria-label="Principal"><a class="nav-link" href="#experiencia">Experiencia</a><a class="nav-link" href="#carta">Carta</a><a class="nav-link" href="#aria">ARIA</a><a class="nav-link" href="#reserva">Reservar</a></nav>
@@ -631,7 +693,6 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <button id="burger" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
 </div></div></header>
 <div id="mobileMenu" aria-hidden="true"><nav class="mm-links" aria-label="Móvil"><a href="#inicio"><i>00</i>Inicio</a><a href="#experiencia"><i>01</i>Experiencia</a><a href="#carta"><i>02</i>Carta</a><a href="#aria"><i>03</i>ARIA</a><a href="#reserva"><i>04</i>Reservar</a></nav><div class="mm-foot"><button class="btn btn-call" type="button" data-call><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Llamar a ARIA</button><a class="btn btn-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp +34 602 006 585</a></div></div>
-
 <main>
 <section id="inicio" class="hero">
 <div class="hero-bg" aria-hidden="true"><div class="hero-par" id="heroPar"><img id="heroImg" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80" srcset="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=72 900w,https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80 1600w,https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2200&q=80 2200w" sizes="100vw" alt="" fetchpriority="high" decoding="async" onerror="__imgFB(this)"></div></div>
@@ -656,14 +717,11 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </div>
 </div><a class="hero-scroll" href="#experiencia"><span class="line"></span>DESLIZA</a>
 </section>
-
 <div class="marquee" aria-hidden="true"><div class="marquee-track"><span class="mq-item"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item"><b>✦</b> Guía Celeste 2026</span><span class="mq-item"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item"><b>✦</b> ARIA · voz en cuatro idiomas</span><span class="mq-item"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item"><b>✦</b> Guía Celeste 2026</span><span class="mq-item"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item"><b>✦</b> ARIA · voz en cuatro idiomas</span></div></div>
-
 <section id="experiencia"><div class="container"><div class="exp-grid">
 <div class="exp-left quill-host" data-reveal="left"><p class="overline">01 — Esencia</p><h2 data-quill>Un laboratorio de <em>belleza comestible</em></h2><p>Cada noche, veintiocho comensales se sientan alrededor del fuego a responder una pregunta: ¿a qué sabe el mañana? La sala respira con el menú, la luz sigue el ritmo de los pases y la cocina trabaja con precisión de relojero.</p><div class="photo-frame exp-photo"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" srcset="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=72 700w,https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80 1000w" sizes="(max-width:1060px) 92vw, 520px" alt="Interior del comedor AURUM" loading="lazy" decoding="async" onerror="__imgFB(this)"></div></div>
 <div class="exp-right"><div class="pillar" data-reveal><span class="idx">01</span><div><h3>Fuego y precisión</h3><p>Brasa de encina a 480 °C, cámaras de maduración propias y una cocina-laboratorio donde cada grado importa.</p></div></div><div class="pillar" data-reveal style="--d:.08s"><span class="idx">02</span><div><h3>Producto de kilómetro cero</h3><p>Lonja de madrugada, huerto biodinámico propio y 42 pequeños productores que nos llaman por el nombre de pila.</p></div></div><div class="pillar" data-reveal style="--d:.16s"><span class="idx">03</span><div><h3>Teatro sensorial</h3><p>Luz que sigue el ritmo del menú, aromas escenografiados y una sala que se transforma con cada pase.</p></div></div></div>
 </div><div class="counters" data-reveal><div><span class="num" data-count="5">0</span><small>Estrellas</small></div><div><span class="num" data-count="12">0</span><small>Tiempos</small></div><div><span class="num" data-count="28">0</span><small>Asientos</small></div><div><span class="num" data-count="480">0</span><small>Etiquetas en bodega</small></div></div></div></section>
-
 <section id="carta"><div class="container">
 <div class="sec-head quill-host" data-reveal><p class="overline">02 — Carta viva · 2026</p><h2 data-quill>Seis platos, <em>seis mundos</em></h2><p>Toca cualquier plato para acercarte a él: historia, ingredientes y maridaje. Añade los que te conquisten y los incluiremos en tu mensaje de WhatsApp.</p></div>
 <div class="filters" data-reveal role="group" aria-label="Filtrar carta"><button class="fbtn active" type="button" data-f="all" aria-pressed="true">Todos<span class="f-n"></span></button><button class="fbtn" type="button" data-f="mar" aria-pressed="false">Del mar<span class="f-n"></span></button><button class="fbtn" type="button" data-f="tierra" aria-pressed="false">De la tierra<span class="f-n"></span></button><button class="fbtn" type="button" data-f="huerto" aria-pressed="false">Del huerto<span class="f-n"></span></button><button class="fbtn" type="button" data-f="dulce" aria-pressed="false">Dulces<span class="f-n"></span></button></div>
@@ -678,7 +736,6 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </div>
 <div class="tasting" data-reveal><div><p class="overline">La experiencia completa</p><h3>Menú Celeste · 12 tiempos</h3><p>Tres horas fuera del tiempo. Doce pases narrados por el equipo, con maridaje opcional de nuestra bodega de 480 etiquetas.</p><div class="t-chips"><span>185 € / persona</span><span>Maridaje +95 €</span><span>Mesa del Chef 220 €</span></div></div><a class="btn btn-gold" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20el%20Men%C3%BA%20Celeste." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Consultar Celeste</a></div>
 </div></section>
-
 <section id="aria"><div class="container aria-grid">
 <div class="photo-frame aria-photo" data-reveal="left"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80" srcset="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=700&q=72 700w,https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80 1000w" sizes="(max-width:1060px) 92vw, 480px" alt="Mesa preparada en AURUM" loading="lazy" decoding="async" onerror="__imgFB(this)"><div class="aria-badge"><b>ARIA · Anfitriona de voz</b><small>Voz en tiempo real · subtítulos · reserva al instante</small></div></div>
 <div class="quill-host" data-reveal="right"><p class="overline">03 — Llamada inteligente</p><h2 data-quill>Llama a ARIA, <em>como a una persona</em></h2><p style="color:var(--muted)">Pulsa llamar y habla con ARIA de verdad. Al confirmar tu reserva, el equipo la recibe al instante por correo y WhatsApp, y queda anotada en el libro.</p>
@@ -688,7 +745,6 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="aria-examples"><button class="aex" type="button" data-call data-ask="Reserva para 2 mañana a las 21:00 a nombre de Laura">«Reserva para 2 mañana a las 21:00»</button><button class="aex" type="button" data-call data-ask="What are your opening hours?">«What are your opening hours?»</button></div>
 <div class="voice-health" id="voiceHealth" aria-live="polite"></div>
 </div></div></section>
-
 <section id="reserva"><div class="container">
 <div class="sec-head quill-host" data-reveal><p class="overline">04 — Reservas</p><h2 data-quill>Tu mesa te espera, <em>elige el momento</em></h2><p>Habla con ARIA o completa el formulario. El envío final es un enlace real a WhatsApp: siempre funciona.</p></div>
 <div class="res-grid"><div data-reveal="left"><div class="res-top"><button class="btn btn-call" type="button" data-call data-ask="Quiero reservar una mesa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Reservar hablando</button><a class="btn btn-ghost" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar." target="_blank" rel="noopener">WhatsApp directo</a></div><ol class="steps"><li><b>1</b>Completa</li><li><b>2</b>Envía por WhatsApp</li><li><b>3</b>Confirmamos en menos de 2 h</li></ol>
@@ -700,7 +756,6 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </form></div>
 <div data-reveal="right"><div class="wa-card"><div class="wa-head"><span class="wa-ava">A</span><div><b>Concierge AURUM</b><small>en línea</small></div></div><div class="wa-body"><div class="bubble"><div id="pvText"></div><div class="pv-meta"><span id="pvTime">--:--</span><span class="ticks">✓✓</span></div></div></div></div><div class="pv-row"><button id="copyBtn" class="btn btn-ghost btn-sm" type="button"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>Copiar texto</button><span class="pv-note">Vista previa exacta</span></div><div class="res-info"><span class="status-badge" data-status><i class="dot"></i><span data-status-text>Consultando horario</span></span><div><div class="hrow" data-days="1"><span>Lunes</span><b>Cerrado</b></div><div class="hrow" data-days="2,3,4,5,6"><span>Martes — Sábado</span><b>19:30 – 23:00</b></div><div class="hrow" data-days="0"><span>Domingo</span><b>13:00 – 15:30</b></div></div><ul class="policies"><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Confirmación humana en menos de 2 horas.</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>Cancelación gratuita hasta 24 h antes.</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Código de vestimenta: elegancia contemporánea.</li></ul><a class="f-link" href="tel:+34602006585"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>+34 602 006 585</a></div></div>
 </div></div></section>
-
 <section id="faq"><div class="container"><div class="sec-head center quill-host" data-reveal><p class="overline">05 — Preguntas</p><h2 data-quill>Todo lo que quieres <em>preguntar</em></h2></div><div class="faq-wrap" data-reveal>
 <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">¿Por qué a veces dice «modo respaldo»?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>La voz en tiempo real necesita tres cosas: web publicada en HTTPS, permiso de micrófono y una clave pública de Vapi válida. Si falta alguna, ARIA sigue atendiendo por chat con voz de salida para que nunca te quedes sin respuesta. El diagnóstico de la sección ARIA te dice exactamente qué falta.</p></div></div></div>
 <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">¿La llamada funciona en iPad y iPhone?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Sí, con la web publicada en HTTPS y aceptando el micrófono. Safari, Chrome, Edge, Firefox y Android son compatibles. Si Safari tiene el micrófono bloqueado, el diagnóstico te muestra cómo reactivarlo en los ajustes del sitio. Firefox no incluye dictado por voz: allí ARIA funciona con chat hablado.</p></div></div></div>
@@ -708,16 +763,13 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">¿En qué idiomas habla?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Español, inglés, francés y alemán. ARIA detecta tu idioma automáticamente y puedes cambiarlo durante la llamada con el botón «Idioma».</p></div></div></div>
 </div></div></section>
 </main>
-
 <footer id="contacto"><div class="container"><div class="f-grid">
 <div class="f-brand"><a class="logo" href="#inicio"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>AURUM</a><span class="stars" aria-label="Cinco estrellas"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg></span><p>Alta cocina de autor en Madrid. Doce tiempos, una voz que te guía y una mesa que no olvidarás.</p><div class="f-social"><button type="button" data-call aria-label="Llamar a ARIA"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg></button><a href="https://wa.me/34602006585" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a><a href="tel:+34602006585" aria-label="Teléfono"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg></a><a href="https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid" target="_blank" rel="noopener" aria-label="Mapa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg></a></div></div>
 <div class="f-col"><h4>Visítanos</h4><address>Paseo de la Castellana 88<br>28046 Madrid, España</address><a class="f-link" href="https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid" target="_blank" rel="noopener">Google Maps<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ext"/></svg></a><ul class="f-contact"><li><a href="tel:+34602006585"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>+34 602 006 585</a></li><li><a href="mailto:reservas@aurum.rest"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"/></svg>reservas@aurum.rest</a></li></ul></div>
 <div class="f-col"><h4>Horarios</h4><div class="hrow" data-days="1"><span>Lunes</span><b>Cerrado</b></div><div class="hrow" data-days="2,3,4,5,6"><span>Martes — Sábado</span><b>19:30 – 23:00</b></div><div class="hrow" data-days="0"><span>Domingo</span><b>13:00 – 15:30</b></div></div>
 </div><div class="f-bottom"><span>© <span id="year">2026</span> AURUM · Madrid</span><span>WhatsApp · +34 602 006 585</span><button type="button" data-admin style="color:var(--dim);font:inherit;display:inline-flex;gap:6px;align-items:center"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:12px;height:12px"><use href="#i-lock"/></svg>Acceso del equipo</button></div></div></footer>
-
 <div class="fab-dock"><button class="fab fab-call" type="button" data-call aria-label="Llamar a ARIA"><span class="fab-tip">Llamar a ARIA ✦</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg></button><a class="fab fab-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="WhatsApp"><span class="fab-tip">WhatsApp +34 602 006 585</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a></div>
 <div id="toasts" aria-live="polite" aria-atomic="false"></div>
-
 <div id="callScreen" data-state="idle" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Llamada con ARIA">
 <div class="cs-bg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=70" alt="" loading="lazy" decoding="async" onerror="__imgFB(this)"></div>
 <div class="cs-top"><span>AURUM · Concierge</span><span class="cs-net"><i></i><span id="csMode">conectando…</span></span></div>
@@ -740,7 +792,6 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="cs-panel" id="chatPanel"><div class="cs-panel-head"><b>Chat con ARIA</b><button type="button" data-close-panel aria-label="Cerrar chat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button></div><div id="chatLog" role="log" aria-live="polite"></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px" id="chatQuick"></div><form id="chatForm"><label class="sr" for="chatInput">Mensaje para ARIA</label><input id="chatInput" type="text" placeholder="Escribe a ARIA…" autocomplete="off" enterkeyhint="send"><button id="chatSend" type="submit" aria-label="Enviar mensaje"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-send"/></svg></button></form></div>
 <div class="cs-panel" id="langPanel"><div class="cs-panel-head"><b>Idioma de la llamada</b><button type="button" data-close-panel aria-label="Cerrar idiomas"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button></div><div class="lang-grid" id="langGrid"></div></div>
 </div>
-
 <div class="modal" id="sysModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="sysTitle"><div class="modal-card"><div class="modal-head"><b id="sysTitle">Comprobación del sistema</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button></div><div id="sysBody"></div><div class="modal-actions" id="sysActions"></div><p class="adm-note">Aunque el micrófono no esté disponible, ARIA sigue atendiendo por chat con voz de salida y la reserva se completa igual.</p></div></div>
 <div class="modal" id="waModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Reserva lista"><div class="modal-card"><div class="modal-head"><b>Reserva lista ✦</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button></div><div id="waSummary"></div><div class="modal-actions"><a id="waSend" class="btn btn-wa" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Enviar por WhatsApp</a><button id="waCopy" class="btn btn-ghost" type="button"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>Copiar</button></div><p class="adm-note">La reserva ya se envió al correo del equipo. Este WhatsApp es una vía adicional para que la confirmes tú también con un toque.</p></div></div>
 <div class="modal" id="dishModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="dmName"><div class="modal-card">
@@ -753,7 +804,6 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="adm-tools"><input id="admSearch" type="search" placeholder="Buscar cliente, nota, fecha…" aria-label="Buscar reservas"><select id="admFilter" aria-label="Filtrar por estado"><option value="all">Todos los estados</option><option>Pendiente</option><option>Enviada WA</option><option>Confirmada</option><option>Cancelada</option></select><select id="admSort" aria-label="Ordenar"><option value="new">Más recientes primero</option><option value="date">Fecha de reserva</option><option value="name">Nombre A–Z</option></select></div>
 <div class="adm-bulk"><label style="display:inline-flex;gap:8px;align-items:center;min-height:36px"><input type="checkbox" id="admSelAll"> Seleccionar visibles</label><span id="admSelCount" aria-live="polite">0 seleccionadas</span><button id="admConfirmSel" class="adm-mini" type="button">Confirmar selección</button><button id="admDeleteSel" class="adm-mini" type="button">Eliminar selección</button></div>
 <div class="adm-scroll"><table id="admTable"><thead><tr><th></th><th>Cliente</th><th>Pers.</th><th>Fecha · Hora</th><th>Origen</th><th>Estado</th><th>Acciones</th></tr></thead><tbody></tbody></table></div><p class="adm-note">Libro de este dispositivo (voz y formulario). Cuando conectes el guardado en la nube, todas las reservas de todos los dispositivos vivirán también en Airtable.</p></div></div></div>
-
 <script>
 (()=>{ 'use strict';
 const CFG={wa:'34602006585',tel:'+34602006585',vapiKey:'a9080b39-34a7-42c9-8330-44be8705ac97',vapiAssistant:'4ce336d1-f9a4-4251-a00a-9d055be9f5c3',adminUser:'admin',adminPass:'aurum2026',airtable:'https://airtable.com/',web3forms:'5ba217cd-4465-44f7-86b0-bd213306226f'};
@@ -772,7 +822,7 @@ const SND={on:true};
 const call={open:false,connected:false,muted:false,speaker:true,captions:true,lang:'es',state:'idle',start:0,timer:null,ring:null,busy:false,speaking:false,listening:false,mode:'local',watchdog:null};
 let vapi=null,vapiBound=false,vapiLoading=null,rec=null,recBlocked=false,recRestarts=0,recWindow=0,flow={step:null,data:{}},audioCtx=null,pendingRes=null,lastResKey='',pendingAsk='',micGranted=false,connectToken=0,dmCur=null,dmZoomEl=null,lastFocus=null,ledgerDirty=true,closeMenuFn=null;
 const synth=window.speechSynthesis||null,SR=window.SpeechRecognition||window.webkitSpeechRecognition||null;
-const selected=new Set(store.get('aurum_call_sel',[]));
+const selRaw=store.get('aurum_call_sel',[]);const selected=new Set(Array.isArray(selRaw)?selRaw:[]);
 const LANGS={es:{label:'Español',bcp:'es-ES',female:['monica','mónica','paulina','helena','elvira','laura','lucia','sabina','google español']},en:{label:'English',bcp:'en-US',female:['samantha','victoria','zira','aria','jenny','susan','serena','google uk english female','google us english']},fr:{label:'Français',bcp:'fr-FR',female:['amelie','amélie','audrey','celine','céline','denise','julie','google français']},de:{label:'Deutsch',bcp:'de-DE',female:['anna','petra','katja','hedda','vicki','google deutsch']}};
 let voices=[];function loadVoices(){if(synth)voices=synth.getVoices()}if(synth){loadVoices();synth.onvoiceschanged=loadVoices}
 const TZ='Europe/Madrid',dinner=[{o:1170,c:1380,label:'cena'}],SCHED={0:[{o:780,c:930,label:'almuerzo'}],1:null,2:dinner,3:dinner,4:dinner,5:dinner,6:dinner},DAYS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
@@ -825,37 +875,37 @@ const lerp=(a,b,t)=>a+(b-a)*t;
 function setScale(){scale=innerWidth<700?.78:1}
 setScale();
 function split(el){
- const label=(el.textContent||'').replace(/\s+/g,' ').trim();
- if(el.__q&&el.__q.label===label)return el.__q;
- const existing=[...el.querySelectorAll('.ql')];
- if(existing.length){
-  el.setAttribute('aria-label',label);
-  existing.forEach((s,i)=>{s.style.setProperty('--qi',i);s.setAttribute('aria-hidden','true')});
-  el.classList.add('q-ready');el.classList.remove('q-done','written');
-  el.__q={label,chars:existing};return el.__q;
- }
- el.textContent=label;
- el.setAttribute('aria-label',label);
- const chars=[];
- const build=node=>{
-  [...node.childNodes].forEach(n=>{
-   if(n.nodeType===3){
-    const frag=document.createDocumentFragment();
-    n.nodeValue.split(/(\s+)/).forEach(part=>{
-     if(!part)return;
-     if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(' '));return}
-     const word=document.createElement('span');word.className='qw';word.setAttribute('aria-hidden','true');
-     for(const ch of part){const s=document.createElement('span');s.className='ql';s.textContent=ch;s.style.setProperty('--qi',chars.length);word.appendChild(s);chars.push(s)}
-     frag.appendChild(word);
-    });
-    node.replaceChild(frag,n);
-   } else if(n.nodeType===1&&!n.classList.contains('qw'))build(n);
-  });
- };
- build(el);
- el.classList.add('q-ready');el.classList.remove('q-done','written');
- el.__q={label,chars};
- return el.__q;
+const label=(el.textContent||'').replace(/\s+/g,' ').trim();
+if(el.__q&&el.__q.label===label)return el.__q;
+const existing=[...el.querySelectorAll('.ql')];
+if(existing.length){
+el.setAttribute('aria-label',label);
+existing.forEach((s,i)=>{s.style.setProperty('--qi',i);s.setAttribute('aria-hidden','true')});
+el.classList.add('q-ready');el.classList.remove('q-done','written');
+el.__q={label,chars:existing};return el.__q;
+}
+el.textContent=label;
+el.setAttribute('aria-label',label);
+const chars=[];
+const build=node=>{
+[...node.childNodes].forEach(n=>{
+if(n.nodeType===3){
+const frag=document.createDocumentFragment();
+n.nodeValue.split(/(\s+)/).forEach(part=>{
+if(!part)return;
+if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(' '));return}
+const word=document.createElement('span');word.className='qw';word.setAttribute('aria-hidden','true');
+for(const ch of part){const s=document.createElement('span');s.className='ql';s.textContent=ch;s.style.setProperty('--qi',chars.length);word.appendChild(s);chars.push(s)}
+frag.appendChild(word);
+});
+node.replaceChild(frag,n);
+} else if(n.nodeType===1&&!n.classList.contains('qw'))build(n);
+});
+};
+build(el);
+el.classList.add('q-ready');el.classList.remove('q-done','written');
+el.__q={label,chars};
+return el.__q;
 }
 function revealAll(el){const q=el.__q||split(el);q.chars.forEach(s=>s.classList.add('on'));el.classList.add('q-done');if(el.dataset.quill==='hero')el.classList.add('written');el.dataset.qWritten='1'}
 function hideBrush(){if(brush){brush.style.opacity='0';brush.classList.remove('writing')}if(trail)trail.style.opacity='0';if(dock)dock.classList.remove('busy')}
@@ -863,91 +913,91 @@ function place(x,y,rot,op){if(!brush)return;brush.style.transform='translate3d('
 function stop(){if(raf){cancelAnimationFrame(raf);raf=0}if(job){const el=job.el;job=null;revealAll(el)}hideBrush()}
 function chime(){if(!SND.on)return;try{beep(1180,.07,.02);setTimeout(()=>beep(1560,.09,.016),80)}catch(e){}}
 function run(el){
- if(!el||!el.isConnected)return;
- const q=split(el);
- if(!q.chars.length){el.dataset.qWritten='1';return}
- if(reduced||!brush){revealAll(el);return}
- stop();
- el.classList.remove('q-done','written');
- q.chars.forEach(s=>s.classList.remove('on'));
- el.classList.add('q-measure');
- const base=el.getBoundingClientRect();
- const pos=q.chars.map(s=>{const b=s.getBoundingClientRect();return{x:b.right,y:b.top+b.height*.6,w:b.width||8}});
- el.classList.remove('q-measure');
- if(!base.width){revealAll(el);return}
- const single=Math.abs(pos[0].y-pos[pos.length-1].y)<4;
- const x0=pos[0].x-pos[0].w,yLine=pos[0].y+Math.max(10,base.height*.16);
- const width=Math.max(24,pos[pos.length-1].x-x0);
- if(trail){trail.classList.toggle('tri',el.dataset.quill==='hero');trail.style.width=width.toFixed(1)+'px';trail.style.opacity='0';trail.style.transform='translate3d('+x0.toFixed(1)+'px,'+yLine.toFixed(1)+'px,0) scaleX(0)'}
- const per=Math.max(105,Math.min(200,3600/q.chars.length));
- const total=q.chars.length*per;
- const dr=dock?dock.getBoundingClientRect():null;
- const from=dr?{x:dr.left+dr.width/2,y:dr.top+dr.height/2}:{x:60,y:innerHeight-60};
- job={el,q,pos,base,single,x0,yLine,per,total,phase:'fly',t0:performance.now(),cx:from.x,cy:from.y,i:0};
- if(dock)dock.classList.add('busy');
- raf=requestAnimationFrame(tick);
+if(!el||!el.isConnected)return;
+const q=split(el);
+if(!q.chars.length){el.dataset.qWritten='1';return}
+if(reduced||!brush){revealAll(el);return}
+stop();
+el.classList.remove('q-done','written');
+q.chars.forEach(s=>s.classList.remove('on'));
+el.classList.add('q-measure');
+const base=el.getBoundingClientRect();
+const pos=q.chars.map(s=>{const b=s.getBoundingClientRect();return{x:b.right,y:b.top+b.height*.6,w:b.width||8}});
+el.classList.remove('q-measure');
+if(!base.width){revealAll(el);return}
+const single=Math.abs(pos[0].y-pos[pos.length-1].y)<4;
+const x0=pos[0].x-pos[0].w,yLine=pos[0].y+Math.max(10,base.height*.16);
+const width=Math.max(24,pos[pos.length-1].x-x0);
+if(trail){trail.classList.toggle('tri',el.dataset.quill==='hero');trail.style.width=width.toFixed(1)+'px';trail.style.opacity='0';trail.style.transform='translate3d('+x0.toFixed(1)+'px,'+yLine.toFixed(1)+'px,0) scaleX(0)'}
+const per=Math.max(105,Math.min(200,3600/q.chars.length));
+const total=q.chars.length*per;
+const dr=dock?dock.getBoundingClientRect():null;
+const from=dr?{x:dr.left+dr.width/2,y:dr.top+dr.height/2}:{x:60,y:innerHeight-60};
+job={el,q,pos,base,single,x0,yLine,per,total,phase:'fly',t0:performance.now(),cx:from.x,cy:from.y,i:0};
+if(dock)dock.classList.add('busy');
+raf=requestAnimationFrame(tick);
 }
 function tick(now){
- const j=job;if(!j){raf=0;return}
- const el=j.el;
- if(!el.isConnected){job=null;raf=0;hideBrush();return}
- const r=el.getBoundingClientRect();
- const dx=r.left-j.base.left,dy=r.top-j.base.top;
- if(r.bottom<-40||r.top>innerHeight+40){stop();return}
- const target=i=>{const k=Math.min(i,j.pos.length-1);return{x:j.pos[k].x+dx,y:j.pos[k].y+dy}};
- if(j.phase==='fly'){
-  const p=Math.min(1,(now-j.t0)/FLY),e=easeOut(p),tg=target(0);
-  j.cx=lerp(j.cx,tg.x,e*.26+.05);j.cy=lerp(j.cy,tg.y,e*.26+.05);
-  place(j.cx,j.cy,-55+27*e,p);
-  if(p>=1){j.phase='write';j.t0=now;brush.classList.add('writing');if(trail&&j.single)trail.style.opacity='.85'}
- } else if(j.phase==='write'){
-  const spent=now-j.t0,idx=Math.min(j.q.chars.length-1,Math.floor(spent/j.per));
-  while(j.i<=idx&&j.i<j.q.chars.length){j.q.chars[j.i].classList.add('on');j.i++}
-  const tg=target(idx),wob=Math.sin(now*.007)*1.2;
-  j.cx=lerp(j.cx,tg.x,.2);j.cy=lerp(j.cy,tg.y+wob,.2);
-  place(j.cx,j.cy,-28+Math.sin(now*.005)*2,1);
-  if(trail&&j.single){const span=j.pos[j.pos.length-1].x-j.x0||1;const pr=Math.max(0,Math.min(1,(j.cx-j.x0)/span));trail.style.transform='translate3d('+(j.x0+dx).toFixed(1)+'px,'+(j.yLine+dy).toFixed(1)+'px,0) scaleX('+pr.toFixed(3)+')'}
-  if(spent>=j.total+j.per*.6){j.q.chars.forEach(s=>s.classList.add('on'));j.phase='out';j.t0=now;brush.classList.remove('writing');chime()}
- } else {
-  const p=Math.min(1,(now-j.t0)/OUT),e=easeOut(p);
-  place(j.cx+30*e,j.cy-40*e,-28+16*e,1-e);
-  if(trail)trail.style.opacity=String(.85*(1-e));
-  if(p>=1){const elx=j.el;job=null;raf=0;hideBrush();revealAll(elx);return}
- }
- raf=requestAnimationFrame(tick);
+const j=job;if(!j){raf=0;return}
+const el=j.el;
+if(!el.isConnected){job=null;raf=0;hideBrush();return}
+const r=el.getBoundingClientRect();
+const dx=r.left-j.base.left,dy=r.top-j.base.top;
+if(r.bottom<-40||r.top>innerHeight+40){stop();return}
+const target=i=>{const k=Math.min(i,j.pos.length-1);return{x:j.pos[k].x+dx,y:j.pos[k].y+dy}};
+if(j.phase==='fly'){
+const p=Math.min(1,(now-j.t0)/FLY),e=easeOut(p),tg=target(0);
+j.cx=lerp(j.cx,tg.x,e*.26+.05);j.cy=lerp(j.cy,tg.y,e*.26+.05);
+place(j.cx,j.cy,-55+27*e,p);
+if(p>=1){j.phase='write';j.t0=now;brush.classList.add('writing');if(trail&&j.single)trail.style.opacity='.85'}
+} else if(j.phase==='write'){
+const spent=now-j.t0,idx=Math.min(j.q.chars.length-1,Math.floor(spent/j.per));
+while(j.i<=idx&&j.i<j.q.chars.length){j.q.chars[j.i].classList.add('on');j.i++}
+const tg=target(idx),wob=Math.sin(now*.007)*1.2;
+j.cx=lerp(j.cx,tg.x,.2);j.cy=lerp(j.cy,tg.y+wob,.2);
+place(j.cx,j.cy,-28+Math.sin(now*.005)*2,1);
+if(trail&&j.single){const span=j.pos[j.pos.length-1].x-j.x0||1;const pr=Math.max(0,Math.min(1,(j.cx-j.x0)/span));trail.style.transform='translate3d('+(j.x0+dx).toFixed(1)+'px,'+(j.yLine+dy).toFixed(1)+'px,0) scaleX('+pr.toFixed(3)+')'}
+if(spent>=j.total+j.per*.6){j.q.chars.forEach(s=>s.classList.add('on'));j.phase='out';j.t0=now;brush.classList.remove('writing');chime()}
+} else {
+const p=Math.min(1,(now-j.t0)/OUT),e=easeOut(p);
+place(j.cx+30*e,j.cy-40*e,-28+16*e,1-e);
+if(trail)trail.style.opacity=String(.85*(1-e));
+if(p>=1){const elx=j.el;job=null;raf=0;hideBrush();revealAll(elx);return}
+}
+raf=requestAnimationFrame(tick);
 }
 function request(el){
- if(!el)return;
- if(!unlocked){if(!pending.includes(el))pending.push(el);return}
- if(call.open&&el.dataset.quill!=='dish'){revealAll(el);return}
- if(el.dataset.qWritten==='1'&&job&&job.el===el)return;
- run(el);
+if(!el)return;
+if(!unlocked){if(!pending.includes(el))pending.push(el);return}
+if(call.open&&el.dataset.quill!=='dish'){revealAll(el);return}
+if(el.dataset.qWritten==='1'&&job&&job.el===el)return;
+run(el);
 }
 function write(el,delay){
- if(!el)return;
- const prev=timers.get(el);if(prev)clearTimeout(prev);
- const id=setTimeout(()=>{timers.delete(el);request(el)},Math.max(0,delay||0));
- timers.set(el,id);
+if(!el)return;
+const prev=timers.get(el);if(prev)clearTimeout(prev);
+const id=setTimeout(()=>{timers.delete(el);request(el)},Math.max(0,delay||0));
+timers.set(el,id);
 }
 function reset(el){if(!el)return;const prev=timers.get(el);if(prev){clearTimeout(prev);timers.delete(el)}if(job&&job.el===el){if(raf)cancelAnimationFrame(raf);raf=0;job=null;hideBrush()}$$('.ql',el).forEach(s=>s.classList.remove('on'));delete el.__q;el.classList.remove('q-ready','q-done','written');delete el.dataset.qWritten}
 function unlock(){unlocked=true;const list=pending.splice(0);list.forEach(e=>request(e))}
 function currentHeading(){
- const list=$$('[data-quill]').filter(e=>e.isConnected&&e.offsetParent!==null);
- let best=null,bestScore=1e9;
- list.forEach(e=>{const r=e.getBoundingClientRect();if(r.bottom<80||r.top>innerHeight-40)return;const sc=Math.abs(r.top+r.height/2-innerHeight*.34);if(sc<bestScore){bestScore=sc;best=e}});
- return best||$('#heroTitle');
+const list=$$('[data-quill]').filter(e=>e.isConnected&&e.offsetParent!==null);
+let best=null,bestScore=1e9;
+list.forEach(e=>{const r=e.getBoundingClientRect();if(r.bottom<80||r.top>innerHeight-40)return;const sc=Math.abs(r.top+r.height/2-innerHeight*.34);if(sc<bestScore){bestScore=sc;best=e}});
+return best||$('#heroTitle');
 }
 safe('quill-init',()=>{
- if(!layer||!brush){$$('[data-quill]').forEach(e=>e.removeAttribute('data-quill'));return}
- $$('[data-quill]').forEach(e=>{try{split(e)}catch(err){}});
- if(reduced||!('IntersectionObserver'in window)){$$('[data-quill]').forEach(revealAll);if(dock)dock.style.display='none';return}
- obs=new IntersectionObserver(es=>{es.forEach(en=>{if(!en.isIntersecting)return;const el=en.target;if(el.dataset.quill==='hero')return;obs.unobserve(el);if(el.dataset.qWritten==='1')return;request(el)})},{threshold:.3,rootMargin:'0px 0px -10% 0px'});
- $$('[data-quill]').forEach(e=>{if(e.dataset.quill!=='hero')obs.observe(e)});
- if(dock)dock.addEventListener('click',()=>{const el=currentHeading();if(!el)return;reset(el);ensureAudio();beep(880,.06,.02);request(el);toast('ARIA reescribe con su pincel ✦')});
- addEventListener('resize',()=>{setScale();if(job)stop()},{passive:true});
- document.addEventListener('visibilitychange',()=>{if(document.hidden&&job)stop()});
- addEventListener('pagehide',()=>{if(raf)cancelAnimationFrame(raf);timers.forEach(t=>clearTimeout(t));timers.clear()});
- setTimeout(()=>{$$('[data-quill]').forEach(e=>{if(e.dataset.qWritten==='1')return;const r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0&&(!job||job.el!==e))revealAll(e)})},7000);
+if(!layer||!brush){$$('[data-quill]').forEach(e=>e.removeAttribute('data-quill'));return}
+$$('[data-quill]').forEach(e=>{try{split(e)}catch(err){}});
+if(reduced||!('IntersectionObserver'in window)){$$('[data-quill]').forEach(revealAll);if(dock)dock.style.display='none';return}
+obs=new IntersectionObserver(es=>{es.forEach(en=>{if(!en.isIntersecting)return;const el=en.target;if(el.dataset.quill==='hero')return;obs.unobserve(el);if(el.dataset.qWritten==='1')return;request(el)})},{threshold:.3,rootMargin:'0px 0px -10% 0px'});
+$$('[data-quill]').forEach(e=>{if(e.dataset.quill!=='hero')obs.observe(e)});
+if(dock)dock.addEventListener('click',()=>{const el=currentHeading();if(!el)return;reset(el);ensureAudio();beep(880,.06,.02);request(el);toast('ARIA reescribe con su pincel ✦')});
+addEventListener('resize',()=>{setScale();if(job)stop()},{passive:true});
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&job)stop()});
+addEventListener('pagehide',()=>{if(raf)cancelAnimationFrame(raf);timers.forEach(t=>clearTimeout(t));timers.clear()});
+setTimeout(()=>{$$('[data-quill]').forEach(e=>{if(e.dataset.qWritten==='1')return;const r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0&&(!job||job.el!==e))revealAll(e)})},7000);
 });
 return {request,write,reset,abort:stop,unlock,split};
 })();
@@ -962,13 +1012,13 @@ let mi=0,done=false,clock=null,phrase=null,guard=null,exit=null;
 const onKey=e=>{if(e.key==='Enter'||e.key==='Escape'||e.key===' '){e.preventDefault();finish()}};
 function cleanup(){clearInterval(clock);clearInterval(phrase);clearTimeout(guard);clearTimeout(exit);removeEventListener('keydown',onKey);if(skip)skip.removeEventListener('click',finish)}
 function finish(){
- if(done)return;done=true;cleanup();
- if(bar)bar.style.width='100%';if(pct)pct.textContent='100 %';
- requestAnimationFrame(()=>requestAnimationFrame(()=>{
-  p.classList.add('done');document.body.classList.add('ready');
-  QUILL.unlock();QUILL.write($('#heroTitle'),420);
-  setTimeout(()=>{if(p.parentNode)p.parentNode.removeChild(p)},700);
- }));
+if(done)return;done=true;cleanup();
+if(bar)bar.style.width='100%';if(pct)pct.textContent='100 %';
+requestAnimationFrame(()=>requestAnimationFrame(()=>{
+p.classList.add('done');document.body.classList.add('ready');
+QUILL.unlock();QUILL.write($('#heroTitle'),420);
+setTimeout(()=>{if(p.parentNode)p.parentNode.removeChild(p)},700);
+}));
 }
 if(skip)skip.addEventListener('click',finish);
 addEventListener('keydown',onKey);
@@ -1002,7 +1052,7 @@ function fillTimes(keep=true){const info=slotsFor(rDate.value),prev=keep?rTime.v
 function setGuests(n){n=Math.max(1,Math.min(10,n||2));rGuests.value=n;$('#gVal').textContent=n;$('#gMinus').disabled=n<=1;$('#gPlus').disabled=n>=10;$('#guestHint').classList.toggle('show',n>8);updatePreview()}
 function setErr(id,msg){const el=document.getElementById(id);if(!el)return;const f=el.closest('.field');if(!f)return;f.classList.add('bad');const e=$('.err',f);if(e)e.textContent=msg}
 function clearErr(id){const el=document.getElementById(id);if(!el)return;const f=el.closest('.field');if(f)f.classList.remove('bad')}
-safe('reservation',()=>{const np=nowParts();const t=new Date(np.y,np.m-1,np.d);rDate.min=iso(t);const mx=new Date(t);mx.setDate(mx.getDate()+180);rDate.max=iso(mx);const d=store.get('aurum_call_draft',{});rName.value=d.n||'';if(d.d&&d.d>=rDate.min&&d.d<=rDate.max)rDate.value=d.d;fillTimes(false);if(d.t)rTime.value=d.t;rOcc.value=d.o||'';rNotes.value=d.nt||'';setGuests(+d.g||2);const saveDraft=()=>store.set('aurum_call_draft',{n:rName.value,d:rDate.value,t:rTime.value,g:rGuests.value,o:rOcc.value,nt:rNotes.value});$('#gMinus').addEventListener('click',()=>{setGuests(+rGuests.value-1);saveDraft()});$('#gPlus').addEventListener('click',()=>{setGuests(+rGuests.value+1);saveDraft()});rDate.addEventListener('change',()=>{clearErr('rDate');clearErr('rTime');fillTimes(true)});[rName,rNotes].forEach(el=>el.addEventListener('input',()=>{clearErr(el.id);updatePreview()}));[rTime,rOcc].forEach(el=>el.addEventListener('change',()=>{clearErr(el.id);updatePreview()}));$('#rForm').addEventListener('input',saveDraft);$('#rForm').addEventListener('change',saveDraft);$('#rForm').addEventListener('submit',e=>{e.preventDefault();let bad=null;clearErr('rName');clearErr('rDate');clearErr('rTime');if(rName.value.trim().length<2){setErr('rName','Cuéntanos tu nombre.');bad=bad||rName}const v=rDate.value,info=slotsFor(v);if(!v){setErr('rDate','Elige una fecha.');bad=bad||rDate}else if(v<rDate.min){setErr('rDate','Esa fecha ya pasó.');bad=bad||rDate}else if(v>rDate.max){setErr('rDate','Máximo 180 días de antelación.');bad=bad||rDate}else if(info.closed){setErr('rDate','Los lunes cerramos.');bad=bad||rDate}else if(!info.list.length){setErr('rDate','Ese día ya no tiene pases disponibles.');bad=bad||rDate}if(!rTime.value||!info.list.includes(rTime.value)){setErr('rTime',info.list.length?'Selecciona un pase válido.':'Elige una fecha con pases.');bad=bad||rTime}if(bad){toast('Revisa los campos marcados.','warn');try{bad.focus({preventScroll:false})}catch(err){}return}const rec={id:'F'+Date.now().toString(36),name:rName.value.trim(),guests:+rGuests.value,date:rDate.value,time:rTime.value,lang:'es',notes:[rOcc.value,rNotes.value.trim()].filter(Boolean).join(' · '),source:'formulario',status:'Enviada WA',ts:Date.now(),sent:true};ledger.add(rec);sendOwnerEmail(rec,'formulario');updatePreview();toast('Abriendo WhatsApp con tu solicitud ✦');const url=waURL(buildResMsg());let w=null;try{w=window.open(url,'_blank','noopener')}catch(err){}if(!w)location.href=url});$('#copyBtn').addEventListener('click',()=>copyText(buildResMsg()));updatePreview()});
+safe('reservation',()=>{const np=nowParts();const t=new Date(np.y,np.m-1,np.d);rDate.min=iso(t);const mx=new Date(t);mx.setDate(mx.getDate()+180);rDate.max=iso(mx);const dRaw=store.get('aurum_call_draft',{});const d=(dRaw&&typeof dRaw==='object'&&!Array.isArray(dRaw))?dRaw:{};rName.value=d.n||'';if(d.d&&d.d>=rDate.min&&d.d<=rDate.max)rDate.value=d.d;fillTimes(false);if(d.t)rTime.value=d.t;rOcc.value=d.o||'';rNotes.value=d.nt||'';setGuests(+d.g||2);const saveDraft=()=>store.set('aurum_call_draft',{n:rName.value,d:rDate.value,t:rTime.value,g:rGuests.value,o:rOcc.value,nt:rNotes.value});$('#gMinus').addEventListener('click',()=>{setGuests(+rGuests.value-1);saveDraft()});$('#gPlus').addEventListener('click',()=>{setGuests(+rGuests.value+1);saveDraft()});rDate.addEventListener('change',()=>{clearErr('rDate');clearErr('rTime');fillTimes(true)});[rName,rNotes].forEach(el=>el.addEventListener('input',()=>{clearErr(el.id);updatePreview()}));[rTime,rOcc].forEach(el=>el.addEventListener('change',()=>{clearErr(el.id);updatePreview()}));$('#rForm').addEventListener('input',saveDraft);$('#rForm').addEventListener('change',saveDraft);$('#rForm').addEventListener('submit',e=>{e.preventDefault();let bad=null;clearErr('rName');clearErr('rDate');clearErr('rTime');if(rName.value.trim().length<2){setErr('rName','Cuéntanos tu nombre.');bad=bad||rName}const v=rDate.value,info=slotsFor(v);if(!v){setErr('rDate','Elige una fecha.');bad=bad||rDate}else if(v<rDate.min){setErr('rDate','Esa fecha ya pasó.');bad=bad||rDate}else if(v>rDate.max){setErr('rDate','Máximo 180 días de antelación.');bad=bad||rDate}else if(info.closed){setErr('rDate','Los lunes cerramos.');bad=bad||rDate}else if(!info.list.length){setErr('rDate','Ese día ya no tiene pases disponibles.');bad=bad||rDate}if(!rTime.value||!info.list.includes(rTime.value)){setErr('rTime',info.list.length?'Selecciona un pase válido.':'Elige una fecha con pases.');bad=bad||rTime}if(bad){toast('Revisa los campos marcados.','warn');try{bad.focus({preventScroll:false})}catch(err){}return}const rec={id:'F'+Date.now().toString(36),name:rName.value.trim(),guests:+rGuests.value,date:rDate.value,time:rTime.value,lang:'es',notes:[rOcc.value,rNotes.value.trim()].filter(Boolean).join(' · '),source:'formulario',status:'Enviada WA',ts:Date.now(),sent:true};ledger.add(rec);sendOwnerEmail(rec,'formulario');updatePreview();toast('Abriendo WhatsApp con tu solicitud ✦');const url=waURL(buildResMsg());let w=null;try{w=window.open(url,'_blank','noopener')}catch(err){}if(!w)location.href=url});$('#copyBtn').addEventListener('click',()=>copyText(buildResMsg()));updatePreview()});
 safe('status',()=>{const now=()=>{const np=nowParts(),d=np.wd,m=np.hh*60+np.mm,td=SCHED[d];if(td)for(const s of td)if(m>=s.o&&m<s.c)return{open:true,text:`Abierto · ${s.label} hasta ${fmtMin(s.c)}`};for(let i=0;i<8;i++){const dd=(d+i)%7,sl=SCHED[dd];if(!sl)continue;for(const s of sl){if(i===0&&s.o<=m)continue;return{open:false,text:`Cerrado · abre ${i===0?'hoy':i===1?'mañana':'el '+DAYS[dd]} ${fmtMin(s.o)}`}}}return{open:false,text:'Cerrado'}};const badges=$$('[data-status]');const render=()=>{const s=now();badges.forEach(b=>{b.classList.toggle('open',s.open);const tx=$('[data-status-text]',b);if(tx)tx.textContent=s.text})};render();setInterval(render,30000);const wd=nowParts().wd;$$('[data-days]').forEach(r=>r.classList.toggle('today',r.dataset.days.split(',').map(Number).includes(wd)))});
 const TXT={
 es:{greet:'Hola, soy ARIA, la anfitriona de AURUM. Puedo responder tus preguntas y reservar tu mesa. ¿Qué necesitas?',ring:'Llamando a ARIA…',conn:'Llamada conectada',muted:'Micrófono en silencio',spkOff:'Altavoz desactivado · respuestas por subtítulos',spkOn:'Altavoz activado',listen:'Escuchando…',think:'ARIA está pensando…',speak:'ARIA hablando…',ready:'En llamada · lista',noMic:'Tu navegador no permite dictado por voz. Usa el chat: ARIA responde hablando.',https:'Para hablar con voz, abre esta web en HTTPS. Mientras tanto, usa el chat.',denied:'No he podido acceder al micrófono. Revisa el permiso o usa el chat.',askName:'¿A nombre de quién hago la reserva?',askGuests:'¿Para cuántas personas?',askDate:'¿Para qué día? Di mañana, viernes o quince de diciembre.',askTimeD:'Cena de 19:30 a 22:00. ¿A qué hora?',askTimeL:'Domingo, almuerzo de 13:00 a 15:00. ¿A qué hora?',confirm:d=>`Confirmo: ${d.guests} personas, a nombre de ${d.name}, ${prettyDate(d.date,'es')} a las ${d.time}. ¿Confirmas?`,done:'Reserva preparada. El equipo ya la recibió por correo; pulsa enviar por WhatsApp si quieres confirmarla tú también.',cancel:'Reserva descartada. Empezamos de nuevo cuando quieras.',closed:'Los lunes cerramos. Elige otro día.',past:'Esa fecha ya pasó.',badDate:'No entendí la fecha. Prueba con mañana o viernes.',badTime:'No entendí la hora. Prueba con 21:00.',noSlots:s=>`Ese pase no está disponible. Pases: ${s}.`,badGuests:'Dime un número del 1 al 10.',badName:'Dime tu nombre, por favor.',yesNo:'¿Confirmas? Responde sí o no.',hours:'Martes a sábado, de 19:30 a 23:00. Domingo, de 13:00 a 15:30. Lunes, cerrado.',location:'Paseo de la Castellana 88, Madrid.',menu:'Oro Líquido, Marea Negra, Jardín Suspendido, Brasa Imperial, Perla del Alba y Eclipse de Cacao. De 29 a 68 euros.',prices:'Platos de 29 a 68 euros. Menú Celeste de 12 tiempos: 185 euros. Maridaje: 95 euros.',tasting:'Menú Celeste: 12 tiempos, 185 euros. Maridaje opcional, 95 euros. ¿Reservamos?',allergies:'Adaptamos alergias y dietas con 48 horas de aviso.',dress:'Elegancia contemporánea. Evita la ropa deportiva.',events:'Bodega privada para 8, sala para 28 y Mesa del Chef para 6.',parking:'Servicio de aparcacoches y aparcamiento concertado.',kids:'Cenas para mayores de 12 años. El domingo al mediodía es familiar.',policy:'Cancelación gratuita hasta 24 horas antes. Mesa del Chef: 48 horas.',wine:'Bodega con 480 etiquetas y maridaje por pase.',chef:'Chef Adrián Valcárcel: fuego, temporada y precisión.',whatsapp:'Te dejo el enlace directo de WhatsApp.',thanks:'A ti. ¿Reservamos?',bye:'Hasta pronto. Llama a ARIA cuando quieras.',fallback:'Puedo ayudarte con reservas, carta, horarios, alergias y eventos.',sendWa:'Enviar por WhatsApp',copy:'Copiar',map:'Abrir mapa',openWa:'Abrir WhatsApp',langSet:l=>`Perfecto, seguimos en ${l}.`,placeholder:'Escribe a ARIA…',busy:'ARIA está respondiendo, un segundo…'},
@@ -1141,7 +1191,7 @@ safe('init',()=>{
 const ids=new Set($$('.dish').map(d=>d.dataset.id));[...selected].forEach(id=>{if(!ids.has(id))selected.delete(id)});
 refreshSel();updatePreview();$('#year').textContent=nowParts().y;updateHealth();
 const idle=window.requestIdleCallback||(f=>setTimeout(f,2200));
-idle(()=>{if(ENV.secure&&CFG.vapiKey)loadVapi().catch(()=>{})});
+idle(()=>{if(ENV.secure&&CFG.vapiKey&&!document.documentElement.classList.contains('lite'))loadVapi().catch(()=>{})});
 });
 })();
 </script>
