@@ -137,13 +137,10 @@ main,footer{position:relative;z-index:1}
 #plMsg{text-transform:uppercase;font-size:8px;letter-spacing:.18em;text-align:right}
 #plSkip{position:absolute;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:3;min-height:42px;font:800 9px var(--fu);letter-spacing:.26em;text-transform:uppercase;color:var(--dim);border:1px solid rgba(212,175,55,.25);border-radius:999px;padding:10px 18px;background:rgba(6,8,15,.5);transition:color .3s,border-color .3s;opacity:0;animation:plFade .8s ease 1.4s forwards}
 #plSkip:hover{color:var(--champ);border-color:var(--gold)}
-/* ═══════════ PINCEL DE ARIA · todo el texto se escribe ═══════════ */
+/* ═══════════ PINCEL DE ARIA · palabras intactas ═══════════ */
 .qw{display:inline-block;white-space:nowrap;max-width:100%}
-.qtext{min-width:0}
 .q-ready .ql{display:inline-block;opacity:0;transform:translateY(.14em);transition:opacity .3s ease,transform .3s var(--ease)}
 .q-ready .ql.on{opacity:1;transform:none;animation:inkWet .6s ease}
-.q-prose .ql{transition:opacity .22s ease,transform .22s var(--ease)}
-.q-prose .ql.on{animation:none}
 .q-measure .ql{transition:none!important;transform:none!important;animation:none!important}
 .q-done .ql{transition:none;animation:none;transform:none}
 @keyframes inkWet{0%{text-shadow:0 0 15px rgba(246,231,176,.75)}100%{text-shadow:0 0 0 rgba(246,231,176,0)}}
@@ -561,7 +558,8 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
 <symbol id="i-glass" viewBox="0 0 24 24"><path d="M8 3h8l-.6 6a3.4 3.4 0 01-6.8 0L8 3zM12 12.5V19M8.5 21h7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>
-<!-- ═══════════ INTRO ═══════════ -->
+
+<!-- ═══════════ INTRO · sin barra final ═══════════ -->
 <div id="preloader">
 <div class="pl-aurora pa1" aria-hidden="true"></div><div class="pl-aurora pa2" aria-hidden="true"></div><div class="pl-aurora pa3" aria-hidden="true"></div>
 <div class="pl-dust" aria-hidden="true"><i style="--x:7%;--t:9s;--dl:0s;--sw:30px"></i><i style="--x:17%;--t:12s;--dl:2s;--sw:-24px"></i><i style="--x:27%;--t:10s;--dl:4s;--sw:18px"></i><i style="--x:37%;--t:13s;--dl:1s;--sw:-30px"></i><i style="--x:47%;--t:11s;--dl:3s;--sw:22px"></i><i style="--x:57%;--t:14s;--dl:5s;--sw:-18px"></i><i style="--x:67%;--t:10s;--dl:2.5s;--sw:26px"></i><i style="--x:77%;--t:12s;--dl:.5s;--sw:-22px"></i><i style="--x:87%;--t:11s;--dl:4.5s;--sw:16px"></i><i style="--x:95%;--t:13s;--dl:1.8s;--sw:-28px"></i></div>
@@ -591,9 +589,11 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </div>
 <script>window.addEventListener('error',function(){var p=document.getElementById('preloader');if(p&&p.parentNode){p.classList.add('done');if(document.body)document.body.classList.add('ready');setTimeout(function(){if(p.parentNode)p.parentNode.removeChild(p)},700)}});</script>
 <noscript><style>#preloader,#quillLayer,#quillDock{display:none}.hero-el{opacity:1!important;transform:none!important}.js [data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+
 <div id="progress"></div>
 <div id="ambient" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
 <div id="grain" aria-hidden="true"></div>
+
 <!-- ═══════════ PINCEL DE ARIA ═══════════ -->
 <div id="quillLayer" aria-hidden="true">
 <div id="quillTrail"></div>
@@ -614,11 +614,13 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <span class="qtip"></span>
 </div>
 </div>
-<button id="quillDock" type="button" aria-label="Pincel de ARIA: reescribir con el pincel todos los textos visibles">
+<button id="quillDock" type="button" aria-label="Pincel de ARIA: reescribir el título de esta sección">
 <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-brush"/></svg>
-<span class="qd-tip">Pincel de ARIA ✦ reescribir pantalla</span>
+<span class="qd-tip">Pincel de ARIA ✦ reescribir</span>
 </button>
+
 <nav class="side-rail" aria-label="Secciones"><a class="rail-link active" href="#inicio" data-label="Inicio" aria-label="Inicio"></a><a class="rail-link" href="#experiencia" data-label="Experiencia" aria-label="Experiencia"></a><a class="rail-link" href="#carta" data-label="Carta" aria-label="Carta"></a><a class="rail-link" href="#aria" data-label="ARIA" aria-label="ARIA"></a><a class="rail-link" href="#reserva" data-label="Reservar" aria-label="Reservar"></a></nav>
+
 <header id="nav"><div class="container nav-in">
 <a class="logo" href="#inicio"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>AURUM</a>
 <nav class="nav-links" aria-label="Principal"><a class="nav-link" href="#experiencia">Experiencia</a><a class="nav-link" href="#carta">Carta</a><a class="nav-link" href="#aria">ARIA</a><a class="nav-link" href="#reserva">Reservar</a></nav>
@@ -629,6 +631,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <button id="burger" type="button" aria-label="Menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
 </div></div></header>
 <div id="mobileMenu" aria-hidden="true"><nav class="mm-links" aria-label="Móvil"><a href="#inicio"><i>00</i>Inicio</a><a href="#experiencia"><i>01</i>Experiencia</a><a href="#carta"><i>02</i>Carta</a><a href="#aria"><i>03</i>ARIA</a><a href="#reserva"><i>04</i>Reservar</a></nav><div class="mm-foot"><button class="btn btn-call" type="button" data-call><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Llamar a ARIA</button><a class="btn btn-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp +34 602 006 585</a></div></div>
+
 <main>
 <section id="inicio" class="hero">
 <div class="hero-bg" aria-hidden="true"><div class="hero-par" id="heroPar"><img id="heroImg" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80" srcset="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=72 900w,https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80 1600w,https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2200&q=80 2200w" sizes="100vw" alt="" fetchpriority="high" decoding="async" onerror="__imgFB(this)"></div></div>
@@ -653,11 +656,14 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </div>
 </div><a class="hero-scroll" href="#experiencia"><span class="line"></span>DESLIZA</a>
 </section>
+
 <div class="marquee" aria-hidden="true"><div class="marquee-track"><span class="mq-item"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item"><b>✦</b> Guía Celeste 2026</span><span class="mq-item"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item"><b>✦</b> ARIA · voz en cuatro idiomas</span><span class="mq-item"><b>★★★★★</b> Cinco estrellas</span><span class="mq-item"><b>✦</b> Guía Celeste 2026</span><span class="mq-item"><b>✦</b> Mejor restaurante de autor</span><span class="mq-item"><b>✦</b> Gran Premio del Maridaje</span><span class="mq-item"><b>✦</b> ARIA · voz en cuatro idiomas</span></div></div>
+
 <section id="experiencia"><div class="container"><div class="exp-grid">
 <div class="exp-left quill-host" data-reveal="left"><p class="overline">01 — Esencia</p><h2 data-quill>Un laboratorio de <em>belleza comestible</em></h2><p>Cada noche, veintiocho comensales se sientan alrededor del fuego a responder una pregunta: ¿a qué sabe el mañana? La sala respira con el menú, la luz sigue el ritmo de los pases y la cocina trabaja con precisión de relojero.</p><div class="photo-frame exp-photo"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" srcset="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=700&q=72 700w,https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80 1000w" sizes="(max-width:1060px) 92vw, 520px" alt="Interior del comedor AURUM" loading="lazy" decoding="async" onerror="__imgFB(this)"></div></div>
 <div class="exp-right"><div class="pillar" data-reveal><span class="idx">01</span><div><h3>Fuego y precisión</h3><p>Brasa de encina a 480 °C, cámaras de maduración propias y una cocina-laboratorio donde cada grado importa.</p></div></div><div class="pillar" data-reveal style="--d:.08s"><span class="idx">02</span><div><h3>Producto de kilómetro cero</h3><p>Lonja de madrugada, huerto biodinámico propio y 42 pequeños productores que nos llaman por el nombre de pila.</p></div></div><div class="pillar" data-reveal style="--d:.16s"><span class="idx">03</span><div><h3>Teatro sensorial</h3><p>Luz que sigue el ritmo del menú, aromas escenografiados y una sala que se transforma con cada pase.</p></div></div></div>
 </div><div class="counters" data-reveal><div><span class="num" data-count="5">0</span><small>Estrellas</small></div><div><span class="num" data-count="12">0</span><small>Tiempos</small></div><div><span class="num" data-count="28">0</span><small>Asientos</small></div><div><span class="num" data-count="480">0</span><small>Etiquetas en bodega</small></div></div></div></section>
+
 <section id="carta"><div class="container">
 <div class="sec-head quill-host" data-reveal><p class="overline">02 — Carta viva · 2026</p><h2 data-quill>Seis platos, <em>seis mundos</em></h2><p>Toca cualquier plato para acercarte a él: historia, ingredientes y maridaje. Añade los que te conquisten y los incluiremos en tu mensaje de WhatsApp.</p></div>
 <div class="filters" data-reveal role="group" aria-label="Filtrar carta"><button class="fbtn active" type="button" data-f="all" aria-pressed="true">Todos<span class="f-n"></span></button><button class="fbtn" type="button" data-f="mar" aria-pressed="false">Del mar<span class="f-n"></span></button><button class="fbtn" type="button" data-f="tierra" aria-pressed="false">De la tierra<span class="f-n"></span></button><button class="fbtn" type="button" data-f="huerto" aria-pressed="false">Del huerto<span class="f-n"></span></button><button class="fbtn" type="button" data-f="dulce" aria-pressed="false">Dulces<span class="f-n"></span></button></div>
@@ -672,6 +678,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </div>
 <div class="tasting" data-reveal><div><p class="overline">La experiencia completa</p><h3>Menú Celeste · 12 tiempos</h3><p>Tres horas fuera del tiempo. Doce pases narrados por el equipo, con maridaje opcional de nuestra bodega de 480 etiquetas.</p><div class="t-chips"><span>185 € / persona</span><span>Maridaje +95 €</span><span>Mesa del Chef 220 €</span></div></div><a class="btn btn-gold" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20el%20Men%C3%BA%20Celeste." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Consultar Celeste</a></div>
 </div></section>
+
 <section id="aria"><div class="container aria-grid">
 <div class="photo-frame aria-photo" data-reveal="left"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80" srcset="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=700&q=72 700w,https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=80 1000w" sizes="(max-width:1060px) 92vw, 480px" alt="Mesa preparada en AURUM" loading="lazy" decoding="async" onerror="__imgFB(this)"><div class="aria-badge"><b>ARIA · Anfitriona de voz</b><small>Voz en tiempo real · subtítulos · reserva al instante</small></div></div>
 <div class="quill-host" data-reveal="right"><p class="overline">03 — Llamada inteligente</p><h2 data-quill>Llama a ARIA, <em>como a una persona</em></h2><p style="color:var(--muted)">Pulsa llamar y habla con ARIA de verdad. Al confirmar tu reserva, el equipo la recibe al instante por correo y WhatsApp, y queda anotada en el libro.</p>
@@ -681,6 +688,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="aria-examples"><button class="aex" type="button" data-call data-ask="Reserva para 2 mañana a las 21:00 a nombre de Laura">«Reserva para 2 mañana a las 21:00»</button><button class="aex" type="button" data-call data-ask="What are your opening hours?">«What are your opening hours?»</button></div>
 <div class="voice-health" id="voiceHealth" aria-live="polite"></div>
 </div></div></section>
+
 <section id="reserva"><div class="container">
 <div class="sec-head quill-host" data-reveal><p class="overline">04 — Reservas</p><h2 data-quill>Tu mesa te espera, <em>elige el momento</em></h2><p>Habla con ARIA o completa el formulario. El envío final es un enlace real a WhatsApp: siempre funciona.</p></div>
 <div class="res-grid"><div data-reveal="left"><div class="res-top"><button class="btn btn-call" type="button" data-call data-ask="Quiero reservar una mesa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>Reservar hablando</button><a class="btn btn-ghost" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20reservar." target="_blank" rel="noopener">WhatsApp directo</a></div><ol class="steps"><li><b>1</b>Completa</li><li><b>2</b>Envía por WhatsApp</li><li><b>3</b>Confirmamos en menos de 2 h</li></ol>
@@ -692,6 +700,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 </form></div>
 <div data-reveal="right"><div class="wa-card"><div class="wa-head"><span class="wa-ava">A</span><div><b>Concierge AURUM</b><small>en línea</small></div></div><div class="wa-body"><div class="bubble"><div id="pvText"></div><div class="pv-meta"><span id="pvTime">--:--</span><span class="ticks">✓✓</span></div></div></div></div><div class="pv-row"><button id="copyBtn" class="btn btn-ghost btn-sm" type="button"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>Copiar texto</button><span class="pv-note">Vista previa exacta</span></div><div class="res-info"><span class="status-badge" data-status><i class="dot"></i><span data-status-text>Consultando horario</span></span><div><div class="hrow" data-days="1"><span>Lunes</span><b>Cerrado</b></div><div class="hrow" data-days="2,3,4,5,6"><span>Martes — Sábado</span><b>19:30 – 23:00</b></div><div class="hrow" data-days="0"><span>Domingo</span><b>13:00 – 15:30</b></div></div><ul class="policies"><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Confirmación humana en menos de 2 horas.</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>Cancelación gratuita hasta 24 h antes.</li><li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Código de vestimenta: elegancia contemporánea.</li></ul><a class="f-link" href="tel:+34602006585"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>+34 602 006 585</a></div></div>
 </div></div></section>
+
 <section id="faq"><div class="container"><div class="sec-head center quill-host" data-reveal><p class="overline">05 — Preguntas</p><h2 data-quill>Todo lo que quieres <em>preguntar</em></h2></div><div class="faq-wrap" data-reveal>
 <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">¿Por qué a veces dice «modo respaldo»?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>La voz en tiempo real necesita tres cosas: web publicada en HTTPS, permiso de micrófono y una clave pública de Vapi válida. Si falta alguna, ARIA sigue atendiendo por chat con voz de salida para que nunca te quedes sin respuesta. El diagnóstico de la sección ARIA te dice exactamente qué falta.</p></div></div></div>
 <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">¿La llamada funciona en iPad y iPhone?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Sí, con la web publicada en HTTPS y aceptando el micrófono. Safari, Chrome, Edge, Firefox y Android son compatibles. Si Safari tiene el micrófono bloqueado, el diagnóstico te muestra cómo reactivarlo en los ajustes del sitio. Firefox no incluye dictado por voz: allí ARIA funciona con chat hablado.</p></div></div></div>
@@ -699,13 +708,16 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false">¿En qué idiomas habla?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></button><div class="faq-a"><div class="faq-a-in"><p>Español, inglés, francés y alemán. ARIA detecta tu idioma automáticamente y puedes cambiarlo durante la llamada con el botón «Idioma».</p></div></div></div>
 </div></div></section>
 </main>
+
 <footer id="contacto"><div class="container"><div class="f-grid">
 <div class="f-brand"><a class="logo" href="#inicio"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>AURUM</a><span class="stars" aria-label="Cinco estrellas"><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg><svg class="star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg></span><p>Alta cocina de autor en Madrid. Doce tiempos, una voz que te guía y una mesa que no olvidarás.</p><div class="f-social"><button type="button" data-call aria-label="Llamar a ARIA"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg></button><a href="https://wa.me/34602006585" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a><a href="tel:+34602006585" aria-label="Teléfono"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg></a><a href="https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid" target="_blank" rel="noopener" aria-label="Mapa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg></a></div></div>
 <div class="f-col"><h4>Visítanos</h4><address>Paseo de la Castellana 88<br>28046 Madrid, España</address><a class="f-link" href="https://maps.google.com/?q=Paseo+de+la+Castellana+88,+Madrid" target="_blank" rel="noopener">Google Maps<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ext"/></svg></a><ul class="f-contact"><li><a href="tel:+34602006585"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>+34 602 006 585</a></li><li><a href="mailto:reservas@aurum.rest"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mail"/></svg>reservas@aurum.rest</a></li></ul></div>
 <div class="f-col"><h4>Horarios</h4><div class="hrow" data-days="1"><span>Lunes</span><b>Cerrado</b></div><div class="hrow" data-days="2,3,4,5,6"><span>Martes — Sábado</span><b>19:30 – 23:00</b></div><div class="hrow" data-days="0"><span>Domingo</span><b>13:00 – 15:30</b></div></div>
 </div><div class="f-bottom"><span>© <span id="year">2026</span> AURUM · Madrid</span><span>WhatsApp · +34 602 006 585</span><button type="button" data-admin style="color:var(--dim);font:inherit;display:inline-flex;gap:6px;align-items:center"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:12px;height:12px"><use href="#i-lock"/></svg>Acceso del equipo</button></div></div></footer>
+
 <div class="fab-dock"><button class="fab fab-call" type="button" data-call aria-label="Llamar a ARIA"><span class="fab-tip">Llamar a ARIA ✦</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg></button><a class="fab fab-wa" href="https://wa.me/34602006585?text=Hola%20AURUM%2C%20quiero%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="WhatsApp"><span class="fab-tip">WhatsApp +34 602 006 585</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></a></div>
 <div id="toasts" aria-live="polite" aria-atomic="false"></div>
+
 <div id="callScreen" data-state="idle" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Llamada con ARIA">
 <div class="cs-bg" aria-hidden="true"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=70" alt="" loading="lazy" decoding="async" onerror="__imgFB(this)"></div>
 <div class="cs-top"><span>AURUM · Concierge</span><span class="cs-net"><i></i><span id="csMode">conectando…</span></span></div>
@@ -728,6 +740,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="cs-panel" id="chatPanel"><div class="cs-panel-head"><b>Chat con ARIA</b><button type="button" data-close-panel aria-label="Cerrar chat"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button></div><div id="chatLog" role="log" aria-live="polite"></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px" id="chatQuick"></div><form id="chatForm"><label class="sr" for="chatInput">Mensaje para ARIA</label><input id="chatInput" type="text" placeholder="Escribe a ARIA…" autocomplete="off" enterkeyhint="send"><button id="chatSend" type="submit" aria-label="Enviar mensaje"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-send"/></svg></button></form></div>
 <div class="cs-panel" id="langPanel"><div class="cs-panel-head"><b>Idioma de la llamada</b><button type="button" data-close-panel aria-label="Cerrar idiomas"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button></div><div class="lang-grid" id="langGrid"></div></div>
 </div>
+
 <div class="modal" id="sysModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="sysTitle"><div class="modal-card"><div class="modal-head"><b id="sysTitle">Comprobación del sistema</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button></div><div id="sysBody"></div><div class="modal-actions" id="sysActions"></div><p class="adm-note">Aunque el micrófono no esté disponible, ARIA sigue atendiendo por chat con voz de salida y la reserva se completa igual.</p></div></div>
 <div class="modal" id="waModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Reserva lista"><div class="modal-card"><div class="modal-head"><b>Reserva lista ✦</b><button type="button" data-close-modal aria-label="Cerrar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button></div><div id="waSummary"></div><div class="modal-actions"><a id="waSend" class="btn btn-wa" href="#" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>Enviar por WhatsApp</a><button id="waCopy" class="btn btn-ghost" type="button"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy"/></svg>Copiar</button></div><p class="adm-note">La reserva ya se envió al correo del equipo. Este WhatsApp es una vía adicional para que la confirmes tú también con un toque.</p></div></div>
 <div class="modal" id="dishModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="dmName"><div class="modal-card">
@@ -740,6 +753,7 @@ footer h4{font:800 10px var(--fu);letter-spacing:.26em;text-transform:uppercase;
 <div class="adm-tools"><input id="admSearch" type="search" placeholder="Buscar cliente, nota, fecha…" aria-label="Buscar reservas"><select id="admFilter" aria-label="Filtrar por estado"><option value="all">Todos los estados</option><option>Pendiente</option><option>Enviada WA</option><option>Confirmada</option><option>Cancelada</option></select><select id="admSort" aria-label="Ordenar"><option value="new">Más recientes primero</option><option value="date">Fecha de reserva</option><option value="name">Nombre A–Z</option></select></div>
 <div class="adm-bulk"><label style="display:inline-flex;gap:8px;align-items:center;min-height:36px"><input type="checkbox" id="admSelAll"> Seleccionar visibles</label><span id="admSelCount" aria-live="polite">0 seleccionadas</span><button id="admConfirmSel" class="adm-mini" type="button">Confirmar selección</button><button id="admDeleteSel" class="adm-mini" type="button">Eliminar selección</button></div>
 <div class="adm-scroll"><table id="admTable"><thead><tr><th></th><th>Cliente</th><th>Pers.</th><th>Fecha · Hora</th><th>Origen</th><th>Estado</th><th>Acciones</th></tr></thead><tbody></tbody></table></div><p class="adm-note">Libro de este dispositivo (voz y formulario). Cuando conectes el guardado en la nube, todas las reservas de todos los dispositivos vivirán también en Airtable.</p></div></div></div>
+
 <script>
 (()=>{ 'use strict';
 const CFG={wa:'34602006585',tel:'+34602006585',vapiKey:'a9080b39-34a7-42c9-8330-44be8705ac97',vapiAssistant:'4ce336d1-f9a4-4251-a00a-9d055be9f5c3',adminUser:'admin',adminPass:'aurum2026',airtable:'https://airtable.com/',web3forms:'5ba217cd-4465-44f7-86b0-bd213306226f'};
@@ -781,7 +795,7 @@ function sendOwnerEmail(rec,source){try{if(!CFG.web3forms)return;fetch('https://
 function registerReservation(r,source){const key=(r.name||'')+'|'+(r.date||r.dateText||'')+'|'+(r.time||'');if(key===lastResKey)return;lastResKey=key;const rec={id:'A'+Date.now().toString(36),name:r.name||'',guests:r.guests||'',date:r.date||'',dateText:r.dateText||'',time:r.time||'',lang:r.lang||call.lang,notes:r.notes||'',source,status:'Pendiente',ts:Date.now(),sent:false};ledger.add(rec);pendingRes=rec;sendOwnerEmail(rec,source);const msg=bookingMsg(rec),url=waURL(msg);setCaption(t('done'),[{label:t('sendWa'),href:url,mark:rec.id},{label:t('copy'),onClick:()=>copyText(msg)}]);toast('Reserva registrada ✦');openWaModal(rec)}
 function openWaModal(rec){pendingRes=rec;$('#waSummary').textContent=bookingMsg(rec);const a=$('#waSend');a.href=waURL(bookingMsg(rec));a.onclick=()=>{rec.sent=true;ledger.set(rec.id,'Enviada WA');closeModals()};openModal('waModal')}
 function openModal(id){const m=document.getElementById(id);if(!m)return;if(!$$('.modal.open').length)lastFocus=document.activeElement;m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.classList.add('lock');const f=m.querySelector('.dm-close,[data-close-modal],a[href],button:not([disabled]),input:not([disabled])');if(f)try{f.focus({preventScroll:true})}catch(e){}}
-function closeModals(){const had=$$('.modal.open').length;$$('.modal').forEach(m=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')});if(dmZoomEl){dmZoomEl.remove();dmZoomEl=null}const di=$('#dmImg');if(di)di.style.opacity='';if(!call.open)document.body.classList.remove('lock');if(had&&lastFocus&&document.contains(lastFocus))try{lastFocus.focus({preventScroll:true})}catch(e){}lastFocus=null;if(window.QUILL){QUILL.abort();if(QUILL.resume)QUILL.resume()}}
+function closeModals(){const had=$$('.modal.open').length;$$('.modal').forEach(m=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')});if(dmZoomEl){dmZoomEl.remove();dmZoomEl=null}const di=$('#dmImg');if(di)di.style.opacity='';if(!call.open)document.body.classList.remove('lock');if(had&&lastFocus&&document.contains(lastFocus))try{lastFocus.focus({preventScroll:true})}catch(e){}lastFocus=null;if(window.QUILL)QUILL.abort()}
 function selList(){return $$('.dish').filter(d=>selected.has(d.dataset.id)).map(d=>`• ${$('.dish-name',d).textContent} — ${$('.dish-price',d).textContent}`)}
 function refreshSel(){$$('.dish-pick').forEach(b=>{const on=selected.has(b.dataset.pick);b.classList.toggle('picked',on);b.setAttribute('aria-pressed',String(on))});const n=selected.size;$('#selRow').classList.toggle('show',n>0);$('#selCount').textContent=n;const l=selList();$('#selSend').href=waURL('Hola AURUM ✦ '+(l.length?`Estos platos me interesan:
 ${l.join(NL)}
@@ -801,236 +815,146 @@ function paintDmPick(){if(!dmCur)return;const on=selected.has(dmCur),b=$('#dmPic
 function renderDish(id,swap){const d=DISHES[id];if(!d)return;dmCur=id;const img=$('#dmImg');img.removeAttribute('srcset');img.src=d.img;img.alt=d.name;$('#dmCat').textContent=d.cat;$('#dmPrice').textContent=d.price;$('#dmCount').textContent=pad(DISH_ORDER.indexOf(id)+1)+' / '+pad(DISH_ORDER.length);$('#dmOver').textContent='Carta viva · '+d.cat;const nm=$('#dmName');nm.textContent=d.name;QUILL.reset(nm);$('#dmTag').textContent=d.tag;$('#dmStory').textContent=d.story;const ch=$('#dmChips');ch.textContent='';d.chips.forEach(c=>{const s=document.createElement('span');s.textContent=c;ch.appendChild(s)});const ig=$('#dmIng');ig.textContent='';d.ing.forEach(i=>{const li=document.createElement('li');li.textContent=i;ig.appendChild(li)});const al=$('#dmAl');al.textContent='';if(!d.al.length){const s=document.createElement('span');s.className='none';s.textContent='Sin alérgenos declarados · vegano';al.appendChild(s)}else d.al.forEach(a=>{const s=document.createElement('span');s.textContent=a;al.appendChild(s)});$('#dmPair').textContent=d.pair;$('#dmPairNote').textContent=d.pairNote;$('#dmWa').href=waURL('Hola AURUM ✦ Me gustaría consultar sobre «'+d.name+'» ('+d.price+').');paintDmPick();if(swap&&!reduced){const b=$('#dmBody');b.classList.remove('dm-swap');void b.offsetWidth;b.classList.add('dm-swap')}QUILL.write(nm,560)}
 function openDish(id,src){if(!DISHES[id])return;renderDish(id,false);openModal('dishModal');const img=$('#dmImg');img.style.opacity='';if(reduced||!src)return;try{const from=src.getBoundingClientRect(),to=img.getBoundingClientRect();if(!from.width||!to.width)return;const z=document.createElement('div');z.className='dm-zoom';z.style.cssText='position:fixed;z-index:870;overflow:hidden;pointer-events:none;left:'+from.left+'px;top:'+from.top+'px;width:'+from.width+'px;height:'+from.height+'px;border-radius:18px;';const zi=document.createElement('img');zi.src=src.currentSrc||src.src;zi.alt='';z.appendChild(zi);document.body.appendChild(z);dmZoomEl=z;img.style.opacity='0';requestAnimationFrame(()=>{requestAnimationFrame(()=>{z.style.transition='left .55s cubic-bezier(.22,1,.36,1),top .55s cubic-bezier(.22,1,.36,1),width .55s cubic-bezier(.22,1,.36,1),height .55s cubic-bezier(.22,1,.36,1),border-radius .55s cubic-bezier(.22,1,.36,1)';z.style.left=to.left+'px';z.style.top=to.top+'px';z.style.width=to.width+'px';z.style.height=to.height+'px';z.style.borderRadius='20px'})});setTimeout(()=>{img.style.opacity='';if(dmZoomEl===z){z.remove();dmZoomEl=null}},640)}catch(e){img.style.opacity=''}}
 safe('dish-detail',()=>{$$('.dish').forEach(card=>{const id=card.dataset.id,img=$('.dish-img img',card),zone=$('.dish-img',card),nameEl=$('.dish-name',card);const hint=document.createElement('span');hint.className='dish-view';hint.textContent='Ver detalle ✦';zone.appendChild(hint);zone.setAttribute('role','button');zone.setAttribute('tabindex','0');zone.setAttribute('aria-label','Ver detalle de '+nameEl.textContent);zone.addEventListener('click',()=>openDish(id,img));zone.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openDish(id,img)}});nameEl.addEventListener('click',()=>openDish(id,img))});$('#dmPrev').addEventListener('click',()=>{const i=DISH_ORDER.indexOf(dmCur);renderDish(DISH_ORDER[(i-1+DISH_ORDER.length)%DISH_ORDER.length],true)});$('#dmNext').addEventListener('click',()=>{const i=DISH_ORDER.indexOf(dmCur);renderDish(DISH_ORDER[(i+1)%DISH_ORDER.length],true)});$('#dmPick').addEventListener('click',()=>{if(!dmCur)return;if(selected.has(dmCur))selected.delete(dmCur);else{selected.add(dmCur);toast('Añadido a tu consulta ✦')}refreshSel()});$('#dmBook').addEventListener('click',()=>{const d=DISHES[dmCur];closeModals();openCall('Quiero reservar una mesa y me interesa el plato '+(d?d.name:'de la carta'))});document.addEventListener('keydown',e=>{if(!$('#dishModal').classList.contains('open'))return;if(e.key==='ArrowLeft')$('#dmPrev').click();if(e.key==='ArrowRight')$('#dmNext').click()})});
-/* ═══════════ PINCEL DE ARIA · TODO el texto se escribe, ida y vuelta ═══════════ */
+/* ═══════════ PINCEL DE ARIA · palabras completas, sin cortes ═══════════ */
 const QUILL=(()=>{
 const layer=$('#quillLayer'),brush=$('#quillBrush'),trail=$('#quillTrail'),dock=$('#quillDock');
-const TIPX=20,TIPY=116;
-let raf=0,job=null,unlocked=false,timers=new Map(),pending=[],scale=1,obs=null,lastPos=null;
-const queue=[];
+const TIPX=20,TIPY=116,FLY=760,OUT=560;
+let raf=0,job=null,unlocked=false,timers=new Map(),pending=[],scale=1,obs=null;
 const easeOut=t=>1-Math.pow(1-t,3);
 const lerp=(a,b,t)=>a+(b-a)*t;
-const mob=()=>innerWidth<700;
-function setScale(){scale=mob()?.78:1}
+function setScale(){scale=innerWidth<700?.78:1}
 setScale();
-const SKIP_REGION='#callScreen,.modal,#toasts,#mobileMenu,#preloader,.marquee,.side-rail,.fab-dock,#quillLayer,#adminModal';
-const SKIP_EL='[data-count],.num,.f-n,.status-badge,[data-status],#selRow,#pvText,#pvTime,#timeHint,#year,#voiceHealth,.dish-view,.fab-tip,.qd-tip,script,style,svg';
-const AUTO_SEL='main h1,main h2,main h3,main p,main li,main .btn,main label,.hero-kicker,.hero-meta>span,.hero-scroll,.overline,.portal-badge b,.portal-badge small,.portal-badge2 b,.portal-badge2 small,.aria-badge b,.aria-badge small,.pillar .idx,.counters small,.fbtn,.chip,.dish-price,.dish-tags span,.dish-pick,.t-chips span,.lang-pills span,.afeat b,.aex,.faq-q,.field label,.form-note,#guestHint,.wa-head b,.wa-head small,.pv-note,.hrow span,.hrow b,.f-link,footer h4,footer p,footer address,.f-contact a,.f-bottom span,.f-bottom button,.logo,.nav-link,.nav-right .btn';
-const isHead=el=>el.dataset.quill==='hero'||el.dataset.quill==='dish'||/^H[1-3]$/.test(el.tagName);
 function split(el){
-if(el.__q&&(!el.__q.chars.length||el.__q.chars[0].isConnected))return el.__q;
-$$('.sr-q',el).forEach(n=>n.remove());
-const label=(el.textContent||'').replace(/\s+/g,' ').trim();
-if(el.querySelector('.qw')){$$('.qw',el).forEach(w=>w.replaceWith(document.createTextNode(w.textContent)));el.normalize()}
-const chars=[];
-const build=node=>{
-[...node.childNodes].forEach(n=>{
-if(n.nodeType===3){
-const frag=document.createDocumentFragment();
-n.nodeValue.split(/(\s+)/).forEach(part=>{
-if(!part)return;
-if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(' '));return}
-const word=document.createElement('span');word.className='qw';word.setAttribute('aria-hidden','true');
-for(const ch of part){const s=document.createElement('span');s.className='ql';s.textContent=ch;s.style.setProperty('--qi',chars.length);word.appendChild(s);chars.push(s)}
-frag.appendChild(word);
-});
-node.replaceChild(frag,n);
-}else if(n.nodeType===1){
-if(n.namespaceURI!=='http://www.w3.org/1999/xhtml')return;
-if(n.matches&&n.matches(SKIP_EL))return;
-if(!n.classList.contains('qw'))build(n);
+ const label=(el.textContent||'').replace(/\s+/g,' ').trim();
+ if(el.__q&&el.__q.label===label)return el.__q;
+ const existing=[...el.querySelectorAll('.ql')];
+ if(existing.length){
+  el.setAttribute('aria-label',label);
+  existing.forEach((s,i)=>{s.style.setProperty('--qi',i);s.setAttribute('aria-hidden','true')});
+  el.classList.add('q-ready');el.classList.remove('q-done','written');
+  el.__q={label,chars:existing};return el.__q;
+ }
+ el.textContent=label;
+ el.setAttribute('aria-label',label);
+ const chars=[];
+ const build=node=>{
+  [...node.childNodes].forEach(n=>{
+   if(n.nodeType===3){
+    const frag=document.createDocumentFragment();
+    n.nodeValue.split(/(\s+)/).forEach(part=>{
+     if(!part)return;
+     if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(' '));return}
+     const word=document.createElement('span');word.className='qw';word.setAttribute('aria-hidden','true');
+     for(const ch of part){const s=document.createElement('span');s.className='ql';s.textContent=ch;s.style.setProperty('--qi',chars.length);word.appendChild(s);chars.push(s)}
+     frag.appendChild(word);
+    });
+    node.replaceChild(frag,n);
+   } else if(n.nodeType===1&&!n.classList.contains('qw'))build(n);
+  });
+ };
+ build(el);
+ el.classList.add('q-ready');el.classList.remove('q-done','written');
+ el.__q={label,chars};
+ return el.__q;
 }
-});
-};
-build(el);
-/* Agrupa las palabras generadas en un solo bloque inline para no romper layouts flex */
-let run=[];
-const flush=()=>{if(!run.length)return;const w=document.createElement('span');w.className='qtext';el.insertBefore(w,run[0]);run.forEach(n=>w.appendChild(n));run=[]};
-[...el.childNodes].forEach(n=>{if((n.nodeType===1&&n.classList.contains('qw'))||n.nodeType===3){run.push(n)}else flush()});
-flush();
-const sr=document.createElement('span');sr.className='sr sr-q';sr.textContent=label;el.appendChild(sr);
-el.classList.add('q-ready');el.classList.remove('q-done','written');
-el.classList.toggle('q-prose',chars.length>48&&!isHead(el));
-el.__q={label,chars};
-return el.__q;
-}
-function revealAll(el){const q=el.__q||split(el);q.chars.forEach(s=>s.classList.add('on'));el.classList.add('q-done');if(el.dataset.quill==='hero')el.classList.add('written');el.dataset.qs='d';el.dataset.qWritten='1';delete el.dataset.qPri}
+function revealAll(el){const q=el.__q||split(el);q.chars.forEach(s=>s.classList.add('on'));el.classList.add('q-done');if(el.dataset.quill==='hero')el.classList.add('written');el.dataset.qWritten='1'}
 function hideBrush(){if(brush){brush.style.opacity='0';brush.classList.remove('writing')}if(trail)trail.style.opacity='0';if(dock)dock.classList.remove('busy')}
 function place(x,y,rot,op){if(!brush)return;brush.style.transform='translate3d('+(x-TIPX).toFixed(1)+'px,'+(y-TIPY).toFixed(1)+'px,0) rotate('+rot.toFixed(1)+'deg) scale('+scale+')';if(op!=null)brush.style.opacity=String(op)}
 function stop(){if(raf){cancelAnimationFrame(raf);raf=0}if(job){const el=job.el;job=null;revealAll(el)}hideBrush()}
-function chime(el){if(!SND.on||!isHead(el))return;try{beep(1180,.07,.02);setTimeout(()=>beep(1560,.09,.016),80)}catch(e){}}
-function visibleEnough(el){const r=el.getBoundingClientRect();return r.width>0&&r.bottom>30&&r.top<innerHeight-24}
-function faqClosed(el){const a=el.closest('.faq-a');return !!(a&&!a.closest('.faq-item').classList.contains('open'))}
-function enqueue(el,front){
-if(!el||!el.isConnected||faqClosed(el))return;
-if(!unlocked){if(!pending.includes(el))pending.push(el);return}
-if(call.open){revealAll(el);return}
-const st=el.dataset.qs;
-if(st==='d'||st==='w'||st==='q')return;
-el.dataset.qs='q';
-if(front){el.dataset.qPri='1';queue.unshift(el)}else queue.push(el);
-pump();
-}
-function pump(){
-if(job||!unlocked)return;
-queue.sort((a,b)=>{const pa=a.dataset.qPri==='1'?0:1,pb=b.dataset.qPri==='1'?0:1;if(pa!==pb)return pa-pb;return a.getBoundingClientRect().top-b.getBoundingClientRect().top});
-while(queue.length){
-const el=queue.shift();
-if(!el.isConnected||el.dataset.qs!=='q')continue;
-if(call.open){revealAll(el);continue}
-if(!visibleEnough(el)||faqClosed(el)){el.dataset.qs='';delete el.dataset.qPri;continue}
-run(el);return;
-}
-}
-function budget(el,n){
-let total;
-if(isHead(el))total=Math.min(3300,Math.max(720,n*108));
-else if(n<=14)total=340;
-else if(n<=40)total=560;
-else if(n<=90)total=950;
-else total=Math.min(2000,640+n*4.2);
-if(mob())total*=.82;
-return total;
-}
+function chime(){if(!SND.on)return;try{beep(1180,.07,.02);setTimeout(()=>beep(1560,.09,.016),80)}catch(e){}}
 function run(el){
-const q=split(el);
-if(!q.chars.length){revealAll(el);pump();return}
-if(reduced||!brush){revealAll(el);pump();return}
-if(call.open){revealAll(el);pump();return}
-el.dataset.qs='w';delete el.dataset.qPri;
-el.classList.remove('q-done','written');
-q.chars.forEach(s=>s.classList.remove('on'));
-el.classList.add('q-measure');
-const base=el.getBoundingClientRect();
-const pos=q.chars.map(s=>{const b=s.getBoundingClientRect();return{x:b.right,y:b.top+b.height*.62,w:b.width||8,top:b.top}});
-el.classList.remove('q-measure');
-if(!base.width){revealAll(el);pump();return}
-const lines=[];let cur=null;
-pos.forEach((p,i)=>{if(!cur||Math.abs(p.top-cur.top)>8){cur={top:p.top,chars:[],pos:[]};lines.push(cur)}cur.chars.push(q.chars[i]);cur.pos.push(p)});
-const per=budget(el,q.chars.length)/q.chars.length;
-lines.forEach(L=>{L.x0=L.pos[0].x-L.pos[0].w;L.x1=L.pos[L.pos.length-1].x;L.y=L.pos[0].y;L.ty=L.y+7;L.dur=per*L.chars.length});
-const from=lastPos||(dock?(()=>{const r=dock.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2}})():{x:60,y:innerHeight-60});
-if(trail)trail.classList.toggle('tri',el.dataset.quill==='hero');
-job={el,q,lines,li:0,ci:0,per,phase:'fly',t0:performance.now(),flyDur:lastPos?360:620,cx:from.x,cy:from.y,base};
-if(dock)dock.classList.add('busy');
-raf=requestAnimationFrame(tick);
+ if(!el||!el.isConnected)return;
+ const q=split(el);
+ if(!q.chars.length){el.dataset.qWritten='1';return}
+ if(reduced||!brush){revealAll(el);return}
+ stop();
+ el.classList.remove('q-done','written');
+ q.chars.forEach(s=>s.classList.remove('on'));
+ el.classList.add('q-measure');
+ const base=el.getBoundingClientRect();
+ const pos=q.chars.map(s=>{const b=s.getBoundingClientRect();return{x:b.right,y:b.top+b.height*.6,w:b.width||8}});
+ el.classList.remove('q-measure');
+ if(!base.width){revealAll(el);return}
+ const single=Math.abs(pos[0].y-pos[pos.length-1].y)<4;
+ const x0=pos[0].x-pos[0].w,yLine=pos[0].y+Math.max(10,base.height*.16);
+ const width=Math.max(24,pos[pos.length-1].x-x0);
+ if(trail){trail.classList.toggle('tri',el.dataset.quill==='hero');trail.style.width=width.toFixed(1)+'px';trail.style.opacity='0';trail.style.transform='translate3d('+x0.toFixed(1)+'px,'+yLine.toFixed(1)+'px,0) scaleX(0)'}
+ const per=Math.max(105,Math.min(200,3600/q.chars.length));
+ const total=q.chars.length*per;
+ const dr=dock?dock.getBoundingClientRect():null;
+ const from=dr?{x:dr.left+dr.width/2,y:dr.top+dr.height/2}:{x:60,y:innerHeight-60};
+ job={el,q,pos,base,single,x0,yLine,per,total,phase:'fly',t0:performance.now(),cx:from.x,cy:from.y,i:0};
+ if(dock)dock.classList.add('busy');
+ raf=requestAnimationFrame(tick);
 }
-function startTrail(L,dx,dy){if(!trail)return;trail.style.width=Math.max(20,L.x1-L.x0).toFixed(1)+'px';trail.style.opacity='.85';trail.style.transform='translate3d('+(L.x0+dx).toFixed(1)+'px,'+(L.ty+dy).toFixed(1)+'px,0) scaleX(0)'}
 function tick(now){
-const j=job;if(!j){raf=0;return}
-const el=j.el;
-if(!el.isConnected){job=null;raf=0;hideBrush();pump();return}
-const r=el.getBoundingClientRect();
-if(r.bottom<-60||r.top>innerHeight+60){job=null;raf=0;hideBrush();resetEl(el);pump();return}
-const dx=r.left-j.base.left,dy=r.top-j.base.top;
-const L=j.lines[j.li];
-const tg=k=>{const p=L.pos[Math.min(k,L.pos.length-1)];return{x:p.x+dx,y:p.y+dy}};
-if(j.phase==='fly'){
-const p=Math.min(1,(now-j.t0)/j.flyDur),e=easeOut(p),t0=tg(0);
-j.cx=lerp(j.cx,t0.x-6,e*.3+.06);j.cy=lerp(j.cy,t0.y,e*.3+.06);
-place(j.cx,j.cy,-55+27*e,Math.min(1,p*1.5));
-if(p>=1){j.phase='write';j.t0=now;j.ci=0;brush.classList.add('writing');startTrail(L,dx,dy)}
-}else if(j.phase==='write'){
-const spent=now-j.t0,idx=Math.min(L.chars.length-1,Math.floor(spent/j.per));
-while(j.ci<=idx&&j.ci<L.chars.length){L.chars[j.ci].classList.add('on');j.ci++}
-const t0=tg(idx),wob=Math.sin(now*.007)*1.1;
-j.cx=lerp(j.cx,t0.x,.24);j.cy=lerp(j.cy,t0.y+wob,.24);
-place(j.cx,j.cy,-28+Math.sin(now*.005)*2,1);
-if(trail){const span=Math.max(1,L.x1-L.x0),pr=Math.max(0,Math.min(1,(j.cx-(L.x0+dx))/span));trail.style.transform='translate3d('+(L.x0+dx).toFixed(1)+'px,'+(L.ty+dy).toFixed(1)+'px,0) scaleX('+pr.toFixed(3)+')'}
-if(spent>=L.dur+j.per*.5){
-L.chars.forEach(s=>s.classList.add('on'));
-if(j.li<j.lines.length-1){j.phase='hop';j.t0=now;j.hx=j.cx;j.hy=j.cy}
-else{j.phase='out';j.t0=now;brush.classList.remove('writing');chime(el)}
+ const j=job;if(!j){raf=0;return}
+ const el=j.el;
+ if(!el.isConnected){job=null;raf=0;hideBrush();return}
+ const r=el.getBoundingClientRect();
+ const dx=r.left-j.base.left,dy=r.top-j.base.top;
+ if(r.bottom<-40||r.top>innerHeight+40){stop();return}
+ const target=i=>{const k=Math.min(i,j.pos.length-1);return{x:j.pos[k].x+dx,y:j.pos[k].y+dy}};
+ if(j.phase==='fly'){
+  const p=Math.min(1,(now-j.t0)/FLY),e=easeOut(p),tg=target(0);
+  j.cx=lerp(j.cx,tg.x,e*.26+.05);j.cy=lerp(j.cy,tg.y,e*.26+.05);
+  place(j.cx,j.cy,-55+27*e,p);
+  if(p>=1){j.phase='write';j.t0=now;brush.classList.add('writing');if(trail&&j.single)trail.style.opacity='.85'}
+ } else if(j.phase==='write'){
+  const spent=now-j.t0,idx=Math.min(j.q.chars.length-1,Math.floor(spent/j.per));
+  while(j.i<=idx&&j.i<j.q.chars.length){j.q.chars[j.i].classList.add('on');j.i++}
+  const tg=target(idx),wob=Math.sin(now*.007)*1.2;
+  j.cx=lerp(j.cx,tg.x,.2);j.cy=lerp(j.cy,tg.y+wob,.2);
+  place(j.cx,j.cy,-28+Math.sin(now*.005)*2,1);
+  if(trail&&j.single){const span=j.pos[j.pos.length-1].x-j.x0||1;const pr=Math.max(0,Math.min(1,(j.cx-j.x0)/span));trail.style.transform='translate3d('+(j.x0+dx).toFixed(1)+'px,'+(j.yLine+dy).toFixed(1)+'px,0) scaleX('+pr.toFixed(3)+')'}
+  if(spent>=j.total+j.per*.6){j.q.chars.forEach(s=>s.classList.add('on'));j.phase='out';j.t0=now;brush.classList.remove('writing');chime()}
+ } else {
+  const p=Math.min(1,(now-j.t0)/OUT),e=easeOut(p);
+  place(j.cx+30*e,j.cy-40*e,-28+16*e,1-e);
+  if(trail)trail.style.opacity=String(.85*(1-e));
+  if(p>=1){const elx=j.el;job=null;raf=0;hideBrush();revealAll(elx);return}
+ }
+ raf=requestAnimationFrame(tick);
 }
-}else if(j.phase==='hop'){
-const p=Math.min(1,(now-j.t0)/150),e=easeOut(p),NL=j.lines[j.li+1],t0={x:NL.pos[0].x+dx,y:NL.pos[0].y+dy};
-j.cx=lerp(j.hx,t0.x-6,e);j.cy=lerp(j.hy,t0.y,e)-14*Math.sin(p*Math.PI);
-place(j.cx,j.cy,-28-10*Math.sin(p*Math.PI),1);
-if(trail)trail.style.opacity=String(.85*(1-p));
-if(p>=1){j.li++;j.ci=0;j.phase='write';j.t0=now;startTrail(j.lines[j.li],dx,dy)}
-}else{
-const p=Math.min(1,(now-j.t0)/420),e=easeOut(p);
-place(j.cx+26*e,j.cy-34*e,-28+16*e,1-e);
-if(trail)trail.style.opacity=String(.85*(1-e));
-if(p>=1){const elx=j.el;lastPos={x:j.cx,y:j.cy};job=null;raf=0;hideBrush();revealAll(elx);pump();return}
+function request(el){
+ if(!el)return;
+ if(!unlocked){if(!pending.includes(el))pending.push(el);return}
+ if(call.open&&el.dataset.quill!=='dish'){revealAll(el);return}
+ if(el.dataset.qWritten==='1'&&job&&job.el===el)return;
+ run(el);
 }
-raf=requestAnimationFrame(tick);
-}
-function resetEl(el){
-if(!el)return;
-const t=timers.get(el);if(t){clearTimeout(t);timers.delete(el)}
-const i=queue.indexOf(el);if(i>=0)queue.splice(i,1);
-if(job&&job.el===el){if(raf)cancelAnimationFrame(raf);raf=0;job=null;hideBrush()}
-if(el.__q)el.__q.chars.forEach(s=>s.classList.remove('on'));
-el.classList.remove('q-done','written');
-el.dataset.qs='';delete el.dataset.qWritten;delete el.dataset.qPri;
-}
-function reset(el){if(!el)return;resetEl(el);delete el.__q;el.classList.remove('q-ready','q-done','written','q-prose')}
-function request(el){enqueue(el)}
 function write(el,delay){
-if(!el)return;
-const prev=timers.get(el);if(prev)clearTimeout(prev);
-try{split(el)}catch(e){}
-if(el.__q)el.__q.chars.forEach(s=>s.classList.remove('on'));
-el.classList.remove('q-done','written');
-if(unlocked)el.dataset.qs='q';
-const id=setTimeout(()=>{timers.delete(el);
-if(!unlocked){if(!pending.includes(el))pending.unshift(el);return}
-if(job&&job.el!==el)stop();
-resetEl(el);enqueue(el,true);
-},Math.max(0,delay||0));
-timers.set(el,id);
+ if(!el)return;
+ const prev=timers.get(el);if(prev)clearTimeout(prev);
+ const id=setTimeout(()=>{timers.delete(el);request(el)},Math.max(0,delay||0));
+ timers.set(el,id);
 }
-function unlock(){
-if(unlocked)return;unlocked=true;
-const list=pending.splice(0);list.forEach(e=>enqueue(e));
-const hero=$('#heroTitle');
-if(hero&&hero.isConnected){const i=queue.indexOf(hero);if(i>=0)queue.splice(i,1);hero.dataset.qs='';enqueue(hero,true)}
-pump();
-setTimeout(sweep,6500);
-}
-function sweep(){
-if(!unlocked)return;
-$$('[data-quill]').forEach(el=>{
-if(!el.isConnected||el.closest('.modal')||el.closest('#callScreen'))return;
-if(el.dataset.qs==='d'||el.dataset.qs==='w'||el.dataset.qs==='q')return;
-if(visibleEnough(el)&&!faqClosed(el))enqueue(el);
-});
-}
-function rewriteVisible(){
-const els=$$('[data-quill]').filter(el=>el.isConnected&&!el.closest('.modal')&&!el.closest('#callScreen')&&visibleEnough(el)&&!faqClosed(el));
-els.forEach(resetEl);
-els.forEach(el=>enqueue(el));
+function reset(el){if(!el)return;const prev=timers.get(el);if(prev){clearTimeout(prev);timers.delete(el)}if(job&&job.el===el){if(raf)cancelAnimationFrame(raf);raf=0;job=null;hideBrush()}$$('.ql',el).forEach(s=>s.classList.remove('on'));delete el.__q;el.classList.remove('q-ready','q-done','written');delete el.dataset.qWritten}
+function unlock(){unlocked=true;const list=pending.splice(0);list.forEach(e=>request(e))}
+function currentHeading(){
+ const list=$$('[data-quill]').filter(e=>e.isConnected&&e.offsetParent!==null);
+ let best=null,bestScore=1e9;
+ list.forEach(e=>{const r=e.getBoundingClientRect();if(r.bottom<80||r.top>innerHeight-40)return;const sc=Math.abs(r.top+r.height/2-innerHeight*.34);if(sc<bestScore){bestScore=sc;best=e}});
+ return best||$('#heroTitle');
 }
 safe('quill-init',()=>{
-if(!layer||!brush){$$('[data-quill]').forEach(e=>e.removeAttribute('data-quill'));return}
-const seen=new Set();
-$$(AUTO_SEL).forEach(el=>{
-if(el.dataset.quill||seen.has(el))return;
-if(el.closest(SKIP_REGION)||el.matches(SKIP_EL))return;
-if(!(el.textContent||'').trim())return;
-seen.add(el);el.dataset.quill='auto';
+ if(!layer||!brush){$$('[data-quill]').forEach(e=>e.removeAttribute('data-quill'));return}
+ $$('[data-quill]').forEach(e=>{try{split(e)}catch(err){}});
+ if(reduced||!('IntersectionObserver'in window)){$$('[data-quill]').forEach(revealAll);if(dock)dock.style.display='none';return}
+ obs=new IntersectionObserver(es=>{es.forEach(en=>{if(!en.isIntersecting)return;const el=en.target;if(el.dataset.quill==='hero')return;obs.unobserve(el);if(el.dataset.qWritten==='1')return;request(el)})},{threshold:.3,rootMargin:'0px 0px -10% 0px'});
+ $$('[data-quill]').forEach(e=>{if(e.dataset.quill!=='hero')obs.observe(e)});
+ if(dock)dock.addEventListener('click',()=>{const el=currentHeading();if(!el)return;reset(el);ensureAudio();beep(880,.06,.02);request(el);toast('ARIA reescribe con su pincel ✦')});
+ addEventListener('resize',()=>{setScale();if(job)stop()},{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&job)stop()});
+ addEventListener('pagehide',()=>{if(raf)cancelAnimationFrame(raf);timers.forEach(t=>clearTimeout(t));timers.clear()});
+ setTimeout(()=>{$$('[data-quill]').forEach(e=>{if(e.dataset.qWritten==='1')return;const r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0&&(!job||job.el!==e))revealAll(e)})},7000);
 });
-$$('[data-quill]').forEach(e=>{try{split(e)}catch(err){}});
-if(reduced||!('IntersectionObserver'in window)){$$('[data-quill]').forEach(revealAll);if(dock)dock.style.display='none';return}
-obs=new IntersectionObserver(es=>{
-es.forEach(en=>{
-const el=en.target;
-if(!en.isIntersecting||en.intersectionRatio<=.001){if(el.dataset.qs)resetEl(el);return}
-if(en.intersectionRatio>=.28)enqueue(el);
-});
-},{threshold:[0,.28],rootMargin:'0px 0px -6% 0px'});
-$$('[data-quill]').forEach(e=>{if(e.dataset.quill!=='dish')obs.observe(e)});
-if(dock)dock.addEventListener('click',()=>{ensureAudio();beep(880,.06,.02);rewriteVisible();toast('ARIA reescribe con su pincel ✦')});
-addEventListener('resize',()=>{setScale();if(job)stop();pump()},{passive:true});
-document.addEventListener('visibilitychange',()=>{if(document.hidden){if(job)stop()}else pump()});
-addEventListener('pagehide',()=>{if(raf)cancelAnimationFrame(raf);timers.forEach(t=>clearTimeout(t));timers.clear()});
-});
-return{request,write,reset,clear:resetEl,abort:stop,resume:pump,unlock,split};
+return {request,write,reset,abort:stop,unlock,split};
 })();
 window.QUILL=QUILL;
 /* ═══ INTRO ═══ */
 safe('intro',()=>{
-const p=$('#preloader');if(!p){document.body.classList.add('ready');QUILL.unlock();return}
+const p=$('#preloader');if(!p){document.body.classList.add('ready');QUILL.unlock();QUILL.write($('#heroTitle'),200);return}
 const bar=$('#plBar'),pct=$('#plPct'),msg=$('#plMsg'),skip=$('#plSkip');
 const MSGS=['Encendiendo la brasa de encina…','Puliendo la plata de la sala…','Despertando a ARIA…','Preparando tu mesa…','Sirviendo el primer pase…'];
 const DUR=reduced?100:3400,t0=Date.now();
@@ -1038,13 +962,13 @@ let mi=0,done=false,clock=null,phrase=null,guard=null,exit=null;
 const onKey=e=>{if(e.key==='Enter'||e.key==='Escape'||e.key===' '){e.preventDefault();finish()}};
 function cleanup(){clearInterval(clock);clearInterval(phrase);clearTimeout(guard);clearTimeout(exit);removeEventListener('keydown',onKey);if(skip)skip.removeEventListener('click',finish)}
 function finish(){
-if(done)return;done=true;cleanup();
-if(bar)bar.style.width='100%';if(pct)pct.textContent='100 %';
-requestAnimationFrame(()=>requestAnimationFrame(()=>{
-p.classList.add('done');document.body.classList.add('ready');
-QUILL.unlock();
-setTimeout(()=>{if(p.parentNode)p.parentNode.removeChild(p)},700);
-}));
+ if(done)return;done=true;cleanup();
+ if(bar)bar.style.width='100%';if(pct)pct.textContent='100 %';
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  p.classList.add('done');document.body.classList.add('ready');
+  QUILL.unlock();QUILL.write($('#heroTitle'),420);
+  setTimeout(()=>{if(p.parentNode)p.parentNode.removeChild(p)},700);
+ }));
 }
 if(skip)skip.addEventListener('click',finish);
 addEventListener('keydown',onKey);
@@ -1069,7 +993,7 @@ if('IntersectionObserver'in window){const io=new IntersectionObserver(es=>{es.fo
 });
 safe('reveals',()=>{const els=$$('[data-reveal]');if(reduced||!('IntersectionObserver'in window)){els.forEach(e=>e.classList.add('in'));return}const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.1,rootMargin:'0px 0px -40px'});els.forEach(e=>io.observe(e))});
 safe('counters',()=>{$$('[data-count]').forEach(el=>{const target=+el.dataset.count||0;const run=()=>{if(reduced){el.textContent=target;return}const t0=performance.now();const f=n=>{const p=Math.min(1,(n-t0)/1200);el.textContent=Math.round(target*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)};if(!('IntersectionObserver'in window)){run();return}const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){run();io.disconnect()}}),{threshold:.4});io.observe(el)})});
-safe('faq',()=>{$$('.faq-item').forEach(it=>{const q=$('.faq-q',it);q.addEventListener('click',()=>{const open=it.classList.contains('open');$$('.faq-item.open').forEach(o=>{o.classList.remove('open');$('.faq-q',o).setAttribute('aria-expanded','false');const ap=$('.faq-a p',o);if(ap&&window.QUILL)QUILL.clear(ap)});if(!open){it.classList.add('open');q.setAttribute('aria-expanded','true');const ap=$('.faq-a p',it);if(ap&&window.QUILL)QUILL.write(ap,160)}})})});
+safe('faq',()=>{$$('.faq-item').forEach(it=>{const q=$('.faq-q',it);q.addEventListener('click',()=>{const open=it.classList.contains('open');$$('.faq-item.open').forEach(o=>{o.classList.remove('open');$('.faq-q',o).setAttribute('aria-expanded','false')});if(!open){it.classList.add('open');q.setAttribute('aria-expanded','true')}})})});
 safe('portal',()=>{const p=$('#portal');if(!p||reduced||!matchMedia('(hover:hover) and (pointer:fine)').matches)return;let raf=0;const move=e=>{const r=p.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;if(raf)return;raf=requestAnimationFrame(()=>{raf=0;p.style.transform='perspective(900px) rotateY('+(x*7).toFixed(2)+'deg) rotateX('+(-y*7).toFixed(2)+'deg)'})};p.addEventListener('pointermove',move,{passive:true});p.addEventListener('pointerleave',()=>{if(raf){cancelAnimationFrame(raf);raf=0}p.style.transform=''},{passive:true})});
 const rName=$('#rName'),rDate=$('#rDate'),rTime=$('#rTime'),rGuests=$('#rGuests'),rOcc=$('#rOccasion'),rNotes=$('#rNotes');
 function buildResMsg(){const info=slotsFor(rDate.value),sel=selList();const L=['✦ AURUM — SOLICITUD DE RESERVA ✦','',`👤 Nombre: ${rName.value.trim()||'—'}`,`📅 Fecha: ${prettyDate(rDate.value)}`,`🕐 Hora: ${rTime.value||'—'}${info.service?` (${info.service})`:''}`,`👥 Comensales: ${rGuests.value}`];if(rOcc.value)L.push(`🥂 Ocasión: ${rOcc.value}`);if(sel.length){L.push('🍽️ Platos de interés:');L.push(...sel)}if(rNotes.value.trim())L.push(`📝 Notas: ${rNotes.value.trim()}`);L.push('','Enviado desde la web de AURUM');return L.join(NL)}
@@ -1167,7 +1091,7 @@ startLocal(ask);pendingAsk='';
 }
 function startLocal(ask){call.mode='local';updateHealth();clearInterval(call.timer);
 setTimeout(()=>{if(!call.open||call.mode==='vapi')return;call.connected=true;stopRing();call.start=Date.now();setState('connected');beep(660,.12,.04);call.timer=setInterval(()=>{const s=Math.floor((Date.now()-call.start)/1000);$('#csTimer').textContent=pad(Math.floor(s/60))+':'+pad(s%60)},1000);const g=ask?'':t('greet');if(g){setCaption(g);speak(g,()=>{if(!call.open)return;setState('ready');setTimeout(startListening,400)})}else{setState('ready');setTimeout(()=>handleUser(ask),250)}},600)}
-function finishCall(){if(!call.open)return;call.open=false;call.connected=false;call.busy=false;call.speaking=false;call.listening=false;pendingAsk='';connectToken++;clearTimeout(call.watchdog);call.watchdog=null;stopRing();clearInterval(call.timer);call.timer=null;stopListening();try{synth&&synth.cancel()}catch(e){}$('#callScreen').classList.remove('open');$('#callScreen').setAttribute('aria-hidden','true');if(!$$('.modal.open').length)document.body.classList.remove('lock');closePanels();setState('idle');if(window.QUILL&&QUILL.resume)QUILL.resume();if(pendingRes&&!pendingRes.sent)openWaModal(pendingRes)}
+function finishCall(){if(!call.open)return;call.open=false;call.connected=false;call.busy=false;call.speaking=false;call.listening=false;pendingAsk='';connectToken++;clearTimeout(call.watchdog);call.watchdog=null;stopRing();clearInterval(call.timer);call.timer=null;stopListening();try{synth&&synth.cancel()}catch(e){}$('#callScreen').classList.remove('open');$('#callScreen').setAttribute('aria-hidden','true');if(!$$('.modal.open').length)document.body.classList.remove('lock');closePanels();setState('idle');if(pendingRes&&!pendingRes.sent)openWaModal(pendingRes)}
 function closeCall(){connectToken++;clearTimeout(call.watchdog);call.watchdog=null;const wasVapi=call.mode==='vapi';call.mode='local';if(wasVapi&&vapi){try{vapi.stop()}catch(e){}}finishCall()}
 function closePanels(){$$('.cs-panel').forEach(p=>p.classList.remove('open'));['Keypad','Chat','Lang'].forEach(k=>{const b=$('#btn'+k);if(b){b.classList.remove('active');b.setAttribute('aria-expanded','false')}})}
 function togglePanel(which){const p=$('#'+which+'Panel');if(!p)return;const willOpen=!p.classList.contains('open');closePanels();if(willOpen){p.classList.add('open');const b=$('#btn'+which.charAt(0).toUpperCase()+which.slice(1));if(b){b.classList.add('active');b.setAttribute('aria-expanded','true')}if(which==='chat')setTimeout(()=>{try{$('#chatInput').focus({preventScroll:true})}catch(e){}},260)}}
